@@ -1,5 +1,5 @@
 
-Generalized Search Tree 
+# Generalized Search Tree 
 (Hellerstein, Naughton, Pfeffer)
 
 Used in Postgres
@@ -25,13 +25,8 @@ If domain has linear order,
 3. PickSplit ensures that split respects order
 4. No two keys on a node overlap - Consistent(E1, E2, p) = false
 
-If domain has linear order then
-
-search can be carried out using FindMin and Next
-
-else
-
-search carried by general search analogous to R-tree
+If domain has linear order then search can be carried out using FindMin and Next
+else search carried by general search analogous to R-tree
 
 How does Tree balancing work
 * if linear order, use Btree style - borrow and coalesce
