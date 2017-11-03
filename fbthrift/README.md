@@ -1,10 +1,10 @@
 
 FBThrift uses Wangle, Folly and Apache Thrift making it quite complex to understand and use.
 
-[FBthrift](https://github.com/facebook/fbthrift)
-[Folly](https://github.com/facebook/folly)
-[Wangle](https://github.com/facebook/wangle)
-[Apache thrift](https://github.com/apache/thrift)
+1. [FBthrift](https://github.com/facebook/fbthrift)
+2. [Folly](https://github.com/facebook/folly)
+3. [Wangle](https://github.com/facebook/wangle)
+4. [Apache thrift](https://github.com/apache/thrift)
 
 Some diagrams in UML notation related to this framework
 
