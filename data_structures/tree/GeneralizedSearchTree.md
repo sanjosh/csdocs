@@ -2,16 +2,16 @@
 # Generalized Search Tree 
 (Hellerstein, Naughton, Pfeffer)
 
-Used in Postgres
+This is used in Postgres (GIST index)
 
-B+tree supports (less, leq, gt, ge)
-Rtree supports left, right, overleft, overlap, overright, right, contains, contained, equal
+* B+tree supports (less, leq, gt, ge)
+* Rtree supports (left, right, overleft, overlap, overright, right, contains, contained, equal)
 
-Create a generalized Tree
-* Expose node splitting algo 
-* Expose methods on the key class
+Create a generalized Tree which combines both of the above by
+* Exposing node splitting algo 
+* Exposing methods on the key class
 
-Tree Methods exposed to user are
+Tree Methods that are exposed to user are
 1. consistent(Entry E, query predicate q)
 2. union(E)
 3. compress(E)
@@ -35,8 +35,10 @@ How does Tree balancing work
 ---
 
 See Postgres code
-src/include/access/gist.h
-src/backend/access/gist.c
+* src/include/access/gist.h
+* src/backend/access/gist.c
+
+[github](https://github.com/postgres/postgres/tree/master/src/backend/access/gist)
 
 
 
