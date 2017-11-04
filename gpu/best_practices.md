@@ -83,8 +83,8 @@ points
 
 # Local mem is off-chip and as expensive as global memory
 
-variables written as ".local" in ptx.
-nvcc option -ptxas-options=-v
+* variables written as ".local" in ptx.
+* nvcc option -ptxas-options=-v
 
 # Plot by Compute capability
 
