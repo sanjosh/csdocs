@@ -1,10 +1,10 @@
 
 # Function tags
 
-* __device__ runs on GPU, called from GPU
-* __host__  runs on CPU, called from CPU
-* __global__ runs on GPU, called from CPU (aka kernels)
-* __shared__ ?
+* `__device__` runs on GPU, called from GPU
+* `__host__`  runs on CPU, called from CPU
+* `__global__` runs on GPU, called from CPU (aka kernels)
+* `__shared__` ?
 
 * global funcs must return void
 * global func cannot accept C++ ref

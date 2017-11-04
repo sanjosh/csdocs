@@ -47,12 +47,13 @@ cuda_gdb commands
 * info cuda threads
 * cuda thread <n>
 
-software coordinates are thread, block, kernel
-hardware coordinates are lane, warp, SM and device
+coordinates
+* software coordinates are thread, block, kernel
+* hardware coordinates are lane, warp, SM and device
 
-cuda device sm warp lane block thread
-cuda kernel block thread
-cuda kernel
+device vs kernel
+* cuda device sm warp lane block thread
+* cuda kernel block thread
 
 Concepts
 * devices
@@ -83,14 +84,14 @@ to disable async kernel for debugging
 
 # cuda context
 
-cudaGetDeviceCount
-cudaSetDevice
-cudaGetDeviceProperties
+* cudaGetDeviceCount
+* cudaSetDevice
+* cudaGetDeviceProperties
 
 # cubin = cuda binary file
 
-nvcc embeds cubin in host exec
-to generate separately, run `nvcc -cubin`
+* nvcc embeds cubin in host exec
+* to generate separately, run `nvcc -cubin`
 
 # cuobjdump 
 
