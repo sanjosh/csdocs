@@ -1,18 +1,16 @@
 
-*(From Cuda C best practices guide - pdf)*
-
-32 threads per warp
-1536 threads per multiprocessor
-upto 16 multiprocessor per GPU
+* 32 threads per warp
+* 1536 threads per multiprocessor
+* upto 16 multiprocessor per GPU
 
 # Short device functions
 
-write CUDA kernel as collection of short "__device__" func
-rather than one large "__global__" func.
+write CUDA kernel as collection of short `__device__` func
+rather than one large `__global__` func.
 
 # Dual purpose functions
 
-define func as "__host__ __device__" so it can be called
+define func as `__host__ __device__` so it can be called
 from either CPU or GPU
 
 # Concurrent streams
@@ -113,6 +111,8 @@ points
 # Misc
 
 * Use signed int as loop variables
-* avoid use of "__syncthreads__" inside divergent code
+* avoid use of `__syncthreads__` inside divergent code
 
+# reference
 
+* Cuda C best practices guide - pdf 
