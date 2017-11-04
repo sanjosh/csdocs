@@ -4,8 +4,8 @@
 1. Expectation-step : estimate missing data based on observed data and current estimate of model parameters
 2. Maximization-step : maximize likelihood func after assuming missing data are known the estimate of missing data from E-step is used
 
-[StackExchange](http://stats.stackexchange.com/questions/72774/numerical-example-to-understand-expectation-maximization)
-[Weiss, EM tutorial]
+* [StackExchange](http://stats.stackexchange.com/questions/72774/numerical-example-to-understand-expectation-maximization)
+* [Weiss, EM tutorial]
 
 Given a set of points for a mixture of 2 distributions, how to find individual distribution ?
 
@@ -20,5 +20,5 @@ M-step : fit the points to each distribution
          using (weight * each point)
 ```
 
-[EM tutorial paper by Do and Batzoglou]
-[Stackoverflow](http://stackoverflow.com/questions/11808074/what-is-an-intuitive-explanation-of-expectation-maximization-technique)
+* [EM tutorial paper by Do and Batzoglou]
+* [Stackoverflow](http://stackoverflow.com/questions/11808074/what-is-an-intuitive-explanation-of-expectation-maximization-technique)
