@@ -69,48 +69,50 @@ choose thread block to be multiple of 32
 L1 cache line is 128 bytes 
 L2 cache line 
 
-loads/store by threads in warp can be coalesced under certain conditions
-number of memory transactions = number of cache lines hit by threads in warp
-access patterns are useful -- k-th thread accesses k-th word in cache line
+misc points
+* loads/store by threads in warp can be coalesced under certain conditions.  
+* number of memory transactions = number of cache lines hit by threads in warp.
+* access patterns are useful -- k-th thread accesses k-th word in cache line.
 
 # Shared memory
 
-when multiple threads in warp request same shmem loc, its a broadcast
-when diff warps request same shmem loc, it is serialized
-No penalty for unaligned access from shmem by a warp (unlike global mem)
+points
+* when multiple threads in warp request same shmem loc, its a broadcast
+* when diff warps request same shmem loc, it is serialized
+* No penalty for unaligned access from shmem by a warp (unlike global mem)
 
 # Local mem is off-chip and as expensive as global memory
 
-variables written as ".local" in ptx
+variables written as ".local" in ptx.
 nvcc option -ptxas-options=-v
 
 # Plot by Compute capability
 
-Host to device BW
-device to GPU BW for each RAM type
-GPU freq
-num threads, warps, blocks
-Memory types
-L1 and L2 cache
+* Host to device BW
+* device to GPU BW for each RAM type
+* GPU freq
+* num threads, warps, blocks
+* Memory types
+* L1 and L2 cache
 
 # Resource usage
 
-hardware occupancy - aim for 50 percent
-register pressure
-CUDA Occupancy Calculator spreadsheet
-Check concurrentKernels field in cudaDeviceProp
+* hardware occupancy - aim for 50 percent
+* register pressure
+* CUDA Occupancy Calculator spreadsheet
+* Check concurrentKernels field in cudaDeviceProp
 
 # CUDA Contexts
 
-Avoid multiple contexts per GPU
-Use primary context
-Cuda context defines single host process access to GPU
-Contexts sharing same GPU are time sliced
-But see CUDA Multi process Service...
+* Avoid multiple contexts per GPU
+* Use primary context
+* Cuda context defines single host process access to GPU
+* Contexts sharing same GPU are time sliced
+* But see CUDA Multi process Service...
 
 # Misc
 
-Use signed int as loop variables
-avoid use of "__syncthreads__" inside divergent code
+* Use signed int as loop variables
+* avoid use of "__syncthreads__" inside divergent code
 
 
