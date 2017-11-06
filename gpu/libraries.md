@@ -62,19 +62,14 @@ operations : sort, merge, scan, search, reduce, reorder, transform
 
 -----------------
 
-mgpu::standard_context_t context;
+# ModernGPU
 
-mgpu::transform(func, num-threads, context)
-
-context.synchronize()
-
-cta_launch<num_threads>(func, 1, context)
-
-expt
-
-mem_t
-
-to_mem
-
-MGPU_HOST_DEVICE
+* mgpu::standard_context_t context;
+* mgpu::transform(func, num-threads, context)
+* context.synchronize()
+* cta_launch<num_threads>(func, 1, context)
+* expt
+* mem_t
+* to_mem
+* MGPU_HOST_DEVICE
 
