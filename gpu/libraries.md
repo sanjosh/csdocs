@@ -60,3 +60,21 @@ operations : sort, merge, scan, search, reduce, reorder, transform
 2. [r2](http://stackoverflow.com/questions/24368197/getting-cuda-thrust-to-use-a-cuda-stream-of-your-choice)
 3. [r3](https://thrust.github.io/doc/group__execution__policies.html)
 
+-----------------
+
+mgpu::standard_context_t context;
+
+mgpu::transform(func, num-threads, context)
+
+context.synchronize()
+
+cta_launch<num_threads>(func, 1, context)
+
+expt
+
+mem_t
+
+to_mem
+
+MGPU_HOST_DEVICE
+
