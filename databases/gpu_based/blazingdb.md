@@ -4,6 +4,7 @@
 * Compressed columns sent to GPU 
 * Never cache on GPU
 * use cascading compression
+* can exploit multiple servers with multiple GPU
 
 Dictionary
 * Use dictionary encoding for strings - which is sorted 
@@ -19,9 +20,10 @@ Decompression for processing:
 
 Operations
 * On GPU :  join, order by, date transform, arithmetic UDF, group by, predicates
-* Not on GPU : Don’t do wild card string search
+* Not on GPU : Don’t do wild card string search, select * from table
 
 **A major problem with GPUs is you see single bit errors with surprisingly high frequency**
 
 [Ref](https://news.ycombinator.com/item?id=12484568)
+[Ref2](https://docs.blazingdb.com/v1.4/discuss/57e2544bcda3750e0054a7e8)
 
