@@ -1,0 +1,211 @@
+<HTML>   
+     <HEAD>
+<TITLE>February 2000/Solving Combinatorial Problems with STL and Backtracking</TITLE></HEAD>
+<BODY BACKGROUND="" BGCOLOR="#FFFFFF" TEXT="#000000">
+<H2><A HREF="../tocfeb.htm"></A><FONT COLOR="#FF0000">   Features</FONT></H2>
+
+<HR>
+
+<H2 ALIGN="center"><FONT COLOR="#800000">Solving Combinatorial Problems with STL and Backtracking</FONT></H2>
+<H3 ALIGN="center"><FONT COLOR="#800000">Roger Labbe</FONT></H3>
+
+<BLOCKQUOTE>
+<p>The STL approach extends nicely to problems of all sorts, and helps make for more generic solutions.</p>
+</BLOCKQUOTE>
+
+<HR>
+<BLOCKQUOTE>
+
+<p>Algorithms that use general problem solving techniques are among the most simple and powerful algorithms available. They successively create possible solutions to a problem and test each solution for correctness. Such code can be written once and then reused for many different problems. This allows a programmer to avoid writing a specialized algorithm for each problem.</p>
+<p>Backtracking is one example of these techniques. Backtracking works on the class of problems called combinatorial problems. A problem is combinatorial if the solution can be expressed as an ordered set of choices from a list provided in the problem statement. For example, scheduling is a combinatorial problem because the solution is an ordered list of jobs.</p>
+<p>Backtracking is part of a family of related algorithms: branch-and-bound, hill-climbing, Z*, A*, alpha-beta search, etc., all which use general problem solving techniques to solve combinatorial problems. Of these algorithms, backtracking is both simple and representative. It is relatively easy to learn, and the techniques backtracking uses are similar to its more complicated cousins.</p>
+<p>Unfortunately, many treatments of backtracking ignore its greatest strength &#151; its generality. Specialized algorithms are written for each problem, leading to one algorithm to solve the n-queens problems, another to solve optimal packing, etc. I use C++ templates and STL to write a generic algorithm that works for any problem solvable by backtracking. My class requires you to write a simple criterion function that the algorithm will use to find the solution.</p>
+
+<H4><FONT COLOR="#000080">A Brute Force Approach</FONT></H4>
+
+<p>The easiest way to understand backtracking is to start by studying a brute force approach that is simple but impractical. Later I transform it into the efficient and practical technique of backtracking.</p>
+<p>A combinatorial problem typically has a finite number of solutions. The brute force algorithm generates every possible solution to a combinatorial problem and then tests it for correctness.</p>
+
+<pre>
+do {
+   generate the next solution;
+   test solution for validity;
+} while (solution is invalid);
+</pre>
+
+<p>This algorithm is general and slow. It works for any problem that has a finite number of testable solutions, so it is general. It is slow because there are an exponential number of possible solutions to a combinatorial problem.</p>
+<p>However, the algorithm's simplicity makes it easy to use. Generating all possible solutions to a combinatorial problem is trivial; once the code is written it can be used for any future problem. The only remaining task is writing a function that tests if a solution is valid. The problem statement defines how to test the solution, so a few minutes of coding produces an algorithm guaranteed to find an answer, no matter how slowly.</p>
+
+<H4><FONT COLOR="#000080">Optimizing the Process</FONT></H4>
+
+<p>I use the n-coloring problem as an example. The n-coloring problem requires you to color a map with n colors such that no adjacent regions are colored the same. This problem is easy to understand, but it has many important real world applications.</p>
+<p>Consider using the brute force technique described above to color the United States with four colors. There are over 1029 possible colorings. No computer could generate and test this many solutions in a reasonable time. There needs to be a better way.</p>
+<p>Imagine you are trying to color a map by hand. Would you color the entire map, then check if it was valid? Not if you're smart. You would color one state at a time, and immediately check if it was the same color as a neighbor. If it matched the color of a neighbor you would immediately correct your mistake &#151; there is no point in coloring the rest of the map because the final result is guaranteed to be invalid.</p>
+<p>Therefore, you would keep changing the color of the state until it didn't conflict with its neighbors. If you couldn't find a color that was correct, you'd conclude that you made a bad decision earlier. You would then backtrack to a previously colored state, change its color and then proceed forward.</p>
+
+<H4><FONT COLOR="#000080">Decision Trees</FONT></H4>
+
+<p>Any solution to a combinatorial problem may be regarded as a series of decisions. Coloring the contiguous U.S. map with four colors consists of 49 decisions, one decision for each state. Each decision has four possible choices.</p>
+<p>A problem's solution space is defined as the set of all possible solutions. Decision trees represent the solution space in a tree structure. The tree has one level for each decision. The root of the tree represents the initial state. The root has one child for each choice that can be made for the first decision. Each of these children each has their own set of children representing the choices available for the second decision. This pattern continues to the bottom of the tree.</p>
+<p>Thus, the decision tree for coloring the U.S. would have 49 levels, one for each state, and each node would have four children, one for each color. Any traversal from the root to a leaf represents one possible solution to the problem. <a href="fig1.htm">Figure 1</a> illustrates a decision tree for coloring three states with two colors.</p>
+
+<H4><FONT COLOR="#000080">Pruning the Tree</FONT></H4>
+
+<p>Backtracking uses a decision tree to formalize the ad hoc hand coloring method described above. It starts at the root of the tree with no states colored. It colors the first state by choosing one of the four children of the root. To keep the algorithm simple, the backtracking algorithm always chooses the leftmost child. It traverses to that child, making it the current node.</p>
+<p>The algorithm then colors the next state by choosing the leftmost child of the current node. As with coloring by hand, the algorithm now checks to see if the coloring is valid. Suppose it finds that both states are the same color; assuming the states are adjacent on the map, the coloring is invalid.</p>
+<p>Since the coloring is invalid, there is no need to traverse any lower in the tree; all lower branches are guaranteed to yield invalid results as well. Therefore the algorithm prunes the current node from the tree, and backtracks to the previous node.</p>
+<p>Pruning the tree guarantees that the invalid colorings are not considered. The gains are not negligible. The case above pruned 447-2 nodes from the decision tree, which is over 1028 decisions that were not examined.</p>
+<p>The backtrack algorithm continues to traverse the tree, descending level by level as long as the coloring is valid, and backtracking and pruning as soon as it detects an invalid coloring.</p>
+<p>Note that at each step the algorithm needs to test only the most recent decision. If the algorithm is coloring the nth state, the n-1 states must be valid since they were just checked in the previous step. Thus, the algorithm only checks to see if the nth state's coloring conflicts with its adjacent states. If not, the coloring of all n states must be valid.</p>
+
+<H4><FONT COLOR="#000080">Storing Decision Trees</FONT></H4>
+
+<p>Although I described the algorithm as if it traversed a pre-existing decision tree, it actually uses a more intelligent technique. The decision tree for even a modest problem would exceed the storage capacities of any known computer.</p>
+<p>Instead, the algorithm generates only one node of the tree at a time, which is always the current leaf. Invalid nodes are not stored because they are pruned. This allows the algorithm to store the entire tree in an array. Each array element represents one level in the tree; the nth element of the array is a child of the n-1th node.</p>
+<p>For the coloring problem, let the colors be numbered 1 to 4. The algorithm colors the first state by appending the first color to an empty array, giving <B>[1]</B>. It then colors the next state by appending 1 to the array, giving <B>[1,1]</B>. This coloring is invalid (assume the states are adjacent), so the algorithm must backtrack. Conceptually, the algorithm backs up to the previous node, flags it invalid, and then creates a new child node. In practice, the algorithm just increments the last element's value, giving <B>[1,2]</B>. This coloring is valid, so the algorithm creates a new child, giving <B>[1,2,1]</B>.</p>
+<p>What happens when the current node is invalid and it is the last valid color? Instead of incrementing the element, the algorithm backtracks by deleting the last element until it finds an element that it can increment. Thus <B>[3,2,4]</B> become <B>[3,3]</B>, and <B>[4,1,4,4,4]</B> becomes <B>[4,2]</B>. In effect, the algorithm counts in base n arithmetic.</p>
+<p>This implementation is very general. The integers in the array merely represent the nodes in the decision tree. By defining what the integers represent, the algorithm will work with any decision tree.</p>
+
+<H4><FONT COLOR="#000080">STL Implementation</FONT></H4>
+
+<p>Most backtracking algorithms are implemented using an array of <B>int</B>s to store the decision tree, and require a user-defined function that validates the decision tree. The algorithm generates a decision, passes it to the user-defined function, and either backtracks or continues forward based on the result of the function call. However, backtracking is a generalized algorithm. It should be implemented in a generic way that will work for any data type and any container choice. For example, it would be nice to use <B>enum</B>s to represent the color choices for the map coloring problem.</p>
+<p>STL provides a powerful paradigm to make the backtracking algorithm generic. In STL, algorithms are implemented as functions that use iterators to traverse over a container. Iterators have the same semantics as C-style pointers. Templates allow the functions to use iterators from any type of container, letting you use C-style arrays, vectors, deques, etc., without any changes to the algorithm's code.</p>
+<p>My backtrack algorithm uses templates that allow it to use any STL container to store the decision tree. The template arguments allow you to specify your data type (<B>int</B>, <B>enum</B>, etc.), the container that stores the decision tree (<B>vector</B>, c array, etc.), and the user-defined function that evaluates the decision tree's correctness.</p>
+
+<H4><FONT COLOR="#000080">Using the Algorithm</FONT></H4>
+
+<p><a href="list1.htm">Listing 1</a> provides the code for an STL-style backtracking algorithm. The algorithm is implemented as a functor, which is a class with <B>operator()</B> defined so the class can be used like a function <a href="#1">[1]</a>. <a href="list2.htm">Listing 2</a> contains a program that performs map coloring on the U.S.</p>
+<p>There are five steps in using the backtracking algorithm:</p>
+<p>1. Define the types.</p>
+<p>2. Define the operators.</p>
+<p>3. Define a validator function.</p>
+<p>4. Construct a <B>BackTrack</B> object.</p>
+<p>5. Call it.</p>
+
+<p><b>1. Define the Types</b></p>
+
+<p>The <B>BackTrack </B>class has three template arguments:</p>
+
+<pre>
+template
+&lt;class I, class T, class V&gt;
+class BackTrack {...};
+</pre>
+
+<p><B>I</B> is the iterator type for the container. <B>T</B> is the type of data being stored in the container, and <B>V</B> is a user-defined boolean function that will return true if the current decision tree is valid.</p>
+<p>You will typically use a discrete type for <B>T</B>, such as <B>int</B> or <B>enum</B>, and an STL container iterator for <B>I</B>. For the map coloring problem you may choose to use an enum for the colors, and to store them in a vector. Thus:</p>
+
+<pre>
+enum Color {
+   Blue,
+   Yellow,
+   Green,
+   Red
+};
+</pre>
+
+<p>Add some typdefs to make simpler type names, and declare the container:</p>
+
+<pre>
+typedef vector&lt;Color&gt; Map;
+typedef Map::iterator MapIter;
+Map tree (49);
+</pre>
+
+<p><B>2. Define the Operators</B></p>
+
+<p>BackTrack</B> uses the following operators on <B>T</B>: <B>&amp;</B>, <B>==</B>, <B>!=</B>, <B>=</B>, and <B>++</B> (prefix). The compiler predefines these operators for <B>int</B>. If you are using <B>int</B> for <B>T</B>, your work is done.</p>
+<p>However, <B>++</B> is not defined for <B>enum</B>. So define your own:</p>
+
+<pre>
+Color&amp; operator++ (Color&amp; c){...}
+</pre>
+
+<p><B>3. Define a Validator Function</B></p>
+
+<p>Derive your validator function from <B>std::binary_function</B>:</p>
+
+<pre>
+template&lt;class T&gt;
+struct ColorIsValid:
+   public std::binary_function&lt;MapIter,
+             MapIter, bool&gt; {
+   bool operator()
+      (const MapIter&amp; begin,
+       const MapIter&amp; end) const
+   {
+      // .. put validation code here
+   }
+};
+</pre>
+
+<p>The validator function takes iterators pointing to the beginning and end of the container holding the tree. This function should return true if the coloring is valid. Remember that at the time of the call every element except the last has already been checked for validity, so you only need to check that the back element, <B>*(end-1)</B>, is valid.</p>
+<p>The problem statement almost always exactly defines what the validator needs to test. For example, the n-color problem requires that no adjacent area have the same color. In pseudocode the test would look like this:</p>
+
+<pre>
+for (each neighbor of  *(end-1))
+   if (neighbor's color ==
+       *(end-1)'s color)
+      return false;
+return true;
+</pre>
+
+<p><B>4. Construct a BackTrack Object</B></p>
+
+<p>To generate the decision tree the algorithm needs to know the valid range for <B>T</B>, the type. The <B>BackTrack</B> constructor accepts these values as parameters:</p>
+
+<pre>
+BackTrack(const T&amp;  first,
+          const T&amp;  last);
+</pre>
+
+<p>Now you can construct a <B>BackTrack</B> object:</p>
+
+<pre>
+BackTrack&lt;Color, MapIter, ColorIsValid&gt;
+ColorMap (Blue, Red);
+</pre>
+
+<p><b>5. Call the BackTrack Object</b></p>
+
+<p>BackTrack</B>'s <B>operator()</B> takes the begin and end iterators to your container, along with a <B>bool</B> parameter that specifies whether this is the first call. (I discuss that parameter shortly.) Finding a valid coloring now requires one line of code:</p>
+
+<pre>
+bool FirstTime = true;
+bool IsValid =
+   ColorMap(tree.begin(), tree.end(),
+      FirstTime);
+</pre>
+
+<p>This function returns true if a valid solution was found. If one was found, the tree now contains the coloring for each state.</p>
+<p>Many problems, including map coloring, have multiple solutions. Once you have found the first solution you can call <B>operator()</B> again to get the next solution. This works because the current position in the tree and the solution have the same representation. Backtracking from the current solution will result in the next valid solution to be found. The variable <B>FirstTime</B> is set to false when <B>operator()</B> is called, guaranteeing that subsequent calls find the next solution.</p>
+
+<H4><FONT COLOR="#000080">Implementation Details</FONT></H4>
+
+<p>operator()</B> starts by creating an empty tree. It generates the first node by calling <B>CreateLeftLeaf</B>. This private function takes an iterator pointing to the end of the container, and appends the first valid value of <B>T</B>, which is stored in the private variable <B>left_child</B>.</p>
+<p><B>operator()</B> now enters a loop that will generate the lower levels of the tree. The loop first passes the decision tree to the function <B>bool FindValidSibling()</B>. This function finds the first valid sibling of the current leaf. At the time of call the current leaf has not been checked for validity, so the function first checks if this leaf is valid. It does this by calling the user-defined validator function stored in the private variable <B>IsValid</B>. If the leaf is valid, <B>FindValidSibling</B> returns true without changing the decision tree. However, if the leaf is invalid, <B>FindValidSibling</B> will generate the next sibling to the leaf by using <B>operator++</B> to increment the leaf's value. <B>FindValidSibling</B> successively calls <B>IsValid</B> and then increments the leaf until <B>IsValid</B> returns true or all siblings have been generated without success. If a valid sibling is found, true is returned.</p>
+<p><B>operator()</B> checks the result of <B>FindValidSibling</B>. If it returned true, the node is valid. If the tree has been completely generated, the solution is valid and <B>operator()</B> returns true. Otherwise <B>operator()</B> must generate the next level in the tree and test it. So it calls <B>CreateLeftLeaf</B> and returns to the top of the loop, causing <B>FindValidSibling</B> to be called on the new tree.</p>
+<p>However, if the node was invalid, <B>operator()</B> must now backtrack to a valid node. Function <B>VisitNewNode</B> accomplishes this. It backs up one level as long as the current leaf is the last valid value of <B>T</B>, which is stored in private variable <B>right_child</B>. Once <B>VisitNewNode</B> finds a leaf unequal to <B>right_child</B>, it creates a new leaf by incrementing the current leaf's value and returns true. <B>VisitNewNode</B> returns false if it returns all the way to the root, having searched the entire tree.</p>
+
+<H4><FONT COLOR="#000080">Efficiency</FONT></H4>
+
+<p>How a problem is represented greatly influences how long it takes to find a solution. You must consider two things. First, the nearer to the root you can prune the tree the greater the reduction in run time. Second, you should remember that whenever the validator function is called, all but the last element have already been validated.</p>
+<p>Consider map coloring. You can color the states in any order you want. Suppose you order the states alphabetically. The algorithm would first color Alabama, then Arizona. Because these states are not adjacent, you would never be able to prune the tree at this level, since all possible colorings of these two states can lead to valid solutions. However, if you order the states by adjacency, so that Maine is colored first, followed by New Hampshire, you can prune at this level. Of the 16 nodes at level 2, four will be pruned, which removes over 1029 nodes from consideration.</p>
+
+<H4><FONT COLOR="#000080">Conclusion</FONT></H4>
+
+<p>Using my <B>BackTrack</B> class is straightforward. The hardest task is writing the validator function, but even this is easy, as the problem statement completely defines its functionality. I can typically whip up a solution in half an hour or less. After a few attempts I expect other users will be able to do the same.</p>
+<p>Choosing the best algorithm for a combinatorial problem is beyond the scope of this paper. There are many combinatorial problems for which backtracking does not work, or does not work quickly enough. The best survey of these algorithms that I have found is the book <I>Heuristics: Intelligent Search Strategies for Computer Problem Solving,</I> by Judea Pearl <a href="#2">[2]</a>. While out of print, the book's clear presentation of the topic will more than repay the effort it may take to find it.</p>
+<p>Even when backtracking is not the best choice, my class can still be useful. You can use it to unit test your specialized algorithm. Better yet, use <B>BackTrack</B> as a backup debug-only algorithm to double check the results of the specialized algorithm, using <B>#ifdef #endif</B> blocks to remove the code from your production builds. (This technique is discussed in Steve Maguire's <I>Writing Solid Code</I> <a href="#3">[3]</a>.)</p>
+
+<H4><FONT COLOR="#000080">References</FONT></H4>
+
+<p><a name="1"></a>[1]  Bjarne Stroustrup. <I>The C++ Programming Language, 3rd Edition</I> (Addison-Wesley, 1997), p. 514.</p>
+<p><a name="2"></a>[2]  Judea Pearl. <I>Heuristics: Intelligent Search Strategies for Computer Problem Solving</I> (Addison-Wesley, 1984).</p>
+<p><a name="3"></a>[3]  Steve Maguire. <I>Writing Solid Code </I> (Microsoft Press, 1993), pp. 33-38.</p>
+
+<p><i><B>Roger Labbe</B> is the C++ Simulation Manager for DCS Corporation in Virginia, where he develops and manages avionics simulations as well as flight planning software. He has previously developed embedded software for flight management computers. He can be reached at <B>rlabbe@dcscorp.com</B>.</i></p>
+
+<h4><a href="../../../source/2000/feb00/labbe.zip"></a></h4>
+
+</blockquote></body></HTML>
