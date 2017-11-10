@@ -5,6 +5,7 @@
 * Never cache on GPU
 * use cascading compression
 * can exploit multiple servers with multiple GPU
+* use arrow + parquet
 
 Dictionary
 * Use dictionary encoding for strings - which is sorted 

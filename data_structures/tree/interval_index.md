@@ -6,7 +6,7 @@ given `P1=[x1, x2] P2=[y1, y2]`
 x1 -- y1 -- x2 -- y2
 
 alternatives
-1. (x1 <= y2) && (y1 <= x2)
+1. (x1 <= y2) && (y1 <= x2) 
 2. max(x1, y1) <= min(x2, y2)
 3. max(all num) - min(all num) < width of first box + width of second box
 
