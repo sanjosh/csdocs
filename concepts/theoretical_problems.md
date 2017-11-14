@@ -1,19 +1,19 @@
 
 # Computer science
-K-server problem (online)
-Paging problem (online, special case of k-server)
-list update problem (online)
-Job shop scheduling probem (OR)
-Canadian traveler problem (graph exploration)
+* K-server problem (online)
+* Paging problem (online, special case of k-server)
+* list update problem (online)
+* Job shop scheduling probem (Operations Research)
+* Canadian traveler problem (graph exploration)
 
-Linear search problem (probability)
-Activity selection problem (OR)
-Element distinctness problem 
-Collision problem
+* Activity selection problem (Operations Research)
+* Element distinctness problem 
+* Collision problem
 
 # Probability
-occupancy problem (aka ball shuffling problem) 
-coupon collectors problem 
-bandit problem
-secretary problem
+* occupancy problem (aka ball shuffling problem) 
+* coupon collectors problem 
+* bandit problem
+* secretary problem
+* Linear search problem (probability)
 
