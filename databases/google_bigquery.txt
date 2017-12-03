@@ -1,0 +1,24 @@
+
+Streaming writes buffered in BigTable (key value store)
+
+Active storage management 
+* rewrite input batches into new file with next generation number
+
+Capacitor file format (dremel extension)
+* it reorders rows for better compression (approximation algo)
+
+Colossus file system
+* Reed solomon
+
+Dremel query engine
+
+Time travel
+
+Auth server cache got invalidated at midnight, caused thundering herd
+Caching best practices
+Is it aCapacity Cache or Latency Cache ?
+Latency Cache must be fully provisioned 
+Capacity Cache must be able to handle cold restart
+
+Source
+https://atscaleconference.com/videos/bigquery-managed-storage-for-analytics/
