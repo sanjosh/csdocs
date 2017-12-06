@@ -1,0 +1,90 @@
+
+Battery instrumentation at facebook
+
+Tools
+1. trepn
+2. android studio profiler
+
+network usage
+cpu power
+
+these tools require developer to plugin
+
+user reported battery level is noisy, coarse and inaccurate
+report of 100 percent can be less, 1 percent can be more
+level not monotonically decreasing in reality
+
+measure individual component usage - 
+cpu net camera location gpu screen
+
+cpu consumption : power depends cube of cpu freq
+smaller vs larger cores
+android - look at /proc and sysfs
+/sys/devices...cpufreq/stats
+HealthStats 
+
+network radio : used for data transfer
+has 3 levels - idle, waiting, high 
+time at high level decided by 2g, 3g, provider
+android - look at TrafficStats, /proc/net/xt_qtaguid/stats, HealthStats
+
+camera power consumption
+custom call site instrumentation
+HealthStats
+
+location power consumption
+location decided by gps, wifi, cached info
+measured based on which method was used
+gps instrumentation
+wifi scan
+
+gpu utilization 
+could not find method to find battery consumption
+
+screen 
+dont measure
+
+app background vs foreground power usage ?
+background usage must be near zero
+upload data between foreground and background transitions
+
+how to model battery drain
+xml file in android displays power profile
+shows cost of each component
+
+graph of power drain per user per foreground hour
+sum of cpu, net, camera, location
+
+dont wakeup app to measure battery
+
+to find battery regression bugs
+need attribute instrumentation for each component
+measure thread level cpu instead of process
+complicated by use of thread pool
+
+created tool called cpu spin detector 
+take stack trace (callsite)
+
+do same for net, camera, location
+
+camera leak detector
+- if camera opened in background
+- if camera not closed while going to background
+
+wakelocks - cause battery drain
+job scheduler
+alarms - 
+
+things that cause battery drain
+* dont do anything in background
+* be careful of wakelocks and background tasks 
+* dont subscribe to events u dont care about 
+* use jobscheduler, inexact alarms for background scheduling
+* beware of cpu spins
+* animation leak 
+* dont leave camera open
+* only use location accuracy that u need (gps, wifi, cached)
+
+https://github.com/facebookincubator/Battery-Metrics
+
+(https://atscaleconference.com/videos/battery-instrumentation-at-facebook/)
