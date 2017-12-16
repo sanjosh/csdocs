@@ -1,0 +1,11 @@
+
+We randomly partitioned our data into three subsets:
+training (80%), validation (10%) and test (10%). We
+used the validation set during development to choose
+model hyperparameters (Section 4.2), and we used the
+test set to evaluate final model performance (Section
+5.1). This is the gold-standard way to evaluate model
+performance because the test set contains no data used
+to optimize the model in any way.
+
+(Shallue, Vanderburg. Identifying exoplanets with deep learning)

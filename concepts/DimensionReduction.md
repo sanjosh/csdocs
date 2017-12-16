@@ -40,3 +40,7 @@ Can be adapted to Online algo (muthukrishnan)
 # Word2Vec
 
 * https://en.wikipedia.org/wiki/Word2vec
+
+------
+
+t-Distributed Stochesic Neighbour Embedding (t-SNE)

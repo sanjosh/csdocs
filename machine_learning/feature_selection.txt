@@ -1,0 +1,110 @@
+
+Filter methods
+
+Evaluate and rank each feature independently or wrt dependent variable
+1. Chi square
+2. Information Gain
+3. Correlation Coefficient score
+
+this is a supervised or unsupervised, but uncoupled method
+
+-----
+Wrapper methods
+
+consider feature selection as a Search problem. 
+Select and evaluate combinations of features
+e.g. recursive feature elimination algo
+
+this is a supervised, coupled method
+
+-----
+Embedded methods
+
+learn best features during model building
+example is regularization or penalization methods
+LASSO, Elastic Net, Ridge Regression
+
+this is a supervised, coupled method
+
+-----
+
+Representation Learning 
+
+We can have a neural network which takes the image as an input and 
+outputs a vector, which is the feature representation of the image. 
+This is the representation learner. This be followed by another 
+neural network that acts as the classifier, regressor, etc .
+
+Auto association : map rep to different category
+Hetero association  : map rep to itself
+
+https://datascience.stackexchange.com/questions/22348/what-is-representation-learning
+
+-------
+
+feature extraction methods derived from statistics 
+1. variable ranking
+2. feature subset selection
+3. penalized least squares
+
+feature re-weighting : 
+
+feature normalization : centering, rescaling
+
+feature construction : new features from old
+
+dimensionality reduction as form of feature construction : 
+1. PCA
+2. Random projection
+3. Linear Discriminant Analysis
+
+feature embedding : nonlinear dim reduction, manifold learning
+
+manifold learning algo
+1. isometric feature mapping
+2. locally linear embedding
+3. laplacian eigenmap
+
+all manifold learning techniques are instances of kernel PCA for different
+choice of kernel func
+
+
+common linear dimensionality reduction methods can be generalized as projections in Euclidean space
+common nonlinear techniques can be generalized as projections in the reproducing kernel Hilbert space
+
+feature extraction methods rely on distance metric between points.
+different distance metric can produce completely different extraction algo.
+how to pick a distance function ?
+how to learn a distance metric ?
+
+distance metric learning 
+1. local LDA
+2. relevance component analysis
+3. large margin nearest neighbours
+4. bayesian active distance metric learning
+
+Representation learning : learn features via layers of neural net
+
+The main aspect that distinguishes deep nets from other techniques is 
+that, unlike previously mentioned feature extraction methods (clustering, 
+feature selection, PCA, manifold learning) they learn multiple levels 
+of representation. Usually the higher level of representations are 
+more abstract and nonlinear, capturing structures that are not obvious 
+from the input data.
+
+rep learning nets
+1. autoencoder
+2. denoising autoencoder
+3. contractive autoencoder
+4. restricted Boltzmann machine
+
+Scaling to millions of features
+scaling of linear feature extraction methods mostly relies on matrix 
+approximations and parallel linear algebra algorithms
+non-linear kernelized methods : use approx kernel feature maps
+
+despite compelling empirical performance, neural networks lack well 
+grounded theoretical guarantees in part due to their non-convexity 
+and multiple local minima.
+
+(Storcheus, A Survey of Modern Questions and Challenges in Feature Extraction)
