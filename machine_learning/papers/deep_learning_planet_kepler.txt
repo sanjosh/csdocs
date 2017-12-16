@@ -1,0 +1,26 @@
+
+Identifying Exoplanets with Deep Learning -Shallue, Vanderburg
+
+TCE : threshold crossing event
+
+LPP metric : filter out light curves with "not transit like" shapes.
+
+This paper: deep neural net for vetting Kepler TCE.
+
+light curves are input
+trained on human-classified TCE
+
+feed views through separate convolutional columns (Ciresan 2012)
+
+representation learning : learn features automatically frmom data.
+
+Model performance metrics
+1. precision/reliability : 
+2. recall/completeness : 
+3. accuracy
+4. AUC (area under ROC curve)
+
+Prediction heat map  : how does output change as you vary subset of input
+
+TODO 
+Ciresan 2012 : convolutional columns
