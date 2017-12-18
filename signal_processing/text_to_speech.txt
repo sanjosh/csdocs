@@ -1,0 +1,25 @@
+
+Requirement
+1. different language 
+2. adapt to different speakers and different accents
+3. emit emotions and sentiment
+
+Steps
+1. Frontend extracting linguistic features
+2. Duration model
+3. Acoustic Feature prediction model
+4. Vocoder
+
+If each component is trained independently, errors can get magnified
+
+Alternative Architectures
+1. concatenative : generate sentence from database of short fragments.
+2. parametric : encode all data in model parameters.
+
+---------
+WaveNet : generative model for audio waveforms
+---------
+seq2seq
+---------
+Griffin-Lim
+---------

@@ -1,0 +1,23 @@
+
+-----
+Slotted Aloha (Time division multiplexing)
+
+Tree Splitting algo for decentralized collision resolution
+it does not require shared database or central coordinator 
+but requires channel feedback (0, 1, c) on transmission
+
+Splitting algo has 2 modes : normal and collision
+when collision occurs in slot k, 
+all nodes not involved in collision go into waiting mode
+the rest are split into two subsets
+
+Rules for splitting nodes decide when to transmit after collision
+1. use random choice
+2. use arrival time of collided packe
+3. use node identifier 
+
+Ref
+1. Komlos and Greenberg.  “An Asymptotically Nonadaptive Algorithm for Conflict Resolution in Multiple-Access Channels”
+2. Greenberg and Winograd.  “A lower bound on the time needed in the worst case to resolve conflicts deterministically in multiple access channels” 
+
+-----
