@@ -1,0 +1,45 @@
+
+Automatic video analysis
+Background subtraction : distinguish foreground from background
+
+------------
+
+Challenges - how to maintain background in presence of 
+1. Noise
+3. Dynamic background (camera change, change in shape e.g. waves)
+4. Camouflage
+5. Bootstrapping : if initial data free from foreground not available, background needs bootstrap
+6. Illumination change (sudden, gradual, shadows)
+
+---------------
+
+Piccardi : background subtraction techniques review
+
+1. Adjacent Frame difference : Frame(i) - Frame(i-1) > Threshold
+2. background = average of last n frames
+3. background = running average
+( need methods which handle multimodal distributions, adaptive threshold)
+4. Running Gaussian average
+5. Mixture of K Gaussians models both background and foreground
+6. Kernel density estimator
+7. Mean shift based estimation
+8. Sequential kernel density approximation
+9. Eigenbackground
+
+Spatial correlation
+
+http://www-staff.it.uts.edu.au/~massimo/BackgroundSubtractionReview-Piccardi.pdf
+
+---------------
+
+Wallflower
+
+Wallflower, a three-component system for background maintenance: 
+
+1. pixel-level component performs Wiener filtering to make probabilistic predictions of the expected background; Any pixel that deviates significantly from predicted value is classified as foreground.
+
+2. region-level component fills in homogeneous regions of foreground objects.
+
+3. frame-level component detects sudden, global changes in the image and swaps in better approximations of the background. 
+
+(Toyama, Krumm. Wallflower Principles and Practice of background maintenance)
