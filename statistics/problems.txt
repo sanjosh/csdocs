@@ -1,0 +1,17 @@
+
+geometric distrib
+https://math.stackexchange.com/questions/1196452/expected-value-of-the-number-of-flips-until-the-first-head
+
+symmetry
+https://math.stackexchange.com/questions/100615/given-a-die-what-is-the-probability-that-the-second-roll-of-a-die-will-be-less
+
+geometric
+https://math.stackexchange.com/questions/1424497/i-roll-a-die-repeatedly-until-i-get-6-and-then-count-the-number-of-3s-i-got-wh
+
+simpson's paradox
+https://math.stackexchange.com/questions/1794123/do-men-or-women-have-more-brothers
+
+(Stansfield, Carton. Human Sex Ratios and Sex Distribution in Sibships of Size 2)
+
+consecutive integers
+https://math.stackexchange.com/questions/1566418/if-we-randomly-select-25-integers-between-1-and-100-how-many-consecutive-intege
