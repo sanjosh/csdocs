@@ -1,0 +1,12 @@
+
+Well known models
+
+preferential attachment graph model
+
+polya urn
+
+chinese restaurant process
+
+indian buffet process
+
+https://www.quora.com/What-is-an-intuitive-explanation-of-Dirichlet-process-clustering-How-do-Polyas-Urn-or-Stick-Breaking-exemplify-the-Dirichlet-process-How-does-Gibbs-sampling-based-clustering-for-a-Dirichlet-mixture-model-utilize-the-Dirichlet-process

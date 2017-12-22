@@ -1,0 +1,30 @@
+
+Kullback Leibler divergence
+
+D_kl(Q || P) not equal D_kl(P || Q)
+
+Asymmetric measure because averaging done wrt presumed distribution "Q"
+
+P is candidate model
+Q is truth
+D_kl(Q || P) = departure of P from Q.
+             = E[log(Q/P)]
+
+it is Expectation of log(q_c/p_c) taken over all of q
+
+data compression : 
+if your data really comes from probability distribution Q, but you use 
+a compression scheme optimised for P, the divergence D_kl(Q || P) is 
+the number of extra bits you'll require to store a record of each 
+sample from Q.
+
+D_kl(q || p) = H(q, p) - H(a)
+H(q, p) = cross entropy
+
+https://www.quora.com/What-is-a-good-laymans-explanation-for-the-Kullback-Leibler-divergence
+
+https://www.countbayesie.com/blog/2017/5/9/kullback-leibler-divergence-explained
+
+-------------
+
+Jensen-Shannon divergence
