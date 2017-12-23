@@ -1,0 +1,25 @@
+
+How to generate exp distrib from uniform
+
+Steps
+1. Compute CDF F(x) of desired random variable (here exponential)
+    CDF of exp distrib = 1 - exp( -L.x)
+    L = Lambda
+    
+2. Set R = F(X) on range of X
+   So R = 1 - exp(-L.x)
+
+3. Solve F(X) = R for X in terms of R
+   exp(-L.x) = 1 - R
+   -L.x = ln (1 - R)
+   X = -1/L * ln (1 - R)
+
+
+http://stats.stackexchange.com/questions/186536/transforming-uniform-to-exponential-distribution
+
+http://stackoverflow.com/questions/2106503/pseudorandom-number-generator-exponential-distribution
+
+http://www.eg.bucknell.edu/~xmeng/Course/CS6337/Note/master/node50.html
+
+https://en.wikipedia.org/wiki/Inverse_transform_sampling
+
