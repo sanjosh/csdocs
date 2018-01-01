@@ -1,0 +1,68 @@
+
+
+FB Prophet
+
+Business Time series modeling and forecasting
+Tuning parameters are made intuitive to analyst
+
+Other forecasting tools
+1. auto.arima :
+2. ets : exp smoothing
+3. snaive : random walk with seasonality
+4. tbats : De Livera
+
+------------
+
+y(t) = g(t) + s(t) + h(t) + e_t
+
+g(t) = trend non-periodic changes
+s(t) = weekly and annual seasonality
+h(t) = holidays
+e_t = error term normally distributed
+
+Similar to GAM (generalized additive model)
+
+"Multiplicative seasonality, where the seasonal effect is a factor that multiplies g(t), can be accomplished through a log transform"
+
+GAM fitting using L-BFGS or backfitting
+
+------------
+Two models for Trend g(t)
+
+1. Saturating growth model : 
+
+Nonlinear growth of population which saturates at carrying capacity.
+Modeled using Logistic growth
+
+Carrying capacity : saturation point
+Changepoint is growth-altering event.  Use known dates when product changed
+Rate at time t = sum of all growth altering events in past.
+Offset parameter :
+
+C(t) = time varying capacity of system (max possible)
+Rate at time t = k + a(t)_transpose.Delta
+
+Delta = vector of S where Delta[t] = change in rate at time t
+
+g(t) = C(t) / (see paper for denominator)
+
+2. Linear trend with changepoints
+
+------------
+Seasonality s(t)
+
+Use fourier series for multi-period seasonality
+Beta = Normal Distribution to impose smoothing prior
+
+------------
+
+Holiday h(t)
+
+h(t) = Z(t).K
+
+K = smoothing prior
+Z(t) = vector of holiday
+additional parameter to define window around holiday
+
+------------
+
