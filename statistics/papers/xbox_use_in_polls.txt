@@ -1,0 +1,82 @@
+
+Wanga, .. Gelman.  Forecasting Elections with Non-Representative Polls 
+
+Explores use of non-representative sampling in opinion polls
+
+there has been reduction in Random Digit Dialing response rates
+
+Xbox sample is biased in gender and age
+poll : at most once a day, answer "today who would you vote for" ?
+adjust using MRP - multilevel regression and post-stratification
+
+----------
+
+Poststratification
+
+method for correcting for known differences between sample and 
+target populations (Little, 1993). 
+
+The core idea is to partition the population into cells based
+on combinations of various demographic and political at tributes, 
+
+use the sample to estimate the response variable within each cell, 
+
+and finally aggregate the cell-level estimates up to a 
+population-level estimate by weighting each cell by its 
+relative proportion in the population.
+
+----------
+
+Generate cells with all combinations of sex, age, race, state,
+partyID, ideology and 2008 vote = 176256 cells
+
+-----------
+
+Bayesian heirarchical model
+
+Cell level estimates = Average of samples within a cell 
+this is is not reasonable as cells become sparse, 
+because then sample averages become unstable.
+
+Cell-level estimates = regularized regression (multilevel regression)
+
+Fit two nested multilevel logistic regression in each cell
+- vote for Romney and vote for Obama
+
+"The benefit of using a multilevel model is that the estimates for 
+relatively sparse cells can be improved through ‘‘borrowing strength’’ 
+from demographically similar cells that have richer data"
+
+------------
+
+combine cell-level estimates using Poststratification
+
+---------
+
+"can we reasonably expect to estimate the views of older women 
+based on a platform that caters largely to young men?"
+
+"and at estimating two-way interactions"
+
+poststratification weights are based on number of category in each cell
+
+--------------
+
+election day bias (in USA)
+1. incumbent's polling numbers tend to be lower than actual outcome
+2. early lead diminishes
+3. voting preferences expressed early on are noisy
+4. actual voting pool is different from hypothetical opinion pool
+
+how to remove election day biases ?
+how to convert voter intent to election day forecast
+
+developed nested calibration model 
+compare daily voter intent with actual in previous elections
+
+------------
+
+longshot bias ?
+
+
+
