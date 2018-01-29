@@ -1,0 +1,10 @@
+
+Model Capacity is ability to fit a wide variety of functions
+
+hypothesis space : set of functions that learning algo used to select as the solution
+
+It is changed by changing number of input features, and parameters associated with those features.
+
+Statistical learning theory provides various means of quantifying model capacity.  Among these, the most well-known is the Vapnik-Chervonenkis dimension, or VC dimension. The VC dimension measures the capacity of a binary classifier. The VC dimension is defined as being the largest possible value of m for which there exists a training set of m different x points that the classifier can label arbitrarily.
+
+(Deep Learning book, Goodfellow)
