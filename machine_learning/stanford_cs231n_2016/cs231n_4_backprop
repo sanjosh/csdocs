@@ -1,0 +1,30 @@
+
+neural turing machine - from deepmind
+
+during back prop, gradient update is added if original input was distributedin forward pass.
+how does backprop work if both inputs same at max gate ? no
+is there ever be a loop in RNN ? No, its get unfolded.
+
+Since input is vector, derivatives are Jacobian matrix 
+In practice, Jacobian matrix is not instantiated
+
+Brain analogy is broken
+1) many diff types of biological neurons
+2) dendrites can perform complex nonlinear comp
+3) synapses are complex non-linear dynamical system (not single weight)
+4) rate code may not be adequate
+
+Activation func
+* Sigmoid
+* tanh
+* ReLU : network converge faster
+* Leaky ReLU
+* Maxout ELU
+
+Regularization : 
+
+hidden layer warps the input space to enable the second hidden layer to linearly classify. Also called kernel trick - 
+
+what is min number of neurons in hidden layer to linearly separate ?
+
+

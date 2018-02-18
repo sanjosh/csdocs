@@ -1,0 +1,19 @@
+
+https://en.wikipedia.org/wiki/Viola%E2%80%93Jones_object_detection_framework
+
+https://dl.acm.org/citation.cfm?id=966458
+
+Until 2012, recognizing features within objects was primary problem within computer vision
+
+Deformable part model Ramanan 2009
+Histogram of Gradients Dalal 2005
+
+Benchmarks : 
+1) pascal visual object challenge 
+2) Imagenet - 50M images
+
+In 2012, Imagenet challenge error decreased drastically by use of CNN
+
+
+
+

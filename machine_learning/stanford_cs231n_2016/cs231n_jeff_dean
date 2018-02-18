@@ -1,0 +1,123 @@
+
+Jeff Dean cs231n talk
+
+DistBelief before Tensorflow
+
+2012 : unsupervised from youtube image
+model encoder (multi level auto encoder)
+local receptive fields but not convolutional
+
+top level neurons pick high level concepts
+one neuron became face neuron
+one neuron became cat neuron
+
+add supervised pass
+
+transfer learning : have small dataset for some problem; use large dataset from another problem.  e.g. Portugese text is small; English text is large; use English model for Portuguse.  Or build model for all languages
+
+Multilingual acoustic models using distributed deep neural networks.
+add language specific layer
+
+Speech -> Acoustics -> Phonetics -> Language -> text
+Earlier use of LSTM for acoustic waveform
+and different model for language
+Now combined recurrent model
+14 min into talk
+
+Papers
+Hannun.  Deep Speech : Scaling up end to end speech recognition
+Chan. Listen Attend and Spell
+=============
+
+Vision
+AlexNet
+GoogLeNet Inception architecture
+
+17 min : Rapid Progress in Image Recognition
+
+Models with small number of parameters fit in mobile app (8 bit fixed point)
+
+=============
+
+Language 
+
+Embedding functions
+map sparse into dense floating point vectors
+
+Word2Vec
+
+Sutskever.  Distributed representations of words and phrases and their compositions.
+
+RankBrain : search ranking using deep learning using embeddings
+it is third signal used in search amongst 100s
+
+Smart Reply : Feed forward neural network to predict reply to message
+if yes, use Deep RNN
+
+Combined vision + translation : Google translator
+
+==================
+
+Reduce inference cost to use NN in mobile - low power
+Tricks
+
+1) Quantize; 8 bits for weights; 4x memory reduction; 4x computation efficiency.
+
+2) Distillation (Distilling the knowledge in a neural net, Hinton)
+	Model compresion also published by Caruana
+	Soften the distribution; Train faster;
+	Soft targets are a very good regularizer
+
+============
+
+Tensorflow can run on CPU, GPU, Android, iOS
+core concept is dataflow graph
+edges are N-dim arrays [tensors]
+biases are variables - graph has state
+each node of graph can run on different device [placement]
+can feed and fetch data - run parts of graph
+
+=============
+
+How to speed up training ?
+
+To decrease training time, must decrease step time
+how to distribute work so communication doesnt kill you
+
+Model parallelism : partition model across machines (partition a layer into many machines).  Most densely connected areas on same partition.
+Data parallelism : Use model replicas; each model updates weights in shared space.  Gradient update sent to shared space.
+
+Can do gradient update async, gradient is stale and less effective
+
+Hybrid : use M async groups of N sync replicas
+
+Google uses data parallelism
+
+Tensorflow - can specify data and model parallelism
+
+=============
+
+Sequence to sequence models - 53 min
+
+=============
+
+Image captioning 
+
+============
+
+Pointer networks
+
+Solve Convex hull, TSP using LSTM
+
+============
+
+Neural art in tensorflow
+github.com/woodrush
+
+===============
+
+At 1:04 - further reading
+
+tensorflow.org/whitepaper2015.pdf
+
+

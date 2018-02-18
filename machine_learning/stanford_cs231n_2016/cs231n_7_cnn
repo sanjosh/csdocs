@@ -1,0 +1,50 @@
+
+N = row or column size of input
+F = row or column size of filter
+stride = sliding of filter
+
+output size = N-F/stride + 1 = must be integer, otherwise undef op
+
+input image can be padded to ensure output dim matrix is integer
+
+number of param = weights in filter
+
+accept vol of size W x H x D
+
+CNN takes 4 hyperparam
+number of filters K = usually power of 2
+their spatial extent F
+the stride S
+the amount of zero padding P
+
+Produces output W2 x H2 x D2
+W2 = (W - F + 2P)/S + 1
+H2 = (H - F + 2p)/S + 1
+D2 = K
+
+Size of F always odd ? 
+Why pad with 0 - filter does not take them into account.  you could fill them with neighbours
+Do CNN always work with squares - yes
+Do we work with filter of different sizes - not commonly done
+
+If you don't pad, then size of output would shrink rapidly.  Not good.  We Want to do more computation 
+
+Imagenet challenge winners since 2012
+0) Alexnet
+1) GoogLeNet
+2) VGGNet
+3) ResNet (residual network) by Kaiming He.  Training and test error goes down with number of layers, in contrast to previous architectures.  Skip connections.  Even though ResNet has more layers, it is faster to train.
+
+How do you know CNN converged ?  You don't - loss goes down.
+
+AlphaGo game
+use ConvNet : Policy Network decides next move.
+19 x 19 x 48 input
+it outputs probability map of promising moves = array [19 x 19]
+
+ConvNet stack CONV, POOL and FC
+SOFTMAX
+Trend towards smaller filter and deeper arch
+
+
+
