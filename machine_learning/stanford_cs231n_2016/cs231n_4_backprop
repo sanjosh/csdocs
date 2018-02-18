@@ -27,4 +27,11 @@ hidden layer warps the input space to enable the second hidden layer to linearly
 
 what is min number of neurons in hidden layer to linearly separate ?
 
+more neurons is always better but you must regularize
+
+correct way to constrain NN not to overfit data is not by making it smaller but use increased regularization.
+
+no good answer to whether wider NN is preferred over deeper - problem dependent.
+
+for images, deeper is better
 
