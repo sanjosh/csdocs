@@ -1,0 +1,61 @@
+
+(talk by vijay gabale)
+
+Reinforcement learning 
+1) Q-learning :  used for modeling eventual reward
+2) Policy gradient : better for immediate reward and high branching factor
+
+When is feedback given in reinforcement learning ?
+1) Multi-arm bandit - has immediate reward with every move
+2) Two player game  - has delayed reward
+
+Monte Carlo tree search has 4 steps
+1) selection
+2) expansion
+3) simulation
+4) back-propagation
+for each node in tree, number of visits and number of wins from this node are recorded
+
+Bellman eqn : Q(s, a) = r + v[max Q(s', a')]
+where
+s = state
+a = action
+
+Use of Experience replay for delayed reward problems
+
+Reinforcement learning applied to episodic problems - fixed env, fixed rules.
+Not applicable to classification problems
+Reinforcement learning applies to self-driving cars.
+
+In AlphaGo-zero, MCTS and DNN are coupled
+1) MCTS learning fed to DNN.  DNN is trained on visited nodes but used to expand MCTS for unvisited nodes.
+2) DNN (state, action) map decides MCTS node expansion.  In MCTS, action and reward initialized using DNN 
+
+------------------
+
+Algo pseudo-code
+
+Start with DNN
+  do iterate
+	  do episodes
+		  do simulation using MCTS until game ends
+		form experience replay
+		form training examples
+		Train DNN to DNN'
+		eval DNN' vs DNN
+		set DNN
+
+
+--------------------
+
+AlphaGo-Zero had single policy and value NN
+Previous version had different policy and value NN
+
+----------------
+
+Refs :
+David Silver : Reinforcement learning
+UC Berkeley course
+
+
+====================================
