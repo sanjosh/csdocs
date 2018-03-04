@@ -1,0 +1,62 @@
+
+
+---------
+
+CS231n Winter 2016: Lecture 8: Localization and Detection
+
+purpose of pooling is subsampling, downsize
+
+https://www.youtube.com/watch?v=GxZrEKZfW2o
+
+Different problems
+1. Classification 
+2. Classification + Localization : find a fixed obj
+3. Object Detection : variable number of objects
+4. Instance segmentation
+
+--------------
+Problem 2 is Classification + localization
+
+Localization can be framed as regression problem
+
+
+DeepPose model for human poses
+OverLeaf model
+
+ResNet + RPN (Region Proposal network)
+Outliers are bad with L2 loss  - use L1 loss
+
+--------------
+Problem 3 is Object detection
+
+In ML, think of a problem as classification or regression !
+Think of detection as classification..
+
+Need to test many positions and scales
+
+Region Proposal Network is a class agnostic object detector
+find blob like regions likely to contain objects
+
+Different types of proposed Region Proposal
+1. Selective Search : merge adjacent pixels to form blobs - convert to box
+do this over multiple scales
+2. EdgeBoxes
+3. Geodesic
+4. many more
+
+see paper Hosang et al. What makes for effective detection proposals. PAMI 2015
+
+R-CNN
+RoI pooling
+
+See paper from deepmind. spatial transformer networks
+
+Hu. Deep residual learning for image recognition
+
+
+Think of detection as regression
+That is approach taken by YOLO  - Redmon
+
+------------
+
+github.com/rbgirshick
