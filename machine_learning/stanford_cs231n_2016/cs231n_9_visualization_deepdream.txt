@@ -1,0 +1,93 @@
+
+Visualization methods
+
+---------------
+
+Visualize a neuron
+Gabor like filters always occur on first layer
+---------------
+
+Visualize weights
+---------------
+
+Visualize codes 
+Use t-SNE visualization to visualize
+You see clusters
+---------------
+
+Occlusion experiments
+Slide patch of zeros through image
+creates heat map 
+you find probability of a dog change as image slides
+---------------
+
+Visualizing activations
+https://yosinski.com/deepvis
+Paper in 2015.  Yosinski. Understanding neural nets through deep visualization.  ICML DL 2015
+
+Two approaches 
+1.  Deconv-based visualization
+ 		How to compute gradient at any neuron wrt image 
+ 		Do guided backprop
+
+ 		Zeiler and Fergus. Visualizing and understanding convolutional networks 
+ 		Simonyan 2014. Deep inside convolutional network
+ 		Springenberg 2015.  striving for simplicity
+	
+2.  Optimization-based (more intuitive)
+    find an image that maximizes some class score.
+
+		DO IMAGE UPDATES RECURSIVELY
+		start with zero image
+		set gradient to be all zero except for 1 one
+		backprop to image
+		do small image update
+		forward image thru network
+
+receptive field of neuron is larger as you go deeper into CNN layer
+
+---------------
+
+Given a CNN, is it possible to reconstruct image from output code ?
+Mahendran.  Understanding Deep Image Representations by Inverting them.
+Information is lost
+
+------------------
+
+github.com/google/deepdream
+Boosts all activations at any layer
+creates feedback loop 
+
+Inception Net ?
+
+ImageNet has 1000 classes, but 200 of them are dogs 
+thats why deepdream shows dogs
+
+--------------
+
+Neural Algorithm of Artistic Style - Gatys, Ecker and Bethge
+
+deepart.io
+
+content image and style image
+
+put content image thru ConvNet - extract the activations
+activations match content
+
+put style image thru ConvNet
+style of painting is recorded in gram matrices (outer product)
+the features that fired together is style
+texture stored in pairwise activations ?
+
+---------------
+
+Szegedy Intriguing properties of neural networks
+Nguyen, Yosinski.  Deep neural networks are easily fooled
+
+Goodfellow.  Explaining and harnessing adversarial examples
+primary cause is linear nature of functions used in forward pass
+
+same problem in linear classifiers
+
+
+--------------
