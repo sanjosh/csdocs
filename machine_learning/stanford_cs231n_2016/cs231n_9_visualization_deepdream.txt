@@ -91,3 +91,11 @@ same problem in linear classifiers
 
 
 --------------
+
+Summary
+Backprop to image is powerful technique used for
+visualization
+segmenting
+inverting codes
+fun - painting and deep dream
+adversarial examples
