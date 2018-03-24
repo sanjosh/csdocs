@@ -1,0 +1,63 @@
+
+mlblr.the-inkers.com
+
+neuron expressivity : parameters(connxn) to number of neurons
+
+accuracy goes up with 
+
+receptive field : kernel 
+
+optimizer : SGD and Adam and RMSProp
+
+maxpool 
+
+dropout - drop random neurons
+dont actually drop - just multiply value of neuron output by 0.x dropout value
+
+RNN 
+one to one : vanilla network
+one to many : image caption
+many to one : sentiment classifier
+many to many : video classification at frame level
+
+RNN difficult to train; most people use LSTM
+
+goo.gl/LTp9oh
+
+=================
+
+keral has functional API (besides sequential model)
+
+RGB-a has depth channel
+for use in face recognition
+
+exploding gradient problem
+
+Batch normalization
+
+Filter/Kernel + Activation = Neuron
+
+Sigmoid to RELU i
+- got slope constant
+- able to transfer error back
+
+Dropout for regularization
+
+Xavier - initialization of network
+
+=================
+
+YOLO infers anchor boxes from training set
+x,y,w,h are yolo params
+
+Parametric pooling
+
+DSOD = Deeply learned object detection - no training
+
+Accuracy of obj detection
+IOU = Area of overlap/Area of union 
+
+Dilated convolution vs Normal convolution
+
+sanity-arxiv.com
+gitxiv.com
