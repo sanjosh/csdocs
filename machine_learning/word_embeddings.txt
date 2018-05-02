@@ -1,0 +1,16 @@
+
+Three ways to produce word embeddings:
+
+1. Count-based. 
+	Define basis vocabulary. 
+	Define word window.  
+	Create vector based on presence of basis words occur in word window to left and right
+	Normalize using TF-IDF
+
+2. predictive
+  Neural embedding E
+  CBoW, Skip-gram
+
+3. task-based
+  Bag of words classifier
+

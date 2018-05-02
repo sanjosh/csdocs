@@ -1,0 +1,9 @@
+
+P-value not enuf
+New statistics use effect sizes and confidence interval
+
+Meehl paradox : rejecting null gets easier as precision increases
+To solve Meehl paradox, use ROPE (region of practical equiv) : equivalence testing using CI [ Serlin and Lapsley]
+Confidence intervals are as fickle as p-values - sensitive to sampling and testing - because they are dependent on p-values.
+
+[Kruschke, Precision is the goal]
