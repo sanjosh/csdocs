@@ -1,0 +1,76 @@
+
+https://www.slideshare.net/anujgupta5095/representation-learning-of-text-for-nlp
+
+pretrained embeddings
+
+------
+WORD MODELS
+know a word by the company
+Words have connotational semantics and denotative semantics
+
+Word embeddings
+
+Pretrained word embeddings
+1. Google word2vec - Mikolov
+2. stanford GloVec
+
+Co-occurence of word with previous and next
+Build co-occurence matrix
+
+Mikolov models
+1. CBOW : given context, predict target word
+2. Skipgram : given target, predict context
+
+t-SNE
+
+perplexity = 2^entropy = effective number of neighbours
+
+Levy paper on DSM shows word2vec and GloVec are essentially same
+but word2vec does better because of hyper-parameters
+
+-----
+
+SENTENCE MODELS
+each word = d-dim vec
+sentence of k words = k x d dimen matrix
+
+Doc2Vec
+DBOW - distributed bag of words
+Skip-thought
+
+RNN
+LSTM
+GRU
+
+-----
+
+Char2Vec
+charCNN
+
+character level models
+
+Tweet2Vec
+
+----
+
+my thoughts
+
+Model hyperparameters should incorporate
+1) Speaker 
+2) origin of speaker - native speaker, education level, country
+3) type of text (legal, academic, colloquial)
+4) language
+
+representational  learning : auto learn features
+
+-----
+
+TODO
+LEvy paper
+Sebastian Ruder blog on word2vec
+Deep Learning for NLP - Richard Socher
+Refs on slide 149
+refs on slide 212
+refs on slide 262
+FastTExt from facebook
+
