@@ -1,0 +1,58 @@
+
+1. CAN BE MORE ROBUST TO EXTREME CLASS IMBALANCE.
+2. CAN BE GOOD TO ENSEMBLE WITH A CLASSIFIER.
+3. CAN YIELD BETTER EMBEDDINGS.
+
+Siamese suited for cases where you have few examples per Class.
+
+https://www.quora.com/What-are-Siamese-neural-networks-what-applications-are-they-good-for-and-why
+
+https://www.quora.com/What-are-the-benefits-of-using-a-Siamese-Neural-Network-vs-typical-CNN-classifier-for-feature-embedding-If-there-are-benefits-why
+
+https://www.quora.com/What-is-the-motivation-for-making-Siamese-networks-share-weights
+
+https://www.quora.com/What-is-a-contrastive-loss-function-in-Siamese-networks
+
+=============
+
+https://sorenbouma.github.io/blog/oneshot/
+
+https://github.com/karpathy/paper-notes/blob/master/matching_networks.md
+
+One-shot Learning with Memory-Augmented Neural Networks
+https://arxiv.org/pdf/1605.06065.pdf
+
+https://hackernoon.com/one-shot-learning-with-siamese-networks-in-pytorch-8ddaab10340e
+
+https://hackernoon.com/facial-similarity-with-siamese-networks-in-pytorch-9642aa9db2f7
+
+https://github.com/harveyslash/Facial-Similarity-with-Siamese-Networks-in-Pytorch
+
+===========
+
+Triplet network
+
+Three inputs
+x, x+ are of same class
+x- is of diff class
+
+Used in google Facenet
+
+"The motivation is that the loss from  [14]  encourages  all  faces  of  
+one  identity  to  be  projected  onto  a  single  point  in  the  
+embedding  space.   The triplet loss, however, tries to enforce a margin 
+between each pair of faces from one person to all other faces.   
+This allows the faces for one identity to live on a manifold, while
+still enforcing the distance and thus discriminability to other
+identities."
+https://arxiv.org/abs/1503.03832
+
+
+Elad Hoffer, Deep metric learning using Triplet network
+https://arxiv.org/abs/1412.6622
+
+https://medium.com/@akarshzingade/image-similarity-using-deep-ranking-c1bd83855978
+
+Learning Fine-grained Image Similarity with Deep Ranking
+Jiang Wang
+https://users.eecs.northwestern.edu/~jwa368/pdfs/deep_ranking.pdf
