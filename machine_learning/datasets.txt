@@ -1,0 +1,21 @@
+
+FlickrLogos-32 db
+http://image.ntua.gr/iva/datasets/flickr_logos/
+
+Labeled Faces in the Wild (LFW) 
+
+Youtube Faces DB
+
+Omniglot = transpose of MNIST
+https://github.com/brendenlake/omniglot
+
+MNIST
+
+CIFAR10
+
+STreet View House Numbers SVHN
+
+STL10
+
+ILSVRC-2012 
+

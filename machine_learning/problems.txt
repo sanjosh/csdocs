@@ -1,0 +1,6 @@
+
+https://www.quora.com/What-are-the-Top-10-problems-in-Machine-Learning-for-2017
+
+http://scikit-learn.org/stable/tutorial/machine_learning_map/
+
+https://www.quora.com/What-is-the-main-difference-between-classification-problems-and-regression-problems-in-machine-learning

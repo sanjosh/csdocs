@@ -1,0 +1,9 @@
+
+https://stats.stackexchange.com/questions/63028/one-class-svm-vs-exemplar-svm
+
+Training Data required
+1. Two class SVM: Positive and negative examples
+2. One class SVM: Positive examples only
+3. Ensemble SVM "system": Positive and negative examples. Each subunit is trained on a single positive example and many negative examples.
+
+https://stats.stackexchange.com/questions/90295/multi-class-classification-always-have-better-result-than-one-class-classificati?rq=1

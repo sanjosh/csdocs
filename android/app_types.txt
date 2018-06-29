@@ -1,0 +1,75 @@
+
+PWA = home screen install support, service worker(browser runs JS in background), app shell, web app manifest
+
+Cordova = framework to write app using CSS, HTML5, JS; Cordova has plugins for each mobile OS
+
+Hybrid apps => app using JS talks to native SDKs on Android, iOS; slightly slower than full native.
+
+Native SDK
+
+Javascript runs in Webview (bundled browser)
+1. Chromium - WEbview
+2. iOS - UIWebView or WKWebView
+
+https://scotch.io/tutorials/the-ultimate-guide-to-progressive-web-applications
+
+https://hackernoon.com/if-it-werent-for-apple-hybrid-app-development-would-be-the-clear-winner-over-native-ae64fa37ad48
+
+------------
+
+diff between web app and hybrid app
+both codes in html, css and js
+web app runs thru browser
+hybrid app runs thru invisible browser packaged into native app
+(wraps up a browser web view into a native application and displays your web application through it)
+
+------------
+
+Service worker
+https://developers.google.com/web/fundamentals/primers/service-workers/
+
+----------------
+
+Twitter PWA
+
+PRPL pattern
+1. Push critical resources for the initial URL route.
+1. Render initial route.
+1. Pre-cache remaining routes.
+1. Lazy-load and create remaining routes on demand.
+
+
+https://blog.twitter.com/engineering/en_us/topics/open-source/2017/how-we-built-twitter-lite.html
+
+------------------
+https://umaar.com/dev-tips/
+------------------
+
+web push notification
+
+https://developers.google.com/web/fundamentals/push-notifications/
+
+------------------
+
+HTML5 storage options on client-side
+
+Before hTML5, it was cookies
+
+WebStorage (key value) is of two types : LocalStorage and SessionStorage
+WebSQL : provides RDBMS store
+IndexedDB : provides object Store
+FilesystemAPI : 	
+Application Cache : 
+
+https://www.html5rocks.com/en/tutorials/offline/quota-research/
+
+=------------------
+
+remote debugging firefox on android from firefox on desktop
+
+https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Firefox_for_Android
+
+https://chromedevtools.github.io/devtools-protocol/
+
+	
+

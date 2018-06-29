@@ -56,3 +56,12 @@ https://medium.com/@akarshzingade/image-similarity-using-deep-ranking-c1bd838559
 Learning Fine-grained Image Similarity with Deep Ranking
 Jiang Wang
 https://users.eecs.northwestern.edu/~jwa368/pdfs/deep_ranking.pdf
+
+==============
+
+Matching network (Vinyals)
+
+https://github.com/karpathy/paper-notes/blob/master/matching_networks.md
+
+
+extension of the Siamese network with N + 1 instances of the same network, where N is the number of classes

@@ -1,0 +1,12 @@
+
+
+Learn metric from the data
+given constrants of type
+1) must-link/cannot link { a and b should be similar/dissimilar}
+2) relative (a,b,c) { a is more similar to b than c }
+
+Bellet, A., Habrard, A., and Sebban, M. (2013). A Survey on Metric
+Learning for Feature Vectors and Structured Data. Technical report,
+arXiv:1306.6709
+
+http://researchers.lille.inria.fr/abellet/talks/metric_learning_tutorial_CIL.pdf
