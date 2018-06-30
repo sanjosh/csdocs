@@ -1,0 +1,8 @@
+
+https://www.quora.com/What-are-the-kinds-of-related-words-that-Word2Vec-outputs/
+
+https://www.quora.com/What-are-the-continuous-bag-of-words-and-skip-gram-architectures
+
+https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
+
+https://www.quora.com/What-is-negative-sampling

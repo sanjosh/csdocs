@@ -1,0 +1,50 @@
+
+
+Pipeline : detect, align, represent, classify
+
+Detect face
+2D alignment : 6 fiducial points detected using Support Vector Regressor
+3D alignment : 67 fiducial points detected using SVR
+
+At each iteration, fiducial points are extracted by
+a Support Vector Regressor (SVR) trained to predict point
+configurations from an image descriptor. Our image de-
+scriptor is based on LBP Histograms
+
+Max-pooling layers make the
+output of convolution networks more robust to local trans-
+lations. When applied to aligned facial images, they make
+the network more robust to small registration errors. How-
+ever, several levels of pooling would cause the network to
+lose information about the precise position of detailed facial
+structure and micro-textures. Hence, we apply max-pooling
+only to the first convolutional layer.
+
+every location in the feature map learns
+a different set of filters. Since different regions of an aligned
+image have different local statistics, the spatial stationarity
+assumption of convolution cannot hold. For example, ar-
+eas between the eyes and the eyebrows exhibit very differ-
+ent appearance and have much higher discrimination ability
+compared to areas between the nose and the mouth. In other
+words, we customize the architecture of the DNN by lever-
+aging the fact that our input images are aligned.
+
+Finally, the top two layers (F7 and F8) are fully con-
+nected: each output unit is connected to all inputs. These
+layers are able to capture correlations between features cap-
+tured in distant parts of the face images, e.g., position and
+shape of eyes and position and shape of mouth.
+
+As a final stage we normalize the features to be between zero 
+and one in order to reduce the sensitivity to illumination changes:
+
+Notice that in order to prevent overfitting on
+the face verification task, we enable training for only the
+two topmost layers
+
+(sentences from paper)
+
+=========
+
+Other algo

@@ -1,0 +1,45 @@
+
+https://code.fb.com/applied-machine-learning/fair-open-sources-fasttext/
+
+https://fasttext.cc/docs/en/faqs.html
+
+https://fasttext.cc/docs/en/unsupervised-tutorial.html
+
+https://fasttext.cc/docs/en/supervised-tutorial.html
+
+quantization of word vectors to save space
+
+handle 
+1) out of vocab words : use n-grams
+2) misspelled words
+3) concat words
+4) rare words : common ngrams with frequent words will ensure good embedding
+5) word disambiguation ? 
+
+Classes
+1) balanced => negative sampling
+2) imbalanced => softmax
+3) large num of classes => hierarchical softmax
+
+hyperparam
+1) min and max ngram
+2) hash table size controlled by "-hash" 
+3) word vector length controlled by "-dim"
+
+training : HogWild (parallel SGD)
+
+https://www.quora.com/How-does-fastText-output-a-vector-for-a-word-that-is-not-in-the-pre-trained-model/answer/Ajit-Rajasekharan
+
+https://www.quora.com/Does-Facebook%E2%80%99s-fastText-library-have-a-concept-of-word-boundaries
+
+https://www.quora.com/What-is-the-main-difference-between-word2vec-and-fastText
+
+https://www.quora.com/How-does-fastText-Facebook-work-Is-there-any-research-paper-or-blog-post-explaining-the-theory-behind-its-working
+
+https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
+
+Word2Vec = skip-gram + CBOW; negative sampling; hierarchical softmax
+
+PAPERS
+
+https://arxiv.org/abs/1607.04606
