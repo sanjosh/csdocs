@@ -51,7 +51,9 @@ perplexity
 
 ==============
 
-Hyperparameters
+Hyperparameters (in word2vec)
+
+window size
 
 ============
 

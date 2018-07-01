@@ -1,0 +1,4 @@
+
+Rumelhart. learning representations by back-propagating errors 1986
+Bengio. Neural probabilistic language model 2003
+

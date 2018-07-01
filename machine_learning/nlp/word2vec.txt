@@ -1,4 +1,59 @@
 
+Word2Vec = skip-gram + CBOW; negative sampling; hierarchical softmax
+
+every word has 2 vectors : one for context, one for center word
+wordvec matrix - initialize with small random vectors
+
+one-hot encoding of words : problem is that set of vectors have no inherent notion of similarity (similar words)
+distributional hypothesis = word known by its context
+
+context matrix
+
+backprop = chain rule + memoization
+
+use softmax instead of relu, sigmoid, tnh
+
+skip-gram : denominator is expensive to compute, hence use negative sampling
+
+it uses euclidean distance 
+
+----------
+
+co-occurence matrix (for window or entire doc)
+- window - similar to word2vec
+- entire doc - will give topic analysis (latent semantic analysis)
+
+problems
+- model have sparsity issues
+- model less robust
+- increase in size of vocab
+- very high dim
+
+how to reduce dimensionality
+- use SVD of cooccurence matrix
+
+problem with SVD
+- computational cost
+- hard to incorporating new words 
+
+(Rohde 2005 improved model of semantic similarity based on lexical cooccurence)
+
+two types of methods
+1) PCA based : LSA, HAL - Lund & Burgess; COALS, Hellinger-PCA - Rohde
+2) Direct : Skipgram, CBOW - Mikolov; NNLM, HLBL, RNN : Bengio, Collobert, Huang, Mnih Hinton
+
+GloVe is best of both worlds - Pennington, Socher and Manning
+
+how to handle polysemy - Sanjeev Arora et al
+- word vector are superposition of sense vector
+- senses can be recovered by sparse coding
+
+cross-entropy loss
+
+-------------
+
+Stanford NLP Manning & Socher 2017
+
 https://www.quora.com/What-are-the-kinds-of-related-words-that-Word2Vec-outputs/
 
 https://www.quora.com/What-are-the-continuous-bag-of-words-and-skip-gram-architectures

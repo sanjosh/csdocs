@@ -1,5 +1,22 @@
 
-activation func
+https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
+
+sigmoid
+ReLU
+tanh
+softmax
+linear rectification (max{0, x})
+
+---------------
+
+https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9
+
+Learning rate
+Epoch : when entire dataset passed back & forth ONCE through neural network 
+Batch size : number of training examples per batch
+Iterations  :  number of batches needed to complete one epoch
+
+---------------
 
 1. sigmoid
 2. hyperbolic tan (tanh)
@@ -7,7 +24,7 @@ activation func
 
 The former two choices are saturating activation functions because their 
 derivatives approach zero as x → ±inf, which can cause gradient-based 
-optimization algorithms to converge slowly. The deriva tive of the 
+optimization algorithms to converge slowly. The derivative of the 
 linear rectification function does not diminish as x → +inf, which helps 
 avoid this “vanishing gradient problem” and often results in faster 
 training and better performance (Nair & Hinton 2010). Neurons with

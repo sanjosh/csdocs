@@ -38,7 +38,6 @@ https://www.quora.com/How-does-fastText-Facebook-work-Is-there-any-research-pape
 
 https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
 
-Word2Vec = skip-gram + CBOW; negative sampling; hierarchical softmax
 
 PAPERS
 
