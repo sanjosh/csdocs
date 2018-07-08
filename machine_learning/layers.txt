@@ -47,6 +47,8 @@ learn correlation.  Neurons have large receptive field
 Softmax : Convert to probabilistic score
 Hierarchical softmax  :
 
+* Skip Connection
+
 ---------
 
 Ref

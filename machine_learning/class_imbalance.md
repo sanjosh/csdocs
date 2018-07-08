@@ -1,6 +1,14 @@
 
 How to combat imbalanced classes ?
 
+-------------------
+https://www.reddit.com/r/MachineLearning/comments/12evgi/classification_when_80_of_my_training_set_is_of/
+
+Sampling based methods
+Cost-sensitive methods
+Kernel-based methods 
+
+-------------------
 Accuracy paradox : accuracy is an illusion because it is reflecting underlying class distribution
 
 SOLUTIONS
@@ -19,11 +27,9 @@ SMOTE - synthetic minority over-sampling method
 
 * try penalized models : impose additional cost for making mistakes on minority class
 
-https://stackoverflow.com/questions/26156503/what-should-be-the-proportion-of-positive-and-negative-examples-to-make-a-traini
-
-https://www.reddit.com/r/MachineLearning/comments/12evgi/classification_when_80_of_my_training_set_is_of/
-
 https://machinelearningmastery.com/tactics-to-combat-imbalanced-classes-in-your-machine-learning-dataset/
+
+https://stackoverflow.com/questions/26156503/what-should-be-the-proportion-of-positive-and-negative-examples-to-make-a-traini
 
 https://www.quora.com/In-classification-how-do-you-handle-an-unbalanced-training-set
 
