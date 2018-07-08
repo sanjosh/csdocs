@@ -1,0 +1,13 @@
+
+Solutions
+
+1. Classic IR (term weights)
+BM25 Robertson 1994
+LMIR Zhai Lafferty 2004
+
+2. Translation models
+
+3. Topic models
+
+4. Deep learning
+

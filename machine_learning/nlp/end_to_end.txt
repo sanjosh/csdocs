@@ -1,0 +1,37 @@
+
+https://www.youtube.com/watch?v=3MjIkWxXigM&t=0s&list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6&index=14
+
+Lecture 12: End-to-End Models for Speech Processing
+Navdeep Jaitly
+
+trend to turn each piece of pipeline into CNN
+language model : make neural
+pronunciation model  : make neural
+acoustic model : make neural (DNN-HMM, LSTM-HMM)
+
+Since each component trained independently, errors in each may not play well with others
+
+hence the need for end-to-end models
+1. Connectionist Temporal classification (CTC)
+2. Sequence to Sequence (listen attend and spell)
+
+-------------
+CTC : feed audio spectrograms into RNN
+integrate language model into CTC during training
+
+-------------
+Sequence-to-sequence model
+entire input looked at
+Attention vector
+not an online model
+
+Online seq2seq model
+run seq2seq on each block of input
+
+
+Listen attend and spell paper
+Jaitly Latent sequence decompositions
+Bahdanau, Bengio. Neural machine translation by Jointly learning to align and translate ICLR 2015
+-------------
+
+

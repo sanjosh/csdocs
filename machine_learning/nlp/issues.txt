@@ -9,8 +9,9 @@ how to handle
 4) rare words : having common ngrams with frequent words will ensure good embedding
 5) word sense disambiguation (WSD)
 6) Data sparsity (unable to model all possible strings of words)
-7) negation : do vs "don't"
-8) ordering of words
+7) negation : do vs "don't" (sentence vec)
+8) ordering of words (sentence vec)
+9) punctuation
 
 
 =============

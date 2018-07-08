@@ -25,3 +25,29 @@ Neural net
 
 neural net is traind to minimize a cost function
 1. for binary classification : cross-entropy error function
+
+--------------
+
+* Input layers : build embedding; feature space
+
+* Activation layer : ReLU, tanh, sigmoid
+ReLU is preferred because it simplifies backpropagation, makes learning faster and also avoids saturation.
+Alleviate vanishing gradient problem
+
+* Pooling for down-sampling
+To control over-fitting
+Max Pooling 
+
+* Dropout layers 
+
+* Fully connected 
+learn correlation.  Neurons have large receptive field
+
+* Classification
+Softmax : Convert to probabilistic score
+Hierarchical softmax  :
+
+---------
+
+Ref
+https://adeshpande3.github.io/
