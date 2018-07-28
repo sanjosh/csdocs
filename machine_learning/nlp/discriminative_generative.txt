@@ -1,0 +1,8 @@
+
+https://stackoverflow.com/questions/879432/what-is-the-difference-between-a-generative-and-discriminative-algorithm
+
+generative learns joint probability p(x,y) where y is label for x and then uses Bayes rule to find posterior
+
+discriminative learns conditional probability P(y | x) - learn posterior directly
+
+Andrew Ng. On Discriminative vs.  Generative classifiers: A comparison of logistic regression and naive Bayes

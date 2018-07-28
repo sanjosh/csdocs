@@ -1,4 +1,7 @@
 
 Rumelhart. learning representations by back-propagating errors 1986
+
 Bengio. Neural probabilistic language model 2003
+
+https://www.quora.com/What-are-the-most-important-research-papers-which-all-NLP-students-should-definitely-read-Why
 

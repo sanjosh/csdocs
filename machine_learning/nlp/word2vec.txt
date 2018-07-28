@@ -1,4 +1,38 @@
 
+
+https://www.tensorflow.org/tutorials/representation/word2vec
+
+https://isaacchanghau.github.io/post/word2vec/
+
+https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
+
+https://isaacchanghau.github.io/post/word2vec/
+
+https://datascience.stackexchange.com/questions/13216/intuitive-explanation-of-noise-contrastive-estimation-nce-loss
+
+https://datascience.stackexchange.com/questions/20296/cross-entropy-loss-explanation?rq=1
+
+http://andyljones.tumblr.com/post/111299309808/why-word2vec-works
+
+http://www.1-4-5.net/~dmm/ml/how_does_word2vec_work.pdf
+
+https://stats.stackexchange.com/questions/337492/exact-details-of-how-word2vec-skip-gram-and-cbow-generate-input-word-pairs?rq=1
+
+https://stats.stackexchange.com/questions/194011/how-does-word2vecs-skip-gram-model-generate-the-output-vectors?rq=1
+
+https://stats.stackexchange.com/questions/266782/understanding-word2vec?rq=1
+
+https://www.quora.com/What-are-the-kinds-of-related-words-that-Word2Vec-outputs/
+
+https://www.quora.com/What-are-the-continuous-bag-of-words-and-skip-gram-architectures
+
+https://www.quora.com/What-is-negative-sampling
+
+https://arxiv.org/pdf/1411.2738.pdf
+
+https://arxiv.org/pdf/1405.4053v2.pdf
+------------
+
 Word2Vec = skip-gram + CBOW; negative sampling; hierarchical softmax
 
 every word has 2 vectors : one for context, one for center word
@@ -54,10 +88,3 @@ cross-entropy loss
 
 Stanford NLP Manning & Socher 2017
 
-https://www.quora.com/What-are-the-kinds-of-related-words-that-Word2Vec-outputs/
-
-https://www.quora.com/What-are-the-continuous-bag-of-words-and-skip-gram-architectures
-
-https://www.quora.com/How-does-word2vec-work-Can-someone-walk-through-a-specific-example
-
-https://www.quora.com/What-is-negative-sampling

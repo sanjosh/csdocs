@@ -1,0 +1,35 @@
+
+Approaches
+1. extractive (score Sentences and do extraction)
+2. abstractive (Using Natural Language understanding)
+
+========
+
+Features for summary generation
+1. fixed phrases  (e.g. in summary)
+2. uppercases
+3. para is first/last/middle
+3. do any frequent content words occur
+
+=======
+
+Coreference resolution
+1. noun phrases
+2. pronoun (they)
+3. possessive (their)
+4. demonstrative
+
+=======
+
+Statistical approaches 
+1. TextRank  (like PageRank)
+2. clusterRank
+3. Topiary
+
+Neural machine translation
+reframe problem as that of making input text more concise
+
+
+https://www.quora.com/Natural-Language-Processing-What-are-algorithms-for-auto-summarize-text
+
+
