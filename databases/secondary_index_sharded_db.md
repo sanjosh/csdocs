@@ -25,7 +25,7 @@ In a sharded database, a secondary index can be local or global.
 | DynamoDB    | Y                  |Y          |
 | Couchbase   | Y(map-reduce view) |Y          |
 
-##MongoDB
+## MongoDB
 
 Local secondary index only.  
 
@@ -33,14 +33,14 @@ This is why Couchbase outperforms MongoDB on some queries.
 
 https://stackoverflow.com/questions/41800012/is-there-a-notion-of-global-secondary-index-in-mongo
 
-##Cassandra
+## Cassandra
 
 Local
 
 One person solved the problem by maintaining a separate table for their secondary index.  They had to deal with data integrity issues.
 https://pantheon.io/blog/cassandra-scale-problem-secondary-indexes
 
-##HBase
+## HBase
 
 Well-written critique of HBase secondary indexing model.
 https://www.linkedin.com/pulse/secondary-indexing-hbase-tale-how-screw-up-simple-idea-michael-segel
@@ -51,7 +51,7 @@ https://ztheworld.wordpress.com/2014/01/27/secondary-indexes-in-hbase/
 HBase secondary index manual
 http://hbase.apache.org/book.html#secondary.indexes
 
-##MapR-DB (Hbase like)
+## MapR-DB (Hbase like)
 
 Global
 
@@ -63,7 +63,7 @@ After 6.0, secondary indexes are native (inside MapR-DB).
 They do auto-propagation, auto-scale & auto-management of these indexes. 
 They support Composite (i.e. multi-attribute) indexes.
 
-##Aerospike
+## Aerospike
 
 Local
 
@@ -72,7 +72,7 @@ The secondary index is co-located with primary index
 
 https://www.aerospike.com/docs/architecture/secondary-index.html
 
-##DynamoDB
+## DynamoDB
 
 Support both.  Partition key is different for local and global secondary index.
 
@@ -83,7 +83,7 @@ http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForGSI
 http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForLSI.html
 
 
-##Couchbase
+## Couchbase
 
 Global secondary index
 https://developer.couchbase.com/documentation/server/current/architecture/global-secondary-indexes.html
