@@ -1,4 +1,4 @@
-# Bitmap index
+# Bitmap indices
 
 ## Data types
 
