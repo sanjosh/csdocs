@@ -1,28 +1,5 @@
 
-* mlock the mem
-* fix the mem leak
-* instrument with machine-level perf counters
-* cpu affinity
-* calculate working set (12G Virtual address space vs 800M resident - how much swapping)
-* do we have NUMA?
-* how much bus bandwidth is being taken?
-* gcc optimizations
-* kernel params
-* run proc at higher priority
-* set sched to noop
-
-define a queuing model for system - eqn for cache miss
-
-```
-T_exec = Num[ (1-Fmem)T_proc + (Fmem)(G_hit.T_cache + (1-G_hit)T_miss)]
-Fmem = fraction of N that access mem
-
-cache_miss_ratio = (100 * cache_misses)/(L2 cache fills + L2 requests)
-```
-
-----------
-
-# Drepper - Programmer memory paper
+# Drepper what every programmer should know about memory
 
 page 11:
 
@@ -36,29 +13,33 @@ this limits amount of RAM on motherboard
 	* PCI Express is serial equiv of PCI/AGP
 	* SATA is serial equiv of PATA
 
-advantage of serial: reduced pin count, higher freq, full duplex
+advantage of serial bus: 
+* reduced pin count, 
+* higher freq, 
+* full duplex
 
-----------
 
+Levels
 * L1
 * L2
 * RAM
 * SSD
 * HDD
 
+Frequency variations
 * CPU : 3 Ghz 
 * L1/L2 cache
 * RAM/Front side bus : 1 Ghz 
 * South bridge:  lower freq 
 * IO : still lower freq & higher size
 
-as we go down the caches and away from CPU
+As we go down the caches and away from CPU
 1. freq is lowered
 2. cache block size increases
 3. total mem size increases
-4.  contention becomes virtualized (cpu contention, process contention, IO card contention, inter-machine contention)
+4. Contention becomes virtualized (cpu contention, process contention, IO card contention, inter-machine contention)
 
-bus snooping as an idea
+Bus snooping is seen in different places
 1. ARP snooping
 2. frontside bus snooping for cache misses
 
@@ -80,6 +61,8 @@ page 28 : why 4 CPUs are the limit - L3 cache is not enuf to store working set o
 
 --------------
 
+## Tools
+
 * cachegrind
 * oprofile
 * massif
@@ -87,3 +70,28 @@ page 28 : why 4 CPUs are the limit - L3 cache is not enuf to store working set o
 * /proc/<pid>/stat - 10-14 fields are page faults
 * /proc/<pid>/numa_maps
 * /sys/devices/ - has cpu topology
+
+-----------
+
+## Checklist
+* mlock the mem
+* fix the mem leak
+* instrument with machine-level perf counters
+* cpu affinity
+* calculate working set (12G Virtual address space vs 800M resident - how much swapping)
+* do we have NUMA?
+* how much bus bandwidth is being taken?
+* gcc optimizations
+* kernel params
+* run proc at higher priority
+* set sched to noop
+
+define a queuing model for system - eqn for cache miss
+
+```
+T_exec = Num[ (1-Fmem)T_proc + (Fmem)(G_hit.T_cache + (1-G_hit)T_miss)]
+Fmem = fraction of N that access mem
+
+cache_miss_ratio = (100 * cache_misses)/(L2 cache fills + L2 requests)
+```
+
