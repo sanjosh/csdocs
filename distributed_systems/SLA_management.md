@@ -3,7 +3,7 @@ SLA pervasive built into all CosmosDB components
 
 ---------
 
-Scale Independence, Michael Armbrust
+# Scale Independence, Michael Armbrust
 
 A new technique for doing query optimization that allows developers to set an upper bound on the response time for their query result independent of the size of their database.
 
@@ -16,16 +16,9 @@ http://queue.acm.org/detail_video.cfm?id=2555932
 
 ----------
 
-PerfEnforce - Ortiz, Lee, Balazinska, Hellerstein
+# PerfEnforce - Ortiz, Lee, Balazinska, Hellerstein
 
-
-To guarantee the query runtimes associated
-with an SLA, PerfEnforce resizes the cluster in between
-queries either in a proactive or reactive approach. With a
-proactive approach, PerfEnforce decides to scale based
-on how well it met previous SLA deadlines. In a re-
-active approach, PerfEnforce decides whether to rescale
-the cluster before executing each incoming query.
+To guarantee the query runtimes associated with an SLA, PerfEnforce resizes the cluster in between queries either in a proactive or reactive approach. With a proactive approach, PerfEnforce decides to scale based on how well it met previous SLA deadlines. In a re- active approach, PerfEnforce decides whether to rescale the cluster before executing each incoming query.
 
 How to rescale ...compare different deployments in terms of 
 1. initial setup time, 
@@ -35,6 +28,6 @@ How to rescale ...compare different deployments in terms of
 5. total cost.
 
 When to rescale (up or down)
-reactive : PID, Reinforcement learning (Q-learning)
-proactive : Perceptron learning
+1. reactive : PID, Reinforcement learning (Q-learning)
+2. proactive : Perceptron learning
 
