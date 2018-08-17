@@ -7,7 +7,7 @@
 
 ## Balls and bins model
 ```
-...even a small amount of choice can lead to drastically diㄦent results in load balancing.  Indeed, having just two random choices (i.e., d = 2) yields a large reduction in the maximum load over having one choice, while each additional choice beyond two decreases the maximum load by just a constant factor.
+...even a small amount of choice can lead to drastically different results in load balancing.  Indeed, having just two random choices (i.e., d = 2) yields a large reduction in the maximum load over having one choice, while each additional choice beyond two decreases the maximum load by just a constant factor.
 ```
 
 ## Hash table
