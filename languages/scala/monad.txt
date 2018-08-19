@@ -1,0 +1,42 @@
+
+Monad looks like this
+
+sealed trait monad[A] {
+	def map[B] (f: A => B): Monad[B]
+	def flatMap[B] (f: A => Monad[B}): Monad[B]
+}
+
+-----------
+Option Monad for return null
+
+sealed trait Option[A]
+case class Some[A](a : A) extends Option[A]
+case class None[A] extends Option[A]
+
+-----------
+Validation Monad for exception E
+
+sealed trait Validation[E, A] {
+	def map[B] (f: A => B): Validation[E,B]
+	def flatMap[B] (f: A => Validation[E, B]): Validation[E, B]
+	def liftFail[F] (f: E => F) : Validation[F, A]
+}
+
+-----------
+List Monad
+Sum of all nested elements Monad
+for all in a
+  for all in b
+    sum += elem
+
+for {
+	a
+	b
+	sum <= 
+} yield sum
+
+-----------
+State Monad
+Undo Monad
+Promise Monad
+Transaction Monad

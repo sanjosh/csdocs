@@ -1,0 +1,39 @@
+
+package cannot contain definition of func and var
+put it in package object
+put the package obj in "package.scala" file
+
+package com.h.i
+
+package object people {
+    val defName = "Jon"
+}
+
+package peope {
+    class Person {
+        var name = defName
+    }
+}
+----------
+
+package visibility
+
+package com.h.impat.people
+
+private[people] def desc = 
+private[impat] def desc = 
+
+------------
+
+implicit imports are always imported
+
+import java.lang._
+import scala._
+import Predef._
+
+===========
+
+exclude a func
+
+import all except fraction2Double
+import com.mine.FractionConversions{fraction2Double => _, _}

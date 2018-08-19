@@ -1,0 +1,94 @@
+
+guards
+match against types
+match against var
+
+======
+cannot match Map of specific type since generics erased in JVM
+
+Map
+obj match {
+  case m : Map[String, Int] => 
+}
+obj match {
+  case m : Map[_, _] =>  OK
+}
+
+=======
+
+Array
+array match {
+  case Array(x, y) => x + "" + y 
+}
+=======
+
+list
+lst match {
+  case x :: y :: Nil => x + "" + y 
+}
+=======
+
+Tuples
+pair match {
+  case (x, y) => x + "" + y 
+  case _ => "neither"
+}
+
+======
+extractor
+
+arr match {
+  case Array(0, x) => 
+
+=====
+abstract class Amount
+case class Dollar(value : Double) extends Amount
+case class Rupee (value : Double) extends Amount
+case object Nothing extends Amount
+
+amt match {
+  case Dollar(v) => 
+  case Rupee (v) => 
+}
+}
+
+Infix notation can be used
+
+lst match {
+  case h :: t => 
+  same as 
+  cse ::(h,t) which calls ::.unappy(lst)
+}
+
+result match {
+  case p ~ q => 
+  same as 
+  case ~(p,q ) =>
+}
+========
+
+sealed classes enable compiler to check that pattern match has exhausted all options
+
+sealed abstract class Amt
+case class Dollar extends Amt
+case class Rupee extends Amt
+
+amt match {
+  case Dollar => 
+  case Rupee => 
+}
+
+==========
+
+Option
+
+scores.get("Alice") match {
+  case Some(score) => println(score)
+  case None  => println("none")
+}
+
+or use
+
+println(scores.getOrElse("Alice", "none"))
+
+for (score <- scores.get("Alice")) println(score)

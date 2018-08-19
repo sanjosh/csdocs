@@ -1,0 +1,13 @@
+
+| - alternation
+~ - sequential - succeed if left + right operand parses
+~> - succeed if left + right operand parses, but do not include left in result
+<~ - succeed if left + right operand parses, but do not include right in result
+^^ - transformation - if left parses, transform result as per func on right
+rep - expect N-many repetitions of parser X 
+
+RegexpParsers allow you to use RE values (typically in the form "re pattern".r but equally any other Regex instance). There are no pre-defined lexical productions (tokens).
+
+JavaTokenParsers defines lexical productions for Java tokens: decimalNumber, floatingPointNumber, stringLiteral, wholeNumber, ident (identifier).
+
+StandardTokenParsers defines lexical productions "... for a simple, Scala-like language. It parses keywords and identifiers, numeric literals (integers), strings, and delimiters." Its constituents are actually defined in StdLexical

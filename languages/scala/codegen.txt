@@ -1,0 +1,5 @@
+
+spark now uses janino.codehaus
+earlier used quasiquotes
+
+https://github.com/apache/spark/pull/6479

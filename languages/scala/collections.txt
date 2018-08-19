@@ -1,0 +1,223 @@
+
+Array for fixed len; ArrayBuffer for var len
+scala and java arrays are interoperable (scala ArrayBuffer=java ArrayList)
+
+val nums = new Array[String][10]
+val nums = Array("hel", "wod")
+
+inserting elem in middle of ArrayBuffer not efficient
+
+// visit every second elem
+for (i <- 0 until (a.length, 2))
+// visit in reverse
+for (i <- (0 until a.length).reverse)
+// dont need index ?
+for (i <- arr) 
+// transform using for comprehension
+for (elem <- arr if elem % 2 == 0) yield 2 * elem
+OR
+a.filter(_ % 2 == 0).map(2 * _)
+a.filter{_ % 2 == 0}.map{2 * _}
+
+// sorting
+val b = ArrayBuffer(1, 7, 2, 9)
+val bSorted = b.sorted(_ < _)
+// u can sort an Array but not ArrayBuffer in place
+scala.util.Sorting.quickSort(a)
+
+array.mkString(" and ")
+// output is "1 and 2 and 7 and 9"
+
+  
+
+============
+
+map can be mutable or immutable
+scala.collection.mutable.Map
+scala.collection.mutable.HashMap
+
+SortedMap
+
+map can be tree or hash
+
+map.keySet
+map.values
+map.getOrElse
+map("non-existent-key")  throws exception
+
+for (v <- map.values) println(v)
+
+reverse keys and values
+for ((k, v) <- map) yield (v, k)
+
+val scores = scala.collection.immutable.SortedMap(a -> 3, b -> 5)
+
+No mutable tree map - use java map
+
+// convert from java
+import scala.collection.JavaConversions.mapAsScalaMap
+val scores : scala.collection.mutable.Map[String, Int] = 
+   new java.util.TreeMap[String, Int]
+
+// convert to java
+import scala.collection.JavaConversions.mapAsJavaMap
+val attrs = Map(a->2)
+val font = new java.awt.Font(attrs)
+
+========
+
+zip two arrays into a tuple
+
+val pairs = array1.zip(array2)
+for ((s,n) <- pairs) 
+
+zipWithIndex
+
+===
+
+Stream vs Iterator
+
+iterator - each next call mutates iterator
+stream is immutable list
+
+use force to do immediate eval of Stream
+
+=======
+
+Views
+
+val powers = (0 until 100).view.map(pow(10, _))
+
+use force to do immediate eval
+val powers = (0 until 100).view.map(pow(10, _)).force
+
+=========
+
++ => adds to unordered
++: or :+ => prepend or append to seq
+++ => concat 2 collection
+- or -- => remove elem
+
+=========
+
+val iter = coll.iterator
+while (iter.hasNext)
+  do something
+
+=======
+
+each collection has companion object with apply method
+
+=========
+
+immut  , mutable
+Vector , ArrayBuffer
+List   , LinkedList
+Set    , None (java.util.TreeSet)
+
+==========
+Seq
+
+IndexedSeq
+=====
+
+The :: operator makes new list from given head & tail
+9 :: List(3, 4)
+
+val digits = List(4, 2)
+digits.head = 4
+digits.tail.head = 2
+
+============
+
+By default Set is actually Hashed Set
+LinkedHashSet is Set which remembers insert order
+SortedSet sorts the Set
+
+=========
+
+map
+foreach
+flatmap
+collect
+reduceLeft
+reduceRight
+foldLeft
+foldRight
+
+reduce
+fold
+aggregate
+
+take
+drop
+split
+slice
+
+zip
+
+grouped
+sliding
+
+toIterable
+toSeq
+toArray
+toList
+toSet
+toMap
+
+
+=====
+
+names.map(_.toUpperCase)
+same as
+for (n <- names) yield n.toUpperCase
+
+=======
+
+"-3+4".collect { case '+' => 1; case '-' => -1 }
+  returns Vector (-1, 1)
+
+
+========
+
+reduceLeft
+reduceRight
+
+foldLeft = reduceLeft with an initial elem
+foldRight = reduceLeft with an initial elem
+
+scanLeft = combine fold & map = yield partial results
+ScanRight
+
+==========
+
+interop with Javac collections
+
+See JavaConversions
+
+=======
+
+Thread safe
+
+SynchronizedBuffer
+SynchronizedMap
+SynchronizedQueue
+SynchronizedPriorityQueue
+SynchronizedSet
+SynchronizedStack
+
+better to use Java lockfree or waitfree
+
+=======
+
+par keyword
+
+ParSeq, ParMap, ParSet
+
+coll.par.sum
+
+for (i <- (0 until 100).par) print (i + " ")
+for (i <- (0 until 100).par) yield i
+
+Convert parallel collection to serial usng 'ser' keyword

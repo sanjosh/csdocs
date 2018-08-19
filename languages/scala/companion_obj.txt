@@ -1,0 +1,38 @@
+
+static methods => use singleton
+
+obj cannot have constructor params
+singleton obj can be used for defaults
+
+class Array {
+}
+
+object Array {
+}
+
+companion object used for
+1) static methods /factory methods
+2) class extractors 
+
+class MyString(val jstring : String) {
+}
+
+object MyString {
+    def apply(base:String, extras:String) = {
+        val s = new MyString(base)
+        s  // always returns MyString
+    }
+}
+
+import companion object members into class
+class X {
+    import X._
+    def blah = foo
+}
+object X {
+    private def foo = 42
+}
+
+class and object are friends - can access privates
+to make it really private, use private[this]
+

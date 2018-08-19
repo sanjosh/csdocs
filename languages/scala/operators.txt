@@ -1,0 +1,17 @@
+infix operator
+
+1.to(10) => 1 to 10
+1 -> 10  => 1.->(10)
+
+==========
+unary op
+
+1 toString => 1.toString()
+
+==========
+
+precedence of operators
+postfix has lower precedence than infix
+
+a infixOp b postfixOp => (a infixOp b) postfixOp
+======

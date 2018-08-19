@@ -1,0 +1,12 @@
+
+extend App
+
+object Hello extends App {
+    args.length
+    args(0)
+}
+
+
+# run prog
+scalac Hello.scala
+scala -Dscala.time Hello Fred

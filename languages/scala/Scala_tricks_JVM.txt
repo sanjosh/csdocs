@@ -1,0 +1,21 @@
+
+It is at this point important to remember how Scala realizes “Functions as first class members”, i.e. how Scala “tricks” the VM to pass functions around as values. If you pass around a function, what you actually pass around is an object that implements an interface with one method: apply (well, actually more than one but this is not important right now). The exact signature of the apply method depends on the signature of the function the object represents, so imagine the following function:
+
+def foo(i:Int):String = "The number is " + i
+
+If you pass it around, you actually pass around an instance that is more or less equivalent to this Java class:
+
+//it extends "Function1" as it is a function with one parameter
+//the first type parameter is the argument type, the second the return type
+//(Scala has a special type, "Unit" for functions/methods that do not return a
+//value)
+
+public class foo extends Function1<String, Int> {
+    public String apply(int i) {
+       return "The number is " + i
+    }
+}
+
+http://henkelmann.eu/2011/01/13/an_introduction_to_scala_parser_combinators
+
+http://henkelmann.eu/2011/01/28/an_introduction_to_scala_parser_combinators-part_2_literal_expressions

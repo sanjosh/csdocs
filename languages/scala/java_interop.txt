@@ -1,0 +1,8 @@
+
+Scala can inherit from java classes and implement java interfaces
+
+import scala.collection.JavaConversions
+
+To see java bytecode for scala
+scalac Person.scala
+scala -private Person

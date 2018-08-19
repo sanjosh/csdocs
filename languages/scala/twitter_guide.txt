@@ -1,0 +1,15 @@
+
+Immutable collections should be covariant while mutable should be invariant
+
+Immutable collections should be covariant. Methods that receive the contained type should “downgrade” the collection appropriately:
+
+trait Collection[+T] {
+  def add[U >: T](other: U): Collection[U]
+  }
+
+Mutable collections should be invariant. Covariance is typically invalid with mutable collections. Consider
+
+  trait HashSet[+T] {
+    def add[U >: T](item: U)
+    }
+

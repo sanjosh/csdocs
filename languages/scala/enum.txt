@@ -1,0 +1,11 @@
+
+object Color extends Enumeration {
+    val Red, Yel, Green = Value
+    or
+    val Red = Value(0, "stop") // id, name
+    val yel = Value(10)
+    val green = Value("GO") // id 11
+}
+
+Color.id 
+for (c <- Color.values)

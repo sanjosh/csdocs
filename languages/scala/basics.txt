@@ -1,0 +1,34 @@
+
+4) lambda func
+   (x: Int) => code
+
+11) Nested funcs allowed. they access param and local var of enclosing func
+
+12) Some things auto-imported from redef library
+
+13) Interpolated string (2.10)
+
+you say f(s"abc def")
+this creates an interpolated string
+
+14) scoped private and protected visbility
+
+--
+Pattern matching binds to variables inside an object
+this works because Scala looks for extractors (i.e. "unapply" method)
+extractor is opposite of constructor
+Scala has some pre-defined extractor
+
+If the result of calling unapply is Some[T], this means that the pattern matches, and the extracted value is bound to the variable declared in the pattern. If it is None, this means that the pattern doesn’t match and the next case statement is tested.
+
+
+http://danielwestheide.com/blog/2012/11/21/the-neophytes-guide-to-scala-part-1-extractors.html
+
+---------------
+
+func returning Option can return None or Some<T>
+
+Option doesnt give access to exception info
+Use Either/Left/Righ
+
+http://danielwestheide.com/blog/2012/12/19/the-neophytes-guide-to-scala-part-5-the-option-type.htmlt

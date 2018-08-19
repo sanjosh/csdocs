@@ -1,0 +1,3 @@
+
+to solve variable init problems caused by constructor order in subclass superclass
+See Scala for Impatient book

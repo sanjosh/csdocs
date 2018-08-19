@@ -1,0 +1,28 @@
+
+sbt clean compile
+sbt package
+
+sbt
+> show compile:discoveredMainClasses
+
+# generates pom file for use in maven repo
+sbt publish 
+sbt publishLocal
+sbt publishM2
+
+
+sbt update
+
+# dirtymoney plugin to clean ivy2 cache
+
+sbt "show compile:dependencyClasspath"
+
+sbt "inspect tree clean"
+sbt "inspect tree assembly"
+
+sbt "run-main org.apache.spark.executor.CustomExecutorBackend"
+
+
+# continuous compile, in sbt shell type
+sbt> ~ ;copy-resources;aux-compile
+1. Waiting for source changes... (press enter to interrupt)

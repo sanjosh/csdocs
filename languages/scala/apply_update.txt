@@ -1,0 +1,74 @@
+
+apply method
+defining apply() method allows class to be used like function
+A(x) becomes A.apply(x)
+
+----------
+
+update method
+a(x) = y becomes a.update(x, y)
+
+------------
+
+extractor is an object with unapply method
+
+object Fraction {
+  def unapply(input: Fraction) = 
+    if (input.den == 0) None else Some((input.num, input.den))
+}
+
+how to use extractor ?
+
+var Fraction (a,b) = Fraction(3,4) * Fraction(2,5)
+// a, b are initied with num, den of result
+or in pattern match
+case Fraction(a, b) => 
+
+
+val author = "AB CD"
+val Name(first, last) = author // calls unapply
+
+----
+There need not be corresponding class for extractor 
+this is a extractor for String object
+object Name {
+  def unapply(input : String) = {
+  }
+}
+
+----
+
+extractor with one arg
+
+object Number {
+  def unapply(input : String) : Option[Int] = 
+    try {
+      Some (Integer.parseInt(input.trim))
+    } catch {
+      case ex : NumberFormatException => None
+    }
+}
+
+val Number(n) = "1729"
+
+-------
+
+extractor with no arg
+
+object IsCompound {
+  def unapply(input : String) = input.contains("-")
+}
+
+author match {
+  case Name(first, last @ IsCompound()) => matches
+  case Name (first, last) => 
+}
+
+-------
+
+unapplySeq
+
+object Name {
+  def unapplySeq(input : String) : Option [Seq[String]] =
+    if (input.trim == "") None else Some(input.trim.split("\\s+")
+}

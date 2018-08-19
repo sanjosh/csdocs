@@ -1,0 +1,48 @@
+parameterless func can be called without ()
+
+def f1() { println("Hi") }
+def f2 { println("Hi") }
+cannot call f2 with () 
+but can call f1 without ()
+------------
+can name the arguments, can allow defaults
+
+def dec (me:Int, str:String = "A") {
+}
+
+caller with naming of arg
+def (str = "ABC", me = 3)
+caller mixing named and unnamed arg
+def (3, str = "ABC")
+
+-------
+
+vararg
+
+def sum (args : Int*) {
+    var res = 0
+    for (arg <- args) res += arg
+    result
+}
+
+caller
+val s = sum(1 to 5: _*)
+
+---
+func params are of type "val" so cannot be changed inside func
+
+def func(a: Int) : Int = {
+}
+
+=================
+
+PartialFunc
+compose
+andThen
+https://twitter.github.io/scala_school/pattern-matching-and-functional-composition.html
+
+to create partial func
+def func(p1: String, p2: String): Unit = {
+}
+the following is partial func with 2nd arg unbound
+val partialFUnc = func("abc", _:String)

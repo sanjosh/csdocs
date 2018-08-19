@@ -1,0 +1,39 @@
+
+Prefer immutable (val and collections)
+
+----------
+dont use null, use Option
+var author : Option[Author] = None
+
+either left right 
+----------
+
+Dependency injection
+1) cake pattern
+2) implicit params
+3) reader monad (import scalaz.reader)
+
+http://blog.originate.com/blog/2013/10/21/reader-monad-for-dependency-injection/
+
+cake pattern = represent dependency as a component trait
+put thing that is depended into a trait 
+
+favour object composition over class inheritance because
+inheritance exposes subclasses to details of parent impl
+inheritance breaks encapsulation
+
+trait GenericDao {
+}
+trait SqlDao extends GenericDao {
+}
+trait CloudantDao extends GenericDao {
+}
+
+trait MyServiceTrait {
+  dao: GenericDao  => // self type annotation
+}
+
+// create class with trait at runtime
+val svc = new MyServiceTrait with SqlDao
+
+

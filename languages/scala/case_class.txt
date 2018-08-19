@@ -1,0 +1,41 @@
+Case classes are special because Scala automatically creates a companion object for them: a singleton object that contains not only an apply method for creating new instances of the case class, but also an unapply method – the method that needs to be implemented by an object in order for it to be an extractor.
+
+has automatic apply & unapply methods
+=====
+
+with case class, you get toString, equals, hashCode, and copy for free
+these are not generated for case classes that extend other case classes
+
+=======
+copy method makes new obj, you can use named param to modify some val
+val amt = currency.copy(unit = "CHE")
+
+=======
+List object is either Nll or obj of case class ::
+case class :: [E] (head : B, tail : List[E]) extends List(E)
+
+=======
+Nested structures
+
+abstract class Item
+case class Article(desc : String) extends Item
+case class Bundle (desc : String, items : Item *) extends Item
+
+Bundle ("bundle", 
+  Article("one"), 
+  Bundle("two", Article("two.one")), 
+  Article("three"))
+
+to pattern match nesting
+case Bundle(_, _, Article(descr, _), _*) => 
+
+def price(it : Item) : Double = it match {
+  case Article(_, p) => p
+  case Bundle(_, its @ _*) => its.map(price_).sum - disc
+}
+
+==========
+
+TO define mutable case class, add var keyword
+immutable :case class Point(x : Int, y: Int)
+mutable   :case class Point(var x : Int, var y: Int)

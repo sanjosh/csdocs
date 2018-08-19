@@ -1,0 +1,109 @@
+
+http://docs.scala-lang.org/tutorials/FAQ/finding-implicits.html
+
+implicit conversion
+implicit parameter
+
+implicitly ?
+some implicit automatically imported via "Predef"
+
+def calcTax[T](t:T) (implicit integral : Integral[T]): Unit = {
+    println(integral)
+}
+
+def getIndex[T, CC](seq: CC, value: T)(implicit conv: CC => Seq[T]) =  seq.IndexOf(value)
+
+object A {
+    implicit def fromInt(n : Int) = new A(n)
+}
+
+===========
+
+add "read" method to existing class
+
+class RichFile(val from : File) {
+  def read = Source.fromFile(from.getPath).mkString
+}
+
+implicit def file2RichFile(from: File) = new RichFile(from)
+
+now u can call 
+val x = File.read() 
+and it will do implicit conversion
+
+See RDDFunctions(val from:RDD[T]) defined in Spark
+
+========
+
+WHich implicits are considered for use
+1) companion obj of source or target type
+2) that are in scope as single identifier
+  object Main extends App {
+    import com.mine.ConversionFuncs._
+    val result = 3 * Fraction(3, 4)
+  }
+
+
+In REPL, type ":implicits -v"
+
+When are they used
+if type of expr differs from expected
+if obj acccesses non-existent member
+if obj invokes method whose params do not match given
+
+situations where implicit not used
+No multiple conversions
+It two or more conversions on same obj are valid
+
+To find implicit conversions done
+$ scalac -Xprint:typer <prog>
+
+========
+
+implicit params
+
+case class Delimiters(left : String, right : String)
+
+def quote (what: String) (implicit delim Delimiters) =
+  delims.left + what + delims.right
+
+Compiler looks for value which is declared "implicit" among
+1) all "val" and "def" of desired type that are in scope as single identifier
+2) in companion obj of type associated with desired type.  if its a parametrized type, its type params are included
+
+There can be only one implicit value for a given data type.
+
+====
+
+ implicit conversion with implicit param
+
+def smaller[T] ( a:T, b : T)(implicit order:T=>Ordered[T]) = if (a<b) a else b
+
+=====
+
+context bound - require there is a implicit value of T[M] in scope
+
+class Pair [ T: Ordering ] (val first: T, val last: T) {
+  def smaller(implicit ord : Ordering[T]) = 
+    if (ord.compare(first, last) < 0) first else last
+}
+
+
+===========
+
+implicitly retrieves code 
+defined in Predef.scala
+
+  def smaller(implicit ord : Ordering[T]) = 
+    if (implicitly[Ordering[T]].compare(first, last) < 0) first else last
+
+
+=========
+
+evidence object
+
+========
+
+CanBuildFrom
+
+==========

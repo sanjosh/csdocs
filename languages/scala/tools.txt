@@ -1,0 +1,20 @@
+
+fsc : fast offline compiler
+
+sbt
+
+scala <scala file>
+
+scala -feature (produces debug info)
+
+scalac
+
+scalap -cp . <java_bytecode file>
+
+scaladoc
+
+====
+
+javac
+
+javap -cp . <java bytecode file>

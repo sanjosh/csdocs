@@ -1,0 +1,15 @@
+
+17) If expression has a value which can be used in other expr
+
+val msg = if (pts > 80) 
+        "well"
+        else 
+        "ok"
+
+msg will be "well" or "ok"
+
+=========
+
+break out of loop
+
+http://stackoverflow.com/questions/2742719/how-do-i-break-out-of-a-loop-in-scala

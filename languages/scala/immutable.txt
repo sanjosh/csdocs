@@ -1,0 +1,22 @@
+
+immutable and mutable objects
+
+All number types, strings, tuples are immutable
+
+mutable obj can be changed if variable assigned to another var
+e.g.
+
+{
+    val p = Point(2, 5)
+    val q = p
+    q.x = p (changes p also!)
+}
+
+Arrays are mutable
+{
+    val A = Array(1, 2, 3)
+    val B = A
+    A(2) = 99
+    B
+}
+

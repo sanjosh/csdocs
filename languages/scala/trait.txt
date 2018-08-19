@@ -1,0 +1,69 @@
+
+u can add trait while constructing obj
+
+trait Logger
+{
+  def log() 
+}
+
+class SavingsAccount extends Account with Logger
+{
+}
+
+trait ConsoleLogger extends Logger
+{
+  override def log() {}
+}
+
+{
+  val acct = new SavingsAccount with ConsoleLogger
+}
+=========
+
+To control which trair method is called use 
+  "super[ConsoleLogger].log(msg)"
+
+========
+
+A method which calls abstract super.method is still abstract
+
+trait ConsoleLogger extends Logger
+{
+  abstract override def log() {
+    super.log()
+  }
+}
+
+======
+Field can be concrete or abstract
+FIelds are not inherited - they are simply added to subclass
+
+trait AbsShortLog extends Logger {
+  val max = 10 // concrete
+  val maxAbs: Int // abstract
+}
+
+trait ConcreteShortLog extends Logger {
+  val maxAbs = 10
+}
+
+============
+
+Self Types
+Trait can only be mixed into subclass of a given Type
+
+trait ABC {
+  this: MyType =>
+}
+
+class GoodType extends MyType with ABC
+{
+}
+
+=========
+
+JVM : 
+for trait with abstract methods, java interface is created
+for trait with concrete methods, a companion class is created
+
+

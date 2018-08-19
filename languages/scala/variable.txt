@@ -1,0 +1,22 @@
+
+
+  variable defn start with "var"
+  read-only value defns start with "val" (like java final)
+
+http://stackoverflow.com/questions/1791408/what-is-the-difference-between-a-var-and-val-definition-in-scala
+
+val/var/def can be preceded by
+-----------------
+lazy val words = "ABC"
+override
+final
+protected[class/package]
+private[class/package]
+-----------------
+Annotation
+transient 
+volatile
+deprecated
+unchecked
+http://www.artima.com/pins1ed/annotations.html
+

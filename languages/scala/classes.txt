@@ -1,0 +1,187 @@
+
+classes have parameters
+   class Complex (real: Double, imaginary: double) {
+     //methods
+     def re() = real
+     // the return type is inferred, not declared
+     def im() = imaginary
+
+     // def method without arguments
+     def re = real
+     // such funcs can be called without suffixing them with "()"
+   }
+
+all scala classes inherit from a super-class
+ when no superclass specified, scala.AnyRef is implicit
+
+Scala provides "case classes" for representing trees
+
+  abstract class Tree
+  case class Sum(l: Tree, r: Tree) extends Tree
+
+  For cases classes, 
+  a) "new" not needed to create instances
+  b) getter func auto-defined
+  c) default "equals" and "hashCode" provided 
+  d) default "toString"  provided
+  e) instances of these classes can be decomposed thru pattern match
+  f) scalac generates companion singleton of same name
+
+  Write pattern matching func which have "guard" and "wildcard"
+
+Traits
+  inherit code from trait
+
+========
+Generic classes (templates)
+   class Reference [T] {
+   }
+
++===========
+
+  Scala "Unit" = void in Java
+
+=========
+
+private[this] var value = 0 // cannot access obj.value
+
+no getters or setters for obj-private field
+
+----------
+
+auxiliary constructor
+
+if param without val or var is used inside at least one method,
+  it becomes a field
+  it is equiv to private[this] val <fieldname>
+otherwise 
+  param not saved as field
+
+class Person (val name: String, nim : Int) {
+    private var name = ""
+
+    def this(name : String) {
+        this() // calls primary ctor
+    }
+}
+
+---------
+
+only primary ctor can call superclass ctor
+final class cannot be extended
+
+u can override fields
+def can only override another def
+val can only override another val or parameterless def
+var can only override an abstract var
+must use "override" to override method 
+
+--
+
+reflection
+
+p.getClass == classOf[Employee]
+p.isInstanceOf[Employee]
+
+p match {
+    case s : Employee =>  process s as employee
+    case _ => 
+}
+
+
+-----
+
+anon subclasses
+
+val alien = new Person("red") {
+    def greet = "Hi"
+}
+this defines structural type -> Person{def greeting:String}
+used as 
+def meet (p : Person{def greeting: String}) {
+}
+
+------
+
+abstract class Person (val name: Int) {
+ def id : Int // no method body
+}
+
+-------
+
+abstract field has no init value
+
+you should not rely on the value of a val in the body of a constructor.
+
+early definition syntax in subclass allows initializing subclass before super
+class Bug extends {
+    override val range = 3
+} with Creature
+
+--------
+
+sealed
+final 
+case class
+abstract
+public/private/protected
+
+===========
+
+primary ctor param => generated field or method
+
+name : Type        => obj private field or no field if no method uses name
+private val/var name : Type => private field, private setter getter
+val/var name: Type  => private field, public setter getter
+
+=============
+
+Singleton types
+
+method returns this
+class Book {
+  def setTitle(title: String) : this.type = { ; this }
+}
+
+method which takes obj as arg
+class Doc {
+  def set (obj : Title.type) : this.type = { usenext = obj; this }
+}
+
+==========
+
+Type projections
+
+Nested class - same class but different enclosing class is different
+
+==========
+
+type alias
+
+class Book {
+  import scala.coll.mutable._
+  type Index = HashMap[String, (Int, Int)]
+}
+
+// Contents needs to be defined
+abstract class Reader {
+  type Contents
+  def read(file : String) Contents
+}
+
+=====
+
+Structural types  (anonymous)
+
+parameter can be any class which has required method
+
+=====
+
+infix type
+
+String Map Int instead of Map[String, Int]
+
+
+
+def appendLines( target : { def append(string: String) : Any }) {
+}

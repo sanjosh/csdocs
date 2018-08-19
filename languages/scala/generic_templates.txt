@@ -1,0 +1,63 @@
+
+type bound
+T <: Upperbound : T must be subtype of Upperbound
+T >: Lowerbound
+T <% View bound : T can be converted to ImplicitBound thru implicit 
+T : Context bound : require 
+
+covariance +T
+contravariance -T
+
+class Pair[T <: Comparable[T]] (val first:T , val last:T)
+- T must be subtype of Comparable[T]
+
+class Pair [T <% Ordered[T]] (val first : T, val last : T) 
+- T can be converted to Ordered[T] thru implicit 
+
+class Pair [T : Ordering ] = 
+- require implicit value of type Ordering[T]
+
+Manifest Context Bound
+def makePair [T : Manifest](first : T, last : T)
+
+more than one view bound
+T <% Comparable[T] <% String
+
+more than one context bound
+T : Ordering : Manifest
+
+--------------
+
+type constraints
+T =:= U (T equal U)
+T <:< U (T is subtype of U)
+T <%< U (T is view convertible to U)
+
+to use them, add implicit evidence param
+
+class Pair[T] (val first:T , val second:T) (implicit ev : T <:< Comparable[T])
+
+---------------
+
+variance
+
+class Pair[+T] (val first : T)
+
+covariance : iF student is subtype of person, then Pair[student] is subtype of Pair[person]
+
+Both variance types in single class
+class PPP [ +T , -M]
+
+for array, we want invariant (no subtype, supertype conversion for collection)
+
+------
+
+objects cannot be generic - use Nothing which is subtype of all types
+class Empty[T] extends List[T]
+object Empty extends List[Nothing]
+
+---
+
+wildcards
+
+def makeFriend(p : Pair[_ <: Person])

@@ -1,0 +1,18 @@
+
+par method on sequential collections
+
+val list = (1 to 100).toList
+list.par.map(_ + 42)
+
+============
+
+val names = List("A", B").par 
+names.map(_.toUpperCase)
+
+==========
+
+sum via fold
+
+val parArray = (1 to 100).toArray.par
+parArray.fold(0)(_ + _)
+

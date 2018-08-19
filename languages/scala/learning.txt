@@ -1,0 +1,63 @@
+
+ADT = SUM or PRODUCT type
+
+SUM TYPE 
+ENUM
+sum type represented by sealed abstract class
+A or B or ..
+
+sealed abstract class BakeStatus 
+case object Running extends BakeStatus
+case object Stopped extends BakeStatus
+
+OR 
+sealed trait BakeStatus
+case class
+case class 
+===========
+
+PRODUCT TYPE (AND)
+COMPOSITION
+represented using case class A { b : B, c : C }
+==========
+
+Structural recursion
+
+sealed trait Calc
+final case class Succ(value:Int) extends Calc
+final case class Fail(msg:String) extends Calc
+
+how to implement addValue() to Calc ?
+use pattern matching or polymorphism
+
+sealed trait Calc {
+	def add(value : Int): Calc =
+	  this match {
+	  	case Succ(v) => Succ(v + value)
+		case Fail(msg) => Fail(msg)
+	  }
+	
+}
+
+==========
+
+sequencing pattern : fold, map, flatmap
+
+==========
+
+case class AmiId(value: String) extends AnyVal
+ - no runtime overhead for value class (AnyVal) - just plain string
+ - with benefit of compile time checking
+
+========
+
+things like DBConnection should not be implicit - can leak 
+resource lifecycle != app lifecycle
+
+=========
+
+dependency injection
+
+
+==============
+

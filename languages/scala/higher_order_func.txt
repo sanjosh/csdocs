@@ -1,0 +1,63 @@
+
+lambda
+
+val triple = (x : Double) => 3 * x
+equiv to 
+def triple (x : Double) = 3 * x
+
+can enclose func in braces instead of parenthesis
+
+Array(3, 4, 5) map { (x : Double) => 3 * x }
+==========
+
+take func as param
+
+def func( k : (Double) => Double) = f (0.24)
+
+its type is ((Double) => Double) => Double
+
+===
+
+return a func
+
+def mulBy(k : Int) = (x : Double) => k * x
+
+its type is (Int) => ((Double) => Double
+
+
+========
+
+(1 to 9) map ("*" * _).foreach(println _)
+result is 
+*
+**
+***
+
+(1 to 9) filter (_ % 2 == 0) // 2, 4, 6, 
+
+(1 to 9) reduceLeft (_ * _)
+(...((1 * 2) * 3) * ... 9)
+
+"mary had little lamb".split(" ").sortWith(_.length < _.length)
+yields Array("a" "had" "mary" "lamb" "little")
+
+=======
+
+Single abstract method (SAM) types
+classes with only one method
+
+button.addActionListener((event: ActionEvent) => counter += 1)
+
+this works by adding implicit conversion
+pass any function where ActionListener is expected
+
+implicit def makeAction(action : (ActionEvent) => Unit) = 
+  new ActionListener {
+    override def actionPerformed(event : ActionEvent) { action(event) }
+  }
+
+=======
+
+Currying
+
+
