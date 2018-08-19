@@ -1,0 +1,11 @@
+
+exports - public interface
+prototype 
+
+passing functions around - anon funcs
+
+https://github.com/FredKSchott/the-node-way/
+
+https://www.quora.com/What-are-the-best-resources-for-learning-Node-js
+
+nodeschool.io

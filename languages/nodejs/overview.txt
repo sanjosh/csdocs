@@ -1,0 +1,20 @@
+
+apt-get install -y nodejs nodejs-dev npm
+npm install <pkg>
+
+-------------
+# create package.json file
+npm init 
+
+------------
+# external func are property of exports obj
+exports.externalFunc = function() {
+  console.log("this is a func")
+}
+
+-----------
+# run 
+nodejs app.js
+
+------------
+
