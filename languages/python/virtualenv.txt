@@ -1,0 +1,10 @@
+
+virtualenv -p python3 <name>
+source <name>/bin/activate
+deactivate
+
+pip freeze > requirements.txt
+
+pip install -r requirements.txt
+
+http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/

@@ -1,0 +1,25 @@
+
+(From Python cookbook)
+binascii module
+base64 module
+struct module for binary data
+pickle
+
+json
+xml.ElementTree
+csv
+Pandas
+
+Hooks : serialize_instance and unserialize_object 
+
+memoryview() - lazy unpacking of data
+
+========
+
+ostream equiv
+repr vs str 
+repr()  - called when u invoke "obj"
+str() - called on print "obj"
+
+int(raw_input)
+

@@ -1,0 +1,4 @@
+
+http://stackoverflow.com/questions/1549801/differences-between-isinstance-and-type-in-python
+
+http://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python?rq=1

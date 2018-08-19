@@ -1,0 +1,47 @@
+
+Data.List
+
+use ++ for append 
+ghci>  :type (++)
+
+take, drop, takeWhile <pred>, dropWhile <pred>
+break, span
+splitAt, concat, reverse, 
+length, null, head, tail : call "null" instead of "length" to check if list is null
+elem (is elem present?), notElem
+filter 
+zip (combine corresp elem of 2 lists), zipWith
+
+predicates : isPrefixOf, isSuffixOf, isInfixOf
+
+===========
+Prelude ?
+============
+
+Data.Char
+Data.Bits
+Data.List.Lookup - association list 
+Data.Map
+Data.Monoid
+Data.Sequence
+Data.Foldable
+
+
+Text.Printf
+Text.Regex
+Text.ParserCombinator
+
+Numeric
+
+============
+
+System.Environment
+System.IO
+System.Exit
+System.Random
+
+==========
+
+Control.Monad
+Control.Applicative
+

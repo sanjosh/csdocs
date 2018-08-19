@@ -1,0 +1,12 @@
+
+> :info (*)
+> it - result of prev expr just evaluated
+> :set +t (give type info)
+> :unset 
+> :module (to load module)
+> :type "expression"
+
+type names start uppercase; variables lowercase
+
+> :type null
+> :type (||)

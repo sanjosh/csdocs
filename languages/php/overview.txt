@@ -1,0 +1,47 @@
+
+PHP - 1995 came into existence
+
+====
+
+SimplexML
+SQlite
+Zend engine
+Before it, there was C and perl
+
+php.ini
+
+httpd.conf - Apache
+Add these lines
+LoadModule php5-module C:/php/ph5apache.dll
+ADdtype application/x-httpd-php
+
+phpinfo() func
+
+two ways to execute PHP scripts
+1) browser - need to send HTML line break <br>
+2) command line - need to send new line \n
+
+PHP extensions are powerful - five types - core, bundled, PECL, thirdparty, DIY
+
+heredoc syntax for long strings
+
+$GLOBALS
+
+PHP output buffering
+PHP sessions
+
+Security
+keep files outside document root
+edit serversignature and servertokens in apache httpd.conf
+edit expose-php and display_errors in php.ini
+create PDF thru PHP API
+
+Tim Berners-Lee wants to disable use of extensions (.php, .html) so you can migrate from one platform to another
+HTML simple form with submit button
+<form action=x.php method="post"> 
+<input type="submit" />
+</form>
+
+POST vs GET : 
+in GET, variables sent in browser uRL
+In Post, variables are hidden - that is why, when we go back in browser, we recv message "data needs to be resent"

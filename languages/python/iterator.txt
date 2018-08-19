@@ -1,0 +1,43 @@
+
+Reading file in while loop vs for loop (file.__next__)
+
+while loop may run slower than the iterator-based for loop version, 
+because iterators run at C language speed inside Python, whereas 
+the while loop version runs Python byte code through the Python 
+virtual machine.
+
+for calls obj.__next__
+
+L=[1,2,3]
+I = iter(L)
+I.next()
+
+===============
+
+dict.keys, dict.values, dict.items, range, map, zip, filter all return iteratable objects
+
+==========
+
+map vs list comprehension
+
+res = list(map(ord, 'spam'))
+print res
+
+res = [ord(x) for x in 'spam']
+print res
+
+"map" maps a func over a sequence 
+VERSUS 
+list comprehension maps an expression over a sequence
+==========
+
+itertools
+
+============
+
+enumerate
+
+==========
+iterator implemented using __next()
+
+generator and yield

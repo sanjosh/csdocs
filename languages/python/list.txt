@@ -1,0 +1,11 @@
+
+sort a list of tuples on 2nd value
+
+http://stackoverflow.com/questions/3121979/how-to-sort-list-tuple-of-lists-tuples
+
+insert elements of one list into another
+
+http://stackoverflow.com/questions/3748063/what-is-the-syntax-to-insert-one-list-into-another-list-in-python
+
+
+

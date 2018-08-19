@@ -1,0 +1,20 @@
+
+(From Python Cookbook)
+
+Decorators
+Metaclass
+Signature and Parameter
+Cllosure
+Types new_class()
+exec(), compile() and eval()
+
+==========
+
+Packages:
+functools
+inspect
+collections
+types
+ast
+dis
+opcode

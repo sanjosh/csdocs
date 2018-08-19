@@ -1,0 +1,26 @@
+
+Cython
+Ctypes
+SWIG
+
+http://stackoverflow.com/questions/145270/calling-c-c-from-python
+
+https://docs.python.org/2/extending/newtypes.html
+
+http://stackoverflow.com/questions/2990487/how-to-define-a-new-type-class-in-python-using-c-api
+
+https://docs.python.org/2/c-api/
+
+===============
+
+(From Python Cookbook)
+
+Global interpreter lock
+
+Calling C from Python
+1) use ctypes for small problems
+2) extension module
+3) capsule obj
+
+Call python from C
+

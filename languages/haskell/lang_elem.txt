@@ -1,0 +1,157 @@
+
+typeclass is like java "interface" (abstract behaviour)
+
+1) Show 
+2) Read 
+3) Eq
+4) Ord
+5) Enum - succ and pred
+6) Bounded - minBound and maxBound
+7) Num
+8) Integral - Int, Integer
+9) Floating - Float, Double
+
+# how to find type of a function
+ghci> :type read
+read :: (Read a) ==> String -> a
+
+====================
+
+Operators have type
+
+ghci> :type (==)
+(==) :: (Eq a) => a -> a -> Bool
+
+==> is called class constraint
+
+ghci> :type (>)
+(>):: (Ord a) ==> a -> a -> Bool
+
+==================
+
+1) infix func vs prefix func
+
+for infix use backquote
+arg1 `func` arg2
+
+for prefix
+func arg1 arg2
+
+
+
+===============
+
+No for or while loop
+
+============
+
+variables have single quote (called prime) are related to orig variables
+e.g "foo'" (foo prime) is related to "foo"
+
+=============
+
+use guard for "switch-type" rules in recursive func
+
+oddList (x:xs)  | odd x       = x : oddList xs
+                  otherwise   = oddList xs
+
+Alternatively, use filter to select pieces of input
+
+> : type filter
+
+==========
+
+> : type map
+
+
+=========
+
+fold left and right - like "Reduce" in hadoop
+
+foldr is useful - (real world haskell p95) in expressing functions that are primitive recursive
+
+foldl is computationally expensive - does code thunking.  instead use foldl' (foldl prime) defined in Data.List
+
+============
+
+lambda func syntax
+\ arg -> body
+
+lambda func can have only a single clause
+
+=============
+
+currying :
+in haskell, all funcs take one arg
+
+> :type zip3
+zip3 :: [a] -> [b] -> [c] -> [(a, b, c)]
+
+zip3 takes 3 args
+if we bind one arg, we get func which takes 2 args
+
+> :type zip3 "foo"
+zip3 "foo" :: [b] -> [c] -> [(Char, b, c)]
+
+passing fewer args to func is called "partial application" - currying
+
+Notational convenience called "section"
+enclose one arg of infix function in parenthesis to get curried func
+
+write 
+> (1+) 2
+
+
+============
+
+As-pattern "@" 
+
+suffixes :: [a] --> [[a]]
+suffixes xs@(_:xs') = xs : suffixes xs'
+suffixes _          = []
+
+@ means bind variable "xs" to value that matches right side of the @ symbol
+
+============
+
+compose func using "." operator
+right associative
+
+type of result of func on right = type of param of func on left
+
+suffix = init . tails
+
+> :type (.)
+(.) :: (b->c) -> (a->b) -> a -> c
+
+==========
+
+foldl' uses seq
+
+==========
+
+Use "difference list" to optimize case of repeatedly appending (immutable) lists to each other - (Real World Haskell - p 318)
+
+
+===========
+
+Monad = programmable semicolon
+Monad = (type construction, 
+        chain func >>=,  
+        injection func - return, which is opposite of "<-" (wrap data into IO monad)
+
+lifting = wrap pure func into functor - so it can be called from monad
+
+Maybe Monad
+
+<<= (inverse of chain) also exists.  
+
+
+============
+
+Fmap = functor
+
+
+===============
+
+<|> operator

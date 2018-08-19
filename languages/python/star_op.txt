@@ -1,0 +1,4 @@
+
+http://stackoverflow.com/questions/400739/what-does-asterisk-mean-in-python
+
+http://stackoverflow.com/questions/2921847/python-once-and-for-all-what-does-the-star-operator-mean-in-python

@@ -1,0 +1,46 @@
+
+http://stackoverflow.com/questions/2573135/python-progression-path-from-apprentice-to-guru?rq=1
+
+    LOG(INFO) << "removed " << numDeleted << " keys for prefix=" << key_ << " from kinetic disk=" << index_ << endl;
+
+__main__ in module
+__init.py__ for package
+=====================
+list
+tuple 
+dict
+bytearray
+buffer
+=====================
+function arg : positional, keyword, default, varargs
+
+    def func(voltage, *args, **kwargs)
+    for arg in args
+        print arg
+    keys = sorted(kwargs.keys())
+    for kw in keys:
+        print kw, keywords[kw]
+=====================
+static class variable is declared inside class but not inside method
+
+static class method: put @classmethod/@staticmethod above "def f()"
+classmethods first arg is the "this" ptr
+===============
+RTTI 
+isinstance()
+istype()
+==========
+tarfile, zipfile classes
+=========
+numpy 
+- matrix vs array
+- random
+
+==========
+debugging
+=====================
+cross-lang calls
+Cython
+====================
+performance
+=====================
