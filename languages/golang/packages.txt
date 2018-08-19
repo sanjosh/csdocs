@@ -1,0 +1,39 @@
+
+interestin pkgs
+
+$ go list std
+
+fmt
+
+io/ioutil
+path/filepath
+bufio
+
+container/heap
+sort
+
+strings
+unicode/utf8
+bytes
+strconv
+
+encoding/json
+encoding/xml
+encoding/binary
+html/template
+
+image
+image/jpeg
+image/png
+
+errors
+os
+flag - cmdline arg
+sync (WaitGroup, Mutex, RWMutex, Once)
+net (http)
+time
+log - log.Print/log.Fatal(string)
+
+math/rand
+sort
+

@@ -1,0 +1,12 @@
+
+Unlike Java, Go doesn't scan big []byte/strings, so the GC isn't a problem.
+
+Roughly: a GC has to look at the pointers in use to see what objects are still reachable. But it doesn't have to look at the contents of strings, byte slices, int arrays, etc., because, by definition, those don't contain pointers
+
+Brad Fitzpatrick
+
+https://news.ycombinator.com/item?id=6125371
+
+===========
+
+http://stackoverflow.com/questions/7823725/what-kind-of-garbage-collection-does-go-use

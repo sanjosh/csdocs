@@ -1,0 +1,390 @@
+
+Structure of program
+
+package (main is special)
+import (
+  "name"
+  renamed "name"  // renames import in case of clash
+  "github.com/dir/file"
+  _ "unused_import" // suppress errors
+)
+
+var (
+)
+
+const (
+)
+
+type <name> struct {
+}
+
+type <name> interface {
+}
+
+func <name>(x type) RetType1, RetType2 { // main is special
+}
+
+func (instnace *ClassName) <name>(x type) RetType1, RetType2 { // main is special
+}
+
+
+=============
+
+type Currency int
+const {
+    USD Currency = iota
+    EUR
+    GBP
+}
+
+symbolc := [...] string (USD : "$", EUR : "E" }
+
+fmt.Println(RMB, symbol[RMB])
+
+=============
+
+for init; cond; post {
+}
+
+for _, arg = range os.Args[1:] {
+}
+
+for indices, elements = range vector {
+}
+
+for key, value := range map_key_val {
+}
+
+===========
+
+type tree struct  {
+  value int
+  left, right *tree
+}
+
+===========
+
+variables
+
+s := ""
+var s string
+var s = ""
+var s string = ""
+
+
+=============
+
+printf
+
+%T - type
+%q - quoted string
+
+============
+
+types
+
+rune for Unicode point
+error
+
+typedef : type Celcious float64
+
+============
+
+blank idenfifier "_"
+
+==========
+
+field tags in struct used in Json marshalling
+
+type Movie struct {
+   Year int `json:"released"`
+}
+
+var movies = [] Movies {
+  { },
+  { },
+}
+
+data, err := json.Marshal(movies)
+
+==========
+
+functions
+
+variadic
+anonymnous
+
+defer 
+- executed in lifo
+- args evaluated when defer stmt is evaluated
+panic
+recover
+
+make
+len (slice)
+cap(slice) = capacity of slice S
+append(slice, elem)
+copy
+close
+delete(map, key)
+
+==========
+
+switch <no op needed> {
+   case A :
+       fallthrough
+   default :
+}
+
+==========
+
+packages
+
+capitalized identifiers are exported
+
+==========
+
+type switches
+
+func sql (x interface {}) string {
+    if x == nil {
+    } else if x == {
+    }
+}
+
+use switch
+func sql (x interface {}) string {
+    switch x := x.(type) {
+        case nil:
+        case int, uint:
+        case boo:
+        default:
+    }
+}
+
+===============
+
+make
+
+ch := make (chan int)
+
+type Point struct {
+   X, Y int
+}
+pp = new(Point)
+
+=============
+
+variable declarations
+
+var ch chan
+ch := make(chan int)
+
+==========
+
+
+Channel
+
+// struct{} is zero size
+tokens := make (chan struct{})
+tokens <- struct{}{} // acquire token
+<- tokens // release token
+
+send : ch <- x 
+recv : x = <- ch
+recv and discard : <- ch
+
+close(ch)
+
+buffered vs unbuffered
+ch = make(chan int, 0)
+ch = make(chan int, 3) // goroutine blocks if 3 elem already in chan
+
+Unidirectional types 
+chan<- is send only
+<-chan is recv only
+
+// accepts only send chan
+func counter(out chan<- int) {
+    out <- x // send
+}
+
+// accept only recv chan
+func print(in <-chan int) {
+   x <- in
+   for v := range in {
+      fmt.Println(v)
+   }
+}
+
+you can send chan on chan
+{
+   type client chan<- string
+   var (
+       entering = make (chan client)
+       leaving  = make (chan client)
+   )
+}
+
+for simple queues within one goroutine, use slice
+
+==============
+
+Goroutine
+
+{
+   // exec anon func
+   go func() {
+   }
+   // exec named func
+   go func1(args)
+}
+
+
+CAUTION : GOROUTINE LEAK
+Leaked goroutines are not GC.  Make sure they terminate
+No way to wait for goroutine to finish.  Use chan
+
+Limit goroutine parallelism : using counting semaphore
+{
+   var sema = make (chan struct {}, 20)
+   sema <- struct{}{}
+   <- sema
+}
+
+Goroutine stack is variable unlike OS thread stack
+Go runtime uses m:n scheduling for goroutines
+Go scheduler invoked implicity by time.Sleep or chan block or mutex op
+no kernel context switch - much cheaper
+
+runtime.GOMAXPROCS
+
+============
+
+Loop variable capture inside anon func (5.6.1 Kernighan book)
+
+INCORRECT - goroutine 
+for _, f = range filenames {
+   go func() {
+      // it will use value of f as of start of goroutine
+   }
+}
+
+CORRECT
+for _, f = range filenames {
+   go func (f string) {
+      // it will use value of f as of goroutine invocation
+   } (f)
+}
+
+===========
+
+timer func
+
+tick := time.Tick(1 * time.Second)
+for  {
+   <- tick
+}
+
+time.Tick creates goroutine which sleeps() and sends events in a loop.
+CAUTION: can cause goroutine leak
+
+ticker := time.NewTicker(1 * time.Second) // start ticker goroutine
+<- ticker.C // recv 
+ticker.Stop() // terminate ticker goroutine
+
+
+=========
+
+Multiplexing  with select
+
+select  {
+   case <- ch1 :
+   case x := <- ch2 :
+   case ch3 <- y :
+}
+
+for recv with timeout, use timer
+
+select {
+   case ch3 <- y :
+   case <- time.After(10 * time.Second) :
+}
+
+for non-blocking recv, add "default"
+
+select {
+   case <- ch1:
+   default:
+}
+
+==============
+
+FIle IO
+
+import path/filepath
+
+for _, entry = range dirents(dir) {
+  if entry.IsDir() {
+  }
+}
+
+entries, err = ioutil.ReadDir(dir)
+
+===============
+
+
+command line arg
+
+import "flag"
+
+flag.Parse()
+roots = flag.Args()
+
+var verbose = flag.Bool("v", false, "show verbose progress")
+
+
+===============
+
+sync
+
+DO not communicate by sharing mem; instead share mem by communicating
+Monitor goroutine - one which brokers access to confined variable using channel
+requests
+
+Go mutexes not reentrant
+
+Go has a race detector
+go build -race
+
+=================
+
+Map
+
+icons = make (make[string]image.Image)
+icons["spade"] = loadIcon("spade.png")
+
+elements := map [string] string {
+ "H" : "Hydro",
+ "E" : "Eydro"
+}
+
+var elements map [string] string
+
+
+=========
+
+
+interface{} is the base object
+
+type Func func(key string) (interface{}, error)
+
+type Memo struct {
+    f Func
+    cache map[string]result
+}
+
+
+===============
+
+

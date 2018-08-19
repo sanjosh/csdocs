@@ -1,0 +1,46 @@
+
+nil => Option
+for loop => Map
+
+----------
+
+Why functional?
+* Formal provability
+* ease of debugging
+
+--------------
+
+* Lisp 
+* Scheme
+* Miranda
+* Haskell
+* Clojure
+* Scala
+* OCAML
+
+------------
+
+The minimum requirements for a programming language to be considered functional are explicit support for lambda abstraction (i.e. anonymous functions with variable capture) and the availability of all functions (anonymous or not) as first-class values.
+
+Features of functional lang :
+* map : domain -> range
+* folding = reduce : list of elem -> single elem
+* filter : domain -> true, false
+* lambda function
+* list comprehension
+* monads
+* lazy evaluation (generator yield)
+* higher order functions 
+* binding 
+* currying : transform func with multiple args -> seq of func with unary arg
+* closure : function pointer stores reference to non-local variables - like callback stored with context
+
+-----------
+
+list comprehension in FP originates in set comprehension in math
+
+------------
+
+# Books:
+1. Why functional programming matters : Sheeran, Hughes
+2. Notation as a tool for thought : Iverson

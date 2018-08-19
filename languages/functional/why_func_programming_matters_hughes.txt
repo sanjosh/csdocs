@@ -1,0 +1,6 @@
+
+We shall argue in the remainder of this paper that functional languages provide
+two new, very important kinds of glue.
+1) higher order func : foldr and foldtree 
+2) lazy eval (g.f) - generator and selector run alternatively
+	many examples : differentiation, integration, game tree

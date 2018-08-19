@@ -1,0 +1,60 @@
+
+Channels convey data, timers, cancellation
+
+=============
+
+send and recv on nil channel will block
+this can be used to enable conditional send 
+
+for {
+    select {
+        case it := <in:
+            in = nil
+            out = d.updates
+        case out <- pending:
+            in = d.s.updates
+            out = nil
+    }
+}
+
+============
+
+Have Service Channel, Reply Channel
+chan chan error is a channel on which u send/recv "chan error"
+
+type udp struct {
+    conn *net.UDPConn
+    msgs chan string
+    closing chan chan error
+}
+
+{
+    closing := make (chan chan error)
+}
+
+to close a channel
+{
+    // create a error channel
+    errc := make (chan error)
+    // send chan on chan 
+    d.closing <- errc
+}
+
+loop handles this by replying with the error code and exiting
+{
+   case errc : <- d.closing
+        // got channel on channel
+        errc <- err
+        break
+}
+
+
+Sameer Ajmani
+
+https://talks.golang.org/2013/advconc.slide#40 
+
+for {
+   case <- c1:
+   case c2 <- x :
+   case y := <- c3:
+}
