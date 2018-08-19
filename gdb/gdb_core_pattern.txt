@@ -1,0 +1,19 @@
+
+$> mkdir -p /tmp/cores
+$> chmod a+rwx /tmp/cores
+$> echo "/tmp/cores/core.%e.%p.%h.%t" > /proc/sys/kernel/core_pattern
+
+You can use the following pattern elements in the core_pattern file:
+
+%p: pid
+%: '%' is dropped
+%%: output one '%'
+%u: uid
+%g: gid
+%s: signal number
+%t: UNIX time of dump
+%h: hostname
+%e: executable filename
+%: both are dropped
+
+http://sigquit.wordpress.com/2009/03/13/the-core-pattern/

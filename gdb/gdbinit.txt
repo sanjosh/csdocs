@@ -1,0 +1,19 @@
+# to disable "type to continue"
+set height 0
+set pagination off
+
+# to print all elements in array
+set print elements 0
+
+# indent structures
+set print pretty on
+
+# c++ names
+set print demangle on
+
+# show actual type rather than declared type (use vtbl)
+set print object on
+
+# send signal in gdb
+# at gdb prompt, type 'signal SIGNT'
+# or type 'handle SIGINT' to send from outside

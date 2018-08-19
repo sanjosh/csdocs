@@ -1,0 +1,12 @@
+
+How to print variables at a breakpoint
+
+http://stackoverflow.com/questions/6517423/do-specific-action-when-certain-breakpoint-hits-in-gdb
+
+> b File.cpp:line
+
+> commands
+> print variable
+> end
+
+

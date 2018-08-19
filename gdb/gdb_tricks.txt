@@ -1,0 +1,82 @@
+
+anon namespace - ::(namespace)::
+
+http://www.csd.uoc.gr/~hy255/refcards/gdb-refcard.pdf
+
+set mem inaccessible-by-default [on|off]
+
+info files
+==========
+http://www.outofcore.com/2011/06/scripted-debug-using-gdb/
+
+# file: mem_stack.gdb
+set logging on
+set $targetMem1 = 1544
+set $targetMem2 = 192
+set $targetMem3 = 28
+define get_br_info
+backtrace
+continue
+end
+break path/to/source.cc:57 if (n == $targetMem1 || n == $targetMem2 || n == $targetMem3)
+commands 1
+get_br_info
+end
+run
+end
+
+Line 1, tells GDB to write the output to a file called gdb.txt for my inspection later. Line 2-4 are setting variables to be the memory sizes I was interested to check. Line 6 defines a custom command that can be called later. It basically calls GDB command backtrace to dump the call stack, then continues execution. Then at line 9, I set the break point with the condition where variable n from the C++ source code is the memory allocation size (for malloc()). Next from line 10-12, I set a command list (just get_br_info) to run when break point 1 is reached and conditions are met. Lastly, I called run to start the program execution. To use this code in GDB, you run GDB like this:
+
+
+> gdb program_executable
+(gdb) source mem_stack.gdb
+
+========================
+
+http://stackoverflow.com/questions/9525564/post-mortem-memory-leak-search-and-analysis-with-gdb
+
+maintenance info sections
+maintenance print statistics
+
+
+=================
+
+http://stackoverflow.com/questions/5691193/gdb-listing-all-mapped-memory-regions-for-a-crashed-process
+
+type info files and see what different segments are there in the core file.
+
+    (gdb)info files
+
+A sample output:
+
+    (gdb)info files 
+
+    Symbols from "/home/emntech/debugging/test".
+    Local core dump file:
+`/home/emntech/debugging/core', file type elf32-i386.
+  0x0055f000 - 0x0055f000 is load1
+  0x0057b000 - 0x0057c000 is load2
+  0x0057c000 - 0x0057d000 is load3
+  0x00746000 - 0x00747000 is load4
+  0x00c86000 - 0x00c86000 is load5
+  0x00de0000 - 0x00de0000 is load6
+  0x00de1000 - 0x00de3000 is load7
+  0x00de3000 - 0x00de4000 is load8
+  0x00de4000 - 0x00de7000 is load9
+  0x08048000 - 0x08048000 is load10
+  0x08049000 - 0x0804a000 is load11
+  0x0804a000 - 0x0804b000 is load12
+  0xb77b9000 - 0xb77ba000 is load13
+  0xb77cc000 - 0xb77ce000 is load14
+  0xbf91d000 - 0xbf93f000 is load15
+
+In my case I have 15 segments. Each segment has start of the address and end of the address. Choose any segment to search data for. For example lets select load11 and search for a pattern. Load11 has start address 0x08049000 and ends at 0x804a000.
+
+3) Search for a pattern in the segment.
+
+(gdb) find /w 0x08049000 0x0804a000 0x8048034
+ 0x804903c
+ 0x8049040
+ 2 patterns found
+
+If you don't have executable file you need to use a program which prints data of all segments of a core file. Then you can search for a particular data at an address. I don't find any program as such, you can use the program at the following link which prints data of all segments of a core or an executable file.
