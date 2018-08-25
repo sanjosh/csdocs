@@ -1,0 +1,25 @@
+
+COUNTA
+
+Create Drop Down List for data validation
+
+Cross-sheet formula using Sheet!Cell
+
+Named Ranges for certain group of cells
+
+IF
+
+SUMIF
+
+Select using cell value using VLOOKUP, LOOKUP, HLOOKUP, INDEX, MATCH, 
+Choose table based on another value using INDIRECT
+
+CHOOSE
+
+SUBTOTAL
+
+IFERROR
+
+Pivot Table
+
+Conditional Formatting - to highlight cells
