@@ -14,6 +14,11 @@ NULL values in a column can be stored in a separate bitmap
 
 A bitmap index is a two dimensional bit matrix.
 
+you can either
+1. assign 1 value to 1 bitmap
+2. bit sliced index
+3. encode c values in log_2(c) bits as in Attr val decomp, interval encoding, k-of-n encoding, RID list
+
 ### Equality encoding 
 
 If a column named “City” has 3 values (Delhi, Kolkata, Mumbai), then each value becomes an independent bitmap.  A column is an array of bitmaps.  
@@ -81,11 +86,9 @@ Return all rows for which bitmap[Delhi] = 1
 
 ### Range
 
-Range query can be one-sided (column < X) or two-sided  (X < column < Y)
-
-For equality encoding, you have to do an OR of all the compressed bitmaps.  
-
-For other encoding schemes, exact operation depends on the scheme.
+* Range query can be one-sided (column < X) or two-sided  (X < column < Y)
+* For equality encoding, you have to do an OR of all the compressed bitmaps.  
+* For other encoding schemes, exact operation depends on the scheme.
 
 ### Aggregation and Iceberg query
 

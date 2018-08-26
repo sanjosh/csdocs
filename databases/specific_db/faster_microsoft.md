@@ -70,3 +70,6 @@ todo
 
 Intel TBB Hash Map
 
+# reference
+
+Chandramouli, et al. Faster: A Concurrent Key-Value Store with In-Place Updates, Sigmod 18

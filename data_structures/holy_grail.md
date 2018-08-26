@@ -5,4 +5,7 @@ OPTIMAL SOLUTION
 * approximate/Synopsis  data structures
 * lockfree data structures
 * SIMD instructions
-* codegen llvm
+* JIT 
+* Multicore/GPU
+* RDMA
+* Adaptive 
