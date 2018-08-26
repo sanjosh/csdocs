@@ -1,7 +1,7 @@
 
-https://darrenderidder.github.io/talks/ModulePatterns/
----------------
-export an anonymous func
+# export an anonymous func
+
+```
 // bar.js
 module.exports = function () {
   console.log('bar');
@@ -10,10 +10,11 @@ module.exports = function () {
 // app.js
 var bar = require('./bar.js')
 bar()
+```
 
+# export a named func
 
-----------
-export a named func
+```
 // fiz.js
 exports.fiz = function () {
   console.log('fiz');
@@ -23,9 +24,12 @@ exports.fiz = function () {
 var fiz = require('./fiz').fiz;
 fiz();
 
----------
-export an anon obj
+```
 
+# export an anon obj
+
+
+```
 // buz.js
 var Buz = function() {};
 Buz.prototype.log = function () {
@@ -36,10 +40,12 @@ module.exports = new Buz();
 // app.js
 var buz = require('./buz')
 buz.log();
+```
 
------------
-export a named obj
+# export a named obj
 
+
+```
 // baz.js
 var Baz = function() {};
 Baz.prototype.log = function () {
@@ -50,10 +56,12 @@ exports.Baz = new Baz();
 // app.js
 var baz = require('./baz.js').Baz;
 baz.log();
+```
 
------------ 
-export anon proto
+# export anon proto
 
+
+```
 // doo.js
 var Doo = function() {};
 Doo.prototype.log = function() {
@@ -66,10 +74,11 @@ var Doo = require('./doo.js');
 var doo = new Doo();
 doo.log();
 
----------------
+```
 
-export a named prototype
+# export a named prototype
 
+```
 // qux.js
 var Qux = function() {} ;
 Qux.prototype.log = function () {
@@ -81,3 +90,8 @@ exports.Qux = Qux;
 var Qux = require('./qux.js).Qux;
 var qux = new Qux();
 qux.log();
+```
+
+# References
+
+1. https://darrenderidder.github.io/talks/ModulePatterns/
