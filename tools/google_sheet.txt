@@ -1,0 +1,3 @@
+
+charting formula
+=QUERY(A:J, "select E, sum(H) group by E")
