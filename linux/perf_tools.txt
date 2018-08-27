@@ -1,0 +1,49 @@
+
+uptime
+dmesg
+vmstat 2
+pidstat 2
+mpstat -P ALL 2
+free -m
+
+#networkin
+sar -n DEV 2
+sar -n TCP, ETCP 2
+
+# vmstat
+# if "r" is greater than CPU, then CPU saturated
+# if "wa" is high, it indicates disk bottleneck
+
+# IO
+iotop
+blktrace
+iostat -xz 2
+
+# PERF
+perf stat <cmd>
+perf record
+
+perf probe -x /lib/x86_64-linux-gnu/libc-2.15.so --add malloc
+
+vmtouch
+
+=============
+
+Smaller CPI is better
+
+By default, perf stat does not print Cache misses
+
+perf stat -d 
+# prints stalled cycles per instruction
+
+perf stat -e task-clock,cycles,instructions,cache-references,cache-misses
+./stream_c.exe
+perf record -e cache-misses ./stream_c.exe
+perf annotate 
+# shows hot instructions in left col
+
+https://developers.redhat.com/blog/2014/03/10/determining-whether-an-application-has-poor-cache-performance-2/
+
+https://software.intel.com/en-us/forums/software-tuning-performance-optimization-platform-monitoring/topic/494707
+
+https://software.intel.com/en-us/forums/software-tuning-performance-optimization-platform-monitoring/topic/557604

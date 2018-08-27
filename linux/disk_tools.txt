@@ -1,0 +1,68 @@
+
+
+lsof
+iotop
+
+scsi_start etc tools(sg_utils)
+
+sg_inq
+
+udisks
+smartmontools (smartctl)
+fdisk
+gdisk
+parted & gparted
+kpartx
+blkid
+lsblk 
+path_id is part of udevadm
+/lib/udev/scsi_id
+hdparm
+
+blockdev --getsize /dev/sdb
+mkfs (mke2fs)
+resize2fs
+fsck
+tune2fs
+e4image
+dumpe2fs
+debuge2fs
+badblocks
+
+lsusb
+usb-devices
+
+udevadm
+
+lvm
+lvextend
+
+pysdm
+
+md driver
+
+DRBD  (distributed replicated block device)
+
+devicemapper & dm-cache (Marvel SSD used it)
+visa lab @ fiu
+dmsetup
+dm-stripe, dm-linear, dm-snap, dm-crypt, dm-delay, dm-mpath, dm-raid1, dm-zero
+register new target using dm_register_target()
+DM map() func gets I/O req before it is submitted, and can modify it to change target block device, sector number (DM_MAPIO_SUBMITTED)
+http://linuxgazette.net/114/kapil.html
+
+multipath
+
+udev, udevd, udevadm
+/etc/udev/rules.d
+
+
+==========
+
+DiskSim disk simulator (extended to SSD by Microsoft; also by Cagdas Dirik)
+http://www.codeismight.com/2011/07/disksim-and-its-ssd-extension-from-ms/
+
+FlashSim PennState
+CPS-Sim
+
+======

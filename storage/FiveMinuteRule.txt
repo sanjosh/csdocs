@@ -1,0 +1,18 @@
+
+TODO : read update after 10, 20 years
+
+trade off memory and IO capacity
+
+if a record is accessed 
+
+price of RAM memory to hold a record of 1 KB  + 
+the (fractional) price of a disk drive required to access such
+a record every 400 seconds, which they rounded to 5 minutes.
+
+
+Gray and Putzolo introduced the formula 
+
+BreakEvenIntervalinSeconds
+= (PagesPerMBofRAM / AccessesPerSecondPerDisk) × (PricePerDiskDrive / PricePerMBofRAM)
+
+

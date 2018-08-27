@@ -1,0 +1,30 @@
+
+
+* see printk formatting file under LInux-source/Documentation
+
+http://www.cplusplus.com/reference/cstdio/printf/
+
+* see inttypes.h for portable user-level print
+
+* use __FUNCTION__, __LINE__
+
+* to change console, use setconsole (see Corbet, Device Drivers book)
+
+* to print dev_t, use print_dev_t
+
+* set printk_ratelimit()
+
+* /etc/syslogd.conf (klogd and syslogd work in tandem)
+
+
+
+It is also possible to read and modify the console loglevel using the text file /proc/sys/kernel/printk. The file hosts four integer values: 
+
+the current loglevel, 
+the default level for messages that lack an explicit loglevel, 
+the minimum allowed loglevel, 
+and the boot-time default loglevel. 
+
+Writing a single value to this file changes the current loglevel to that value; thus, for example, you can cause all kernel messages to appear at the console by simply entering:
+
+http://www.makelinux.net/ldd3/chp-4-sect-2

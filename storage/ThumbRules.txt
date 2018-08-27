@@ -1,0 +1,11 @@
+
+* O_DIRECT to raw_dev saves buffer cache
+* O_DIRECT requires posix_mem_align
+* O_DIRECT is not O_SYNC
+* async IO is good
+* large sequential IO is good
+* mount with noatime is good
+* use dir_index for large directories
+* group commit
+
+ 

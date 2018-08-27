@@ -1,0 +1,74 @@
+
+Cost / GB
+form factor / GB
+Power / GB
+
+Innovation cycle
+Usage 
+Access latency
+
+-----------
+
+hard disks
+HAMR (heat assisted magnetic recording) pack more bytes/form factor
+
+BPM (bit pattern media)
+
+-------------
+
+http://blog.dshr.org/2014/05/talk-at-seagate.html
+
+Kryder rate : anual percent drop in $/GB
+
+exponential increase in disk capacity at constant form factor
+=> exp decrease in $/GB
+
+disks are retained for only 5 years because Kryder rate means 
+longer service life is economically unjustifiable.
+
+Few organizations have the ability to pay more upfront to 
+invest in long-term storage
+
+Kryder's Law curve is actually the superposition of a series of 
+S-curves, one for each successive technology generation
+
+Since margins are constrained and so, these days, are volumes, to 
+generate a return on the investment in each transition requires that 
+the technology be kept in the market longer. The longer interval 
+between transitions translates to a lower Kryder rate.
+
+
+------------
+
+http://blog.dshr.org/2016/05/the-future-of-storage.html
+
+Seagate could easily make disks with archival life, but they did a study of the market for them, and discovered that no-one would pay the relatively small additional cost.  The drives currently marketed for "archival" use have a shorter warranty and a shorter MTBF than the enterprise drives, so they're not expected to have long service lives.  
+
+The fundamental problem is that long-lived media only make sense at very low Kryder rates. Even if the rate is only 10%/yr, after 10 years you could store the same data in 1/3 the space. Since space in the data center racks or even at Iron Mountain isn't free, this is a powerful incentive to move old media out. If you believe that Kryder rates will get back to 30%/yr, after a decade you could store 30 times as much data in the same space.
+
+
+------------
+
+Eric Brewer - Fast 16 keynote
+
+https://www.usenix.org/sites/default/files/conference/protected-files/fast16_slides_brewer.pdf
+
+Disks in
+1. laptop
+2. mobile
+3. server
+4. data center
+
+Data center disks are always part of large collection 
+- optimize for collection rather than individual server
+
+-------------
+
+
+Vertical vs horizontal scaling pros and cons
+1) power cost
+2) software license cost
+3) reliability 
+4) capacity planning
+
+Scaling out works only if you use open-source software

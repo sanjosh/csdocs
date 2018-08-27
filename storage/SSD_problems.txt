@@ -1,0 +1,20 @@
+
+Flash   Writes    are   slower    than  Reads.    
+  
+Flash   Writes    must  be    sequential    within    a Flash “block”   (typically    128-­‐256 Kbyte).   
+  
+Flash   blocks    are   larger    than  user  data  blocks,   and   hence a mapping   system    is    required. 
+  
+Flash   blocks    must  be    erased    before    they  are   written.  
+  
+Flash   Erases    take  a long  time  (milliseconds)    and   can   block Reads or    Writes    to    the   same  chip.   
+  
+Flash   blocks    can   only  be    erased    a number    of    times before    they  physically    wear  out   and   cannot  be    used  again.    
+  
+Flash   errors    increase  with  Reads.    
+
+Flash   loses data  over  time, even  when  not   being used. 
+  
+Flash   can   fail  at    the   block,    page, or    die   level;    all   of    which must  be    accounted for.  
+
+(From Violin Memory white paper)

@@ -1,0 +1,1 @@
+ fio --randrepeat=1 --ioengine=libaio --direct=1 --name=test --filename=/dev/nvme0n1 --bs=4k --iodepth=64 --size=10G --readwrite=randrw

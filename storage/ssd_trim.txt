@@ -1,0 +1,99 @@
+
+
+Intel SSD toolbox for Windows
+
+
+ Again, for testing purposes you can also fake a single virtual disk to appear as SSD (regardless of the underlying datastore's type) by setting a parameter like scsiX:Y.virtualSSD = 1 in the VM's configuration file. See William Lam's post about this for details.
+
+ However, while researching I found out that the SCSI equivalent of the ATA TRIM command is the UNMAP command, and this rang a bell in me: In vSphere 5.0 reclamation of VMFS deleted blocks with the help of SCSI UNMAP commands was introduced as part of the vStorage APIs for Array Integration (VAAI). When vSphere 5.0 was released this functionality was enabled by default (if the Storage Array supported it), but this was soon changed, because it had undesired side effects in some situations. Today VAAI space reclamation is a manual process that can be triggered by running the command
+
+ vmkfstools -y nn
+
+on a datastore. The VMware KB article 2014849 explains this in detail and also mentions how you can check whether this is supported on a disk or not: The command
+ esxcli storage core device vaai status get -d device_id
+
+will display the line
+  Delete Status: Supported
+
+oif SCSI UNMAP can be used on a disk to perform space reclamation. And guess what: This is the case with the SSD disks that I have in my ESXi host! And consequently I was able to run vmkfstools -y on them!
+But will this really fire TRIM commands to the SSD? With this question in my mind I used my Google-Fu again and finally stumbled over this french blog post by Raphaël Schitz who discovered the same and asks: SSD + VAAI = TRIM? Like me he is also unable to definitely answer this question ...
+
+If someone of VMware reads this and is able to answer this question then I would be grateful to hear from him - please end our days of uncertainty about TRIM support in ESXi!!
+
+http://www.v-front.de/2013/10/faq-using-ssds-with-esxi.html
+
+https://github.com/CyberShadow/trimcheck
+
+How to get ESX to see SSD
+http://pubs.vmware.com/vsphere-50/index.jsp#com.vmware.vsphere.storage.doc_50/GUID-99BB81AC-5342-45E5-BF67-8D43647FAD31.html
+
+http://labs.vmware.com/flings/guest-reclaim
+
+==============
+
+cd  / # Replace with SSD file system
+sudo dd if=/dev/urandom of=tempfile count=100 bs=512k oflag=direct
+sudo hdparm --fibmap tempfile
+
+From the output copy the number under begin_LBA and verify the device name of your SSD: System->Administration->Disk Utility e.g. sda, sdb, sdc ...
+
+Run the following but replace [ADDRESS] (begin_LBA) and sdX (SSD device name) with the details obtained above.
+
+sudo hdparm --read-sector [ADDRESS] /dev/sdX 
+
+the output should be a long string of characters for those sectors
+
+sudo rm tempfile
+sync
+
+Repeat the hdparm command from above:
+
+sudo hdparm --read-sector [ADDRESS] /dev/sdX 
+
+If you get only zeros then automatic TRIM is working. However if after removing the file the sectors are still not empty then wait a while and run the command again.
+
+http://askubuntu.com/questions/18903/how-to-enable-trim
+
+http://serverfault.com/questions/307397/verify-trim-support-with-btrfs-on-ssd/401506#401506
+
+
+https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase
+
+time hdparm --user-master u --security-erase Eins /dev/X
+===============
+
+blkdiscard
+====================
+
+How to verify if TRIM works
+
+hdparm -I /dev/sdd1
+shows
+Deterministic read ZEROs after TRIM
+
+===============
+
+Linux support for discard
+
+In Linux, SCSI UNMAP is supported via the generic discard framework which I believe is also used to support ATA TRIM command. ATA TRIM command typically used in SSD isn’t the topic of discussion of this blog. There are multiple ways in which discard functionality is invoked or used in Linux.
+
+    For direct block devices, one could use BLKDISCARD ioctl to release the unused blocks.
+    File systems like EXT4 support a file level discard using FALLOC_FL_PUNCH_HOLE option of fallocate system call.
+    For releasing the unused blocks at the file systems level, fstrim command can be used.
+    Finally, file systems like EXT4 also support ‘discard’ mount option that will control if file system (EXT4) should issue UNMAP requests to the underlying block device when there are free blocks.
+
+QEMU support for discard
+
+UNMAP is primarily useful in two ways for KVM virtualization.
+
+    When a file is deleted in the VM, the resulting UNMAP in the guest is passed down to host which will result in host sending the discard request to the thin provisioned SCSI device. This results in the blocks consumed by the deleted file to be returned back to the SCSI storage. The effect is same when there is an explicit discard request from the guest using either ioctl or fallocate methods listed in the previous section.
+    When a VM image is deleted, there is a potential to return the freed blocks back to the storage by sending the UNMAP command to the SCSI storage.
+
+Guest UNMAP requests will end up in QEMU only if the guest is using scsi or virtio-scsi device and not virtio-blk device. QEMU will forward this request further down to the host (device or file system) only if ‘discard=on’ or ‘discard=unmap’ drive flag is used for the device on the QEMU command line.
+
+Example1: qemu-system-x86_64 -drive file=/images/vm.img,if=scsi,discard=on
+Example2: qemu-system-x86_64 -device virtio-scsi-pci -drive if=none,discard=on,id=rootdisk,file=gluster://host/volume/image -device scsi-hd,drive=rootdisk
+
+The way discard request is further passed down in the host is determined by the block driver inside QEMU which is serving the disk image type. While QEMU uses fallocate(FALLOC_FL_PUNCH_HOLE) for raw file backends and ioctl(BLKDISCARD) for block device back-end, other backends use their own interfaces to pass down the discard request.
+
+http://raobharata.wordpress.com/category/technical/

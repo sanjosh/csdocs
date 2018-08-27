@@ -1,0 +1,27 @@
+
+Oh - Caching less for better performance
+
+Divide cache into cache space and GC space (handle erase ops)
+find workload-dependent optimal division
+Cache space divided into read and write space
+
+Kgil - 
+divide cache into read ans writ regions
+
+Chen - Hystor 
+
+Pritchett - SieveStore
+
+Saxena - 
+Flash as paging device for Virtual memory
+
+Debnath
+Flash as metadata for dedup
+
+Soundarajan - Griffin
+use log structured HDD cache to preserve SSD lifetime 
+
+Kim - Hybridstore
+
+Kim - 
+Unified Buffer management detects sequential and looping refs
