@@ -41,8 +41,10 @@
 * mitigation : service must be able to work in degraded mode if dependency is down
 * mitigation : service must support bulk APIs to enable catch-up on backlog after recovery
 * mitigation : service must explicitly encode dynamic fallback strategies
+* See hystrix
 
 ## fixed bandwidth systems - not adaptive
 * hard-coded constants in code and config file
 * mitigation : dynamic discovery and download of tuning parameters
+* flip side is oscillations could get introduced 
  
