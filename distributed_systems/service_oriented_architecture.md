@@ -35,3 +35,14 @@
 
 ## Orchestrator increases coupling
 * mitigation : use choreography
+
+## No resilience to failure - pack of cards which collapses
+* one service goes down, everything is blocked
+* mitigation : service must be able to work in degraded mode if dependency is down
+* mitigation : service must support bulk APIs to enable catch-up on backlog after recovery
+* mitigation : service must explicitly encode dynamic fallback strategies
+
+## fixed bandwidth systems - not adaptive
+* hard-coded constants in code and config file
+* mitigation : dynamic discovery and download of tuning parameters
+ 
