@@ -1,0 +1,8 @@
+
+Utilization = service_time X throughput ( at each resource)
+Utilization = busy time/ total time
+
+Response_time = [(num wait + num_in_service)/thruput] - Wait_time
+
+OPEN NET
+Response TIme = Demand / (1 - utilization)

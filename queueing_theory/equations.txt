@@ -1,0 +1,12 @@
+
+U = utilization
+Resp time = service time/ (1- U)
+
+http://perfdynamics.blogspot.in/2016/10/a-clue-for-remembering-littles-law.html
+
+total num customers = arrival rate * mean response time
+Mean Waiting length = arrival rate * mean waiting time
+mean util           = arrival rate * mean service time
+
+where response time = waiting time + service time
+
