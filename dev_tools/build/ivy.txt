@@ -1,0 +1,6 @@
+
+# 1. Download the latest ivy jar (currently it's v.2.4.0)
+curl -L -O http://search.maven.org/remotecontent?filepath=org/apache/ivy/ivy/2.4.0/ivy-2.4.0.jar
+
+# 2. Run ivy.jar to retrieve all dependencies
+java -jar ivy-2.4.0.jar -dependency com.sparkjava spark-core 2.1 -retrieve "lib/[artifact]-[revision](-[classifier]).[ext]"

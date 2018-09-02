@@ -1,9 +1,12 @@
 
+# Check interface
+
 ifup & ifdown
 
 /etc/network/interfaces
 
-(for static IP)
+# configure static IP
+
 put the following in /etc/network/interfaces
 ```
 iface eth0 inet static
@@ -15,50 +18,50 @@ gateway
 dns-nameservers <>
 ```
 
-(for DHCP)
+# configure DHCP
 ```
 auto eth0
 iface eth0 inet dhcp
 ```
 
-(NetworkManager)
+# NetworkManager ubuntu
 * nmcli
 * nm-tool
 * /etc/NetworkManager
 * /var/lib/NetworkManager
 
------------
-
-(Wireless)
+# Wireless
 
 * First get the wireless net connected
 * then get DHCP
 * then get DNS and gateway working
+* `iwlist` for scanning
+* `iwconfig`
+* for wpa, use `wpa_supplicant, wpa_cli, wpa_passphrase`
+* `rfkill` to reinitialize wireless
+* `wvdial`
 
-* iwlist for scanning
-* iwconfig
+# DNS
 
-* for wpa, use wpa_supplicant, wpa_cli, wpa_passphrase
-* rfkill to reinitialize wireless
-* wvdial 
---------------
+* host and dig commands
+* nslookup
+* /etc/resolv.conf
 
-(DNS)
-host and dig commands
-nslookup
-/etc/resolv.conf
+# USB
 
-----------------
 usb-devices
 
-----------------
+# Dump
 
+
+## tcpdump
 
 ```
 tcpdump -l -v -iwlan0 -w <file> -K -q
 ```
 
-WIRESHARK:
+## wireshark
+
 ```
 apt-get install wireshark
 dpkg-reconfigure wireshark-common
@@ -71,13 +74,23 @@ setcap cap_net_raw,cap_net_admin=eip /usr/bin/dumpcap
 wireshark&
 ```
 
-tcpstat
+## tshark
 
 ```
 sudo tshark -i lo -w mispk -f "dst port 9999"
 ```
 
+## nfs
+```
+tshark -i lo -f "src port 2049"
+tshark -i lo -f "dst port 2049" -w file
+```
 
-----------------
+
+# bandwidth 
 
 iftop
+
+# command line sockets
+
+netcat

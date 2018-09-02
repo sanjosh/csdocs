@@ -1,0 +1,12 @@
+
+Virtual ARP, or Layer-3 Anycast Gateway, is a feature that’s so simple, I’m amazed that no one has ever thought of it before. Put simply, multiple devices are configured to respond to ARP and GARP requests for a shared virtual IP address using a shared virtual MAC address. Seriously, that’s all it does. So what’s so great about that?
+
+First, by the very nature of the fact that both switches in a pair respond to ARP requests for the same IP address, that means that some devices will learn the MAC address from one switch, while other devices will learn from the other switch (assuming a pair). That also means that both switches can actively receive packets destined for the IP address. This active–active behavior is something that neither VRRP nor HSRP can replicate. Not only that, but VARP is completely standards-based.
+
+============
+
+Arista’s Virtual ARP is extremely simple – it’s like VRRP without VRRP. You have to configure the same IP address (first-hop gateway) on a VLAN interface of all ToR switches with ip virtual-router address configuration command and associate a MAC address with the shared IP address with the ip virtual-router mac-address interface configuration command.
+
+The first switch that is hit with an ARP request for the shared virtual IP address will reply with the shared MAC address (I’m not sure about the details – it might well be that the ARP broadcast gets flooded to all switches, in which case the sender gets numerous replies). When a host sends an IP packet to that same shared MAC address, the first ToR switch that the packet hits intercepts the packet (because it’s listening to the shared MAC address), and performs L3 routing.
+
+

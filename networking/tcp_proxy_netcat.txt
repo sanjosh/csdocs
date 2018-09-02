@@ -1,0 +1,2 @@
+
+nc -l -p <local_port> | nc <remote_ip> <remote_port>

@@ -1,0 +1,48 @@
+
+sudo modprobe tipc
+/host/utils/tipcutils-2.0.2/tipc-config -s
+
+tipc-utils has demos dir
+
+=============
+Address forms
+
+struct tipc_portid
+{
+    ref // assigned from tipc_event.port.node
+    node // assigned from tipc_event.port.node
+}
+
+struct tipc_name
+{
+    type // can be TIPC_TOP_SRV
+    instance // can be TIPC_TOP_SRV
+}
+
+struct tipc_name_seq
+{
+    type
+    lower
+    upper
+}
+
+port name = type, instance
+port name seq= type, lower, upper
+
+struct sockaddr_tipc {
+    unsigned short family; = AF_TIPC
+    unsigned char  addrtype; = TIPC_ADDR_NAME, NAMESEQ, ADDR_ID, MCAST
+    signed   char  scope; = (only for bind) TIPC_NODE_SCOPE/ZONE_SCOPE/CLUSTER_SCOPE
+    union {
+        struct tipc_portid id;  if ADDR_ID
+        struct tipc_name_seq nameseq; if NAMESEQ or MCAST
+        struct {
+            struct tipc_name name; if ADDR_NAME; 
+            __u32 domain; // domain where lookup is done
+        } name;
+    } addr;
+};
+
+
+
+

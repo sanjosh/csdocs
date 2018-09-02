@@ -1,0 +1,15 @@
+
+# new cmd
+# sn will disable port scan
+nmap -sn 192.168.2.0/24 
+
+# to scan your subnet
+nmap -v -sP 192.168.2.0/24 
+
+# arp sweep (not needed - nmap detects if its on LAN)
+nmap -PR 10.0.1.0/24 -sn 
+
+# https://security.stackexchange.com/questions/36198/how-to-find-live-hosts-on-my-network
+
+# arp tables
+arp -a -n

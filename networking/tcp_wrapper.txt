@@ -1,0 +1,6 @@
+
+1. handle EAGAIN and EINTR
+2. sigpipe
+3. partial write/read
+4. recv() returns 0 if other side did orderly shutdown of connxn
+

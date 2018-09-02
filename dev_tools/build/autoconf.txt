@@ -1,0 +1,64 @@
+
+autoscan : empty -> configure.scan (configure.ac)
+autoconf : configure.ac -> configure
+automake : Makefile.am -> Makefile.in
+configure : Makefile.in -> Makefile
+libtool
+gtttext
+autoheader : creates config.h.in
+
+
+autoconf : uses shell and M4 macro language.  assumes C, C++, fortran.  creates configure.ac.  autoconf includes autoupdate, ifnames, autoheade
+r.  for portability wihin unix.  
+
+====
+configure.ac
+put CFLAGS = "-g -O0" above AC_PROG_CC
+AC_PROG_CC in configure.ac determines C compiler
+
+======
+
+Search for autoconf tutorial
+
+
+http://autotools.io
+
+autoconf : uses shell and M4 macro language.  assumes C, C++, fortran.  creates configure.ac.  autoconf includes autoupdate, ifnames, autoheader.  for portability wihin unix.  
+
+automake : generates makefiles. 
+autoscan : scans source files for making configure scripts.  creates configure.in
+autoheader : creates config.h.in
+libtool
+gettext
+
+
+=============
+AC_INIT(myconfig, version-0.1)
+echo "                             Testing for a C compiler"
+AC_PROG_CC
+echo "                             Testing for a C++ compiler"
+AC_PROG_CXX
+echo "                             Testing for a FORTRAN compiler"
+AC_PROG_F77
+
+AC_LANG(C++)
+
+AC_CHECK_HEADERS(iostream)
+AC_CHECK_HEADERS([header1.h header2.h])
+AC_CHECK_LIB(m, cos)  // test for cos func in libm
+
+AC_SUBST([EXTRA_CFLAGS], ["-fsanitize=address])
+
+=============
+
+autoconf creates a file called confdefs.h
+
+
+$ autoconf configure.ac > configure
+$ chmod +x configure
+$ ./configure
+
+
+http://www.edwardrosten.com/code/autoconf/
+
+==============

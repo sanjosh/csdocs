@@ -1,0 +1,31 @@
+
+assembly plugin or executable jar plugin
+
+shaded jar & fat jar
+
+maven coordinates = groupId:artifactId:version
+group=org.apache.maven
+artifact=jarname
+version=
+
+mvn compile
+mvn test-compile
+mvn test
+mvn package
+mvn install -o -DskipTests
+mvn -U --update-snapshots
+
+http://stackoverflow.com/questions/1348603/how-can-i-get-maven-to-stop-attempting-to-check-for-updates-for-artifacts-from-a
+
+http://stackoverflow.com/questions/9164893/how-do-i-add-a-maven-dependency-in-eclipse
+
+~/.m2/repository
+
+# Specify repoUrl (it's optional)
+mvn dependency:get -DrepoUrl=http://download.java.net/maven/2/ -DgroupId=com.sparkjava -DartifactId=spark-core -Dversion=2.1
+
+# OR use default repoUrl
+mvn dependency:get -DgroupId=com.sparkjava -DartifactId=spark-core -Dversion=2.1
+
+# OR use parameter artifact as groupId:artifactId:version
+mvn dependency:get -Dartifact=com.sparkjava:spark-core:2.1

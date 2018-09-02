@@ -1,0 +1,4 @@
+
+make V=1
+  make VERBOSE=1
+    scons --debug=presub

@@ -1,5 +1,6 @@
 
 * size --format=sysv main
 * readelf -l main
-* objdump
+* readelf -Ws
+* objdump -T
 * nm

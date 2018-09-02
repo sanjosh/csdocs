@@ -1,0 +1,9 @@
+
+sudo arp-scan -I wlan0 -l
+
+sudo arping -D -I eth0 -c 2 192.168.1.1
+
+# -p for port
+# -sT for TCP connect, -sS for TCP Syn, -sU for UDP
+# -A for OS and services
+nmap -sP 10.0.0.0/24 - ping response
