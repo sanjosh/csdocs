@@ -20,3 +20,9 @@ No shared mem :
 * epoch based designs [Fraser. Practical Lock freedom 2004, King & Lehman. Concurent Binary Search tree 1980, Levandovski. Bw-tree, Mao Kohler. Cache Craftiness for fast multicore key-value storage, Tu Zheng Liskov, Speedy transactions]
 * RCU
 
+# CRDT 
+
+1. operation based
+2. state based
+
+
