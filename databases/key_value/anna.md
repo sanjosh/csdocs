@@ -23,7 +23,6 @@ different type of KVs
 2. local like Redis, rocksdb
 
 Design a KV that can run well at any scale
-
 1. shard key space across nodes and across cpu cores
 2. multi-master replication
 3. wait-free execution
