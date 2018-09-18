@@ -28,8 +28,10 @@ Blackfoot is a horizontally scaled stateless converter sitting on edge.  It tran
 
 * Embedded Nitro Controller runs on each EC2 instance. It does IP fragment re-assembly and traffic encapsulation.
 * Nitro controller is aware of Hyperplane and sends packet back to it (to avoid path asymmetry)
-* question : having packets go thru load balancer on egress is an anti-pattern in load balancing.  have to go thru hyperplane because of NAT + metrics
 
+Question : having packets go thru load balancer on egress is an anti-pattern in load balancing.  The preferred option is DSR (Direct Server Return) otherwise Load Balancer becomes a bottleneck.  
+
+Answer : have to go thru hyperplane because of NAT + metrics.  Makes no diff in network latencies
 
 ## SHOCK Robustness principle (Self-healing or constant work)
 
@@ -41,5 +43,4 @@ Blackfoot is a horizontally scaled stateless converter sitting on edge.  It tran
 * How to avoid DDoS : shuffle sharding
 
 https://aws.amazon.com/blogs/architecture/shuffle-sharding-massive-and-magical-fault-isolation/
-
 
