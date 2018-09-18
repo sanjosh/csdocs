@@ -6,7 +6,7 @@
 4. searchable symmetric encryption
 5. oblivious RAMs
 6. secure two-party computation
-[Ref](http://outsourcedbits.org/2013/10/06/how-to-search-on-encrypted-data-introduction-part-1/)
+[Ref](https://cloudcrypto.wordpress.com/)
 
 # Database primitives
 ## Equality search
