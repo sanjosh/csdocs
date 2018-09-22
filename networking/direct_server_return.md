@@ -17,10 +17,14 @@ https://www.haproxy.com/blog/layer-4-load-balancing-direct-server-return-mode/
 
 https://kemptechnologies.com/in/white-papers/what-is-direct-server-return/
 
+ ```
+ The Real Server is configured with an IP address as normal but it is also given the IP address of the Virtual Service. Normally you cannot have two machines on a network with the same IP address. To get around this, the Virtual IP (VIP) address on a Real Server must be configured so that the server does not respond to ARP requests on the VIP address.
+ ```
+ https://support.kemptechnologies.com/hc/en-us/articles/202040805-Direct-Server-Return-DSR-
+
 * TCP multiplexing can't be accomplished in a DSR configuration because it relies on separating client connections from server connections. This reduces the efficiency of your servers and minimizes the value added to your network by a load balancer
 
 
 https://devcentral.f5.com/articles/the-disadvantages-of-dsr-direct-server-return
-
 
 
