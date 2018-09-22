@@ -19,7 +19,6 @@ inverse
 
 Hierarchical DB filled with RR - resource record
 
-| ---- | ---------|
 | record | purpose |
 | ---- | ---------|
 | SOA | Start of authority - parameters for zone |
@@ -30,7 +29,6 @@ Hierarchical DB filled with RR - resource record
 | MX | mail exchange |
 | NS | name server for domain |
 | PTR | IP addr to domain |
-| ---- | ---------|
 
 SPF (sender policy framework)|
 
