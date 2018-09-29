@@ -4,15 +4,16 @@ How to combat imbalanced classes ?
 -------------------
 https://www.reddit.com/r/MachineLearning/comments/12evgi/classification_when_80_of_my_training_set_is_of/
 
-Sampling based methods
-Cost-sensitive methods
-Kernel-based methods 
+1. Sampling based methods
+2. Cost-sensitive methods
+3. Kernel-based methods 
 
 -------------------
 Accuracy paradox : accuracy is an illusion because it is reflecting underlying class distribution
 
 SOLUTIONS
-* Change the performance metric.  use
+
+Change the performance metric.  use
 1. confusion matrix
 2. precision/recall/F-score
 3. Kappa (Cohen's kappa)

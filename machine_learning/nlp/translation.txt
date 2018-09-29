@@ -18,6 +18,7 @@ encoder-decoder model
 encode source sentence into a vector
 decode vector into a target sentence
 
+sequence to sequence model
 
 =============
 

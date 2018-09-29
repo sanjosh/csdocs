@@ -1,5 +1,5 @@
 
-Filter methods
+# Filter methods
 
 Evaluate and rank each feature independently or wrt dependent variable
 1. Chi square
@@ -8,35 +8,27 @@ Evaluate and rank each feature independently or wrt dependent variable
 
 this is a supervised or unsupervised, but uncoupled method
 
------
-Wrapper methods
+# Wrapper methods
 
-consider feature selection as a Search problem. 
-Select and evaluate combinations of features
-e.g. recursive feature elimination algo
+* consider feature selection as a Search problem. 
+* Select and evaluate combinations of features
+* e.g. recursive feature elimination algo
+* this is a supervised, coupled method
 
-this is a supervised, coupled method
+# Embedded methods
 
------
-Embedded methods
+* learn best features during model building
+* example is regularization or penalization methods
+* LASSO, Elastic Net, Ridge Regression
+* this is a supervised, coupled method
 
-learn best features during model building
-example is regularization or penalization methods
-LASSO, Elastic Net, Ridge Regression
 
-this is a supervised, coupled method
+# Representation Learning 
 
------
+We can have a neural network which takes the image as an input and outputs a vector, which is the feature representation of the image.  This is the representation learner. This be followed by another neural network that acts as the classifier, regressor, etc .
 
-Representation Learning 
-
-We can have a neural network which takes the image as an input and 
-outputs a vector, which is the feature representation of the image. 
-This is the representation learner. This be followed by another 
-neural network that acts as the classifier, regressor, etc .
-
-Auto association : map rep to different category
-Hetero association  : map rep to itself
+* Auto association : map rep to different category
+* Hetero association  : map rep to itself
 
 https://datascience.stackexchange.com/questions/22348/what-is-representation-learning
 
@@ -68,8 +60,8 @@ manifold learning algo
 all manifold learning techniques are instances of kernel PCA for different
 choice of kernel func
 
-
 common linear dimensionality reduction methods can be generalized as projections in Euclidean space
+
 common nonlinear techniques can be generalized as projections in the reproducing kernel Hilbert space
 
 feature extraction methods rely on distance metric between points.
