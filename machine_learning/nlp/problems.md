@@ -1,9 +1,10 @@
 
-1. Topic detection
+1. Topic detection : LDA, NTM
 2. POS tagging
 3. Named entity recognition
 4. text summarization
 5. Similar question retrieval
-2. Question Answering
-3. Sentiment Analysis
-4. Machine translation
+6. Question Answering
+7. Sentiment Analysis
+8. Machine translation
+
