@@ -1,0 +1,16 @@
+
+Strange loop conference - speaker from comcast
+
+* monitor latency at server
+* if latency increases, reduce advertised queue size so client gets backpressure
+* limit concurrency, not the request rate for each client
+
+effective quota = configured quota x target connections
+
+admission control
+1. if client < quota
+2. if total < target
+
+tpsgen
+latency test
+throughput test
