@@ -48,6 +48,37 @@ https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html
 2. shared encoder and decoder
 3. insert artificial token to indicate target language
 
+# Aligning word vectors across languages
+
+auto-build dictionaries and phrase translation tables
+
+```
+we formed short phrases of words using a technique described in (Mikolov et al., 2013b).  The idea is that words that co-occur more frequently than expected by their unigram probability are likely an atomic unit. This allows us to represent short phrases such as “ice cream” with single tokens, without blowing up the vocabulary size as it would happen if we would consider all bigrams as phrases.[1]
+```
+
+* Mikolov : learn linear mapping
+* Xing: l2–normalize the word vectors and to constrain the linear mapping to be orthogonal  [2]
+* this suffers from hubness problem
+* fix that by applying corrective metric at inference time - such as inverted softmax (ISF) or cross domain similarity local scaling (CSLS).
+* Joulin : learn non-orthogonal mapping [3]
+* Conneau : build a bilingual dictionary between two languages without using any parallel corpora, by aligning monolingual word embedding spaces in an unsupervised way... adversarial method used [4]
+
+
+## References
+
+1. Mikolov et al.  Exploiting similarities among languages
+2. Xing et al. Normalized Word Embedding and Orthogonal Transform for Bilingual Word Translation
+3. Joulin et al. Loss in translation: Learning bilingual word mapping with a retreival criterion
+4. Conneuau et al.  Word translation without parallel data
+5. Lample et al. Ranzato Unsupervised Machine Translation With Monolingual Data Only
+6. Ammar et al.  Massively multilingual word embeddings
+
+## Code 
+
+1. https://fasttext.cc/docs/en/aligned-vectors.html
+2. https://github.com/facebookresearch/MUSE
+
+
 # TODO
 
 transformer https://ai.googleblog.com/2018/08/moving-beyond-translation-with.html
@@ -58,6 +89,7 @@ sockeye https://sockeye.readthedocs.io/en/latest/README.html
 
 https://github.com/jonsafari/nmt-list
 
+
 # References
 
 1. Knight "A statistical MT tutorial workbook" (easy to understand, use instead of the original Brown paper)
@@ -66,3 +98,8 @@ https://github.com/jonsafari/nmt-list
 4. Chiang "Hierarchical Phrase-Based Translation" (significantly improves accuracy by allowing for gappy phrases)
 5. Bahnadau.  Neural machine translation by Jointly learning to translate and align [proposed Attention model]
 6. Luong.  Effective Approaches to Attention based NMT EMNLP 15
+
+## Datasets
+
+1. WMT11 https://statmt.org
+2. 
