@@ -18,6 +18,7 @@ big wins for NMT [Manning stanford lecture notes]
 
 no black box models for reordering, transliteration
 
+
 ## Attention model
 
 * address issue of long sentences by paying attention to only part of sentence
@@ -30,13 +31,16 @@ no black box models for reordering, transliteration
 ## Memory
 
 
+# Phrase based
+
+See Lample, Phrase-Based & Neural Unsupervised Machine Translation
+https://arxiv.org/pdf/1804.07755.pdf
+
+https://github.com/facebookresearch/UnsupervisedMT
+
 # Convolutional Seq2Seq
 
 [Gehring 2017]
-
-# Facebook MUSE 
-
-https://github.com/facebookresearch/MUSE
 
 # Google NMT
 
@@ -78,7 +82,6 @@ we formed short phrases of words using a technique described in (Mikolov et al.,
 1. https://fasttext.cc/docs/en/aligned-vectors.html
 2. https://github.com/facebookresearch/MUSE
 
-
 # TODO
 
 transformer https://ai.googleblog.com/2018/08/moving-beyond-translation-with.html
@@ -102,4 +105,3 @@ https://github.com/jonsafari/nmt-list
 ## Datasets
 
 1. WMT11 https://statmt.org
-2. 
