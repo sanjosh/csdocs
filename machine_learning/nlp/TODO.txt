@@ -5,3 +5,4 @@ Bengio. Neural probabilistic language model 2003
 
 https://www.quora.com/What-are-the-most-important-research-papers-which-all-NLP-students-should-definitely-read-Why
 
+Jurafsky Martin.  Speech and Language Processing http://www.cs.colorado.edu/~martin/slp.html#Chapter25
