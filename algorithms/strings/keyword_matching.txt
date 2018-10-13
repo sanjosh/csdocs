@@ -1,0 +1,26 @@
+
+Dharmapurikar. Fast and Scalable Pattern Matching for Content Filtering
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.61.6020&rep=rep1&type=pdf
+
+https://www.machinelearningpython.org/single-post/2017/05/10/String-Matching-using-Convolution-Networks
+
+Aho Corasick - build automata
+
+-----------
+
+multiple regex match = combine into one regex joined by OR
+
+https://github.com/fulmicoton/multiregexp
+
+-----------
+
+Fuzzy matching
+
+Udi Manber - fast multiple fuzzy matching
+http://webglimpse.net/pubs/approx-multi.pdf
+
+Navarro
+https://www.dcc.uchile.cl/~gnavarro/ps/wsp97.1.pdf
+
+https://stackoverflow.com/questions/3260962/algorithm-to-find-multiple-string-matches

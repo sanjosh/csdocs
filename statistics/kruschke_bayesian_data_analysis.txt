@@ -1,0 +1,28 @@
+
+three goals for inference from data
+1. estimation of parameter values
+2. prediction of data values
+3. model comparison (since model params depend on hyperparameter, this is a case of parameter estimation)
+
+Bayesian inference requires posterior distribution to be computed
+
+Bayesian inference requires computing a difficult integral
+
+Four different approaches
+1. Use likelihood func with conjugate prior (simple math)
+2. approx actual func with simpler ones 
+3. Numerically approximate the integral
+4. use MCMC methods  (this makes it practical)
+
+HDI : Highest density interval (points within 95 perc range)
+
+use HDI to convert to discrete decision - remove outliers
+
+Effect size (diff of mean relative to standard dev) can also be computed
+
+ROPE = region of practical equiv
+
+Bayesian vs NHST
+
+Bayesian Estimation Supersedes the t Test
+https://www.youtube.com/watch?v=fhw1j1Ru2i0

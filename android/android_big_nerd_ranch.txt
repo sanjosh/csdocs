@@ -1,0 +1,169 @@
+
+Big Nerd Ranch book on Android
+
+Toast - text which is displayed 
+Activity lifecycle : Running, Paused, Stop
+Derive from AppCompatActivity
+
+Rotating the device changes the device config : activities are destroyed
+Use on save instance state to save state between rotations
+onSaveInstanceState(Bundle) called before onPause/onStop/onDestroy
+Bundle.putInt(key, value)
+
+Android Lint static analyzer
+
+All Activities defined in android manifest
+
+how to start another activity -> startActivity(Intent)
+this calls the ActivityManager
+
+Explicit intent : Intent with Context and Class
+used to start activities within your app
+
+Implicit intent : used to start activities inside another app
+
+Passing data between Activities
+1. Use Intent.putExtra to pass to child activity
+2. Activity.setResult(Intent) to pass back to parent activity
+
+OS does not start app; it starts launcher activity in app
+Launcher activity is specified by intent-filter in Manifest
+
+OS ActivityManager maintains a stack of Activities
+
+
+Fragment - Controller object - deputy of Activity
+Support library
+derive from FragmentActivity
+fragment activity managed by hosting Activity, not the OS
+Fragment has its own lifecycle
+
+FragmentManager
+Fragment transactions
+
+Screen pixel density : dp, sp, (pt, mm, in)
+
+Styles and themes
+
+
+------------
+
+two types of services : started and bound
+
+Services also have lifecycle
+
+add service tag in Manifest 
+add intent filter to activate service
+
+under service tag in Manifest, you can put android:process=remote which 
+will run service in separate process from other activities
+
+inside activity, call "startService" to start the service
+
+how to start service at boot
+1) add permission RECEIVE_BOOT_COMPLETED
+2) add intent in Manifest BOOT_COMPLETED
+3) extend BroadcastReceiver class and call startService() inside it.
+
+in onBind() method, Service gets Intent as parameter
+this allows you to expose multiple APIs from same service
+
+started service can call startForeground() to put it in foreground to
+reduce chances of service getting killed
+
+http://mindtherobot.com/blog/37/android-architecture-tutorial-developing-an-app-with-a-background-service-using-ipc/
+
+https://developer.android.com/reference/android/app/Service.html#WhatIsAService
+
+https://www.dre.vanderbilt.edu/~schmidt/cs282/PDFs/8-Services-and-IPC-parts-10-11-12-and-13.pdf
+
+https://www.dre.vanderbilt.edu/~schmidt/cs282/PDFs/
+
+---------------
+
+chap 12
+Fragments for Tablet vs Phones
+startActivityOnResult
+
+---------------
+
+Chap 13
+Heirarchical and Temporal navigation
+
+
+------------
+
+PackageManager.resolveActivity(Intent) to find if any app for Intent exists
+
+Fragments are intended to be standalone, composable units. If you write a 
+fragment that adds fragments to the activity’s FragmentManager , then that 
+fragment is making assumptions about how the hosting activity works, and 
+your fragment is no longer a standalone, composable unit.
+
+---------
+
+Assets (vs resources)
+
+----
+
+style
+theme
+
+9-patch image file
+
+------------
+
+TASK 
+
+Android uses tasks to keep track of the user’s state within each running application. Each application
+opened from Android’s default launcher app gets its own task.
+
+A task is a stack of activities that the user is concerned with. The activity at the bottom of the stack
+is called the base activity, and whatever activity is on top is the activity that the user sees. When you
+press the Back button, you are popping the top activity off of this stack. If you are looking at the base
+activity and hit the Back button, it will send you to the Home screen.
+
+CONCURRENT DOCUMENTS
+
+This behavior uses a new notion in Lollipop called concurrent documents. Concurrent documents allow
+any number of tasks to be dynamically created for an app at runtime. Prior to Lollipop, apps could only
+have a predefined set of tasks, each of which had to be named in the manifest.
+
+AsyncTask
+{
+
+	doInBackground - run in async thread
+	onPostExecute - run in UI thread
+
+	publishProgress - called from doInBackground; run in async thread
+	onProgressUpdate - run in UI thread
+}
+
+Main thread = UI thread
+Run a function in context of UI thread - can be done 
+Android Watchdog - ANR
+
+Handler, Looper, HandlerThread
+
+IntentService
+
+PendingIntent
+Broadcast Intent
+
+Receiver : Standalone vs Broadcast
+Dynamic receiver
+Ordered Broadcast
+
+
+-------------
+
+List of Managers:
+
+ConnectivityManager
+PackageManager
+AlarmManager
+NotificationManager
+JobScheduler
+
+
+

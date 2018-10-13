@@ -1,0 +1,20 @@
+
+categories
+http://stackoverflow.com/questions/4216648/facebook-pages-authoritative-list-of-categories
+
+https://gist.github.com/shlomibabluki/6333174
+
+https://nlpforhackers.io/named-entity-extraction/
+
+https://github.com/acrosson/nlp/blob/master/information-extraction.py
+
+Stanford NER
+https://nlp.stanford.edu/software/CRF-NER.html
+
+
+https://streamhacker.com/2018/04/04/advances-deep-learning-natural-language-processing/
+
+Levenshtein in NLTK
+https://streamhacker.com/2011/10/31/fuzzy-string-matching-python/
+
+https://stackoverflow.com/questions/29275614/using-my-own-corpus-instead-of-movie-reviews-corpus-for-classification-in-nltk

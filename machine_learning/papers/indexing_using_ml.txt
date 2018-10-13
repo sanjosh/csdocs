@@ -1,0 +1,23 @@
+
+google paper - Jeff Dean
+Index as model
+
+Conventional index
+1. Min-max error range 
+2. monotonic increasing model
+3. caching
+4. Precision gain
+
+Sorted data as CDF
+Btree learns distribution by building regression tree
+
+Learning index framework
+Recursive model
+
+
+TODO
+SIMD Optimized index = FAST [ref 26]
+Tensorflow XLA
+
+
+

@@ -1,0 +1,82 @@
+
+Semantic Web
+
+https://news.ycombinator.com/item?id=13966965
+
+https://en.wikipedia.org/wiki/Lists_of_actors
+
+https://en.wikipedia.org/wiki/Wikipedia:Database_download
+
+https://github.com/attardi/wikiextractor
+
+https://www.quora.com/What-is-the-best-way-to-parse-Wikipedia-articles-using-Python
+
+API
+https://scraperwiki.com/2011/12/how-to-scrape-and-parse-wikipedia/
+http://live.dbpedia.org/
+
+Wikipedia articles are written in the MediaWiki Markup Language 
+
+ http://dumps.wikimedia.org/XXwiki/latest/XXwiki-latest-pages-articles.xml.bz2, 
+ where XX is the language identifier (e.g. en, es, zh).
+
+1)use Parsoid parser
+or 
+2) use plaintext dumps - Cirrus dump
+These dumps contain a json line per article 
+
+https://meta.wikimedia.org/wiki/Datasets
+
+https://github.com/saffsd/wikidump/tree/master/src/wikidump
+
+RDF Triple
+Wikidata Query Service
+
+DBPedia
+http://wiki.dbpedia.org/use-cases/revolutionize-wikipedia-search-0
+
+https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual
+http://dbpedia.org/isparql/
+
+------------
+
+Szekely. Building and Using a Knowledge Graph to Combat Human Trafficking
+
+Use Apache Nutch for crawling
+
+Linked Data Integration Framework
+Conditional Random Field
+
+Extract data from ads
+(name, location, phone number, image, email, physical charac, url)
+
+also use reference dataset
+1) Phone exchange db
+2) Geonames : geographic info
+
+JSON-LD
+DeepSentiBank for image similarity
+Text similarity using Minhash/LSH
+
+TODO
+Read Karma paper
+Swoosh : entity resolution by Jennifer Widom  et al
+Conditional Random Fields - Lafferty
+
+Adding Realtime Coverage to the Google Knowledge Graph
+
+https://github.com/bmzhao/knowledge-graph-papers
+
+https://www.quora.com/Which-papers-should-I-read-to-understand-how-Googles-knowledge-graph-works
+
+
+http://www.cs.technion.ac.il/~gabr/publications/papers/KDD14-T2-Bordes-Gabrilovich.pdf
+
+
+-------------
+
+find similar apps on this store or other stores
+find templatized apps
+find linked vendors
+apps submitted by timeline
+
