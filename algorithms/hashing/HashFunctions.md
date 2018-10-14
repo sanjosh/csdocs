@@ -65,6 +65,14 @@
 * Geometric hash (detect image transformation)
 * PhotoDNA
 
+# Semantic Hashing
+
+Using Autoencoders (Goodfellow, Deep Learning Chap 14, Salakhutdinov and Hinton , 2007b , 2009b )
+
+for textual input (Salakhutdinov and Hinton , 2007b , 2009b ) 
+
+for images (Torralba et al., 2008 ; Weiss et al., 2008 ; Krizhevsky and Hinton , 2011 ).
+
 # Misc
 * Rolling hash
 
