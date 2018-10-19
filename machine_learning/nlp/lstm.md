@@ -57,6 +57,32 @@ Tree-LSTMs outperform all existing systems and strong LSTM baselines on two task
 
 (see also skip-thought vectors for semantic relatedness task)
 
+## Zoneout
+
+* Like dropout in CNN
+* zoneout trains a psuedo-ensemble (collection of child models spawned from parent model)
+* zoneout as per-unit stochastic depth.
+* zoneout helps propagate gradients
+
+See [8]
+
+# Training algorithm
+
+## Teacher forcing
+
+improve model skill and stability
+
+[9, 12]
+
+## Professor forcing
+
+[11]
+
+## Curriculum learning
+
+## Scheduled sampling
+
+[10]
 
 # Reference
 
@@ -67,3 +93,8 @@ Tree-LSTMs outperform all existing systems and strong LSTM baselines on two task
 5. Pascanu. On the difficulty of training recurrent neural networks
 6. Tai. Improved semantic representations from Tree LSTM.  https://arxiv.org/abs/1503.00075
 7. https://www.quora.com/What-is-the-difference-between-stacked-LSTMs-and-multidimensional-LSTMs
+8. Tegan Maharaj. Zoneout.  (MILA) http://videolectures.net/deeplearning2016_maharaj_zoneout/
+9. A Learning Algorithm for Continually Running Fully Recurrent Neural Networks, 1989.
+10. Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks, 2015.
+11. Professor Forcing: A New Algorithm for Training Recurrent Networks, 2016.
+12. Section 10.2.1, Teacher Forcing and Networks with Output Recurrence, Deep Learning, 2016.
