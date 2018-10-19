@@ -19,6 +19,14 @@ the discriminator net used maxout activations.
 
 Dropout was applied in training the discriminator net.
 
+## Problems
+
+1. Finding equilibria harder than just optimizing loss
+2. Non-convergence : mode collapse
+3. Differentiability requirements
+
+(Ramanan Balakrishnan, Hitchhiker's Guide to GAN, Anthill inside)
+
 ## Generate fake images
 
 * Random noise is used by Generator to generate images
@@ -27,6 +35,17 @@ Dropout was applied in training the discriminator net.
 * Loss from discriminator used to train Generator
 
 https://www.oreilly.com/ideas/generative-model-using-apache-mxnet
+
+# Applications
+
+* Use the discriminator as a classifier for other problems
+* SRGAN to increase resolution Ledig
+* Interactive GAN Zhu 2016
+* Image to image translation Isola 2016
+* text to image synthesis Reed 2016
+* Image completion Yeh Chen 2016
+* DiscoGAN Kim 2017 (multiple GAN)
+* Cycle GAN Zhu Park 2017
 
 # References
 1. https://en.wikipedia.org/wiki/Generative_model

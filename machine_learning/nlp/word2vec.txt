@@ -88,3 +88,6 @@ cross-entropy loss
 
 Stanford NLP Manning & Socher 2017
 
+
+---------------
+

@@ -4,13 +4,13 @@
 how to handle 
 1. out of vocab words : use n-grams
 2. misspelled words
-3. concat words
+3. concat words : RNN
 4. rare words : having common ngrams with frequent words will ensure good embedding
 5. word sense disambiguation (WSD). Both CBOW and SG assume unique rep for each word
 6. Data sparsity (unable to model all possible strings of words)
 7. negation : do vs "don't" (sentence vec)
-8. ordering of words (sentence vec)
-9. punctuation
+8. ordering of words : use sentence vec, RNN
+9. punctuation : if dataset small, separate by space else let the network learn.
 
 # Data sparsity
 

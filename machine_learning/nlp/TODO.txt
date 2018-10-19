@@ -15,3 +15,12 @@ Goldberg neural network methods for nlp
 
 Bender linguistic fundamentals for nlp
 
+Vinyals, Kaiser, Koo.  Grammar as Foreign Language NIPS 2015
+
+Vinyl and Le.  Neural Conversational model ICML workshop 2015
+
+Bengio Vinyals Scheduled Sampling for sequence prediction with RNN. NIPS 2015
+
+Joulin.  Inferring algorithmic patterns with stack-augmented Recurrent nets NIPS 2015
+
+Shang Lu Li Neural responding machine for short text conversation ACL 2015

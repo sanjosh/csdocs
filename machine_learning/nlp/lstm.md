@@ -55,6 +55,8 @@ stack vs multidim
 Tree-LSTMs outperform all existing systems and strong LSTM baselines on two tasks: predicting the semantic relatedness of two sentences (SemEval 2014, Task 1) and sentiment classification (Stanford Sentiment Treebank).
 ```
 
+(see also skip-thought vectors for semantic relatedness task)
+
 
 # Reference
 
