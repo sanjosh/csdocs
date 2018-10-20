@@ -76,6 +76,19 @@ improve model skill and stability
 
 ## Professor forcing
 
+teacher forcing 
+* train an Open loop generator using ground truth
+* maximum likelihood principle
+* problem is that it accumulates errors
+* does not generalize well to sequences which are longer than training set.
+
+In professor forcing
+* Two generators with shared parameters : open loop (teacher forcing) and closed loop (free running)
+* Uses adversarial framework with Discriminator
+* Distributions of hidden states are forced to come closer by Discriminator
+* Optimize closed loop to fool classifier
+* Optimize open loop with teacher forcing
+
 [11]
 
 ## Curriculum learning
@@ -96,5 +109,5 @@ improve model skill and stability
 8. Tegan Maharaj. Zoneout.  (MILA) http://videolectures.net/deeplearning2016_maharaj_zoneout/
 9. A Learning Algorithm for Continually Running Fully Recurrent Neural Networks, 1989.
 10. Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks, 2015.
-11. Professor Forcing: A New Algorithm for Training Recurrent Networks, 2016.
+11. Anirudh Goyal. Professor Forcing: A New Algorithm for Training Recurrent Networks, 2016.
 12. Section 10.2.1, Teacher Forcing and Networks with Output Recurrence, Deep Learning, 2016.

@@ -14,6 +14,10 @@ F : (sentence, word pos, current word label, prev word label) -> score
 
 http://blog.echen.me/2012/01/03/introduction-to-conditional-random-fields/
 
+```
+Conditional random fields can be viewed as simplified versions of higher-order, conditional Boltzmann machines in which the hidden units have been eliminated. This makes the learning problem convex, but removes the ability to learn new features (Hinton, Boltzmann machines)
+```
+
 # TODO
 
 Xiao Li SigIR 2009 Extracting Structured Information from User Queries with Semi-Supervised Conditional Random Fields https://www.microsoft.com/en-us/research/publication/extracting-structured-information-from-user-queries-with-semi-supervised-conditional-random-fields/
