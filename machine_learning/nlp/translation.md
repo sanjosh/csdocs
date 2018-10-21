@@ -28,6 +28,9 @@ no black box models for reordering, transliteration
 * attention weights
 * soft attention is deterministic; hard is stochastic
 
+in [Bahdanau, Neural machine translation by jointly align translate] it is shown that for translation, attention learns an alignment function, which certainly should help translating from English to French.
+
+
 ## Memory
 
 
@@ -38,19 +41,6 @@ https://arxiv.org/pdf/1804.07755.pdf
 
 https://github.com/facebookresearch/UnsupervisedMT
 
-# Convolutional Seq2Seq
-
-[Gehring 2017]
-
-# Google NMT
-
-https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html
-
-# Google Multilingual NMT
-
-1. zero-shot translation
-2. shared encoder and decoder
-3. insert artificial token to indicate target language
 
 # Aligning word vectors across languages
 
@@ -91,6 +81,20 @@ https://nlp.stanford.edu/read/
 sockeye https://sockeye.readthedocs.io/en/latest/README.html
 
 https://github.com/jonsafari/nmt-list
+
+## Convolutional Seq2Seq
+
+[Gehring 2017]
+
+## Google NMT
+
+https://ai.googleblog.com/2016/09/a-neural-network-for-machine.html
+
+## Google Multilingual NMT
+
+1. zero-shot translation
+2. shared encoder and decoder
+3. insert artificial token to indicate target language
 
 
 # References
