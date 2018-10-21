@@ -29,7 +29,7 @@ correspondence between neural net and functional
 4. General RNN = Map
 5. Bidirectional RNN = zip (mapAccum left) (mapAccum right)
 6. CNN = map
-7. Treenet RNN = catamorphism
+7. Treenet Recursive neural net = catamorphism
 
 # Reference
 

@@ -97,6 +97,11 @@ In professor forcing
 
 [10]
 
+# TODO
+
+Beam search
+Stack/Queue/Deque 
+
 # Reference
 
 1. https://colah.github.io/posts/2015-08-Understanding-LSTMs/
