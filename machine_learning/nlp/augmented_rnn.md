@@ -3,15 +3,15 @@
 
 Talk at deep learning school 2016
 
+Computational (Chomsky) hierarchy
+1. FSM (regular lang) : memory is finite
+2. Pushdown automata (context free lang) : operations are limited
+3. Turing machine (computable func) :  FSM + tape + back/front operations
+
 RNN good because
 1. RNN fit variable width problems
 2. unfold to feedforward nets with shared weights
 3. can capture long(ish) dependencies
-
-Computational hierarchy
-1. FSM (regular lang)
-2. Pushdown automata (context free lang)
-3. Turing machine (computable func)
 
 Natural language is at least context free (need at least a PDA)
 
@@ -102,6 +102,8 @@ Kumar 2015
 # Stacks Lists (Joulin Mikolov NIPS 2015)
 
 # Stack LSTMs (Dyer)
+
+# Neural Turing machine (Graves)
 
 # Sieglemann and Sontag 1995
 

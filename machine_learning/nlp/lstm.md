@@ -1,4 +1,8 @@
 
+# Main ideas
+
+LSTM, GRU, Beam search, Teacher forcing, Layers of LSTM, Zoneout, Attention, Memory...
+
 # RNN 
 
 RNN can learn short-term but not long-term dependencies because of vanishing gradient problem[2].
