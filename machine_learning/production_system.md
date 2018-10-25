@@ -104,6 +104,13 @@ One example of this may be if two systems independently determine facets of a we
 
 Ref [6]
 
+# whats your ml test score
+
+TODO
+
+Monitor input data
+Monitor output prediction
+
 # Reference
 
 1. Kreutzer. Can Neural machine translation be improved with user feedback. https://arxiv.org/abs/1804.05958

@@ -203,3 +203,8 @@ https://github.com/TheTarquin/samesame
 interpret visual intent - use OCR
 use open source software ocrad : PNG to PNM 
 
+# Chromium
+
+https://www.chromium.org/developers/design-documents/idn-in-google-chrome
+
+
