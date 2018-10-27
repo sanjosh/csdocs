@@ -23,10 +23,6 @@ Solutions
 3. syntactic categories
 4. skipgrams
 
-# perplexity
-
-= 2^entropy
-= effective number of neighbours
 
 # Hyperparameters (in word2vec)
 

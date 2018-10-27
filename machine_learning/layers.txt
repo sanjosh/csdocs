@@ -25,6 +25,7 @@ Neural net
 
 neural net is traind to minimize a cost function
 1. for binary classification : cross-entropy error function
+3. for multiclass : categorical cross-entropy
 
 --------------
 
