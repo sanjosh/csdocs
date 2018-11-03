@@ -5,9 +5,11 @@
 
 it can create too many steps causing time-consuming backprop.  Instead create RNN layers.
 
-## CTC - adam coates
+## CTC Graves 2006
 
 monotonic increase of output with input but does not have language model
+
+dynamic programming algo
 
 ## HMM-DNN hybrid 
 
