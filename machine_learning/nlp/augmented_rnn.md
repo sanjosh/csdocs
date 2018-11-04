@@ -83,7 +83,7 @@ to enforce temporal structure, add time embedding vector
 
 https://github.com/facebook/MemNN
 
-Sukhbaatar, Szlam, Weston, Fergus. End-To-End Memory Networks 2015
+# Sukhbaatar, Szlam, Weston, Fergus. End-To-End Memory Networks 2015
 
 https://www.youtube.com/watch?v=ZwvWY9Yy76Q
 
@@ -93,7 +93,26 @@ Bahdanau 2015
 
 # Dynamic memory networks (Kumar)
 
-Kumar 2015
+Richard Socher
+Bay Area Deep Learning school
+https://youtu.be/oGk1v1jQITw?t=2791
+
+Can all NLP problems be seen as Question Answering tasks ?
+
+1. sentiment analysis (sst) : tree lstm (Tai 2015)
+2. question answering (babl) : supervised MemNN (Weston 2015)
+3. pos tagging : bidirectional LSTM-CRF (huang 2015)
+
+Dynamic Memory networks : generic architecture for all kinds of QA
+1. Episodic Memory 
+2. Semantic Memory
+3. Input Module
+4. Answer Module
+5. Question Module
+
+GRU is basic block; word2vec used for representation
+
+# Teaching machines to read and comprehend - Hermann 2015
 
 # Attentive reader (Hermann 2015)
 

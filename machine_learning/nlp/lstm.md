@@ -7,6 +7,8 @@ LSTM, GRU, Beam search, Teacher forcing, Layers of LSTM, Zoneout, Attention, Mem
 
 RNN can learn short-term but not long-term dependencies because of vanishing gradient problem[2].
 
+RNN is different because you tie the weights at each time step, which allow you to condition output on all previous words
+
 training an RNN on a long sequence of words can cause the gradient to vanish (when the gradient is small) or to explode (when the gradient is large) during backpropagation.
 
 Basically, the backpropagation algorithm multiplies the gradients along the computational graph of the neural network in reverse direction. Hence, when the eigenvalue of the hidden state matrix is large or small, the gradient becomes unstable.[4]
@@ -34,10 +36,9 @@ LSTM with n memory cells has a hidden state of dimension 2n[2].
 
 ## Coupled forget and input gates
 
-## GRU
+## GRU (Cho 2014)
 
 has 2 gates instead of 3. trains faster.
-
 
 ## Depth gated RNN
 

@@ -12,6 +12,9 @@ how to handle
 8. ordering of words : use sentence vec, RNN
 9. punctuation : if dataset small, separate by space else let the network learn.
 
+## Anaphora resolution
+
+
 # Data sparsity
 
 Guthrie, Closer look at skip-gram modeling

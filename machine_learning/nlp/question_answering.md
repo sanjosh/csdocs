@@ -4,6 +4,7 @@
 Read text, read question, then revisit all pages in the book
 
 # Augmented RNN with memory
+
 1. Memory network : Western & fb
 2. Neural turing machine : deepmind
 3. Dynamic memory network : richard socher
@@ -23,7 +24,12 @@ Yes, Push numbers into stack
 
 (Quoc Le, Sequence to Sequence Deep Learning, https://www.youtube.com/watch?v=G5RY_SUJih4)
 
+# MemNN
+
+# Dynamic Memory network
+
 # Reference
 
 1. Chris Olah blog.  Attention and Augmented Recurrent neural networks
+2. babl  https://youtu.be/oGk1v1jQITw?t=3741 (Socher, Deep learning bay area 2016)
 

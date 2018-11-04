@@ -1,4 +1,12 @@
 
+# Vauquois triangle
+
+various approaches
+
+* semantic transfer
+* syntactic transfer
+* direct
+
 # Statistical machine translation (SMT)
 
 * older approach

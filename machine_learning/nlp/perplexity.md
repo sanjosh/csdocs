@@ -4,6 +4,8 @@
 * 2^entropy
 * effective number of neighbours
 
+lower is better
+
 In machine learning, the term perplexity has three closely related meanings. 
 1. Perplexity is a measure of how easy a probability distribution is to predict. 
 2. Perplexity is a measure of how variable a prediction model is. 

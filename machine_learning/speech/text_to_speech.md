@@ -46,9 +46,3 @@ unit selection from db
 2. David	Palmer.	2000.	Tokenisation and	Sentence	Segmentation.	In	“Handbook	of	Natural	Language	Processing”,	edited	by	Dale,	Moisl,	Somers.
 3. Andrew Maas.  CS 224s Stanford 2017 https://web.stanford.edu/class/cs224s/lectures/224s.17.lec14.pdf
 
-# Systems
-
-1. Festival 
-2. Festvox
-3. MARY
-

@@ -24,3 +24,7 @@ Bengio Vinyals Scheduled Sampling for sequence prediction with RNN. NIPS 2015
 Joulin.  Inferring algorithmic patterns with stack-augmented Recurrent nets NIPS 2015
 
 Shang Lu Li Neural responding machine for short text conversation ACL 2015
+
+Stephen Merity 2016 softmax with pointers to context words (Pointer sentinel mixture model)
+
+https://youtu.be/oGk1v1jQITw?t=2594 (progress in variational LSTM)
