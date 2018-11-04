@@ -1,6 +1,13 @@
 # Problems
 
-Deal with Accent, Noise
+Deal with 
+1. Accent, 
+2. Noise
+3. Mic quality
+4. Far Field
+5. Reverb/echo
+6. Disfluency/stuttering
+7. Lombard effect
 
 ## Text to speech
 
