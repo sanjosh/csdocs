@@ -1,6 +1,11 @@
 
 # Features
 
+1. Mel coefficients (first 13, their first and second derivatives)
+2. Zero crossing rate
+3. Spectral energy ratio (human/total)
+4. PLP Perceptual linear coeff
+
 # Classifiers
 
 * GMM
@@ -22,4 +27,4 @@ RECOGNITION IN MEETING ROOMS
 6. Ryant.  Speech Activity Detection on YouTube Using Deep Neural Networks
 7. Sehgal. Convolutional Neural Network Smartphone App for Real-Time Voice Activity Detection
 8. Hershey.  CNN Architectures for Large-Scale Audio Classification
-
+9. Hughes.  RNN for Voice Activity detection (google)
