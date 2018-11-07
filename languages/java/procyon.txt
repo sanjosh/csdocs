@@ -1,0 +1,158 @@
+
+Procyon.Core
+
+- annotations
+- collections
+- compilerservices
+		CallerResolver
+- componentmodel
+		UserDataStoreBase
+- concurrent
+
+- core
+		IStrongBox - derived
+		Accumulator
+		Aggregator
+		Predicate
+		Selector
+- functions
+- io	
+- reflection
+- util
+
+------------------------
+
+Procyon.CompilerTools
+
+assembler
+	InputTypeLoader
+
+assembler/flowanalysis
+	ControlFlowEdge (ControlFlowNode source, target, JumpType)
+	ControlFlowGraphBuilder
+		entryPoint, regularExit and exceptionalExit are ControlFlowNodes
+		ControlFlowGraph build(MethodBody)
+		build(List<Instructions>)
+	ControlFlowGraph
+		List<ControlFlowNode>
+	ControlFlowNode
+
+assembler/ir
+	AnnotationReader
+	ExceptionHandler
+	FlowControl
+	Frame (FrameType, FrameValue list localValues and stackValues)
+	InstructionBlock (Instruction first, last)
+	Instruction (OpCode, Object, Label)
+	MetadataReader
+	OpCode
+	OpCodeType (annotation, macro, internal, objectModel, Prefix, Primitive)
+	OperandType
+	StackBehavior
+	StackMapAnalyzer
+	StackMapFrame
+
+assembler/ir/attributes
+	AttributeNames
+	SourceAttribute and derived classes
+	BootstrapMethodsTableEntry
+	ExceptionTableEntry
+	InnerClassEntry
+	LineNumberTableEntry
+	LocalVariableTableEntry
+	MethodParameterEntry
+
+assembler/metadata
+	ClassFileReader : MetadataReader
+		(fields, methods, attributes, parser, scope, resolver)
+	ClasspathTypeLoader : ITypeLoader
+	CompositeTypeLoader : ITypeLoader
+	JarTypeLoader : ITypeLoader
+	CompilerTarget
+	CoreMetadataFactory : MetadataFactory
+	DynamicCallSite
+	MethodReference
+	(lots of interfaces)
+	JvmType
+	Label
+	MetadataParser
+	MetadataResolver
+	MethodBinder
+	MethodBody
+	MethodDefinition
+	MethodHandle
+	MethodReader
+	MethodReference
+	PackageReference
+	ParameterDefinition
+	ParameterReference
+	SwitchInfo
+	TypeDefinition(...)
+	TypeReference
+	VariableDefinition
+
+------------------
+
+Procyon.Decompiler
+
+	DecompilerDriver
+		- use MetadataSystem.lookupType
+			
+----------------------
+
+Procyon.Expressions
+
+compilerservices
+	Closure
+
+expressions
+	AnalyzedTree
+	Expression - derived classes
+	CatchBlock
+	CompilerScope
+	Delegate
+	ExpressionType
+	HoistedLocals
+	LabelInfo
+	LabelTarget
+	LambdaCompiler(AnalyzedTree, LambdaExpression)
+	StackSpiller
+
+-----------
+
+Procyon.Reflection
+
+reflection
+	Binder
+	CallingConvention
+	CapturedType
+	DynamicMethod
+	ErasedType
+	Resolver
+	RuntimeTypeCache
+	SignatureType
+	TypeBinder
+	TypeCache
+	Type<T>
+	TypeParser
+
+reflection/emit
+	AnnotationBuilder(MethodList)
+	CodeGenerator(MethodBuilder)
+	CodeStream
+	CompilationTarget
+	ConstructorBuilder
+	FieldBuilder
+	GenericParameterBuilder
+	LocalBuilder
+	MethodBuilder
+	OpCode
+	OperandType
+	ParameterBuilder
+	ScopeTree
+	StackBehaviour
+	TypeBuilder
+	Verifier
+
+
+util

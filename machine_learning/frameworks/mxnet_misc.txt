@@ -1,0 +1,35 @@
+
+mx.rnn.SequentialRNNCell
+mx.rnn.LSTMCell
+mx.rnn.ModifierCell
+mx.rnn.ResidualCell
+
+mx.sym.FullyConnected
+mx.sym.Activation
+mx.sym.Dropout
+mx.sym.Variable
+mx.sym.SequenceReverse
+mx.sym.Embedding
+
+------------------
+
+Model
+{
+	encoder
+	decoder
+}
+
+Encoder
+{
+	rnn
+}
+
+Decoder
+{
+}
+
+RNN 
+{
+	
+}
+

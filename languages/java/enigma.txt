@@ -1,0 +1,410 @@
+
+javassist ?
+procyon ?
+
+Deobfuscator
+
+JarIndex
+Mappings
+
+ClassMapping
+FieldMapping
+
+TranslatingTypeLoader
+Translator
+ClasspathTypeLoader
+
+CompilationUnit
+
+TypeReference
+TypeDefinition
+
+AstBuilder
+
+SourceIndex
+
+ClassEntry
+FieldEntry
+
+BridgeMarker
+MethodParameterWriter
+LocalVariableRenamer
+ClassTranslator
+=======================
+
+javassist.CtBehaviour, CtClass, CtField
+
+
+-----------------
+main
+
+
+Deobfuscator
+{
+	JarFile
+	JarIndex
+	Mappings
+	MappingsRenamer
+	Map<TranslationDirection, Translator> 
+
+	writeSources()
+	{
+		for each ClassEntry
+			deobfuscateEntry(c)
+	}
+
+	writeJar()
+	{
+		loader = new TranslatingTypeLoader(jar, jarIndex, getTranslator)
+		transformJar(ClassTransformer)
+	}
+
+	transformJar()
+	{
+		for each CtClass c
+		{
+			ClassTransformer.transform(c)
+		}
+	}
+
+	deobfuscateEntry(obfEntry) {
+		getTranslator().translateEntry(obfEntry)
+	}
+}
+
+TranslatingTypeLoader
+{
+	JarFile
+	JarIndex
+	Translator obfuscating
+	Translator deobfuscating
+	ClasspathTypeLoader 
+}
+
+-----------------
+bytecode
+
+ClassRenamer
+{
+	renameClasses()
+	renameAttributes()
+	...
+}
+
+ClassTranslator
+{
+	Translator
+
+	translate(CtClass)
+}
+
+InfoType
+{
+	remapIndex
+	gatherIndexTree
+}
+
+InnerClassWriter
+{
+	JarIndex
+}
+
+LocalVariableRenamer
+{
+}
+
+MethodParametersAttribute : javassist::AttributeInfo
+{
+}
+
+MethodParameterWriter
+{
+	Translator
+}
+-----------------
+
+bytecode/accessors
+
+-----------------
+gui
+
+-----------------
+analysis
+
+Access
+
+BridgeMarker
+
+DefaultMutableTreeNode
+-MethodInheritanceTreeNode(Translator, MethodEntry)
+-MethodImplementationsTreeNode(Translator, MethodEntry)
+-BehaviourReferenceTreeNode(BehaviourEntry, Translator, EntryReference, Access)
+-FieldReferenceTreeNode(Translator, FieldEntry, EntryReference, Access)
+-EntryReferenceTreeNode(entry, context)
+-ClassInheritanceTreeNode(Translator, ClassEntry)
+-ClassImplementationsTreeNode(Translator)
+
+JarIndex
+{
+}
+
+EntryRenamer
+
+SourceIndex
+{
+	String source
+	TreeMap<Token, EntryReference> tokenToReferences
+	MultiMap<EntryReference, Token>  referenceToTokens
+	Map<Entry, Token>  declarationToToken
+	List<> lineOffsets
+
+	getToken(AstNode)
+	addReference(AstNode, Entry deobfEntry, Entry deobfContext)
+	addDeclaration(AstNode, Entry deobfEntry)
+	replaceDeobfReference(Token, EntryReference)
+}
+
+RelatedMethodChecker
+{
+	JarIndex
+	Map<MethodEntry, String> deobjNamesByObfMethod
+	Map<Set of MethodEntry, String> deobjNamesByGroup
+	Map<MethodEntry, Set of MethodEntry> groupByObfMethod
+
+	checkMethod(ClassEntry, MethodMapping)
+
+}
+
+Token
+{
+}
+
+TranslationIndex
+{
+	Map<ClassEntry, ClassEntry> m_superclasses
+	MultiMap<ClassEntry, FieldEntry> fieldEntries
+	MultiMap<ClassEntry, BehaviourEntry> behaviourEntries
+	MultiMap<ClassEntry, ClassEntry> interfaces
+
+	resolveSuperclass()
+	resolveEntry()
+	renameClasses()
+}
+
+-----------------
+convert
+
+ClassForest
+{
+	ClassIdentifier
+	MultiMap<ClassIdentity, ClassEntry>
+}
+
+ClassIdentifier
+{
+	JarIndex
+	SidedClassNamer
+	TranslatingTypeLoader
+	Map<ClassEntry, ClassIdentity>
+}
+
+ClassIdentity
+{
+	ClassEntry
+	SidedClassNamer
+	Multiset<String> fields
+	Multiset<String> methods
+	Multiset<String> constructors
+	Multiset<String> implementations
+	Multiset<String> implements
+	ClassNameReplacer classNameReplacer
+	
+	getMatchScore(ClassIdentity)
+	getBehaviourSignature(CtBehaviour)
+}
+
+ClassMatch
+{
+	Set<ClassEntry> sourceClasses
+	Set<ClassEntry> destClasses
+}
+
+ClassMatches
+{
+	Collection<ClassMatch> matches
+	Map<ClassEntry, ClassMatch> matchesBySource
+	Map<ClassEntry, ClassMatch> matchesByDest
+	Map ambiguous
+	Map unmatched
+
+	indexMatch(ClassMatch)
+}
+
+ClassMatching
+{
+	ClassForest sourceClasses
+	ClassForest destClasses
+	BiMap<ClassEntry, ClassEntry> knownMatches
+
+	match()
+	matches()
+}
+
+ClassNamer
+{
+	Map sourceNames
+	Map destNames
+}
+
+FieldMatches
+{
+	BiMap<FieldEntry, FieldEntry> matches
+	MultiMap<ClassEntry, FieldEntry> matchedSourceFields
+	MultiMap<ClassEntry, FieldEntry> unmatchedSourceFields
+	MultiMap<ClassEntry, FieldEntry> unmatchedDestFields
+	MultiMap<ClassEntry, FieldEntry> unmatchableSourceFields
+
+	addMatch(FieldEntry, FieldEntry)
+	addUnmatchedSourceField
+
+	makeMatch(FieldEntry, FieldEntry)
+}
+
+MappingsConverter
+{
+	computeClassMatches(JarFile source, JarFile dest)
+	computeMatching(JarFile source, JarIndex source, JarFile dest, JarIndex dest, BiMap<ClassEntry, ClassEntry> knownMatches)
+	Mappings newMappings(ClassMatches, Mappings, Deobfuscator src, Deobfuscator dest)
+	ClassMapping migrateClassMapping()
+	canMigrate()
+	convertMappings(Mappings, BiMap)
+	computeMemberMatches(Deobfuscator dest, Mappings destMappings, ClassMatches classMatches)
+	collectMatchedFields(MemberMatches memberMatches, ClassMapping destClassMapping, ClassMatches classMatches)
+	translate()
+	applyMemberMatches()
+	getSourceEntryFromDestMapping(MemberMapping, ClassEntry)
+}
+
+MatchesReader
+{
+}
+
+MatchesWriter
+{
+}
+
+MemberMatches
+{
+	BiMap matches
+	MultiMap<ClassEntry, T> matchedSourceEntries
+	MultiMap<ClassEntry, T> unmatchedSourceEntries
+	MultiMap<ClassEntry, T> unmatchedDestEntries
+	MultiMap<ClassEntry, T> unmatchableSourceEntries
+
+	makeMatch()
+	unmakeMatch()
+}
+
+-----------------
+mapping
+
+Entry
+-ArgumentEntry(BehaviourEntry, int m_index, String m_name)
+-BehaviourEntry
+--ConstructorEntry(ClassEntry, Signature)
+--MethodEntry(ClassEntry, name, Signature)
+-ClassEntry(name)
+-FieldEntry(classEntry, name, Type)
+
+EntryFactory
+EntryPair (obj, deobf)
+
+Mappings
+{
+	Map<String, ClassMapping> classesByDeobf
+	Map<String, ClassMapping> classesByObf
+
+	Translator getTranslator(TranslationDirection, TranslationIndex)
+}
+
+ArgumentMapping(index, name)
+MemberMapping
+-FieldMapping(obfName, deobfName, Type obfType)
+ClassMapping(obfFullName, deobgName, fieldsByObf, fieldsByDeobf, methods, innerClasses...)
+MethodMapping(obfName, deobfName, obfSignature, Map<Integer, ArgumentMapping>
+
+MappingsChecking
+{
+	JarIndex
+	RelatedMethodChecker
+	Map<ClassEntry, ClassMapping> droppedClassMapping
+	Map<ClassEntry, ClassMapping> droppedInnerClassMapping
+	Map<FieldEntry, FieldMapping> droppedFieldMapping
+	Map<BehaviourEntry, MethodMapping> droppedMethodMapping
+}
+
+MappingsReader
+{
+}
+
+MappingsRenamer
+{
+	JarIndex 
+	Mappings 
+
+	markClassAsDeobfuscated(ClassEntry)
+	markFieldAsDeobfuscated(FieldEntry)
+	markMethodAsDeobfuscated(MethodEntry)
+	markArgumentAsDeobfuscated(ArgumentEntry)
+	moveMethodToObfClass
+	moveFieldToObfClass
+}
+
+MappingsWriter
+{
+}
+
+NameValidator
+{
+	Pattern identifierPattern
+	Pattern classPattern
+
+	validateClassName()
+	validateFieldName()
+	validateMethodName()
+	validateArgumentName()
+}
+
+ProcyonEntryFactory
+{
+}
+
+Signature
+{
+	List<Type> argumentTypes
+	Type returnType
+}
+
+SignatureUpdater
+{
+	update(Signature, ClassNameUpdater)
+}
+
+TranslationDirection
+
+Translator
+{
+	TranslationDirection
+	Map<String, ClassMapping>
+	TranslationIndex
+	ClassNameReplacer
+}
+
+Type
+{
+	getPrimitive()
+	getClassEntry()
+
+}
+
+-----------------
