@@ -28,8 +28,9 @@ Deal with
 3. Voice/Unvoiced speech (V-UV) classifier : Audio can have voice, unvoiced and silence components - called V/U/S classification
 4. Voice activity detection (VAD) aka Speech Activity detection (SAD).  This is more general problem than speech/nonspeech
 5. Speech/Music separation
-6. Endpoint detection : when did voice end
-7. Speaker identification
-8. ASR
-9. Music Genre classification
+6. Onset detection
+7. Endpoint detection : when did voice end
+8. Speaker identification
+9. ASR
+10. Music Genre classification
 

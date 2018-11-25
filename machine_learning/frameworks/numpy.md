@@ -11,7 +11,7 @@
 
 ## indexing
 
-### boolean
+### boolean indexing
 
 ```
 a = np.array(...)
@@ -42,5 +42,11 @@ x[start:stop:step]
 * np.vsplit
 * np.dsplit
 
+## broadcasting
 
+https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html
+
+## sorting on a column
+
+https://stackoverflow.com/questions/4455076/how-to-access-the-ith-column-of-a-numpy-multidimensional-array
 
