@@ -1,4 +1,18 @@
 
+# Lyft
+
+## Ref
+1. Sid Banerjee https://simons.berkeley.edu/talks/banerjee-ridesharing
+2. Pricing and Optimization in Shared Vehicle Systems Banerjee, Freund & Lykouris (2016) https://arxiv.org/abs/1608.06819
+
+## Dispatch problem
+
+input : ride request
+output : match
+aim : minimize missed req
+
+https://simons.berkeley.edu/talks/tba-38
+
 # Uber Rider-Driver matching
 
 Takeaway
