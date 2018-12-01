@@ -31,6 +31,7 @@ Deal with
 6. Onset detection
 7. Endpoint detection : when did voice end
 8. Speaker identification
-9. ASR
+9. Speaker source separation
+9. ASR (acoustic model + language model)
 10. Music Genre classification
 
