@@ -48,3 +48,13 @@
 * mitigation : dynamic discovery and download of tuning parameters
 * flip side is oscillations could get introduced 
  
+
+# Best practices
+
+https://github.com/katopz/best-practices/blob/master/best-practices-for-building-a-microservice-architecture.md
+
+# Conf
+
+strange loop
+Goto
+atscale
