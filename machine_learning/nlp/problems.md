@@ -11,3 +11,9 @@
 9. Textual entaiment (is sentence unrelated/related/contradictory to previous)
 10. two sentences have same meaning ? (tree lstm, skip thought)
 
+
+# low level problems
+1. find the tense of a senteence 
+2. is it formal or informal
+3. is it SVO, SOV tec
+4. active/passive voice
