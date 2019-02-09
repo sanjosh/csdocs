@@ -48,3 +48,4 @@ AI is new electricity
 
 Deep Learning school Bay Area 2016
 https://www.youtube.com/watch?v=F1ka6a13S9I&feature=youtu.be
+
