@@ -21,6 +21,8 @@ one epoch is when entire training dataset is passed ONCE forward and backward th
 
 https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network
 
+Leslie Smith paper on 1-cycle learning
+
 # activation
 
 data normalization, activation and loss func are important in determining accuracy
@@ -32,4 +34,3 @@ TODO how to embedding
 TODO padding
 
 optimizer just speeds up convergence
-

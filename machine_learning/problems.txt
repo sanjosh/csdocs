@@ -4,3 +4,8 @@ https://www.quora.com/What-are-the-Top-10-problems-in-Machine-Learning-for-2017
 http://scikit-learn.org/stable/tutorial/machine_learning_map/
 
 https://www.quora.com/What-is-the-main-difference-between-classification-problems-and-regression-problems-in-machine-learning
+
+1. https://en.wikipedia.org/wiki/Multi-label_classification
+2. https://en.wikipedia.org/wiki/Multiple_instance_learning
+3. https://en.wikipedia.org/wiki/Multiclass_classification
+4. https://en.wikipedia.org/wiki/One-class_classification
