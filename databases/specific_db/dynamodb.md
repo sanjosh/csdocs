@@ -1,5 +1,25 @@
 # DynamoDB
 
+# keys
+
+* partition key = hash key
+* sort key = range key - orders elements within partition
+* uniqueness decided solely by partition key
+
+# secondary index
+
+* need not be unique
+* every item need not have the indexed attribute set (i.e. index can be sparse)
+* projected attributes = same as covering index
+
+# LSI
+
+has same partition key but different sort key
+
+# GSI
+
+has different partition and sort key
+
 ## global table
 
 replication across regions
