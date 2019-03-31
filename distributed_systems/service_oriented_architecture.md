@@ -1,4 +1,9 @@
 
+# SOA patterns
+
+https://afedyanin.wordpress.com/pages/soa-patterns/
+https://www.amazon.co.uk/SOA-Patterns-Arnon-Rotem-Gal-Oz/dp/1933988266/
+
 # Why SOA
 
 * services can scale independently
@@ -58,3 +63,4 @@ https://github.com/katopz/best-practices/blob/master/best-practices-for-building
 strange loop
 Goto
 atscale
+
