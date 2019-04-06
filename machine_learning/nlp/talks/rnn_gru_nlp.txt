@@ -1,0 +1,19 @@
+
+(Gail Weiss ACL 2018, Practical Computation power of RNN for Language Recognition)
+
+LSTM and IRNN can also count; GRU and SRNN cannot count
+
+LSTM can recognize a^n.b^n.c^n but not GRU
+
+For NMT, LSTM better at capturing target length
+
+LSTM more like counter machine - more than just FSM
+K-Counter machine 
+
+GRU = interpolation between prev & next state
+LSTM = addition between prev & new state
+
+github.com/tech-srl/counting_dimensions
+tinyurl.com/ybjkumrz
+
+
