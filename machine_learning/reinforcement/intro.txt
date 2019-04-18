@@ -1,0 +1,61 @@
+
+# David Silver RL course
+
+## Part 1 
+
+1. no supervisor; only reward signal
+2. feedback is delayed
+3. time matters
+4. actions affect subsequent data
+
+History H sequence of actions, observations, rewards
+
+H = A1, O1, R1, A2, O2, R2
+
+---------
+
+multiagent systems ?
+
+--------
+
+environment state is not known
+
+Markov property - do not need to know full history
+
+How to define agent state
+
+Fully observable env 
+1. agent state = env state = info state
+2. This is Markov decision process (MDP)
+
+Partially observable env
+1. agent state not equal env state
+2. this is called Partial observable MDP
+3. agent must maintain complete history, or keep beliefs of env, or use RNN
+
+RL agent may have
+1. Policy :  Map : State -> action
+2. Value func : how good is each state; prediction of future reward. Map : state -> reward
+3. Model : representation of env : 
+
+NOTE How do you know set of all states ?  Or if 2 states are equivalent ?
+
+NOTE assumes environment is not changing
+
+Categorizing RL agents
+1. Value based : act based on value func
+2. policy based : 
+3. Actor critic model : policy + value func
+
+Another
+1. Model free :  policy or value func - do not understand how environment works
+2. Model based
+
+Problems
+1. learn env
+2. explore exploit dilemma
+
+
+
+
+
