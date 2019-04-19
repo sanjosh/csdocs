@@ -1,4 +1,10 @@
 
+# Mysql sharding
+
+Twitter built Gizzard, github built Spokes, youtube built Vitess
+
+# Vitess 
+
 read replica
 write sharding
 disaster recovery
