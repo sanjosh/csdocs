@@ -28,3 +28,6 @@ Shang Lu Li Neural responding machine for short text conversation ACL 2015
 Stephen Merity 2016 softmax with pointers to context words (Pointer sentinel mixture model)
 
 https://youtu.be/oGk1v1jQITw?t=2594 (progress in variational LSTM)
+
+This lecture (by Graham Neubig) for CMU CS 11-747, Neural Networks for NLP (Spring 2019) covers:
+https://www.youtube.com/watch?v=pmcXgNTuHnk&list=PL8PYTP1V4I8Ajj7sY6sdtmjgkt7eo2VMs

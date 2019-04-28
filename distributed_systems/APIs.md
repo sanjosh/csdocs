@@ -12,29 +12,32 @@
 2. future
 2. async await
 
+# Batch API
+
+1. separate the batch completion response from individual item error code
+2. return separate list for success and error
+3. support identifier for each item in batch to establish correspondence with batch response
+4. return the max supported batch size
+
 # Failure, Retry, idempotency
 
-error code or exception ?
-
-is exception propagated across network
-
-idempotency
+1. error code or exception ?
+2. is exception propagated across network
+3. idempotency
 
 # use case specific
 
-mobile friendly like GraphQL
+1. mobile friendly like GraphQL
+2. allow batching/collapsing multiple calls for performance
 
-batching/collapsing multiple calls for performance
+# ADT/Grammar
 
-# ADT
+1. support for strongly typed 
+2. Fluent API 
+3. CRUD
+4. REST
 
-support for strongly typed 
+# Versioning support
 
-# Grammar
-
-1. Fluent API 
-2. CRUD
-3. REST
-
-# Versioning
+# Introspection support
 
