@@ -14,5 +14,11 @@ some algorithms:
 2. TWAP (Time-Weighted Average Price)
 3. VWAP (Volume-Weighted Average Price)
 
-
 http://www.turingfinance.com/algorithmic-trading-system-architecture-post/
+
+On any given trading day, liquid markets generate thousands of ticks which form the high frequency data. By nature, this data is irregularly spaced in time and is humongous compared to the regularly spaced end-of-the-day (EOD) data.
+
+https://www.quantinsti.com/blog/a-brief-glimpse-into-high-frequency-data-features
+
+Time series database to store ticks
+
