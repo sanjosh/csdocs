@@ -33,13 +33,6 @@ discriminator.trainable = false
 gan.train(fake images, real labels) // forces Generator to generate real images due to loss, and since weights in discriminator are held fixed
 
 
-## Problems
-
-1. Finding equilibria harder than just optimizing loss
-2. Non-convergence : mode collapse
-3. Differentiability requirements
-
-(Ramanan Balakrishnan, Hitchhiker's Guide to GAN, Anthill inside)
 
 ## Generate fake images
 
@@ -67,3 +60,4 @@ https://www.oreilly.com/ideas/generative-model-using-apache-mxnet
 3. Goodfellow. Generative Adversarial Networks https://arxiv.org/abs/1406.2661
 4. https://blog.openai.com/generative-models/
 5. Goodfellow. GAN.  NIPS 2016 tutorial (https://arxiv.org/pdf/1701.00160.pdf, https://www.youtube.com/watch?v=AJVyzd0rqdc)
+
