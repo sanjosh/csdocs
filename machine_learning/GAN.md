@@ -19,6 +19,20 @@ the discriminator net used maxout activations.
 
 Dropout was applied in training the discriminator net.
 
+# Practical
+
+gan = Model(discriminator + generator)
+
+in every batch
+
+discriminator.trainable = true
+discriminator.train(fake images, fake labels) // discriminator is perfected
+discriminator.train(real images, real labels)
+
+discriminator.trainable = false
+gan.train(fake images, real labels) // forces Generator to generate real images due to loss, and since weights in discriminator are held fixed
+
+
 ## Problems
 
 1. Finding equilibria harder than just optimizing loss

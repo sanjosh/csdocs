@@ -23,19 +23,40 @@
 
 1. error code or exception ?
 2. is exception propagated across network
-3. idempotency
+3. idempotency token or client generated identifier
 
 # use case specific
 
 1. mobile friendly like GraphQL
-2. allow batching/collapsing multiple calls for performance
+2. allow chaining or batching multiple calls for network performance
 
-# ADT/Grammar
+# ADT/Grammar of the API
 
 1. support for strongly typed 
 2. Fluent API 
 3. CRUD
 4. REST
+5. Functional
+
+## Functional API
+
+options to support multiple use-cases
+1. multiple API function
+2. pass config struct
+3. variadic arguments
+4. functional - customize by applying functions on the new object, instead of config param
+
+satisfies
+1. sensible defaults
+2. is highly configurable
+3. can grow over time
+4. self documenting
+5. safe for newcomers
+6. and never requires nil or an empty value to keep the compiler happy
+
+https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
+
+https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
 
 # Versioning support
 
