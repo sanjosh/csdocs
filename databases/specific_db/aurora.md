@@ -1,6 +1,7 @@
 
+# Aurora perf
 * caching moved outside database - warm restart
-* aws aware
+* AWS aware
 * multi-az shared storage
 
 HOW
@@ -9,3 +10,19 @@ HOW
 * async
 * lockfree
 * batch
+
+# Aurora overview
+
+* Serverless - auto-scaling if cpu util above 70 perc
+* stuck on mysql 5.6
+* encrypted
+* bulk load from S3
+* invoke aws lambda 
+* replica
+* backtrack
+* cloning
+* restore snapshot
+* parallel overview
+
+
+

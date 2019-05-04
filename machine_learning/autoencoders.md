@@ -49,6 +49,11 @@ Learn L(x, g(f(x'))) where x' is corrupted copy of x
 
 Denoising autoencoders must undo this corruption rather than simply copying their input.  They are an example of how overcomplete, high-capacity models may be used as autoencoders so long as care is taken to prevent them from learning the identity function.
 
+## Variational Autoencoders
+
+Carl Doersch.  tutorial on variational autoencoders
+https://arxiv.org/pdf/1606.05908.pdf
+
 ## Deep encoder and decoder
 
 Depth can exponentially reduce the computational cost of representing some

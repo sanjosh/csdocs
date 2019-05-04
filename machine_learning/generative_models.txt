@@ -1,5 +1,0 @@
-
-Using Variational Autoencoders
-
-Carl Doersch.  tutorial on variational autoencoders
-https://arxiv.org/pdf/1606.05908.pdf

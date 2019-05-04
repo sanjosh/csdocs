@@ -1,9 +1,14 @@
 
-generative learns joint probability p(x,y) where y is label for x and then uses Bayes rule to find posterior
+# generative 
+
+learns joint probability p(x,y) where y is label for x and then uses Bayes rule to find posterior
+
 1. naive bayes
 2. HMM
 
-discriminative learns conditional probability P(y | x) - learn posterior directly
+# discriminative 
+
+learns conditional probability P(y | x) - learn posterior directly
 1. logistic regression (naive bayes)
 2. conditional random fields (HMM)
 

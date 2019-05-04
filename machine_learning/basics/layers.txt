@@ -2,19 +2,24 @@
 Convolutional layer
 
 -----
-Pooling layer
+ 
+# Pooling layer
+
 aggregate regions that are spaced "s" neurons apart, where s = stride length. 
 mean
 max
 make network translation-invariant
 
 -----
-Output layer
+ 
+# Output layer
+
 for classification problems, each neuron's value lies in [0, 1]
 
 -------
 
-Neural net
+# Neural net
+
 0. Linear : no hidden layers equiv to linear logistic regression.  assumes input data is linearly separable.
 1. Fully connected  : ignore spatial structure
 2. CNN : learn local feature
