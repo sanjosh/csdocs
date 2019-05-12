@@ -1,1 +1,0 @@
-http://www.quora.com/What-is-the-difference-between-transfer-learning-domain-adaptation-multi-task-learning-and-semi-supervised-learning

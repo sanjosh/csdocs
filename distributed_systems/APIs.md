@@ -4,7 +4,12 @@
 1. sync
 2. async (callback, future, async-await)
 3. batch
-4. streaming response
+4. streaming request and/or response
+
+# Invocation domain
+
+1. Network 
+2. In-process
 
 # Async API
 
@@ -58,7 +63,19 @@ https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis
 
 https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design.html
 
-# Versioning support
+# API Versioning support
 
 # Introspection support
+
+# Security
+
+1. Authentication
+2. authorization
+
+# Examples
+
+1. gRPC
+2. Thrift
+3. GraphQL
+4. REST
 

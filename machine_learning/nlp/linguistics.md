@@ -3,7 +3,7 @@
 # Language differences
 
 1. Gender conjugation : German has it; not english
-2. Reordering of Subject-verb-object : English to Japanese
+2. SVO order (e.g., English), SOV order (e.g., Bengali and Turkic), VSO order (e.g., Tagalog and Berber), and even VOS order (e.g., Malagasy).
 3. noun declension/inflection : due to number (plural) or possession (genitive)
 4. verb inflection (conjugation) : 
 5. adjective :
