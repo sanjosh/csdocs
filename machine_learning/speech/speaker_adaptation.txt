@@ -1,0 +1,23 @@
+
+Speaker adaptation
+
+Speaker encoding
+
+Voice cloning versus Voice conversion
+
+https://avdnoord.github.io/homepage/vqvae/
+VQ-VAE - Neural Discrete Representation learning
+https://arxiv.org/abs/1711.00937
+
+Sercan Arik Neural Voice cloning with a few samples
+https://arxiv.org/pdf/1802.06006.pdf
+
+Anthony Perez, Style transfer for prosodic speech
+http://web.stanford.edu/class/cs224s/reports/Anthony_Perez.pdf
+
+Dabi Ahn Voice conversion with non-parallel data
+https://github.com/andabi/deep-voice-conversion
+
+https://google.github.io/tacotron/publications/speaker_adaptation/index.html
+
+https://www.reddit.com/r/MachineLearning/comments/awmjm8/d_how_long_are_we_from_voice_style_transfer_voice/

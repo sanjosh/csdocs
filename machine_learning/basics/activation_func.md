@@ -1,5 +1,25 @@
 
 
+## linear
+
+## sigmoid
+
+classification func with cross entropy loss
+
+gradient comes close to 0 for high & low values making learning slow
+
+## tanh
+
+rescaled sigmoid
+
+## ReLU
+
+## Softmax
+
+https://machinelearninginterview.com/topics/deep-learning/what-are-the-commonly-used-activation-functions-when-are-they-used/
+
+---------------
+
 1. sigmoid
 2. ReLU
 3. tanh
@@ -7,15 +27,6 @@
 5. linear rectification (max{0, x})
 
 https://towardsdatascience.com/activation-functions-neural-networks-1cbd9f8d91d6
-
----------------
-
-1. Learning rate
-2. Epoch : when entire dataset passed back & forth ONCE through neural network 
-3. Batch size : number of training examples per batch (depends on GPU/CPU)
-4. Iterations  :  number of batches needed to complete one epoch
-
-https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9
 
 ---------------
 
@@ -27,3 +38,7 @@ https://towardsdatascience.com/epoch-vs-iterations-vs-batch-size-4dfb9c7ce9c9
 The former two choices are saturating activation functions because their derivatives approach zero as x → ±inf, which can cause gradient-based optimization algorithms to converge slowly. The derivative of the linear rectification function does not diminish as x → +inf, which helps avoid this “vanishing gradient problem” and often results in faster training and better performance (Nair & Hinton 2010). Neurons with this activation function are called rectified linear units (ReLU).  
 
 (Shallue and Vanderburg, Exoplanets with deep learning)
+
+---------------
+
+
