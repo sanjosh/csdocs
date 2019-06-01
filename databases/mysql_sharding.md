@@ -1,7 +1,12 @@
 
 # Mysql sharding
 
-Twitter built Gizzard, github built Spokes, youtube built Vitess
+1. Twitter Gizzard, 
+2. github Spokes, 
+3. youtube Vitess, 
+4. Pinterest
+
+https://medium.com/@Pinterest_Engineering/sharding-pinterest-how-we-scaled-our-mysql-fleet-3f341e96ca6f
 
 # Vitess 
 
@@ -30,7 +35,9 @@ sharding is a noSQL concept
 in Relational, you have primary keys, secondary indexes - unique & non-unique, foreign keys
 
 In vitess, every row is range sharded by keyspace id 
+
 it is not physical column
+
 you can define multiple mapping func; its pluggable
 
 how to have auto-incr => use sequence
