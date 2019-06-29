@@ -4,4 +4,18 @@ The Support Vector Method For Novelty Detection by Schölkopf et al. basically s
 
 The method of Support Vector Data Description by Tax and Duin (SVDD) takes a spherical, instead of planar, approach. The algorithm obtains a spherical boundary, in feature space, around the data. The volume of this hypersphere is minimized, to minimize the effect of incorporating outliers in the solution.
 
+##  Misc
+
+Now, SVMs are max-margin methods, i.e. they do not model a probability distribution. 
+
+find a function that is positive for regions with high density of points, and negative for small densities.
+
+https://stats.stackexchange.com/questions/99162/what-is-one-class-svm-and-how-does-it-work
+
+The idea is to have an estimate of he support of the (unknown) probability distribution from which the samples have been obtained.
+
+https://stats.stackexchange.com/questions/323593/how-does-a-one-class-svm-model-work
+
+https://en.wikipedia.org/wiki/One-class_classification
+
 
