@@ -119,3 +119,4 @@ Monitor output prediction
 4. https://nishkalavallabhi.github.io/NLPProductionThoughts/
 5. Michelangelo from Uber https://eng.uber.com/michelangelo/
 6. Sculley. Hidden Technical Debt in Machine Learning Systems NIPS
+7. https://www.reddit.com/r/MachineLearning/comments/c83emm/d_other_cautionary_papers_on_taking_ml_to/
