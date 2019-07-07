@@ -9,23 +9,6 @@ speaker segmentation is finding the times when there is a change of speaker in t
 
 Speaker clustering consists in merging speech segments, detected by the speaker segmentation step, related to a same speaker.
 
-
-===========
-
-Tritschler and Gopinnath proposed the use of the Bayesian Information Criterion (BIC) over mel-cepstrum coefficients (MFCCs) [4]. 
-
-Delacourt and Wellekens proposed a new two-pass segmentation technique called DISTBIC and improved performance by utilizing distance-based segmentation before applying the BIC [2]. 
-
-Ajmera et al introduced an alternative of the BIC which does not need tuning, and some heuristics [3]. 
-
-Meanwhile, novel features like the smoothed zero crossing rate (SZCR), the perceptual minimum variance distortionless response (PMVDR), and the filterbank log coefficients (FBLC) were introduced by Huang and Hansen [10]. 
-
-Another method is the so-called METRIC-SEQDAC [9]. 
-
-Finally, a hybrid algorithm was proposed, which combines metric-based segmentation with the BIC criterion and model-based segmentation with Hidden Markov Models (HMMs) [7].
-
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.107.5878&rep=rep1&type=pdf
-
 =========
 
 Speaker Clustering Based on Bayesian Information Criterion
@@ -95,3 +78,6 @@ https://publications.idiap.ch/downloads/reports/2004/rr04-35.pdf
 
 
 http://rvlasveld.github.io/blog/2013/07/12/introduction-to-one-class-support-vector-machines/
+
+Zhenhao Ge, et al Speaker change detection using features through a neural network speaker classifier
+
