@@ -15,7 +15,17 @@
 
 1. callback
 2. future
-2. async await
+3. async await
+
+## issues
+1. chaining
+2. error handling
+
+## References
+
+1. https://www.youtube.com/watch?v=9YkUCxvaLEk
+2. https://hackernoon.com/javascript-promises-and-why-async-await-wins-the-battle-4fc9d15d509f
+
 
 # Batch API
 
@@ -29,6 +39,10 @@
 1. error code or exception ?
 2. is exception propagated across network
 3. idempotency token or client generated identifier
+4. dont log and throw
+5. catch specific first
+6. wrap exception without consuming it
+
 
 # use case specific
 

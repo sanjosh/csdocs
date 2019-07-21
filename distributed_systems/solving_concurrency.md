@@ -25,4 +25,14 @@ No shared mem :
 1. operation based
 2. state based
 
+# Actor model
+
+## problems
+
+1. livelocks
+2. non-determinism coming from waiting for multiple channels
+3. use of buffered vs unbuffered channels
+
+https://blog.acolyer.org/2019/05/17/understanding-real-world-concurrency-bugs-in-go/
+
 
