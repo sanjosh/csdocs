@@ -15,8 +15,20 @@
 * Bidirectional
 * hub labeling algo
 
+# facebook
+
+road detection = semantic segmentation using D-LinkNet architecture (DeepGlobe Satellite Road Extraction Challenge). 
+
+output = rasterized map 
+
+followed by Vectorization and postprocessing techniques 
+
+which convert them into road vectors compatible with geospatial databases such as OSM.
+
+https://ai.facebook.com/blog/mapping-roads-through-deep-learning-and-weakly-supervised-training/
 
 # ref
 
 1. https://www.quora.com/How-does-the-algorithm-of-Google-Maps-work
 2. http://www.drdobbs.com/architecture-and-design/priority-queues-for-motorists/184405153
+
