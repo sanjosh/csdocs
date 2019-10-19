@@ -1,0 +1,16 @@
+
+In a CNN, the receptive field can be increased using different methods such as: stacking more layers (depth), subsampling (pooling, striding), filter dilation (dilated convolutions),
+
+http://blog.christianperone.com/2017/11/the-effective-receptive-field-on-cnns/
+
+
+The tuned hyper parameters include the learning rate, weight decay, the number of hidden layers (between 1-2), dropout probabilities and the number of nodes in all layers.
+
+https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/42455.pdf
+
+cost function in the backpropagation algorithm must satisfy two properties:
+1. The cost function must be able to be written as an average.
+2. The cost function must not be dependent on any activation value of network beside the output layer.
+
+
+https://towardsdatascience.com/feed-forward-neural-networks-c503faa46620

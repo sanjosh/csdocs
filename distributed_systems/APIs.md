@@ -23,9 +23,10 @@
 
 ## References
 
-1. https://www.youtube.com/watch?v=9YkUCxvaLEk
+1. Wes Bos. DotJs 2017 https://www.youtube.com/watch?v=9YkUCxvaLEk
 2. https://hackernoon.com/javascript-promises-and-why-async-await-wins-the-battle-4fc9d15d509f
-
+3. https://medium.com/@ThatGuyTinus/callbacks-vs-promises-vs-async-await-f65ed7c2b9b4
+4. https://medium.com/front-end-weekly/callbacks-promises-and-async-await-ad4756e01d90
 
 # Batch API
 

@@ -6,6 +6,12 @@ learns joint probability p(x,y) where y is label for x and then uses Bayes rule 
 1. naive bayes
 2. HMM
 
+types of generative :
+
+1. GANs
+2. Flow Models
+3. Autoregressive Models 
+
 # discriminative 
 
 learns conditional probability P(y | x) - learn posterior directly

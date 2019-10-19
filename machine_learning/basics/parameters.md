@@ -19,6 +19,12 @@ one epoch is when entire training dataset is passed ONCE forward and backward th
 
 # learning rate
 
+if the learning rate is too high, our loss will start jumping all over the place and never converge.
+if the learning rate is too small, the model will take way too long to converge,
+
+https://blog.nanonets.com/hyperparameter-optimization/
+
+
 https://stats.stackexchange.com/questions/164876/tradeoff-batch-size-vs-number-of-iterations-to-train-a-neural-network
 
 Leslie Smith paper on 1-cycle learning

@@ -13,6 +13,8 @@
 
 # Conditional GAN
 
+the generator learns to generate a fake sample with a specific condition or characteristics (such as a label associated with an image or more detailed tag) rather than a generic sample from unknown noise distribution
+
 # InfoGAN
 
 # BEGAN (Boundary equilibrium GAN)
