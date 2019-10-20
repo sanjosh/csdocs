@@ -60,4 +60,4 @@ https://www.oreilly.com/ideas/generative-model-using-apache-mxnet
 3. Goodfellow. Generative Adversarial Networks https://arxiv.org/abs/1406.2661
 4. https://blog.openai.com/generative-models/
 5. Goodfellow. GAN.  NIPS 2016 tutorial (https://arxiv.org/pdf/1701.00160.pdf, https://www.youtube.com/watch?v=AJVyzd0rqdc)
-
+6. https://github.com/machinelearningmindset/Generative-Adversarial-Networks-Roadmap
