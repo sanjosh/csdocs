@@ -94,6 +94,12 @@ Ref [2]
 Envoy explicitly supports L7 protocol parsing and routing for HTTP/1, HTTP2, gRPC, Redis, MongoDB, and DynamoDB
 ```
 
+## HAProxy
+
+http://wtarreau.blogspot.com/2006/11/making-applications-scalable-with-load.html
+
+http://www.haproxy.org/download/1.2/doc/architecture.txt
+
 ## Google Maglev
 
 at Service start
