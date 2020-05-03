@@ -63,5 +63,4 @@ https://www.quora.com/How-do-we-train-a-classifier-for-which-we-only-have-1-a-se
 # SMOTE - Synthetic Minority Over-sampling Technique 
 
 
-
-
+https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/
