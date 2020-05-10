@@ -3,9 +3,12 @@
 
 A(K, V, Q) = softmax(Q.K_transpose).V
 
-query = input word
+query = input word 
 key = other words
 
+query = what you want to look for 
+key = what you can compare to 
+value = info you can retrieve 
 
 ## why not seq-to-seq
 
