@@ -97,6 +97,10 @@ encoding and decoding func are not simple; involve noise injection
 
 denoising autoencoders make the reconstruction function resist small but finite-sized perturbations of the input, while contractive autoencoders make the feature extraction function resist infinitesimal perturbations of the input.
 
+##  regularized autoencoder
+
+https://github.com/ParthaEth/Regularized_autoencoders-RAE-
+
 ## Applications
 
 ### Semantic hashing

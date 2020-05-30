@@ -69,6 +69,25 @@ in auto-encoder
 
 for GAN
 
+# Contrastive loss
+
+Contrastive losses [29] measure the similarities of sample pairs in a representation space.  Instead of matching an input to a fixed target, in contrastive loss formulations the target can varyon-the-fly during training and can be defined in terms of the data representation computed by a network[29].   Contrastive learning is at the core of several recent works on unsupervised learning 
+
+(Kaiming He, Momentum Contrast for Unsupervised Visual Representation Learning)
+
+# Adversarial loss
+
+Adversarial losses [24] measure the difference between probability distributions. It is a widely successful technique for unsupervised data generation 
+
+(Kaiming He, Momentum Contrast for Unsupervised Visual Representation Learning)
+
+# Noise resistant loss functions
+
+Label noise
+
+loss function based on mean absolute value of error is inherently robust to label noise.
+(Aritra Ghosh, Robust Loss Functions under Label Noise for Deep Neural Networks)
+
 # References
 
 https://towardsdatascience.com/common-loss-functions-in-machine-learning-46af0ffc4d23
