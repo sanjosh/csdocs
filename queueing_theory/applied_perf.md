@@ -45,7 +45,6 @@ how to improve scalability
 universal scalability law
 
 
-
 # Reference
-Kavya Joshi applied performance theory
-https://www.youtube.com/watch?v=M5r-IVxP-WI
+
+1. Kavya Joshi applied performance theory https://www.youtube.com/watch?v=M5r-IVxP-WI
