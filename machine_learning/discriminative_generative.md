@@ -12,6 +12,8 @@ types of generative :
 2. Flow Models
 3. Autoregressive Models 
 
+Energy based models https://en.wikipedia.org/wiki/Energy_based_model
+
 # discriminative 
 
 learns conditional probability P(y | x) - learn posterior directly
