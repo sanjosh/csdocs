@@ -1,9 +1,10 @@
 
 OPTIMAL SOLUTION
-* cache friendly data structures
 * succinct data structures
-* approximate/Synopsis  data structures
+* probabilistic/approximate/Synopsis  data structures
 * lockfree data structures
+* functional data structure (func prog)
+* cache friendly data structures
 * SIMD instructions
 * JIT 
 * Multicore/GPU
