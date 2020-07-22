@@ -3,7 +3,6 @@
 
 JSX
 
-
 props: parent to child
 
 state required for dynamic version of app

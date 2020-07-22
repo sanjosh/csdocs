@@ -55,6 +55,7 @@
 * Tabulation hashing
 
 ### Examples
+
 * Zobrist Hash (gaming - generate unique game position)
 
 #	Fuzzy hash
@@ -65,6 +66,15 @@
 * Geometric hash (detect image transformation)
 * PhotoDNA
 
+# gradations of hashing
+
+https://github.com/facebook/ThreatExchange/blob/master/hashing/hashing.pdf
+
+* Exact hash : MD5, Sha-256
+* Syntactic : PhotoDNA, dHash, aHash, pHash, PDQ
+* Deeper Syntactic : GIST, SIFT
+* Semantic : ML algo
+
 # Semantic Hashing
 
 Using Autoencoders (Goodfellow, Deep Learning Chap 14, Salakhutdinov and Hinton , 2007b , 2009b )
@@ -74,6 +84,7 @@ for textual input (Salakhutdinov and Hinton , 2007b , 2009b )
 for images (Torralba et al., 2008 ; Weiss et al., 2008 ; Krizhevsky and Hinton , 2011 ).
 
 # Misc
+
 * Rolling hash
 
 
