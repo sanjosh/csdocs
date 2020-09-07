@@ -15,7 +15,7 @@ The ratio in which each queue is serviced needs to be calculated
 | -----: |  -------:    | ------------:    | --------------:           |
 |  C1    |  T1          |   L1             |  1
 |  C2    |  T2          |   L2             | x2.  This is fraction between 0 and 1.  Decides how many Client_2 jobs will be serviced for every Client_1 job.   |
-|  C3    |  T3          |   L3             | x2.x3 x3.  This is fraction between 0 and 1.  Decides how many Client_3 jobs will be serviced for every Client_2 job |
+|  C3    |  T3          |   L3             | x2.x3  This is fraction between 0 and 1.  Decides how many Client_3 jobs will be serviced for every Client_2 job |
 
 
 the ratio (1 : x2 : x3) is ratio in which jobs picked from (C1 : C3 : c3) queues
@@ -56,4 +56,6 @@ The number of equations is less than number of variables, so we have to fix some
 
 Let x2 = 1/2 and x3 = 1/2
 
-Max queue length is directly proportional to the combination of (max timeout, priority)
+now we can replace these in above equations and solve for L1, L2 and L3
+
+Max queue length L_k is directly proportional to the combination of (max timeout, priority)
