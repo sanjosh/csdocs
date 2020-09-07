@@ -31,6 +31,7 @@ Given TPS, T1, T2 and T3
 We have to calculate L1, L2, L3 and x2, x3
 
 L2 = x2.L1 ; since x2 jobs of L2 will get serviced with each job of L1
+
 L3 = x3.L2 ; since x3 jobs of L3 will get serviced with each job of L2
 
 By Little’s law, Number of jobs = TPS x Timeout
@@ -38,16 +39,19 @@ By Little’s law, Number of jobs = TPS x Timeout
 *How many jobs will get serviced within T1 ? All jobs from C1 and some jobs from C2 and C3.*
 
 L1 + x2.L1 + x2.x3.L1 = TPS . T1
+
 L1 (1 + x2 + x2.x3) = TPS . T1
 
 *How many jobs will get serviced within T2 ?*
 
 L2 + L2/x2 + L2.x3 = TPS . T2
+
 L2 ( 1 + x2 + x2.x3) = TPS . T2 . x2
 
 *How many jobs will get serviced within T3 ?*
 
 L3 + L3/x3 + L3/x2.x3 = TPS . T3
+
 L3 (1. + x2 + x2.x3) = TPS . T3 . x2.x3
 
 The number of equations is less than number of variables, so we have to fix some variables
