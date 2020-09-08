@@ -10,13 +10,32 @@ encoder-decoder
 
 Output of encoder = Attention vectors K & V
 
-## Multi head attention
+## Transformer talk
 
-## Positional encoding
+Leo Dirac 
+
+13 min : pseudo-code of attention  
+20 min : why RELU better
+
+https://www.youtube.com/watch?v=S27pHKBEp30
+
+## Multi head attention (learn multiple things)
+
+do attention 8 times with different Q, K, V matrices  
+
+lets network learn 8 different semantic meanings : grammar, vocab, conjugation  
+
+## Positional encoding (learn position; overcome bag of words problem)
 
 https://jalammar.github.io/illustrated-transformer/
 
 https://arxiv.org/abs/1706.03762
+
+16 min : used Fourier; added word embedding and position embedding
+
+this lets the model reason above position
+
+https://www.youtube.com/watch?v=S27pHKBEp30
 
 
 # ELMO
@@ -50,6 +69,7 @@ http://nlp.fast.ai/classification/2018/05/15/introducting-ulmfit.html
 1. Use encoders from transformer
 2. Use WordPieces as input tokens instead of words
 3. Masks
+
 
 # References
 
