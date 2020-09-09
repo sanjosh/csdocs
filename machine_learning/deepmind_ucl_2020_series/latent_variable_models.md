@@ -43,6 +43,12 @@ max likelihood : chose parameter values that maximize probability of the trainin
 
 no closed form solution therefore use iterative algorithm like EM or gradient descent
 
+tractable inference is possible even though exact inference hard
+1. mixture model
+2. linear gaussian model
+3. invertible model (normalizing flow)
+
+Do you want the wrong answer to the right question or the right answer to the wrong question? --David Blei
 
 ## implicit 
 
