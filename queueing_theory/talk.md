@@ -20,8 +20,6 @@ resp time = service time/ (1 - utilization)
 plot curve for fixed service time
 http://www.treewhimsy.com/TECPB/Articles/SevenInsights.pdf
 
-how many servers needed at tp99 as opposed to tp95
-https://math.stackexchange.com/questions/702121/m-m-3-queue-reducing-wait-time-by-adding-servers
 
 number of threads formula in java concurrency in action book
 
