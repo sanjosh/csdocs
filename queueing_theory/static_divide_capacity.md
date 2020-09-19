@@ -20,6 +20,8 @@ The ratio in which each queue is serviced needs to be calculated
 
 the ratio (1 : x2 : x3) is ratio in which jobs picked from (C1 : C3 : c3) queues
 
+these numbers should be decided based on arrival rate from C1, C2, C3
+
 * C1 : 1
 * C2 : x2
 * C3 : x2.x3
@@ -56,7 +58,7 @@ L3 (1. + x2 + x2.x3) = TPS . T3 . x2.x3
 
 The number of equations is less than number of variables, so we have to fix some variables
 
-*Lets fix the ratio in which we service different clients/queues*
+*Lets fix the ratio of arrival rates from different clients/queues*
 
 Let x2 = 1/2 and x3 = 1/2
 

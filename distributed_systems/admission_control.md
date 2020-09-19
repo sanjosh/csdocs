@@ -1,5 +1,24 @@
 
-# data structures for admission controls
+
+# Problem of admission control for jobs with different deadlines
+
+ensure total accepted jobs do not exceed capacity
+1. Multiple clients sending jobs with different deadlines
+2. On-demand variable load.  No available forecast of when next job is expected.
+
+## Solution : keep a diary/calendar
+
+keep "pending jobs" data structure sorted by time, containing available slots
+
+this can be a circular queue/bitmap with length equal to "2 * max_deadline"
+
+when you get new request with some deadline, walk back the "pending jobs" structure and reserve a slot
+
+If a high priority client does not find an empty slot, it can overwrite the earliest booked slot which was assigned to a low priority client
+
+As jobs are completed, mark the earliest slot you find as "free" (may not be current)
+
+# Data structures for admission control problem
 
 Time slotted array https://ieeexplore.ieee.org/document/5204837
 
