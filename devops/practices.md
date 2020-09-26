@@ -1,9 +1,11 @@
 
-deploy in single box with separate metrics with bake time 
-auto rollback on failure
+canary : 
+1. deploy in single box with separate metrics with bake time 
+2. auto rollback on failure
 
-test exceeds max tps 
-dependency failure (increase dependency timeout, dependency down)
-some hosts failed test
-clean slate test - all new host test with libraries installed afresh
-OOM test
+Tests
+1. test exceeds max tps 
+2. dependency failure (increase dependency timeout, dependency down)
+3. some hosts failed test
+4. clean slate test - all new host test with libraries installed afresh
+5. OOM test
