@@ -37,3 +37,9 @@ https://github.com/pymc-devs/pymc
 
 https://github.com/probml/pmtk3
 
+stan
+
+edward
+
+pyro
+

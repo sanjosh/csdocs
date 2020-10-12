@@ -83,6 +83,7 @@ handling thundering herd, bursts : high peak to average ratio
 * allow expiration via TTL
 * allow cancelationf from publisher
 * versioning, in case older expired message is read
+* break down tasks to process partially
 
 # TODO
 1. Ford, et al. Availability in Globally Distributed Storage Systems. Google Inc
