@@ -29,7 +29,8 @@ Permit deletion
 
 support estimates of frequencies
 Replace bit vector with a vector of M counters.
-Attenuated Bloom filter
+
+# Attenuated Bloom filter
 
 Keep arrays of Bloom filters to store shortest path distance information
 
@@ -53,8 +54,12 @@ Each entry is not a bit but a counter
 # Count-Min sketches
 
 track counts associated with items,
+
 Same as Counting Bloom filter.  However, they are used differently and therefore sized differently: a count-min sketch typically has a sublinear number of cells, related to the desired approximation quality of the sketch, while a counting Bloom filter is more typically sized to match the number of elements in the set.
-Blocked Bloom filter
+
+
+# Blocked Bloom filter
+
 
 An array of small Bloom filters, each fitting in one CPU cache line. Each item is stored in only one of these small Bloom filters determined by hash partitioning
 
@@ -88,10 +93,13 @@ Use D-left hashing
 # Compressed Bloom filter
 
 Optimized for network transmission
+
 Count min sketch
+
 Space code bloom filter
 
 Measure approx size of traffic flows
+
 Use Maximum Likelihood Estimation (MLE) or Mean Value Estimation (MVE) to estimate multiplicity of y
 
 # Hierarchical Bloom filter
@@ -102,9 +110,10 @@ Block based Filter (BBF) : Break string into blocks.   Hash each block
 During query, query using various offsets upto the block size
 
 What is hashed ?
-Block digest  : hash (content)
-Offset digest : hash(content + offset)
-Payload digest : hash (content + offset + IP)
+
+* Block digest  : hash (content)
+* Offset digest : hash(content + offset)
+* Payload digest : hash (content + offset + IP)
 
 A Hierarchical Bloom filter (HBF) is simply a collection of BBFs for geometrically increasing block sizes
 
