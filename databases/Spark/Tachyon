@@ -1,0 +1,80 @@
+
+https://issues.apache.org/jira/secure/attachment/12706743/SparkOffheapsupportbyHDFS.pdf
+
+https://issues.apache.org/jira/browse/SPARK-9203
+
+Add support for APache Ignite
+
+https://issues.apache.org/jira/browse/SPARK-12667
+
+===========
+
+When you persist data to the OFF_HEAP storage level via 
+rdd.persist(StorageLevel.OFF_HEAP) it uses Tachyon to write that data 
+into Tachyon's memory space as a file. This removes it from the Java 
+heap thus giving Spark more heap memory to work with.
+
+http://stackoverflow.com/questions/29799762/is-tachyon-by-default-implemented-by-the-rdds-in-apache-spark
+
+===================
+
+Examples dir has 2 examples
+rdd.persist(OFF_HEAP)
+
+===================
+
+
+./core/src/main/scala/org/apache/spark/memory/
+
+See comments in package.scala
+
+JVM-wide memory manager + per-task Memory manager
+
+MemoryManager abstract
+  One per JVM
+  purpose : share memory between execution and storage 
+  execution mem = shuffle, join, sort
+  storage mem = cache and propagate data acros cluster
+
+  StaticMemoryManager - hard boundaries
+  UnifiedMemoryManager - soft boundaries
+
+on_heap
+off_heap = sun.misc.unsafe 
+
+MemoryPool abstract
+  StorageMemoryPool
+  ExecutionMemoryPool
+  
+
+=========
+
+rdd.persist(StorageLevel.OFF_HEAP)
+ - RDD.persist
+   - SparkContext.persistRDD
+     
+
+SparkContext.getRDDStorageInfo
+
+==========
+
+SparkContext.tachyonFolderName is unused
+==========
+
+BlockDataManager
+  BlockManager
+  {
+    memoryStore
+    diskStore
+    externalBlockStore
+  }
+
+BlockStoreManager
+
+BlockStore
+  MemoryStore
+  DiskStore
+  ExternalBlockStore
+    Tachyon
+
+ExternalBlockManager abstract

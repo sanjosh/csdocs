@@ -1,0 +1,37 @@
+
+SQL query processing
+
+Most commonly implemented is the Vector iterator model : each db op implements a common API (open/next/close).  Evaluation is driven by the top-most op which receives calls and propagates them.
+Suffers from lack of parallelism due to tuple-at-a-time processing.  Function call overhead.  Lack of loop pipelining since iteration is non-local.
+
+MonetDB/X00 processes columns in chunks.  Ensure live vectors fit in CPU cache.
+
+Operators in parse tree:
+Scan
+Project
+Aggregate
+Select
+
+
+==========
+
+Postgres
+
+http://patshaughnessy.net/2014/10/13/following-a-select-statement-through-postgres-internals
+
+http://patshaughnessy.net/2015/11/24/a-look-at-how-postgres-executes-a-tiny-join
+
+http://patshaughnessy.net/2014/11/11/discovering-the-computer-science-behind-postgres-indexes
+
+4 phases of select execution
+pg_parse_query (parse)
+pg_analyze_and_rewrite (analyze and rewrite)
+pg_plan_queries (plan) - each node has cost 
+execute (execute)
+----ExecLimit
+	ExecSort
+	ExecSeqScan
+	ExecHashJoin
+
+===========
+

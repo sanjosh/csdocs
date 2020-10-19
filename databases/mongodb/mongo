@@ -1,0 +1,378 @@
+
+https://docs.mongodb.org/manual/contributors/server-guidelines/
+
+https://www.youtube.com/watch?v=bLTNAsrWzOI
+
+https://docs.mongodb.org/manual/contributors/server-resources/
+
+https://groups.google.com/forum/#!forum/mongodb-dev
+
+=======
+
+Database  -> n Collection
+Collection -> IndexCatalog
+
+CursorManager -> n ClientCursor
+
+OperationContext = txn
+
+Every OperationContext in a server with CurOp support has a stack of CurOp
+objects. The entry at the top of the stack is used to record timing and
+resource statistics for the executing operation or suboperation.
+
+OperationContext -> RecordCursor
+Each getmore on a cursor is a separate OperationContext
+Storage engines only need to implement the derived SeekableRecordCursor
+
+CurOp
+
+Command <- all derived commands in "commands" dir
+
+"ops" directory - internal execution of command
+"s" directory - sharding
+
+WriteOp, ChildWriteOp
+
+Document <-> BSONObj
+
+OperationContext <=> has 1 RecoveryUnit
+WriteUnitOfWork
+ 
+ServiceCOntext => owns one or more Clients
+getGlobalServiceContext()
+Client  => at most one OperationContext
+ClientBase - derived Client(server) and ClientInfo(shell)
+
+StorageEngine
+
+DbMessage/DbResponse - wire protocol
+
+In standalone mode, the client connection thread used for building indexes in the background.
+
+Record
+RecordId - must remain unique
+RecordStore <= is used to store index, catalog, collection
+
+A RecoveryUnit is responsible for ensuring that data is persisted.  All on-disk information must be mutated through this interface.
+
+SnapshotManager
+
+SortedDataInterface <- derive Any index 
+
+KVCatalog -> has RecordStore
+
+KVStorageEngine (derived from StorageEngine)
+  -- has KVEngine
+
+MMAPV1Engine (derived from StorageEngine)
+
+MongoFile
+===========
+
+AnyKVEngine : public KVEngine
+AnyStore : public RecordStore
+AnyUnit : public RecoveryUnit
+AnyCursor : public SeekableRecordCursor
+AnyIndex : public SortedDataInterface
+AnyParam : public ServerParameter
+AnySnap : public SnapshotManager
+
+===========
+
+base
+bson
+crypto
+client
+executor
+logger
+platform
+rpc
+s
+scripting
+stdx
+util
+	util/net
+		MessageHandler
+		MessageServer
+		View
+		Message
+
+db
+ ServiceContext 
+
+ db/auth
+
+ db/catalog  (calls db/storage)
+	Collection
+	IndexCatalog
+
+ db/commands  (calls db/query)
+   	exec commands recv from client
+	calls getExecutor
+
+ db/concurrency
+	LockManager - singleton
+
+ db/exec - query plan and execution   (calls db/catalog)
+	PlanStage : tree of data access and data transform
+	PlanExecutor
+	CanonicalQuery 
+	WorkingSet - all stages share working set
+	QuerySolution
+
+ db/ftdc - full time diagnostic data capture
+	take a set of BSON documents containing metrics, and
+	compress them into a highly compressed buffers
+
+ db/fts - text search
+
+ db/geo  - geo index
+
+ db/index
+	IndexAccessMethod and derived
+	calls engine-specific SortedDataInterface
+	IndexDescriptor
+
+ db/matcher - compare json with pattern
+	MatchExpression and derived
+	MatchableDocument
+	Matcher
+
+ db/modules - other storage engine
+
+ db/ops
+
+ db/pipeline
+	query execution
+	Expression - derived classes
+	Pipeline  - mongos and mongod
+	PipelineD
+
+ db/query (calls db/exec)
+
+ 	parse query
+	prepare query plan
+	
+	CanonicalQuery::canonicalize 
+		raw string -> CanonicalQuery
+
+	getExecutorUpdate/Delete/Find : 
+		CanonicalQuery::canonicalize
+		getExecutor
+
+	getExecutor : CanonicalQuery -> PlanExecutor
+		prepareForExecution : CanonicalQuery->QuerySolution
+			StageBuilder::build : QuerySolution -> PlanStage tree
+		PlanExecutor::make : CanonicalQuery -> PlanExecutor
+
+	LiteParsedQuery
+		BSONObj -> LiteParsedQuery 
+
+	QueryPlanner::plan
+		CanonicalQuery -> QuerySolution
+
+	QuerySolution = tree of QuerySolutionNodes
+
+	PlanExecutor::executePlan
+
+ db/repl
+
+ db/s (toplevel)
+
+ db/sorter
+
+ db/stats
+
+ db/storage
+
+=====
+
+Factory, Builder, Impl, Interface, Listener
+
+=======
+
+mongos - s/server.cpp
+	db/commands/core
+    s/commands/cluster_commands
+
+mongod - db/db.cpp
+   	db/commands/core
+   	db/mongodandmongos
+	s/commands/shared_cluster_commands
+	serverOnlyFiles
+
+	ServiceContextMongod - singleton 
+	
+
+===========
+
+BSON is a macro for calling BSONObjBuilder (bsonmisc.h)
+
+LiteParsedQuery
+CanonicalQuery
+
+fromjson : query string -> BSONObj
+MatchExpressionParser : BSONObj -> MatchExpression
+
+The expressions in a Mongo query are represented by the MatchExpression 
+class and its derived classes.  Complex expressions are represented by a
+tree of MatchExpressions
+
+The derived classes of MatchExpression are as follows:
+(indentation signifies derived class)
+(suffix MatchExpression omitted in all names )
+
+MatchExpression
+  ArrayMatchingMatchExpression
+    ElemMatchObject
+    ElemMatchValue
+    SizeMatch
+  AtomicMatchExpression
+  FalseMatchExpression
+  LeafMatchExpression
+	GeoMatch
+    GeoNearMatch
+    Regex, ModMatch, Exists, In
+    BitTest
+      BitAllSet, BitAllClear, BitAnySet, BitAnyClear
+    Comparison
+      LT, LTE, GT, GTE, Equality
+    TextMatchExpressionBase
+      TextNoOp
+  ListOfMatchExpression
+    And, Or
+  NotMatchExpression
+  TypeMatchExpression
+  WhereMatchExpressionBase
+    WhereMatchExpression
+    WhereNoOpMatchExpression
+
+=========
+
+Mongo follows the well-known Volcano iterator model for query execution.  It creates a parse tree followed by an execution tree, consisting of nodes which retrieve data from the storage and transform it. 
+
+The parsed query is represented by a tree of QuerySolutionNodes. This is transformed into a tree of PlanStages which is executed by the PlanExecutor.  Not
+ 
+Each PlanStage can have zero or more input streams but only one output stream.  The root node calls work() to initiate work down the tree.
+
+Data access is done at leaf nodes.  The leaf stages are 
+* CollectionScan (for data obtained directly from collection without matching index)
+* IndexScan (for data obtained from index)
+* QueuedDataStage (a pseudo-stage which returns data pushed into a queue)
+
+All Stages use a common WorkingSet which consists a set of records.  The records transition through three stages (LOC_AND_IDX, LOC_AND_OBJ, OWNED_OBJ)
+* An Index scan returns a record id in LOC_AND_IDX satte
+* A Collection Scan returns a working set id in LOC_AND_OBJ state
+* An OWNED_OBJ represents a record that has been invalidated or doesnt correspond to on-disk obj
+
+PlanStage::invalidate() & doInvalidate() is called to notify when a Record is going to be deleted so that all stages can invalidate any associated state.
+
+The various nodes in the parse tree and corresponding nodes in query execution tree are as follows:
+
+In the syntax "A -> B" below, "A" indicates QuerySolutionNode(parse tree), "B" indicates PlanStage(plan execution node)
+The number of PlanStage-type nodes is more than QuerySolutionNodes.
+
+FetchNode -> FetchStage : It contains the filter predicate MatchExpression.  In case a suitable index is not available for this query, this node is added above a collection scan node to do filtering (in planner_access.cpp) 
+
+SkipNode -> SkipStage : A skip clause in the query creates the to skips first n records.
+
+LimitNode -> LimitStage : Created by limit clause in query to limit result set to n records.
+
+An AND clause in the query creates the AND node to do index intersection of two or more index scans.
+MatchExpression::AND  
+  if sort by disk loc, then AndSortedNode -> AndSortedStage
+  else sort by hash -> AndHashNode -> AndHashStage
+
+An OR clause in the query creates the OR node
+MatchExpression::OR  (over two or more index scan)
+  if the sort order of child nodes is different -> MergeSortNode -> MergeSortStage (to merge multiple ixscans with OR clause)
+  if sort order is same -> OrNode -> OrStage
+
+SubplanStage - can OR queries be run as sub-queries
+
+if index scan cannot fulfill requested sort order of the query
+  SortNode -> SortStage (has SortKeyGeneratorStage as child to supply its sort keys)
+  SortKeyGeneratorNode -> SortKeyGeneratorStage 
+
+ProjectionNode -> ProjectionStage : If a projection is desired
+
+DistinctNode -> DistinctScan : if only distinct values are to be returned
+
+If only count is desired
+CountNode -> CountScan
+CountStage - getExecutorCount
+
+If group-by is desired (db.coll.group())
+GroupStage - created by GroupCommand 
+
+For geo-spatial queries, special nodes are created
+GeoNear2DNode -> GeoNear2DStage
+GeoNear2DSphereNode -> GeoNear2DSphereStage
+NearStage - geo index
+
+To merge docs which were deleted or updated during the query, mutations node are used
+KeepMutationsNode -> KeepMutationsStage 
+
+For text search, the following nodes are used
+TextNode -> TextStage
+TextMatchStage : returns documents which match full-text search, created by TextStage::buildtextTree
+TextOrStage - unused
+
+To delete a doc fetched by lower stage
+DeleteStage - created by getExecutorDelete 
+
+For updates/upsert to a doc
+UpdateStage - created by getExecutorUpdate 
+
+For collections which dont exist and for end of plan execution, use EOFStage 
+
+To use default "_id" index 
+IDHackStage node is used
+
+createRandomCursorExecutor in pipeline calls creates these nodes
+IndexIteratorStage - wrapper around cursor SortedDataInterface
+MultiIteratorStage - special stage used in ParallelCollectionScanCmd and repairCursor
+
+Mongo caches plans and has special nodes in the execution tree for them
+CachedPlanStage - to extract a plan from the PlanCache
+MultiPlanStage - when there are many possible plans, help choose one; CachedPlanStage::replan
+
+OplogStart - used in replication to walk backwards in a collection to find a document which matches query
+
+PipelineProxyStage - PipelineCommand
+ShardingFilterNode -> ShardFilterStage (to drop docs which are not part of shard)
+
+{
+  WorkingSet w;
+  PlanStage* root = makeQueryPlan(&w);
+  while (!root->isEOF())
+  {
+    case PlanStage::ADVANCED
+    case PlanStage::IS_EOF
+	case PlanStage::NEED_TIME
+	case PlanStage::FAILURE
+  }
+}
+  
+==============
+
+In capped collections, documents are oriented on disk according to insertion order.
+
+WorkingSet has set of records
+
+===
+
+analyzeDataAccess
+	
+top-down organization of query nodes (not confirmed)
+ShardingFilterNode
+KeepMutationsNode
+ProjectNode
+SkipNode
+LimitNode
+
+Collection->infoCache->PlanCache
+
+PlanStageStats
+CommonStats
+SpecificStats

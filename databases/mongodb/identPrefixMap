@@ -1,0 +1,54 @@
+
+identPrefixMap
+
+MESSAGE ident key=_mdb_catalog:value=2
+ MESSAGE ident key=collection-0--579245872126583610:value=6
+ MESSAGE ident key=collection-0-3185446762899902400:value=3
+ MESSAGE ident key=collection-13--579245872126583610:value=19
+ MESSAGE ident key=collection-19--579245872126583610:value=25
+ MESSAGE ident key=collection-2--579245872126583610:value=8
+
+MESSAGE ident key=index-18--579245872126583610:value=24
+ MESSAGE ident key=index-20--579245872126583610:value=26
+  MESSAGE ident key=index-21--579245872126583610:value=27
+   MESSAGE ident key=index-23--579245872126583610:value=29
+    MESSAGE ident key=index-25--579245872126583610:value=31
+     MESSAGE ident key=index-3--579245872126583610:value=9
+      MESSAGE ident key=index-5--579245872126583610:value=11
+       MESSAGE ident key=index-7--579245872126583610:value=13
+
+=============
+
+identCollectionMap
+
+MESSAGE record key=collection-19--579245872126583610:value=0x7ffff4695580
+ MESSAGE record key=collection-4--579245872126583610:value=0x7ffff46956a0
+ MESSAGE record key=collection-0-3185446762899902400:value=0x7ffff46957c0
+ MESSAGE record key=collection-24--579245872126583610:value=0x7ffff4695a00
+
+identIndexMap
+
+ MESSAGE index key=index-1-3185446762899902400:value=0x7ffff44687e0
+ MESSAGE index key=index-9--579245872126583610:value=0x7ffff4467b80
+ MESSAGE index key=index-10--579245872126583610:value=0x7ffff4440f60
+ MESSAGE index key=index-11--579245872126583610:value=0x7ffff4467880
+ MESSAGE index key=index-12--579245872126583610:value=0x7ffff44640c0
+
+ ========
+
+for each recordstore
+  mongo stores 2 counters, one for datasize and one for numrecords
+
+3 idents are created on system init
+
+catalog - has 11 keys
+
+collection-0 - actual name is local.startup_log
+index-1  - is "_id_" index on collection-0
+
+if u crete a database now, u get 2 more idents
+collection-2
+index-3
+
+oplog = replication-related
+

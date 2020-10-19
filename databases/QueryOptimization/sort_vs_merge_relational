@@ -1,0 +1,17 @@
+
+To Bring items that are alike together, either
+
+1)use index
+
+2)use memory  
+	a)sorting : partition on physical key, merge on logical key(sort key)
+	b)hashing : partition on logical key(hash func), merge on physical key(one partition at a time)
+
+mergesort : divide physical, merge logical (concat first elem of sorted runs)
+quicksort : divide logical(pivot), merge physical (concat sorted subarray)
+
+unary ops : group, aggregate, dup removal
+binary ops : join, semi-join, intersect, division
+
+
+

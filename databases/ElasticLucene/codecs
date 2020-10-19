@@ -1,0 +1,12 @@
+
+http://wiki.apache.org/lucene-java/FlexibleIndexing
+
+The second big change in flexible indexing is the Codec and CodecProvider APIs that enables apps to plug in different implementations for writing and reading postings data in the index. When you obtain an IndexWriter or IndexReader, you can optionally pass in a CodecProvider, which knows 1) which Codec should be used when writing a new segment, and 2) how to resolve the codec name (String) to a Codec instance, when reading from the index.
+
+There are some experimental core codecs:
+
+PulsingCodec stores rare terms directly into the terms dicts. This is an excellent match for primary key fields (see here for details), and should also help even "normal" fields (so this may become the default codec at some point).
+SepCodec and IntBlockCodec are available for block-based codecs. These codes are not useful themselves, rather, they serve as the base for block-based codecs. These codecs separately store the docs, freqs, positions and payloads data, allowing for int block codecs to encode the docs, freqs and positions.
+LUCENE-1410 has a prototype PforDelta codec, an int block codec using PFOR-DELTA encoding.
+
+

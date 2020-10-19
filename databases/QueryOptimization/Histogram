@@ -1,0 +1,295 @@
+
+Statistics/Graphics/Signal Processing
+
+Quantile calculation (statistics)
+Or piecewise linear approx of function (segmentation algo)
+Or wavelet composition of function (time -> frequency domain)
+
+algo complexity in terms of 
+B = number of desired buckets
+n = number of points
+
+where B = func(n)
+
+Tradeoff efficiency and accuracy
+Minimize Euclidean error
+Minimize running time
+
+Effectiveness : pros and cons
+
+Find outliers in min space - 
+
+===
+
+In Statistics, this is density estimation problem
+Its Non-parametric since distribution not known ahead of time
+
+Options
+1. All data is known ahead of time
+2. Streaming
+
+===========
+
+Types of Histograms
+
+1. Maxdiff (greedy) : select B-1 points of highest difference 
+   O (n.logB)
+   performs better on spiked data
+
+2. Equi-depth 
+
+3. Compressed (maintains singular buckets)
+
+4. V-optimal 
+  minimize frequency variance within buckets
+    -i.e. all elements in one bucket have same count
+  quadratic complexity (n^2) in size of input
+  derived from Bellman segmentation algo
+  https://en.wikipedia.org/wiki/V-optimal_histograms
+  cumulative weighted variance of the buckets must be minimized.
+
+5. MHist (greedy)
+  repeatedly select and split bucket with highest SSE
+  make B splits in O(B + (n + log.B)) time
+   performs better on smooth data
+
+5. Q-digest : binary tree 
+The idea of the algorithm is that if the original set size exceeds a threshold it pushes counts up the tree to higher nodes.
+http://info.prelert.com/blog/q-digest-an-algorithm-for-computing-approximate-quantiles-on-a-collection-of-integers
+
+6. T-digest
+
+7. divide and segment (approx algo) by Terzi and Tsaparas
+
+8. AHist (approx algo) - Guha Koudas 
+
+9. GDY (local search)
+
+10) Wavelet histogram ?
+Vitter and Min Wang
+http://www.bearcave.com/misl/misl_tech/wavelets/histo/
+
+all points within variance threshold kept in a bucket
+
+Maintain spikes separately (singular)
+should lack of frequency be retained as 0 spike ?
+should deleted tuples be retained as negative value
+
+that is why better to approx the CDF since it is continuous
+
+Keep average, stddev
+============
+
+Multi-dimensional histograms
+============
+
+Histograms in distributed setting
+Histograms using Map-Reduce (Jestes, Li)
+
+===========
+Testing of histogram:
+a. number of points = 160 - 160K
+b. data type = numeric, string
+
+sampling needed ?
+
+synthetic datasets
+
+Data sets listed in paper by Felix Halim (sec 5.2) and his github repo
+
+============
+
+Four param for histogram: 
+Sort Value, 
+Source Value, 
+Partition Class 
+Partition Rule.
+
+FLOWS:
+Create Histogram on every L0 file by bulkload
+Create histogram on every L1 file by compaction
+Correct histogram based on actual query results
+
+REMARKS
+* If a L0/L1 file contains a delete, the histogram must decrement the count for that key
+
+==========
+
+template <class T>
+class EquiDepthHistogram
+{
+  class 
+  int depthThreshold;
+  int initialBuckets; // based on estimated size?
+  int buckets;
+
+  class Bucket
+  {
+    T min;
+    T max;
+    int number_of_distinct_val;
+    int average;
+    // other important statistical values
+    int height;
+  }
+
+  void updateBasedOnActualQuery(min, max, size);
+
+  EquiDepthHistogram merge(EquiDepthHistogram& h)
+
+  getEstimate(min, max, returnSize)
+  {
+    Bucket& first = getBucket(min);
+    Bucket& last = getBucket(max);
+    if (first == last)
+      first.getEstimate(min, max);
+    else
+      estimate = first.getEstimate(min, first.max)
+      for (first+1 to last-1)
+      {
+        estimate += first.numTuples() 
+      }
+      estimate += last.getEstimate(last.min, max)
+  }
+
+
+  protected:
+
+  void splitBucket(n);
+  void mergeBucket(n);
+
+  void save(file)
+  void load(file)
+
+  // repartition should occur when Chi-Square test is violated (counts are not uniformly distributed)
+  // {REF: Dynamic Histograms, Ioannidis}
+  // sum (ave_count_in_Bucket - Count_in_Bucket)^2/ave_count_in_Bucket)
+}
+
+Algorithm DC (data stream, number of buckets n) 
+  // {REF: Dynamic Histograms, Ioannidis}
+// Maintains an array of buckets that approximate numerical records
+// seen on a potentially unbounded data stream.
+// Each bucket stores its left border and the count  of points in it.
+// The number of points read is denoted by N.
+  read the first n distinct points;
+  set the bucket borders between them;
+
+  do until end of file f
+    read the new point x;
+    if x is beyond the range of end buckets f
+      extend the appropriate regular bucket up to x;
+    insert x into appropriate bucket;
+    if Probability(chi_square) < alpha_min
+      degrade singular buckets with count < N/n to regular;
+      redistribute the regular buckets to equalize their counts;
+      promote regular buckets with width one and  count > N/n to singular;
+
+//========
+
+template <class Key>
+class HistogramBuilder
+{
+  HistogramBuilder(numTuples, desiredHeight)
+
+  Tree<Key, int> keyTree;
+
+  class Sample
+  {
+    T key;
+    Type ins_or_del;
+    int frequency;
+  }
+
+  recordSample(Sample)
+  {
+    Tree.insert
+  }
+
+  recordSamples(vector<Sample>)
+  {
+  }
+
+  Histogram createHistogram()
+  {
+    Given tree of <value, freq> 
+    put high freq values into singular bucket
+    walk thru tree and merge low freq values
+  }
+}
+
+L0_L1_hist_builder
+{
+  std::map<columnName, HistogramBuilder>
+  
+  For each L0/L1 file
+  {
+    for each tuple
+      for each column
+        HistogramBuilder.recordSample()
+  }
+  
+  for each column
+  {
+    Histogram = HistogramBuilder::create()
+  }
+}
+
+
+=======
+
+workload aware self tuning histograms of string data
+
+https://github.com/felix-halim/fehc/tree/master/src
+
+Fast and Effective Histogram Construction∗
+Felix Halim Panagiotis Karras Roland H. C. Yap
+
+http://homepages.spa.umn.edu/~willmert/science/ksegments/
+
+Guha Koudas and Shim
+
+Database cracking -- !
+
+=========================
+
+Density estimation
+Parametric : distribution is assumed
+
+Non-parametric
+
+1) Parzen windows
+   estimate likelihood = P(x | c_j)
+
+2) Nearest neighbours
+   do posterior estimation = P(c_j | x)
+
+Given p(x) = (k/n) / V
+where V = volume of region R
+and k = number of samples inside R
+and n = total number of samples
+
+In Parzen, fix volume V and determine k - number of pts inside V
+In nearest neighbour, fix k and determine V that contains k
+good rule of thumb is to choose k = sqroot(n)
+=========
+
+There are multiple approaches to approximate a model or a function to fit a
+given data set. The list includes 
+Splines
+Least square regression
+Levenberg-Marquardt
+K-nearest neighbors
+Histogram
+Polynomial interpolation
+Logistic regression
+Neural Networks
+Tensor productgs
+... and many more
+
+
+===============
+
+STHoles
+
+http://fcb991b696f563270c39464d67d2c3bd.proxysheep.com/article/10.1007/s13748-014-0050-9

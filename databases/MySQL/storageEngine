@@ -1,0 +1,144 @@
+
+http://forums.mysql.com/list.php?94
+
+MySQl internal data format
+http://forums.mysql.com/read.php?94,361886,369296#msg-369296
+
+=================
+
+https://dev.mysql.com/doc/internals/en/custom-engine.html
+
+http://www.slideshare.net/matsunobu/myrocks-deep-dive
+
+MyRocks data is stored in RocksDB, per index basis. RocksDB 
+internally allocates "Column Family" to store indexes. By default, 
+all data is stored into "default" column family. 
+
+You can change column family by setting index comment. In this example, 
+Primary Key is stored into "cf_link_pk" column family, and id1_type
+index data is stored into 'rev:cf_link_id1_type' column family.
+
+https://github.com/facebook/mysql-5.6/wiki/Getting-Started-with-MyRocks
+
+
+================
+
+sql/
+storage/rocksdb
+
+handlerton is one instance per storage engine
+  commit
+  rollback
+
+https://dev.mysql.com/doc/internals/en/creating-handlerton.html
+
+handler class is per-table storage engine API
+
+class Handler_share
+
+class handler
+{
+  create
+  open
+  close
+  truncate
+
+  write_row
+  update_row
+  delete_row
+
+  rnd_init
+  rnd_next
+
+  index_read_map
+  index_next
+  index_first
+
+}
+
+===========
+
+
+storage/rocksdb
+
+RDBSE_KEYDEF
+RDBSE_TABLE_DEF
+
+KEY_PART_INFO
+
+TABLE_SHARE 
+TABLE_STATS
+TABLE* table->s->keys/fields
+
+4 byte prefix added by rocksdb for each mysql index
+
+Like MongoRocks which has key=<seckey+record_id>, 
+MyRocks secondary index also has key=<seckey+primkey>,
+value=checksum
+
+=======
+
+Issues :
+
+1) MySQL can do statement-based repl.  
+  MyRocks only allows binlog based repl (p 90 of slideshare)
+  It can also do GTID based repl
+  we have to disable that 
+
+ha_rocksdb::table_flags() 
+{
+  returns HA_BINLOG_STMT_CAPABLE
+}
+
+ha_rocksdb::convert_record_from_storage_format()
+{
+}
+
+2) We could define
+
+HA_HAS_OWN_BINLOGGING like NDB cluster
+
+see sql/ha_ndbcluster_binlog.cc
+
+ndb_binlog_thread
+HAVE_NDB_BINLOG
+
+https://groups.google.com/d/msg/mailing.database.mysql-internals/tUCaaSckeQs/y3regzReWrEJ
+
+storage engines may declare HA_HAS_OWN_BINLOGGING and write to 
+binlog directly.  however, it becomes impossible to log 
+multitable updates what happens if the storage engine supports transaction?
+
+http://labs.cybozu.co.jp/blog/kazuhoatwork/2008/06/memo_binary_logging_of_mysql_f.php
+
+2) System tables stored in RocksDB
+
+3) MYRocks doesnt support Fulltext, Foreign and Spatial indices 
+as of Apr 19, 2016
+as per slideshare
+
+http://www.slideshare.net/matsunobu/myrocks-deep-dive
+page 48
+
+4) Page 55 of slideshare.net says
+Dont create too many Column Families (20 enuf)
+
+5) MyRocks stored metadata info in dedicated column family
+called "__system__"(page 63)
+
+table name -> idx id 
+idx id -> idx metadata
+cf id -> cf flags
+binlog state
+idx stats
+
+6) MyRocks stores stats in SST files extension field
+and summary of these stats in the __system__ CF
+
+7) MyRocks backup and restore
+
+Copy SST files and WAL to target server and start new instance
+
+8) MySQL can support multiple storage engines
+-allow-multiple-engines parameter
+but MyRocks does not recommend it

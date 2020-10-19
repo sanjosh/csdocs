@@ -1,0 +1,35 @@
+
+src/backend/optimizer
+
+pg_plan_query
+  planner
+
+RelOptInfo represents a base table
+RelOptInfo.pathlist = paths made for a given relation (index scan, table scan).
+RelOptInfo.joininfo
+
+
+Join tree build using dynamic programming
+First pass : joins with two items
+second pass : joins with 3 items
+etc
+
+============
+
+Generic Query Optimization (GEQO)
+
+Join plans are developed using the genetic approach
+Strng represents the join order from one relation to another.
+
+========
+
+Three core join algo : Nested loop, merge, hash join
+Two aggregation algo : hash, sort
+Two scan algo : index, sequential
+
+Many equivalences in SQL
+JOins can be applied in any order
+predicates can be evaluated in any order
+subselects can be transformed to joins
+
+

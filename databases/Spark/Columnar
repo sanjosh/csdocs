@@ -1,0 +1,6 @@
+
+https://www.quora.com/Does-Apache-Spark-maintain-a-columnar-structure-when-creating-RDDs-from-Parquet-or-ORC-files
+
+https://issues.apache.org/jira/browse/SPARK-2883
+
+http://hortonworks.com/blog/bringing-orc-support-into-apache-spark/

@@ -1,0 +1,498 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<title></title>
+	<meta name="generator" content="LibreOffice 4.2.8.2 (Linux)">
+	<meta name="created" content="20160106;111209000000000">
+	<meta name="changed" content="20160229;145726464349287">
+	<style type="text/css">
+	<!--
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; direction: ltr; color: #00000a; line-height: 120%; text-align: left; widows: 0; orphans: 0 }
+		p.western { font-family: "Liberation Serif", serif; font-size: 12pt; so-language: en-IN }
+		p.cjk { font-family: "Droid Sans Fallback"; font-size: 12pt; so-language: zh-CN }
+		p.ctl { font-family: "FreeSans"; font-size: 12pt; so-language: hi-IN }
+		h1 { margin-bottom: 0.21cm; direction: ltr; color: #00000a; text-align: left; widows: 0; orphans: 0 }
+		h1.western { font-family: "Liberation Sans", sans-serif; font-size: 18pt; so-language: en-IN }
+		h1.cjk { font-family: "Droid Sans Fallback"; font-size: 18pt; so-language: zh-CN }
+		h1.ctl { font-family: "FreeSans"; font-size: 18pt; so-language: hi-IN }
+		h2 { direction: ltr; color: #00000a; text-align: left; widows: 0; orphans: 0 }
+		h2.western { font-family: "Liberation Sans", sans-serif; font-size: 16pt; so-language: en-IN }
+		h2.cjk { font-family: "Droid Sans Fallback"; font-size: 16pt; so-language: zh-CN }
+		h2.ctl { font-family: "FreeSans"; font-size: 16pt; so-language: hi-IN }
+		a:link { so-language: zxx }
+	-->
+	</style>
+</head>
+<body lang="en-IN" text="#00000a" dir="ltr">
+<p align="center" style="margin-top: 0.11cm; margin-bottom: 0.21cm; line-height: 100%; page-break-after: avoid">
+  <font face="Liberation Sans, sans-serif"><font size="5" style="font-size: 18pt">Compiler-based
+execution of SQL</font></font></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p style="margin-top: 0.42cm; margin-bottom: 0.21cm; line-height: 100%; page-break-after: avoid">
+<font face="Liberation Sans, sans-serif"><font size="4" style="font-size: 14pt">Table
+of Contents</font></font></p>
+<div id="Table of Contents1" dir="ltr">
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__324_1392457932">
+	Overview	1</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__326_1392457932">Query
+	compilation systems	2</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__328_1392457932">Steno	2</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__330_1392457932">Krikellas
+	– holistic query evaluation	3</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__332_1392457932">HyPer
+	system – Neumann	3</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__334_1392457932">Hekaton
+	(SQL server in memory db)	4</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__336_1392457932">DBToaster	4</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__338_1392457932">Apache
+	Spark (optimizer is called Catalyst)	4</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__340_1392457932">Apache
+	Tajo	5</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__342_1392457932">MemSQL	5</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__344_1392457932">VitesseDB
+	(Postgres enhancement)	5</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__346_1392457932">Facebook
+	Presto	5</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__348_1392457932">Cloudera
+	Impala	6</a></p>
+	<p style="margin-bottom: 0cm; line-height: 100%"><a href="#__RefHeading__350_1392457932">References	6</a></p>
+</div>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">This
+is a short survey of systems which have been developed for
+compiler-based execution of SQL queries.</p>
+<h1 class="western"><a name="__RefHeading__324_1392457932"></a><br>Overview</h1>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">In
+database systems, two approaches have been developed for transforming
+declarative SQL queries to imperative execution.</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>Interpretor-based
+model</b><b> :</b> 
+</p>
+<p class="western"><br>Almost all commercial DBMSes implement a
+Volcano Iterator model for query execution.  In the early versions of
+this model, one tuple at a time was passed through an entire tree of
+iterators.   This model was seen to be inefficient.  Later versions
+of this model use a “block”-based approach and process a set of
+tuples at a time.</p>
+<p class="western">Iterator models can be pull (synchronous) or push
+(synchronous).</p>
+<p class="western">Other variants have included MonetDB and
+VectorWise which do vector operations that fit into the CPU cache.</p>
+<p class="western"><b>Compiler-based model:</b></p>
+<p class="western"><span style="font-weight: normal">With the coming
+of large memory systems and in-memory databases, the inefficiencies
+of the previous model have become more exposed.</span><b>  </b><span style="font-weight: normal">
+The iterator model prevents tight loop executions, and is unable to
+exploit the data cache or reuse CPU registers. </span><b>  </b>
+</p>
+<p class="western"><span style="font-weight: normal">This spurs the
+move to compiler-based systems which can enable data-centric
+execution.</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">Just
+as in programming languages,  a compiler does the following
+transformations 
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+<i>high level Language -&gt; AST -&gt; Intermediate language -&gt; 
+Machine code</i></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">Similarly,
+an SQL query can be transformed as:</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+<i>SQL -&gt; AST -&gt; Intermediate language -&gt; Final code -&gt;
+Compile/Load and run</i></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<ol>
+	<li><h1 class="western"><a name="__RefHeading__326_1392457932"></a>Query
+	compilation systems</h1>
+</ol>
+<p class="western"><br><br>
+</p>
+<p class="western">A compiler-based system performs the following
+transformations</p>
+<p class="western">SQL -&gt; AST -&gt; Intermediate language -&gt;
+Java/C/C++/LLVM assembly which is then loaded and executed.</p>
+<ol>
+	<ol>
+		<li><h2 class="western"><a name="__RefHeading__328_1392457932"></a>Steno
+				</h2>
+	</ol>
+</ol>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">(microsoft
+research, univ of cambridge)</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">LINQ
+(Language integrated query) is a declarative extension to C#.  The
+Steno system takes a declarative query and generates a C# class for
+it which is loaded and executed by the system.</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">Steno
+does two major optimizations:</p>
+<ol>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<b>Iterator fusion</b> : For example, it can combine a SELECT and
+	WHERE operator into a “for loop”.</p>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<b>Transform nested queries into nested loops</b></p>
+</ol>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>Transformation
+steps taken:</b></p>
+<ol>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<span style="font-weight: normal">Given a chain of operators, it
+	emits symbols of QUIL (query intermediate language).</span><b>  </b>
+	</p>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<span style="font-weight: normal">From the sequence of symbols, it
+	uses a FSM to generate a C# class using the CodeDOM library.</span></p>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<span style="font-weight: normal">Compile and load this query for
+	execution.</span></p>
+	<li><p class="western" style="margin-bottom: 0cm; line-height: 100%">
+	<span style="font-weight: normal">Before execution, it resolves any
+	object references in the query by using the reflection API in C#.</span></p>
+</ol>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>QUIL</b><span style="font-weight: normal"><br>The
+QUIL language has six symbols (SRC, TRANS, PRED, SINK, RET, AGGR).</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">The
+sequence of symbols starts from SRC and ends in RET.</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">SRC
+signifies the start of execution and represents a table or index scan
+which creates a list for processing.</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">TRANS,
+PRED and SINK transform one list to another.</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">RET
+returns the final list.</span></p>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>How
+is code generated ?</b></p>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">On
+a SRC symbol, it generates a “for loop” based on the symbol
+arguments.  This 'for loop' is represented as a linked list of 3
+nodes (precursor, loop body, and post-operation).</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">On
+a TRANS symbol, it generates element-wise operations inside the loop
+body</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">On
+a AGGR symbol, it reduces the list to a scalar value</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">On
+a SINK symbol (i.e. a “group by” or “order by” clause).  For
+a “group by”, it creates a new list from the old using an
+intermediate hash table or tree.  For  “order by”, it invokes a
+C# sorting function</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">On
+a PRED symbol, it generates an “if clause”.</span></p>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>Example:</b></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">If
+the query was “</span><i><span style="font-weight: normal">SELECT
+max(a) from &lt;table1&gt;</span></i><span style="font-weight: normal">”</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">then
+the sequence of symbols will be “</span><i><span style="font-weight: normal">{SRC
+&lt;table1&gt;, AGGR &lt;a&gt;, SINK }</span></i><span style="font-weight: normal">”</span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><span style="font-weight: normal">and
+the code generated will be : </span>
+</p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+<i><span style="font-weight: normal">foreach (elem in table1)</span></i></p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+<i><span style="font-weight: normal">{ </span></i>
+</p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+     <i><span style="font-weight: normal">max_a = max(elem, max_a)</span></i></p>
+<p class="western" style="margin-left: 1.25cm; margin-bottom: 0cm; line-height: 100%">
+<i><span style="font-weight: normal">}</span></i></p>
+<p class="western" style="margin-bottom: 0cm; font-weight: normal; line-height: 100%">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><b>Distributed
+query</b></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">To
+generate a distributed query, 
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">given
+a sequence of QUIL symbols { SRC, TRANS, AGGR, RET}</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">Steno/DryadLINQ
+inserts intermediate symbols which expand the query to all nodes and
+aggregate the results (kind of like a map-reduce)</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"><a name="__DdeLink__1_1318159283"></a>
+SRC -&gt; SRC (node1) -&gt; TRANS(node1) -&gt; AGGR(node1) -&gt; AGGR
+-&gt; RET</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%">    
+    -&gt; SRC (node2) -&gt; TRANS(node2) -&gt; AGGR(node2) -&gt;</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%"> 
+</p>
+<ol>
+	<ol start="2">
+		<li><h2 class="western"><a name="__RefHeading__330_1392457932"></a>Krikellas
+		– holistic query evaluation</h2>
+	</ol>
+</ol>
+<p class="western">(univ of edinburgh)</p>
+<p class="western">It takes the output of the query optimizer, which
+is a topologically sorted list of operations and applies them over
+pre-defined code templates, parametrized by machine architecture, and
+uses it to generate code.</p>
+<p class="western">The time for generating the code was found to be
+about 25 ms.  The time for compiling optimized code was about 400-600
+ms.</p>
+<p class="western"><b>Challenges they identified</b>:</p>
+<ol>
+	<li><p class="western">identify common code templates</p>
+	<li><p class="western">how to interconnect different operators now
+	that they have no common API</p>
+	<li><p class="western">how to verify correctness of the generated
+	code.</p>
+</ol>
+<p class="western"><br><br>
+</p>
+<ol>
+	<ol start="3">
+		<li><h2 class="western"><a name="__RefHeading__332_1392457932"></a>HyPer
+		system – Neumann</h2>
+	</ol>
+</ol>
+<p class="western">(Tum.de)</p>
+<p class="western">This is positioned as a hybrid OLTP-OLAP database
+( academic research )</p>
+<p class="western">First they tried to generate C++ code from an SQL
+query.  Later they switched to generating LLVM assembly code, which
+they found was equally manageable and efficient.   Compiling the LLVM
+assembly to the final machine code is faster than the same for C++.  
+</p>
+<p class="western">They use LLVM code only to replace the tight inner
+loops which occur during query execution.</p>
+<h2 class="western"><a name="__RefHeading__334_1392457932"></a>Hekaton
+(SQL server in memory db)</h2>
+<p class="western"><br><br>
+</p>
+<p class="western">They realized that the  type systems and
+expression semantics of T-SQL and C are very different. 
+</p>
+<ol>
+	<li><p class="western">T-SQL includes many data types such as
+	date/time types and fixed precision numeric types that have no
+	corresponding C data types. 
+	</p>
+	<li><p class="western">In addition, T-SQL supports NULLs while C
+	does not. 
+	</p>
+	<li><p class="western">Finally, T-SQL raises errors for arithmetic
+	expression evaluation failures such as overflow and division by zero
+	while C either silently returns a wrong result or throws an OS
+	exception that must be translated into an appropriate T-SQL error.</p>
+</ol>
+<p class="western">That is why they introduced an additional step in
+code generation which generates a “Pure Imperative Tree” from the
+“Mixed Abstract tree”.</p>
+<h2 class="western"><a name="__RefHeading__336_1392457932"></a>DBToaster</h2>
+<p class="western"><b>Steps</b></p>
+<ol>
+	<li><p class="western">Parser</p>
+	<li><p class="western">Algebraic compiler : They keep a map algebra
+	of about 70 simplification rules which get applied to a query.</p>
+	<li><p class="western">Code generator : Generate C++ code.</p>
+</ol>
+<h2 class="western"><a name="__RefHeading__338_1392457932"></a>Apache
+Spark (optimizer is called Catalyst)<br><br><br>
+</h2>
+<p class="western">Other query optimizers employ a domain-specific
+language to define rules and write a custom compiler to generate
+code.  By contrast, Catalyst exploits Scala language features such as
+pattern-matching and quasiquotes for the same purposes.  It uses the
+Java compiler to gnerate bytecode which will execute on Spark nodes.</p>
+<p class="western">It does both cost-based and rule-based
+optimization.  (Cost-based means it chooses the plan with the least
+cost; rule-based means it applies pattern matching rules to transform
+the query execution tree).</p>
+<p class="western"><b>Steps</b></p>
+<ol>
+	<li><p class="western">Convert AST to logical plan</p>
+	<li><p class="western">Analyzing a logical plan to resolve variable
+	references (i.e. lookup the schema)</p>
+	<li><p class="western">Logical plan optimization, 
+	</p>
+	<li><p class="western">Physical query execution plan</p>
+	<li><p class="western">Generate Java bytecode using Scala
+	<b>quasiquotes</b> feature</p>
+</ol>
+<p class="western"><br><br>
+</p>
+<p class="western">In Scala, when you prefix a string with a “q”
+(i.e. val mytree = q”this is a tree”), the Scala compiler
+internally stores the variable “mytree” as a Syntax Tree rather
+than a string.</p>
+<p class="western"><font color="#000080"><span lang="zxx"><u><a href="http://docs.scala-lang.org/overviews/quasiquotes/intro.html">http://docs.scala-lang.org/overviews/quasiquotes/intro.html</a></u></span></font></p>
+<p class="western">Now you can write Scala code to compare trees or
+transform them.  Catalyst uses this feature to store query execution
+trees and generate Java bytecode from them.</p>
+<p class="western"><font color="#000080"><span lang="zxx"><u><a href="https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html">https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html</a></u></span></font></p>
+<p class="western"><br><br>
+</p>
+<h2 class="western"><a name="__RefHeading__340_1392457932"></a>Apache
+Tajo</h2>
+<p class="western">Tables are stored in columnar format and bytecode
+for vectorized primitives is generated at runtime.</p>
+<p class="western">They use the unsafe Java library (sun.misc.unsafe)
+to do direct in-memory optimizations on vectors.  Memory allocated
+via “unsafe” is not under GC control and not constrained by JVM
+heap size.</p>
+<p class="western"><font color="#000080"><span lang="zxx"><u><a href="http://www.slideshare.net/Hadoop_Summit/t-435p210-achoiv2">http://www.slideshare.net/Hadoop_Summit/t-435p210-achoiv2</a></u></span></font></p>
+<p class="western"><br><br>
+</p>
+<h2 class="western"><a name="__RefHeading__342_1392457932"></a>MemSQL</h2>
+<p class="western">Produces C++ code which is bundled into a shared
+library.</p>
+<h2 class="western"><a name="__RefHeading__344_1392457932"></a>VitesseDB
+(Postgres enhancement)</h2>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">They
+run the Vitesse JIT engine after a query plan is created.  </span></span></font></font></span>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">They
+got 2X performance by applying LLVM to compile the expressions found
+within the query, while the Plan tree was still interpreted using the
+iterator model.</span></span></font></font></span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">They
+got 8X performance by compiling entire query into one JIT procedure. 
+ The query nodes got inlined, CPU registers were reused and code had
+tight inner loops.</span></span></font></font></span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">They
+obtained 108X performance by running on multi-core and letting each
+core work on a distinct data set.</span></span></font></font></span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">They
+obtained 180X performance by using a columnar data store with LZ4 and
+Delta compression.</span></span></font></font></span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<font color="#000080"><span lang="zxx"><u><a href="http://vitessedata.com/"><span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">http://vitessedata.com/</span></span></font></font></span></a></u></span></font></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#000000"><span style="text-decoration: none"><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">Slides
+here:  </span></span></font></font></span></font></span><font color="#000080"><span lang="zxx"><a href="http://goo.gl/Mtg2W6"><span style="font-variant: normal"><font color="#000000"><span style="text-decoration: none"><font face="Liberation Serif, serif"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">http://goo.gl/Mtg2W6</span></span></font></font></span></font></span></a></span></font></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<h2 class="western"><a name="__RefHeading__346_1392457932"></a>Facebook
+Presto</h2>
+<p class="western"><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">It
+dynamically compiles certain portions of the query plan  to Java byte
+code.</span></span></font></font></span></p>
+<p class="western"><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">See
+the </span></span></font></font></span><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><b>ExpressionCompiler</b></span></font></font></span><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">
+class which in turn uses </span></span></font></font></span><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><b>PageProcessorCompiler</b></span></font></font></span><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">
+and </span></span></font></font></span><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><b>CursorProcessorCompiler</b></span></font></font></span></p>
+<p class="western"><font color="#000080"><span lang="zxx"><u><a href="https://github.com/facebook/presto/blob/c0e32e0e9a787708250f3c47f8f11567cbe679ae/presto-main/src/main/java/com/facebook/presto/sql/gen/ExpressionCompiler.java"><span style="font-variant: normal"><font color="#141823"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">https://github.com/facebook/presto/blob/c0e32e0e9a787708250f3c47f8f11567cbe679ae/presto-main/src/main/java/com/facebook/presto/sql/gen/ExpressionCompiler.java</span></span></font></font></span></a></u></span></font></p>
+<p class="western"> This class is invoked from the
+LocalExecutionPlanner</p>
+<h2 class="western"><a name="__RefHeading__348_1392457932"></a>Cloudera
+Impala</h2>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">It
+uses LLVM to compile stored procedures into LLVM IR (intermediate
+representation) language.</span></span></font></font></span></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<font color="#000080"><span lang="zxx"><u><a href="http://llvm.org/devmtg/2013-11/slides/Wanderman-Milne-Cloudera.pdf"><span style="font-variant: normal"><font color="#282828"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">http://llvm.org/devmtg/2013-11/slides/Wanderman-Milne-Cloudera.pdf</span></span></font></font></span></a></u></span></font></p>
+<p class="western" style="margin-bottom: 0cm; line-height: 100%; widows: 2; orphans: 2">
+<br>
+</p>
+<h1 class="western"><a name="__RefHeading__350_1392457932"></a>References</h1>
+<ol>
+	<li><p class="western"><span style="font-variant: normal"><font color="#333333"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">D.
+	G. Murray, M. Isard, and Y. Yu. Steno: Automatic&nbsp;Optimization
+	of Declarative Queries. In PLDI, 2011.</span></span></font></font></span></p>
+	<li><p class="western"><span style="font-variant: normal"><font color="#333333"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">K.
+	Krikellas, S. D. Viglas, and M. Cintra. Generating code&nbsp;for
+	holistic query evaluation. In ICDE, 2010.</span></span></font></font></span></p>
+	<li><p class="western"><span style="font-variant: normal"><font color="#333333"><font size="3" style="font-size: 12pt"><span style="font-style: normal"><span style="font-weight: normal">T.
+	Neumann. Efficiently compiling efficient query plans for&nbsp;modern
+	hardware. Proc. VLDB Endow., 4(9), 2011.</span></span></font></font></span></p>
+	<li><p class="western"><font size="3" style="font-size: 12pt"><span style="font-weight: normal">C.
+	Diaconu, C. Freedman, E. Ismert et al., “Hekaton: Sql server’s
+	memory-optimized OLTP engine,” in SIGMOD ’13, 2013.</span></font></p>
+	<li><p class="western">Armbrust, et al .  Spark SQL: Relational Data
+	Processing in Spark<font size="3" style="font-size: 12pt"><span style="font-weight: normal">.
+	 SIGMOD 2015
+	</span></font><font color="#000080"><span lang="zxx"><u><a href="http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf"><font size="3" style="font-size: 12pt"><span style="font-weight: normal">http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf</span></font></a></u></span></font></p>
+</ol>
+<p class="western"><br><br>
+</p>
+</body>
+</html>

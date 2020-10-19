@@ -1,0 +1,26 @@
+
+study cassandra & mongo
+
+===========
+
+1) per table config - put namespace in spark catalog 
+  - put namespace in spark conf
+  - put namespace tables in spark catalog
+2) schema integration - parse schema coming from ganesha
+3) insertable (not needed)
+4) stream sink provider
+5) handle kafka streaming source
+6) fetch and load data
+7) filter push down
+8) unhandled filters
+9) repartition
+10) extend sparksession
+11) pass partition id and Num partitions - back and forth
+12) data validation - check schema with json
+
+============
+
+5) authentication - validate namespace/user
+5) custom partition keys/columns
+5) rdd extension
+5) implement catalystScan

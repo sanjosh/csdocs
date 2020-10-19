@@ -1,0 +1,5 @@
+
+git branch -a
+git checkout -b v3.2 origin/v3.2
+
+http://smalldatum.blogspot.in/2016/01/how-to-build-mongorocks-for-mongodb-32.html

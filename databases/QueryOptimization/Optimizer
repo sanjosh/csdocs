@@ -1,0 +1,341 @@
+
+http://www.benjaminnevarez.com/2013/03/query-optimization-research-papers/
+========
+Asterix
+========
+
+MRQL
+
+Spark
+Flink
+Hama
+Giraph
+
+============
+
+Group by Join - Valiant algo
+
+===========
+
+Cost based vs rule based
+
+Algorithms:
+1) Selinger (Starburst/System R): join reordering.  Bottom-up.
+2) Rule-based (relational algebra laws).  Top-down Volcano/Cascades  - goal driven.  Extended by Microsoft and Tandem
+3) (Postgres) Genetic algo for join > 12 tables
+
+General rules:
+1) Selections pushed down
+2) Projections up
+3) Avoid cartesian products
+
+Types of Join Trees
+1) Bushy
+2) Linear
+3) Right deep
+4) Left deep : work well with nested loop and hash joins; good for pipelining.
+
+Selinger algo has an "interesting order" heuristic - it says that use same order as requested by "ORDER BY" and "GROUP BY" - this can avoid sort-merge join later.
+
+=============================
+
+Selinger
+
+for i = 1 to n
+{
+  optPlan(Ri) = accessPlans(Ri)
+  prunePlans(optPlan(Ri))
+}
+
+for i = 2 to n
+{
+  for all Subset S < {R1..Rn} with |S| = i
+  {
+    optPlan(S) = 0
+    for all O < S 
+    {
+      optPlan(S) = OptPlan(S) + JoinPlan(OptPlan(O), OptPlan(S-O))
+      prunePlan(optPlan(S))
+    }
+  }
+}
+
+finalizePlan(OptPlan({r1...rn})
+prunePlan(optPlan({r1...rn})
+return optPlan({r1..rn})
+
+=============================
+
+dynamic programming algo invented in System R
+basic idea : find good plans for query with n joins
+to find good plans for n+1 joins, join each plan with additional join
+
+
+Consider each base relation
+Consider sequential scan and available index scan applying predicates that invole the base relation.
+Remember : cheapest unordered plan + cheapest plan for each sort order
+
+While candidate plans have fewer joins than required
+join each candidate plan with a relation not yet in that plan
+Retain
+cheapest unordered plan for each distinct set of relations
+cheapest plan with a given sort order for each distinct set of relations
+
+Grouping and aggregation is done at end
+Consider left-deep, bushy or right-deep plans
+
+Number of plans explodes with number of joins.
+For queries with >12 joins, a genetic algo is used
+
+Inner joins are both commutative and associative
+Outer joins are not, so we cant reorder them
+SO an outer join becomes a base relation in plan algo
+
+Subqueries : 3 types
+a) In clause : turned into join in parent query
+b) From list
+c) Expression
+
+===========
+
+AST -> query tree
+
+
+=========
+Starburst 
+
+Two optimization phases
+1) query rewrite : QGM -> QGM
+2) plan optimization : QGM -> operator tree
+
+Rules are pairs of functions.  First func checks applicability and second enforces transformation.
+
+Rules applied in forward chaining fashion
+
+=========
+
+Exodus 
+
+Volcano/Cascades 
+
+Rules represent knowledge of search space
+Two kinds of rules
+1) Transform rules : alg expr -> alg expr
+2) Implementation rules : alg expr -> operator tree
+
+Goal-driven application of rules : Uses dynamic programming with memoization.  Checks if optimization task has been accomplished by checking in memoization table.
+
+Only one optimization phase.
+
+(Surajit Chaudhari survey paper)
+
+=========
+
+Star & Snowflake schema found in Data warehousing
+
+Query plan trees can be Left-deep or bushy 
+
+===========
+
+Spark Catalyst optimizer for SQL
+
+Does both rule-based and cost-based optimizers
+written in Scala
+extensible
+uses Scala features : pattern matching, tree transformation, quasiquotes
+
+(1) analyzing a logical plan to resolve references (lookup schema)
+(2) logical plan optimization, 
+(3) physical planning, and 
+(4) generate Java bytecode using Scala quasiquotes
+
+def compile(node: Node): AST = node match {
+  case Literal(value) => q"$value"
+  case Attribute(name) => q"row.get($name)"
+  case Add(left, right) => q"${compile(left)} + ${compile(right)}"
+}
+
+Optimizations
+1. constant folding
+2. predicate pushdown
+3. projection pruning
+4. null propagation
+5. bool expr simplification
+
+
+===
+
+Oracle
+
+https://blogs.oracle.com/optimizer/entry/optimizer_technical_papers1
+
+==
+
+Apache Calcite
+
+SQL over Mongo
+http://julianhyde.blogspot.in/2013/06/efficient-sql-queries-on-mongodb.html
+
+core/src/main/java/org/apache/calcite/plan/volcano
+
+====
+ 
+Statistics to be collected
+
+a. Collection
+num of rows
+num of pages
+row length (min, max, ave)
+
+b. Column
+num nulls
+num distinct val(NDV) 
+low/high value
+  
+c. Index 
+distinct keys
+
+Sampling can be done for stats like NDV
+NDV : keep histograms (many kinds)
+Correlation : joint distribution of columns is not usually maintained but estimated
+
+Propagation : Given an operator and statistical summary of each of its input data streams, determine statistical summary of output stream.
+
+Cost = CPU, IO, Memory, Network
+Cached Plans
+
+Rule engine : needs API to search Tree based on patterns
+Ability to add operators/nodes
+
+Query parallelization : number of L0/L1/L2 files
+
+Microsoft SQL uses maxdiff algo for stats gathering
+
+=======
+
+
+How to optimize User-defined functions/Stored procedures
+
+Order them by 
+1) selectivity of referenced fields 
+2) per-tuple cost of evaluation
+
+==========
+
+Paper to read
+1) Efficient and scalable statistics gathering for large databases in Oracle 11g
+2) Poosala.  Improved histograms for selectivity estimation of range predicates
+
+http://redbook.cs.berkeley.edu/bib4.html
+
+========
+
+Four stages:
+1) Parser
+2) Optimizer : 
+  a) Rewriter phase is indep of underlying db
+  b) Planner which builds logical and physical query trees
+    can use dynamic programming, genetic algo (postgres)
+3) Code generator : compiler or interpreter
+4) Query Processor 
+
+Global query optimization : simultaneously optimize all the queries which are active at a point in time.
+
+Interfaces to query optimizer
+1) Translate Mongo to system language
+2) Support for UDF
+3) Provide dynamic schema to query optimizer
+3) Maintain index statistics and feed them 
+  how to dstatistics on pairs of attributes
+
+Our problems : 
+  indices are lazy - stats must be updated with index
+  multiple copies of a tuple exist.
+  compaction requires statistics update
+
+4) Add physical ops to update or access index/table
+5) Tests to verify correctness
+6) Benchmark
+
+Planner 
+1. for a query, concept of "interesting order" : do sort orders of intermediate results or group by or order by clauses matches an existing access method ?
+2. For all partial plans, create equiv classes based on interesting order and only retain the one with the least cost.
+
+============
+Statistics estimator
+
+Mannino, Chu and Sager survey
+
+Histogram
+1. Get(Table, col) -> NDV
+2. Get(Table) -> tuple size distribution, num tuples
+3. Get(Table, col, value, op= gt, lt, not_equal, equal) ->  Num Tuples, normalized cost of retreiving
+4. Get(Table, expr involving 2 cols) ->  Num Tuples, normalized cost of retreiving
+
+One dim Histograms
+*) equi-width : each bucket has same range.  Has worst case error if data distribution is not uniform.  
+*) equi-depth  : each bucket has same number of data points(height). Greenwald and Khanna algo for approx quantile approx. Or use quantile digest
+*) serial: variant called end-biased, high-biased, maxdiff
+*) maxdiff
+*) v-optimal, spline-based
+
+ Schemes differ in how the buckets are chosen, what statistics
+ are stored, how estimates are extracted, and what classes of query are
+ supported. They are quantified based on the space and time requirements
+ used to build them, and the resulting accuracy guarantees that
+ they provide
+
+Histograms are necessarily approximate
+1. What if query range boundary does not match bucket boundary : which distrib to assume
+2. How to estimate number of buckets before data ingest - or how to split buckets.  
+3. How to approx values within a bucket  : store statistics within each bucket
+
+Update histogram on every tuple or do sampling 
+
+What histogram to choose based on data type
+
+Can we re-use rocksdb coarse key information ?
+Multiply each bucket by number of tuples between two coarse keys
+
+Use GNU scientific library
+http://www.gnu.org/software/gsl/manual/html_node/Histograms.html
+http://www.gnu.org/software/gsl/manual/html_node/Example-programs-for-histograms.html
+
+LevelDB and RocksDB have histogram implementations
+
+https://www.elastic.co/blog/count-elasticsearch
+
+-- using linear counting on small cardinalities and HyperLogLog on larger ones.
+
+https://gist.github.com/debasishg/8172796
+
+Approx query processing
+
+Multidim histograms
+
+Wavelet
+
+HyperLogLog : cardinality estimate
+
+Sketches - developed for streaming data. (Count Distinct)
+
+Q-Digest
+
+T-Digest
+https://github.com/tdunning/t-digest/tree/master/src
+
+(Synopses paper, Minos Garofalakis)
+
+---
+keep tree of <prefix(key), count>
+as tree grows, decrease prefix size and aggregate counts
+sort order-preserving hash
+
+P. J. Haas, I. F. Ilyas, G. M. Lohman, and V. Markl, “Discovering and
+exploiting statistical properties for query optimization in relational databases:
+A survey,” Statistical Analysis and Data Min
+
+http://www.cise.ufl.edu/~adobra/approxqp/histograms2
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.85.2774&rep=rep1&type=pdf
+

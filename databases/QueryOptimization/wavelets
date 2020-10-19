@@ -1,0 +1,44 @@
+
+ Essential Wavelets for Statistical Applications and Data Analysis by R. Todd Ogden.
+
+ http://www.bearcave.com/misl/misl_tech/wavelets/histo/
+
+ There are an infinite variety of wavelet functions. The papers I've read on using wavelet histograms for query optimization use either the Haar wavelet or the linear interpolation wavelet. The papers on smoothing for density estimation use a variety of wavelet functions, including the Daubechies wavelets.
+
+Wavelet decomposition : represent extended cumulative data distribution at hierarchical levels of detail
+
+lets say you inserted 
+elem=0 twice, 
+elem=2 five times, 
+elem=3 twice.
+
+you get frequency table X = {(0,2), (2,5), (3,2)}
+where each pair represents (number, frequency)
+
+Vitter's Histogram reconstruction algo :
+
+http://www.cs.umb.edu/~dsim/papersps/wavelets.pdf
+
+1) Compute extended cumulative data distribution of X
+Extended CDF f = { (0,2), (1,2), (2,7), (3, 9)}
+
+Gives Signal S=[2,2,7,9] of frequencies 
+
+2) Haar transform on S gives = [5,6,0,2]
+
+3) Choose m largest coefficients which minimize error
+
+4) Given range query [a,b], find wavelet coefficients which matter 
+in that range.
+
+reconstruct values for f(b) and f(a-1) using Inverse Wavelet
+
+T(A)[range=a,b] = TC+(A)b - TC+(A)a-1
+
+Linear wavelet transform better for range queries
+
+===========
+
+What about wavelets for string data ?
+
+Change histogram based on actual selectivity of a range query !

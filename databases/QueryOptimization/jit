@@ -1,0 +1,35 @@
+
+Jit converts to native code before execution
+interpreter may or may not
+
+Runtime optimizations => JIT
+global optimizations => Compiler
+Optimize across ops => ?
+
+sqlite emits bytecode
+postgres, mongo has parse tree
+
+parse -> bytecode -> JIT engine 
+Ahead-of-time AOT techniques
+
+JIT engines
+1) llvm has 2 engines : JIT(old) and MCJIT(new) 
+	(MC means machine code)
+	llvm used in webkit ftl 
+	what is kaleidoscope
+2) libjit
+3) gnu lightning
+4) LUA
+
+=========
+
+sqlite ops
+
+=============
+
+Questions:
+1) how can we use JIT to optimize across threads (amortize)
+2) what basic ops should offloader support
+
+===========
+

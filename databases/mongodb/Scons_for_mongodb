@@ -1,0 +1,2 @@
+
+scons -dd CCFLAGS="-Wno-unused-variable -Wno-maybe-uninitialized" -j3 all

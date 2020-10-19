@@ -1,0 +1,225 @@
+
+TODO http://www.cs.umd.edu/~jreese/dissertation.pdf
+DBtoaster : sql -> M3 -> K3 -> scala/c++
+Sqlite
+
+
+SQL JIT survey by Viglas
+ref - 2, 23, 10, 13, 25
+
+17 Krikellas
+22 neumann compiling query plans 
+27 sompolski vectorization vs compilation in query execution
+29 zhang optimizing i/o for big array analytics
+15 kissinger QPPT query processing on prefix trees
+24 pirk accelerating foreign-key joins using asymmetric mem channels
+20 murray automatic optimization of declarative queries
+
+18 Krikellas - modeling
+
+Myers : Radish: Compiling Efficient Query Plans for Distributed Shared Memory
+
+Functional programming : Lazily eval languages have similar problems.  Wadler developed deforestation algo to eliminate intermediate lists.  Use
+equational transformation to transform funcs into fused code
+
+NSM, DSM, PAX
+
+Iterator model (open, getnext, close): frequent func calls and abstract implementation prevent compiler optimization and increases CPU usage.  Effect
+is visible in memory-resident databases.
+
+Buffering model in iterator to reduce iterator calls
+
+VectorVise(MonetDB/X100) : blocking op coupled with column-wise layout.  Batch size tuned to fit processor cache.
+
+=========
+
+Programming language 
+  Language -> AST -> Intermediate lang -> machine code
+
+Two models
+template-based  (volcano, column-wise)
+  SQL      -> AST -> Execution tree of iterators 
+compile-based 
+  SQL      -> AST -> Intermediate lang -> C/C++ code
+
+Java : generate new Java classes that are loaded using reflection.
+LUA : generate LUA code 
+LLVM : generate LLVM assembly (strongly typed)
+C/C++
+
+SIMD instr : process multiple tuples in one instruction
+
+==========
+
+Murray : Steno
+
+LINQ is a declarative language extension to C# 
+LAnguage Integrated Query
+
+Steno translates a declarative LINQ query into type-specialized, inlined and loop-based imperative code. 
+
+DryadLINQ : LINQ -> distributed query plan
+
+Why slow
+1) iterator - 2 virtual func calls per elem per op
+2) for nested queries, elem flowing thru multiple iterators
+3) lazy iterator has state machine - per element overhead
+4) iterator implemented as func obj - adds overhead of virtual call per elem per op
+
+virtual func calls are difficult to inline - indirect branch - inhibits instruction pipelining
+
+Steno does
+1) iterator fusion : .
+	e.g. fuse SELECT and WHERE into a for loop
+
+	foreach (elem in list)
+	{
+		if (elem satisfies cond) // where clause
+			return elem.y;   // project 
+	}
+
+
+2) transform nested queries to nested loops
+
+Aggregate operators like Sum, Min, Average are eagerly evaluated and consume their upstream iterator.  They are inherently optimized.
+
+Automata based approach : 
+1. traverse chain of operators and emit symbols of QUIL (query intermediate language) per op. 
+2. from sequence of symbols, generate a C# class using CodeDOM lib that implements query
+3. compile and load query for execution
+4. before exec, Steno has to resolve obj references captured in query.  It uses reflection API to set fields in compiled query.
+
+QUIL :
+QUIL has 6 symbols
+QUIL is a regular language starting with SRC symbol and ending with RET.  
+Src represents source of a list (i.e. a table or index)
+Trans, Pred and Sink transform one list to another.
+Aggr
+Hence it is possible to use state machine over QUIL symbols to do iterator fusion.
+Code generation is driven by transitions in FSM
+
+Src -> generate "for loop" (internally a linked list of 3 statement
+Trans -> insert element-wise ops in loop body
+Pred -> 
+Agg -> reduce list to scalar value : generate code which does aggregation
+Sink -> creates new list from old
+group by-> uses a hash table/tree to do group by
+order by-> do a sort
+
+Sample sequence of symbols
+
+Src (index scan or table scan)
+Trans (apply function to elem)
+Pred (where clause)
+Sink (group by)
+Agg (reduce to scalar using min, max)
+Ret (return final list)
+
+Sample code generated
+
+for each elem in input list
+{
+	newe = f(elem)
+	if newe.a != some_value
+	{
+		map.insert(key, value)
+	}
+}
+  
+High-level optimizations
+groupby-aggregate 
+
+nested queries cannot be recognized by FSM.  add a stack to code generation.
+
+Also generate code for distributed processing - effectively a map-reduce
+
+Src -> Trans -> Agg -> Ret
+
+is transformed to 
+
+src -> (distributed Src) -> Trans -> (d Aggr -> Aggr -> Ret
+	-> (distributed Src) -> Trans -> (d Aggr 
+	-> (distributed Src) -> Trans -> (d Aggr 
+
+Ref
+9. Coutts Stream fusion 
+31. Wadler Deforestation
+15. Freytag translation of relational to iterative
+23. Krikellas
+
+===
+
+krikellas : generating code for holistic query evaluation
+
+
+Per-query code generation
+
+Code generation algo : takes output of optimizer, which is a topologically sorted list of ops -> uses code templates for each operator to generate code
+
+code templates are parametrized by machine architecture - cache-friendly
+nested loop generated for joins
+lack of func calls in inner loop - reuse machine registers 
+
+challenges:
+identify common code template
+how to interconnect different ops with no common API
+verify correctness
+
+Time for generating code is about 25 ms
+time for compiking code is 600 ms (optimized)
+
+Cache can still get polluted while running multiple queries in parallel.
+
+============
+
+Kissinger QPPT Query Processing on Prefix Trees
+
+OLAP
+
+DexterDB in-memory db with row-store and MVCC
+uses indexed table-at-a-time processing
+
+use prefix trees which to avoid intermediate index materialization cost
+index is common data exchange between plan operators
+
+prefix tree is unbalanced
+
+=====
+ 
+Sompolski : vectorization vs compilation in query execution
+
+Ingres VectorWise
+three use cases : project, Select and hash join
+
+MonetDB : used bulk processing, where each iterator consumed its input and then invoke next stage
+
+VectorWise : block processing. next() method produces block of (say) 10K tuples
+
+Incomplete review
+
+ParAccel [9] & HyPer [6] use JIT
+
+==========
+Neumann compiling efficient query plans
+
+HyPer MMDB Hybrid OLAP OLTP
+
+instead of C++, generated LLVM assembler code only for tight loops
+define notion of pipeline breaker - to keep data in CPU registers as much as possible
+
+
+data centric query execution
+
+each op has 2 API : produce, consume
+
+
+======
+
+Mohan, Hamid Piramesh, Guy Lohman, Jun Rao : Compiled Query Execution Engine using JVM
+
+In this paper, we develop both an interpreted and a compiled query execution engine in a relational, Java-based, in-memory database prototype, and perform an experimental study. Our experimental results on the TPC-H data set show that, despite both engines benefiting from JIT, the compiled engine runs on average about twice as fast as the interpreted one, and significantly faster than an in-memory
+
+==========
+
+DBToaster
+

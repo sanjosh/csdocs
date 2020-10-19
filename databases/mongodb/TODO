@@ -1,0 +1,10 @@
+
+We shud start looking at following
+
+ -- identifying ident to attribute name mapping
+
+ --- in the context of write to rocks, send the update to remote node.. idea is
+ to be able to recover rocks from remote machine 
+
+ --- in the context of rocksdb flush send the blob to remote machne to crt L0
+ file

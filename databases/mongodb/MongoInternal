@@ -1,0 +1,38 @@
+
+db/catalog/collection.cpp
+
+BSON
+{total_doc_len : 
+  {valtype :
+    key - null terminated,
+    {value} OR {len, value}
+  }
+}
+
+Collection
+{
+  IndexCatalog ( 1 per collection)
+  RecordStore
+  DatabaseCatalogEntry
+}
+
+Collection::_insertDocuments()
+{
+  recordStore->insertRecords(<RecordId, data>)
+  {
+    RecordStore
+  }
+
+  indexCatalog.indexRecords(<RecordId, RecordId>)
+  {
+    for each index
+    {
+      _indexRecords
+      {
+        if (record matches index->filter (MatchExpression)
+          index->accessMethod()->insert()
+            -> calls SortedDataInterface
+      }
+    }
+  }
+}

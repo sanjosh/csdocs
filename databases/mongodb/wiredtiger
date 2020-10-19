@@ -1,0 +1,29 @@
+
+SortedDataInterface -> WiredTigerIndex
+KVEngine -> WiredTigerKVEngine
+RecordStore -> WiredTigerRecordStore
+StorageEngine -> KVStorageEngine
+RecoveryUnit -> WiredTigerRecoveryUnit
+KVCatalog
+RecordId
+
+WiredTigerSession
+WiredTigerSessionCache
+
+SortedDataInterface::Cursor
+OperationContext (txn)
+BulkBuilder
+BSONObj
+
+WT_CURSOR : 
+WT_SESSION 
+WT_CONNECTION
+WT_EVENT_HANDLER
+
+========
+
+
+WiredTigerIndex
+
+insert -> _insert -> WT_CURSOR::insert
+unindex -> _unindex

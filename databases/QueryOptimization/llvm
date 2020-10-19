@@ -1,0 +1,50 @@
+
+LLVM overview:
+
+LLVMContext : per-thread
+
+PassManager
+Pass - ModulePass, FunctionPass, BasicBlockPass
+
+MachineFunctionPass
+
+TableGen
+
+EngineBuilder
+ExecutionEngine
+RuntimeDyld
+MachineCodeEmitter
+
+Module
+Function
+BasicBlock
+Instruction
+Value
+User
+
+MachineFunction
+MachineInstr
+
+JIT
+JITEmitter
+
+MemoryBuffer
+
+-------
+LLVM passes:
+
+mem2reg 
+loop info
+dominator tree
+analysis
+transform
+
+-------
+
+Tools
+lli - bitcode interpreter
+llc - generates C++ code which is needed to generate IR code, for a bitcode file
+llvm-config - to find flags
+llvm-link - link several LLVM modules
+opt - 
+

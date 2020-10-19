@@ -1,0 +1,45 @@
+
+IndexDescriptor->unique()
+
+Engine::getSortedDataInterface
+
+IndexAccessMethod - sublcass for inverted index
+ - redefine getKeys()
+
+IndexNames::TEXT
+FTSAccessMethod
+FTSSpec::scoreDocument()
+{
+  FTSElementIterator(BSONObj)
+  computes term frequency map
+}
+
+
+
+IndexCatalogEntry
+
+SortedDataInterface
+
+BSONObjIterator
+BSONObj
+BSONElement
+BSONObjBuilder
+BSONObjSet
+
+=================
+
+RocksEngine::createSortedDataInterface()
+{
+  createColumnFamily
+}
+
+RocksEngine::getSortedDataInterface()
+{
+
+}
+
+RocksIndexBase - add columnFamilyHandle
+RocksCursorBase - change prefix to handle
+
+
+

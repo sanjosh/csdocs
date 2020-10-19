@@ -1,0 +1,152 @@
+
+Wangle = netty + finagle
+Uses libevent
+http://ayedo.github.io/netty/2013/06/19/what-is-netty.html
+
+Usage:
+Declare Input/Output Handlers which will process IO
+
+class MyHandler : public InboundHandler
+{
+	void read()
+};
+
+Declare a pipeline of handlers
+
+Pipeline<Input, Output> pipeline;
+pipeline.add(handler1)
+pipeline.add(handler1)
+
+ServerBootstrap<TelnetPipeline> server;
+server.childPipeline(pipeline);
+
+Classes : (derived classes appear indented)
+
+BlockingQueue (used as taskQueue in Executor)
+	BlockingMPMCQueue, 
+	LifeSemMPMCQueue, 
+	PriorityLifoSemMPMCQueue
+
+folly::Eventbase
+
+folly::Executor drives an EventBase
+	DrivableExecutor
+	FiberManager : single-threaded - yield via await()
+	IOExecutor 
+		FiberIOExecutor
+	ThreadPoolExecutor : on instantiation, threads loop in threadRun() 
+		CPUThreadPoolExecutor(uses taskQueue)
+		IOThreadPoolExecutor(uses eventManager)
+
+ThreadFactory :: newThread() returns std::thread
+	NamedThreadFactory
+	PriorityThreadPoolFactory
+
+Service 
+	FactoryToService
+	ServiceFilter : apply transforms to input& output of service
+		ExecutorFilter : uses folly::Executor.  runs all requests thru an executor.
+		CloseOnReleaseFilter : reject all requests after close called
+		ExpiringFilter : expires service after idle timeout
+
+
+ServiceFactory<Pipeline>
+	ServiceFactoryFilter : control how connections are created
+	ConstFactory
+
+RoutingDataHandlerFactory
+	newHandler() returns RoutingDataHandler
+
+BroadcastHandlerFactory
+	newHandler() returns BroadcastHandler
+	
+ServerSocketFactory  : newSocket(), addAcceptCB()
+	AsyncServerSocketFactory 
+	AsyncUDPServerSocketFactory
+
+Acceptor : onNewConnection()
+	ServerAcceptor
+
+AcceptorFactory : newAcceptor()
+	ServerAcceptorFactory
+
+ConnectionManager : has list of ManagedConnection
+
+ManagedConnection
+
+ServerBootstrap 
+
+ClientBootstrap
+
+HandlerBase :: attach/detachPipeline(), getContext()
+	Handler :: read(Context, BufQueue), write(), transportActive()
+		HandlerAdapter
+			ClientDispatcherBase
+				SerialClientDispatcher
+				PipelinedClientDispatcher
+			SerialServerDispatcher
+			PipelinedServerDispatcher
+			MultiplexedServerDispatcher
+			BroadcastHandler
+			BytesToBytesHandler
+				RoutingDataHandler
+				AsyncSocketHandler
+	InboundHandler
+		InboundBytesToBytesHandler
+	OutboundHandler
+		OutboundBytesToBytesHandler
+			EventBaseHandler
+
+HandlerContext
+	InboundHandlerContext
+	OutboundHandlerContext
+
+PipelineContext
+	ContextImplBase (has ptr to Context, PipelineBase, Handler)
+		ContextImpl 
+			InboundContextImpl
+			OutboundContextImpl
+
+PipelineBase
+	Pipeline 
+	 has PipelineManager
+	 has Handler (add/remove)
+	 has vector<Context>
+	
+PipelineFactory
+	newPipeline() creates Pipeline
+
+PipelineManager
+	deletePipeline() deletes Pipeline
+
+========
+
+ServerBootStrap (will have to change for RDMA)
+ - pipeline() - used to process accepted socket before handoff
+ - childPipeline() - used to process new socket after handoff
+ - group(executor for accept, executor for io thread)
+ - can have childPipeFactory or acceptPipelineFactory
+ - PipelineFactory::newPipeline creates a pipeline
+ - Pipeline::add/remove handlers
+
+ServerBootstrap - EventBase/TaskQueue - Executor
+  - Pipeline
+    - Handler 
+      - Context
+
+ExecutorFilter(Executor, Service)
+
+
+============
+
+Drawbacks 
+	no Numa
+	tied to folly
+	
+Advantages 
+	Pipeline
+	Context
+
+
+
+
