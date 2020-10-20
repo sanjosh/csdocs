@@ -1,0 +1,10 @@
+
+lshw -C network
+
+1) in /etc/default/crda, set REGDOMAIN=IN
+
+2) sudo nano /etc/modprobe.d/ath9k.conf
+Add the following line to it:
+options ath9k nohwcrypt=1
+
+

@@ -1,0 +1,21 @@
+
+Andrew NG Machine Learning
+
+https://www.coursera.org/course/stats1
+
+https://www.coursera.org/course/introstats
+
+https://www.coursera.org/course/dataanalysis
+
+
+
+stats
+    confidence interval
+
+    coeff of var
+
+    central limit theorem :  distrib of average of large numberof iid will be approx normal.  The astonishing fact is that this theorem says that a normal distribution arises regardless of the initial distribution. Even if our population has a skewed distribution, which occurs when we examine things such as incomes or people’s weights, a sampling distribution for a sample with a sufficiently large sample size will be normal.
+
+    Law of Large Numbers : if we take a sample (n) observations of our random variable & avg the observation(mean)-- it will approach the expected value E(x) of the random variable
+
+    bayesian learning

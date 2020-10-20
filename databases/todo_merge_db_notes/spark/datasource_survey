@@ -1,0 +1,168 @@
+
+Spark provides four different kinds of interfaces that need to be implemented by your data source
+
+1) DDL operation.  
+How to tell Spark to retrieve existing tables or create new tables
+
+implement the DataSourceRegister interface 
+
+if schema is going to be inferred, implement RelationProvider
+if schema is going to be user-defined, implement SchemaRelationProvider
+
+if your database allows table creation from a data frame, implement CreateTableRelationProvider
+
+in all cases, you implement the createRelation() method which returns 
+a "BaseRelation" class to Spark
+
+i.e.
+class MyDataSource : DataSourceRegister, RelationProvider, CreatableRelationProvider
+{
+    createRelation(...)
+}
+
+
+2) DDL Operation : 
+How to tell spark which table ops are supported
+
+BaseRelation : here, spark sets the schema in a StructType variable
+
+for scans, implement TableScan or PrunedFilteredScan or PrunedScan or CatalystScan
+
+class MyTableRelaton 
+   : BaseRelation
+   , PrunedScan [ or TableScan, PrunedFilteredScan or CatalystScan]
+   , InsertableRelation
+{
+    // if you support PrunedScan
+    // returns an RDD
+    RDD buildScan(requiredColumns, filters) 
+
+    Filters unhandledFilters(filters) 
+    {
+        // tell spark which filters you did not handle
+    }
+
+    // if you support TableScan
+    RDD buildScan() 
+
+    //if you support InsertableRelation
+    insert(DataFrame, overwriteFlag) 
+}
+
+==============================
+
+
+Code provided in RDD is serialized by master node and sent to worker nodes.
+The worker nodes executes RDD.compute() to fetch data from underlying data source.
+The master node never fetches data(except in streaming if it the first RDD)
+
+3) DML operations  
+Extend the RDD and its compute() method to return data
+
+class MyRDD : public RDD 
+{
+    partitioner object
+
+    getPreferredLocations()
+    {
+    }
+
+    getPartitions()
+    {
+    }
+
+    // tell Spark how to get Rows
+    compute(Partition, TaskContext)
+    {
+        // using the given partition
+        // execute query against your database and 
+        // return an iterator 
+    }
+}
+
+class MyPartitioner : Partitioner
+{
+   numPartitions
+
+   Int getPartition(key) 
+   {
+   }
+
+   Int hashCode()
+   {
+   }
+}
+
+4) OutputWriter
+
+this is new functionality added
+MyOutputWriter : OutputWriter
+{
+    write(row) 
+}
+
+===========
+
+In spark /sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/jdbc
+
+JDBC does not implement Partitioner but implements all others
+
+============
+
+In spark /sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/parquet
+Parquet
+
+ParquetFileFormat : DataSourceRegister
+
+=========
+
+In spark /sql/core/src/main/scala/org/apache/spark/sql/execution/datasources
+HadoopFsRelation : BaseRelationn
+
+===========
+
+Cassandra implements all four
+
+DefaultSource extends RelationProvider, SchemaRelationProvider, CreatableRelationProvider
+
+CassandraSourceRelation extends BaseRelation, InsertableRelation, PrunedFilterScan
+
+CassandraTableScanRDD (it has a few other types of RDD)
+
+ReplicaPartitioner extends Partitioner
+
+============
+
+Ryft
+
+DefaultSource - SchemaRelationProvider, CreatableRelationProvider
+{
+    BaseRelation createRelation(sqlContext, parameters, schema) 
+    {
+        // partitioner to use can be passed in parameters
+    }
+
+    // create new table
+    BaseRelation createRelation(sqlContext, saveMode, parameters, dataFrame) 
+    {
+    }
+}
+
+RyftRelation : BaseRelation, PrunedFilteredScan
+{
+    RDD buildScan(requiredColumns, filters) 
+    {
+    }
+}
+
+RyftRDD : RDD
+{
+    Iterator compute(Partition, TaskContext)
+    {
+    }
+}
+
+Ryft has 4 types of Partitioner
+Simple, No, Arrest, FirstLetter
+/spark-ryft-connector/src/main/scala/com/ryft/spark/connector/partitioner/impl/ 
+

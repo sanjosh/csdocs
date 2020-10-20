@@ -1,0 +1,40 @@
+
+==============
+Guava Rate Limiter 
+  - has warmup period
+
+rate at which stored permits are given out
+
+** it remembers expected time of next request, rather than time of last request
+
+increase stored permit if req arrives later than expected
+
+function storedPermitsToWaitTime() calculates
+  how soon to expend stored permits
+this time is added to NextFreeTicketMicros
+
+let request exceeding permit start right away; delay next request
+
+======
+
+Guava Rate Limiter
+has two - SmoothBursty and SmoothWarmingUp
+
+fairness - NO
+Bursts - YES
+warmup - YES
+stored permits - upto maxPermits
+dynamically alter rate ?
+
+has no queue unlike rocksdb - just a mutex
+
+explain storedPermitsToWaitTime()
+
+acquire(permits)
+{
+  take mutex
+  time = reserveEarliestAvailable(permits)
+  sleep(time
+}
+
+

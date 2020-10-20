@@ -1,0 +1,135 @@
+
+https://blogs.oracle.com/bonwick/entry/zfs_dedup
+
+
+« ZFS in MacOS X Snow... | Main | And now, page 2 »
+ZFS Deduplication
+By bonwick on Nov 01, 2009
+
+You knew this day was coming: ZFS now has built-in deduplication.
+
+If you already know what dedup is and why you want it, you can skip the next couple of sections. For everyone else, let's start with a little background.
+
+What is it?
+
+Deduplication is the process of eliminating duplicate copies of data. Dedup is generally either file-level, block-level, or byte-level. Chunks of data -- files, blocks, or byte ranges -- are checksummed using some hash function that uniquely identifies data with very high probability. When using a secure hash like SHA256, the probability of a hash collision is about 2\^-256 = 10\^-77 or, in more familiar notation, 0.00000000000000000000000000000000000000000000000000000000000000000000000000001. For reference, this is 50 orders of magnitude less likely than an undetected, uncorrected ECC memory error on the most reliable hardware you can buy.
+
+Chunks of data are remembered in a table of some sort that maps the data's checksum to its storage location and reference count. When you store another copy of existing data, instead of allocating new space on disk, the dedup code just increments the reference count on the existing data. When data is highly replicated, which is typical of backup servers, virtual machine images, and source code repositories, deduplication can reduce space consumption not just by percentages, but by multiples.
+
+What to dedup: Files, blocks, or bytes?
+
+Data can be deduplicated at the level of files, blocks, or bytes.
+
+File-level assigns a hash signature to an entire file. File-level dedup has the lowest overhead when the natural granularity of data duplication is whole files, but it also has significant limitations: any change to any block in the file requires recomputing the checksum of the whole file, which means that if even one block changes, any space savings is lost because the two versions of the file are no longer identical. This is fine when the expected workload is something like JPEG or MPEG files, but is completely ineffective when managing things like virtual machine images, which are mostly identical but differ in a few blocks.
+
+Block-level dedup has somewhat higher overhead than file-level dedup when whole files are duplicated, but unlike file-level dedup, it handles block-level data such as virtual machine images extremely well. Most of a VM image is duplicated data -- namely, a copy of the guest operating system -- but some blocks are unique to each VM. With block-level dedup, only the blocks that are unique to each VM consume additional storage space. All other blocks are shared.
+
+Byte-level dedup is in principle the most general, but it is also the most costly because the dedup code must compute 'anchor points' to determine where the regions of duplicated vs. unique data begin and end. Nevertheless, this approach is ideal for certain mail servers, in which an attachment may appear many times but not necessary be block-aligned in each user's inbox. This type of deduplication is generally best left to the application (e.g. Exchange server), because the application understands the data it's managing and can easily eliminate duplicates internally rather than relying on the storage system to find them after the fact.
+
+ZFS provides block-level deduplication because this is the finest granularity that makes sense for a general-purpose storage system. Block-level dedup also maps naturally to ZFS's 256-bit block checksums, which provide unique block signatures for all blocks in a storage pool as long as the checksum function is cryptographically strong (e.g. SHA256).
+
+When to dedup: now or later?
+
+In addition to the file/block/byte-level distinction described above, deduplication can be either synchronous (aka real-time or in-line) or asynchronous (aka batch or off-line). In synchronous dedup, duplicates are eliminated as they appear. In asynchronous dedup, duplicates are stored on disk and eliminated later (e.g. at night). Asynchronous dedup is typically employed on storage systems that have limited CPU power and/or limited multithreading to minimize the impact on daytime performance. Given sufficient computing power, synchronous dedup is preferable because it never wastes space and never does needless disk writes of already-existing data.
+
+ZFS deduplication is synchronous. ZFS assumes a highly multithreaded operating system (Solaris) and a hardware environment in which CPU cycles (GHz times cores times sockets) are proliferating much faster than I/O. This has been the general trend for the last twenty years, and the underlying physics suggests that it will continue.
+
+How do I use it?
+
+Ah, finally, the part you've really been waiting for.
+
+If you have a storage pool named 'tank' and you want to use dedup, just type this:
+
+zfs set dedup=on tank
+
+That's it.
+
+Like all zfs properties, the 'dedup' property follows the usual rules for ZFS dataset property inheritance. Thus, even though deduplication has pool-wide scope, you can opt in or opt out on a per-dataset basis.
+
+What are the tradeoffs?
+
+It all depends on your data.
+
+If your data doesn't contain any duplicates, enabling dedup will add overhead (a more CPU-intensive checksum and on-disk dedup table entries) without providing any benefit. If your data does contain duplicates, enabling dedup will both save space and increase performance. The space savings are obvious; the performance improvement is due to the elimination of disk writes when storing duplicate data, plus the reduced memory footprint due to many applications sharing the same pages of memory.
+
+Most storage environments contain a mix of data that is mostly unique and data that is mostly replicated. ZFS deduplication is per-dataset, which means you can selectively enable dedup only where it is likely to help. For example, suppose you have a storage pool containing home directories, virtual machine images, and source code repositories. You might choose to enable dedup follows:
+
+zfs set dedup=off tank/home
+
+zfs set dedup=on tank/vm
+
+zfs set dedup=on tank/src
+
+Trust or verify?
+
+If you accept the mathematical claim that a secure hash like SHA256 has only a 2\^-256 probability of producing the same output given two different inputs, then it is reasonable to assume that when two blocks have the same checksum, they are in fact the same block. You can trust the hash. An enormous amount of the world's commerce operates on this assumption, including your daily credit card transactions. However, if this makes you uneasy, that's OK: ZFS provies a 'verify' option that performs a full comparison of every incoming block with any alleged duplicate to ensure that they really are the same, and ZFS resolves the conflict if not. To enable this variant of dedup, just specify 'verify' instead of 'on':
+
+zfs set dedup=verify tank
+
+Selecting a checksum
+
+Given the ability to detect hash collisions as described above, it is possible to use much weaker (but faster) hash functions in combination with the 'verify' option to provide faster dedup. ZFS offers this option for the fletcher4 checksum, which is quite fast:
+
+zfs set dedup=fletcher4,verify tank
+
+The tradeoff is that unlike SHA256, fletcher4 is not a pseudo-random hash function, and therefore cannot be trusted not to collide. It is therefore only suitable for dedup when combined with the 'verify' option, which detects and resolves hash collisions. On systems with a very high data ingest rate of largely duplicate data, this may provide better overall performance than a secure hash without collision verification.
+
+Unfortunately, because there are so many variables that affect performance, I cannot offer any absolute guidance on which is better. However, if you are willing to make the investment to experiment with different checksum/verify options on your data, the payoff may be substantial. Otherwise, just stick with the default provided by setting dedup=on; it's cryptograhically strong and it's still pretty fast.
+
+Scalability and performance
+
+Most dedup solutions only work on a limited amount of data -- a handful of terabytes -- because they require their dedup tables to be resident in memory.
+
+ZFS places no restrictions on your ability to dedup. You can dedup a petabyte if you're so inclined. The performace of ZFS dedup will follow the obvious trajectory: it will be fastest when the DDTs (dedup tables) fit in memory, a little slower when they spill over into the L2ARC, and much slower when they have to be read from disk. The topic of dedup performance could easily fill many blog entries -- and it will over time -- but the point I want to emphasize here is that there are no limits in ZFS dedup. ZFS dedup scales to any capacity on any platform, even a laptop; it just goes faster as you give it more hardware.
+
+Acknowledgements
+
+Bill Moore and I developed the first dedup prototype in two very intense days in December 2008. Mark Maybee and Matt Ahrens helped us navigate the interactions of this mostly-SPA code change with the ARC and DMU. Our initial prototype was quite primitive: it didn't support gang blocks, ditto blocks, out-of-space, and various other real-world conditions. However, it confirmed that the basic approach we'd been planning for several years was sound: namely, to use the 256-bit block checksums in ZFS as hash signatures for dedup.
+
+Over the next several months Bill and I tag-teamed the work so that at least one of us could make forward progress while the other dealt with some random interrupt of the day.
+
+As we approached the end game, Matt Ahrens and Adam Leventhal developed several optimizations for the ZAP to minimize DDT space consumption both on disk and in memory, key factors in dedup performance. George Wilson stepped in to help with, well, just about everything, as he always does.
+
+For final code review George and I flew to Colorado where many folks generously lent their time and expertise: Mark Maybee, Neil Perrin, Lori Alt, Eric Taylor, and Tim Haley.
+
+Our test team, led by Robin Guo, pounded on the code and made a couple of great finds -- which were actually latent bugs exposed by some new, tighter ASSERTs in the dedup code.
+
+My family (Cathy, Andrew, David, and Galen) demonstrated enormous patience as the project became all-consuming for the last few months. On more than one occasion one of the kids has asked whether we can do something and then immediately followed their own question with, "Let me guess: after dedup is done."
+
+Well, kids, dedup is done. We're going to have some fun now.
+====================
+
+
+https://blogs.oracle.com/darren/entry/compress_encrypt_checksum_deduplicate_with
+
+The main goal of encryption is to make the (presumably sensitive) cleartext data indistinguishable from random data.  Good file system encryption usually aims to have the same plaintext encrypt to different ciphertext at least when written at a different "location" even if the same key is used.  One way to achieve that is that the initialisation vector (IV) is some how derived from where the blocks of the files are stored on disk.  In this respect the encryption support in ZFS is no different, by default we derive the IV from a combination of what dataset / object the block is for and also when (its transaction) written.  This means that the same block of plaintext data written to a different file in the same filesystem will get a different IV and thus different ciphertext.  Since ZFS is copy-on-write and we use the transaction identifier it also means that if we "overwrite" the same block of a file at a later time it still ends up having a different IV and thus will be different ciphertext.  Each encrypted dataset in ZFS has a different set of data encryption keys (see my earlier post on assured delete for more details on that), so there we change the IV and the encryption key so have a really high level of confidence of getting different ciphertext when written to different datasets.
+
+The goal of deduplication in storage is to coalesce matching disk blocks into a smaller number of copies (ideally 1, but in ZFS that nunber depends on the value of the copies property on the dataset and the pool wide dedupditto property so it could be more than 1).  Given the above description of how we do encryption it would seem that encryption and deduplication are fundamentally at odds with each other - and usually that is true.
+
+When we write a block to disk in ZFS it goes through the ZIO pipeline and in doing so a number of transforms are optionally applied to the data:  compress -> encryption -> checksum -> dedup -> raid.
+
+The deduplication step uses the checksums of the blocks to find suitable matches. This means it is acting on the already compressed and encrypted data.  Also in ZFS deduplication matches are searched for in all datasets in the pool with dedup=on.
+
+So we have very little chance of getting any deduplication hits with encrypted datasets because of how the IV is generated and the fact that each dataset has its own set of encryption keys.  In fact not getting hits with deduplication is actually a good test that we are using different keys and IVs and thus getting different ciphertext for the same plaintext.
+
+So encryption=on + dedup=on is pointless, right ?
+
+Not so with ZFS, I wasn't happy about giving up on deduplication for encrypted datasets, so we found a solution, it has some restrictions but I think they are reasonable and realistic ones.
+
+Within what I'll call a "clone family", ie all datasets are clones of the same original dataset or are clones of those clones, we would be sharing data encryption keys in the default case, because they share data (again see my earlier post on assured delete for info on the data encryption keys). So I found a method of generating the IV such that within the "clone family" we will get dedup hits for the same plaintext.  For this to work you must not run 'zfs key -K' on any of the clones and you must not pass '-K' to 'zfs clone' when you create your clones.  Note that dedup does not apply to child datasets only to the snapshots/clones, and by that I mean it doesn't break you just won't get deduplication matches.
+
+So no it isn't pointless and whats more for some configurations it will actually work really well.  A common use case for a configuration that does work well is a set of visualisation image (maybe filesystems for local Zones or ZVOLs shared over iSCSI for  OVM or similar) where they are all derived from the same original master by using zfs clones and that all get patched/updated with the pretty much the same set of patches/updaets.  This is a case where clones+dedup work well for the unencrypted case, and one which as shown above can still work well even when encryption is enabled.
+
+The usual deployment caveats with ZFS deduplication still apply, ie it is block based and it works best when you have lots of available DRAM and/or L2ARC for caching the DDT.  ZFS Encryption doesn't add any additional requirements to this. 
+
+So we can happily do this type of thing, and have it "work as expected":
+
+    $ zfs create -o compression=on -o encryption=on -o dedup=on tank/builds
+    ... 
+    $ zfs create tank/builds/master
+    ... 
+    $ zfs clone tank/builds/master@1tank/builds/project-one
+    ...
+    $ zfs clone tank/builds/master@1 tank/builds/project-two 
+
+

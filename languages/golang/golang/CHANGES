@@ -1,0 +1,45 @@
+
+
+Interface to support
+
+ledisdb/client/go/ledis/conn.go
+ledisdb/src/github.com/siddontang/ledisdb/server/app.go
+ledisdb/src/github.com/siddontang/ledisdb/config/config.go (cfg.Addr)
+
+net.Conn
+net.Listener
+net.Dial(proto, addr)
+net.Listen(tipc, addr)
+
+Addr format : tipc:<serviceName>.<instance>
+
+============
+
+In syscall
+
+net_nacl.go
+types_linux.go
+syscall_linux.go
+
+=============
+
+domain AF_INET -> AF_TIPC
+type  SOCK_SEQPACKET SOCK_RDM, SOCK_STREAM
+
+TIPCAddr (zone, cluster, node)
+
+sockaddr_tipc
+{
+    family
+    addr
+    scope
+    addr (port/ nameseq/ name, domain)
+}
+
+int fd = socket(AF_TIPC, SOCK_SEQPACKET, 0)
+connect(fd, &sockaddr_tipc,
+bind(fd, &sockaddr_tipc)
+listen(fd)
+accept
+
+http://jan.newmarch.name/go/

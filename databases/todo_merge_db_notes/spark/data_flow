@@ -1,0 +1,99 @@
+
+Driver=Master
+Worker=Executor
+
+================
+
+Serialization
+
+task serialization : send code to workers using java serialization
+data serialization : shuffle
+
+You can avoid serialization completely by using static methods - methods of objects instead of classes.
+http://stackoverflow.com/questions/31366467/how-spark-driver-serializes-the-task-that-is-sent-to-executors
+
+http://stackoverflow.com/questions/36304385/does-serialization-degrade-spark-performance?rq=1
+
+=====================
+
+Partition
+
+
+http://stackoverflow.com/questions/37522315/spark-parallelize-and-partition-by-key?rq=1
+
+https://github.com/datastax/spark-cassandra-connector/blob/master/doc/3_selection.md#grouping-rows-by-partition-key
+
+http://stackoverflow.com/questions/32588710/spark-dataframes-with-parquet-and-partitioning
+
+https://issues.apache.org/jira/browse/SPARK-17861
+
+==============
+
+Data loading
+
+Driver gets the data only in case you use some terminal operations, like collect(), first(), show(), toPandas(), toLocalIterator() and similar.
+
+http://stackoverflow.com/questions/40363845/how-to-ensure-that-loading-of-spark-dataframe-from-parquet-is-distributed-and-pa?rq=1
+
+==============
+
+Schema merging option while storing in parquet
+
+http://stackoverflow.com/questions/40927250/how-to-handle-changing-parquet-schema-in-apache-spark?rq=1
+
+==============
+
+HDFS partitions getting deleted when new partitions come
+
+http://stackoverflow.com/questions/42317738/how-to-partition-and-write-dataframe-in-spark-without-deleting-partitions-with-n?rq=1
+
+
+=============
+
+schema inference for parquet
+
+http://stackoverflow.com/questions/34167626/how-the-dataframe-picks-the-schema-of-the-parquet-with-merge-schema-turned-off?rq=1
+
+https://github.com/apache/spark/pull/4308/files
+
+http://spark.apache.org/docs/latest/sql-programming-guide.html#hive-metastore-parquet-table-conversion
+
+==========
+
+SQL streaming
+
+http://stackoverflow.com/questions/25484879/sql-over-spark-streaming
+
+==========
+
+Parquet 
+
+===========
+
+http://stackoverflow.com/questions/32621990/what-are-workers-executors-cores-in-spark-standalone-cluster?rq=1
+
+==========
+
+partitions
+
+http://stackoverflow.com/questions/39368516/number-of-partitions-of-spark-dataframe?rq=1
+
+http://stackoverflow.com/questions/30995699/how-to-define-partitioning-of-dataframe?rq=1
+
+Spark uses Cassandra partitioner (tokenrange)
+
+https://github.com/datastax/spark-cassandra-connector/blob/master/doc/16_partitioning.md
+
+===========
+
+http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/
+
+http://stackoverflow.com/questions/27194333/how-to-split-parquet-files-into-many-partitions-in-spark?rq=1
+
+=========
+
+Data source api
+
+https://mapr.com/blog/spark-data-source-api-extending-our-spark-sql-query-engine/
+
+http://hydronitrogen.com/

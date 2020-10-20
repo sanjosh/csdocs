@@ -1,0 +1,452 @@
+
+https://github.com/Intel-bigdata/spark-streamingsql
+
+-----
+
+core/../java/io/snappydata/util
+use clearstring hash and stream
+
+core/../java/io/snappydata/impl
+SnappyHiveCatalog extends ExternalCatalog (gemfire)
+
+core/../java/org/apache/
+BoundedSortedSet
+
+core/../scala/io/snappydata
+
+SparkShellRDDHelper
+ComplexTypeSerializer - 
+ServerManager
+Services
+
+core/../scala/org/apache/spark
+
+------
+sql
+
+Dataset[Row]
+- CachedDataFrame 
+  collect
+
+DataFrameJavaFunctions
+  stratifiedSample
+  withTime
+
+DataFrame
+- SampleDataFrame
+- AQPDataFrame
+- DataFrameWithTime
+
+DelegateRDD : RDD[T]
+
+--------
+
+StreamBaseRelation
+  buildScan() : RDD
+
+// import org.apache.spark.sql.streaming.StreamPlanProvider
+StreamPlanProvider
+  createRelation()
+- KakfaStreamSource
+- DirectKafkaStreamSource 
+- FileStreamSourcee
+- RabbitMQStreamSource
+- RawSocketStreamSource
+- SocketStreamSource
+- TextSocketStreamSource
+- TwitterStreamSource
+
+StreamPlan 
+- WindowPhysicalPlan
+
+DStream
+- TransformedSchemaDStream
+- SchemaDStream
+
+SchemaDStream : DStream // rdd of batch treated as table on which CQ are eval
+  compute() : RDD
+  registerAsTable() 
+
+RabbitMQInputDTream : ReceiverInputDStream  
+
+GlommedSchemaDStream
+MapPartitionedSchemaDStream : DStream
+MappedDStream
+
+KafkaStreamRelation : StreamBaseRelation
+----------
+RDD
+- RDDKryo
+-- RowFormatScanRDD 
+
+interfaces.scala : 
+
+BaseRelation
+- JDBCMutableRelation
+- JDBCAppendableRelation 
+ - BaseColumnFormatRelation
+
+
+-----------
+JDBCDialect
+
+columnar/encoding - ColumnDecoder
+
+-----------------
+
+SparkSession
+- SnappySession 
+
+SessionState
+- SnappySessionState 
+
+SharedState  
+- SnappySharedState 
+
+CacheManager
+- SnappyCacheManager 
+
+SQLConf
+- SnappyConf 
+
+SQLContext (deprecated in Spark 2.0)
+- SnappyContext 
+  createSampleTable
+  createTable
+  createIndex
+  insert
+  update
+  delete
+
+AbstractSqlParser
+- SnappySqlParser
+
+Parser
+- SnappyBaseParser 
+-- SnappyDDLParser 
+--- SnappyParser 
+  parse(Text)
+
+QueryExecution
+- override preparations Seq[Rule[SparkPlan]]
+
+Analyzer
+- override extendedResolutionRules  (Rule [LogicalPlan])
+- override extendedCheckRules  (Rule [LogicalPlan])
+
+Optimizer
+- override batches (Seq[Batch])
+
+SparkPlanner
+- DefaultPlanner (with Snappy Strategies)
+
+Strategy
+- StoreDataSourceStrategy 
+- LocalJoinStrategies
+- StreamQueryStrategy
+- SnappyAggregation
+- StoreStrategy
+- JoinOrderStrategy
+-- Replicates
+-- ColocatedWithFilters
+-- NonColocated
+-- ApplyRest
+
+LogicalPlan
+- ExecuteCommand
+-- ExternalTableDMLCmd
+- PutIntoTable
+- LogicalDStreamPlan 
+
+Rule[LogicalPlan]
+- PushDownLogicalPlan
+- LinkPartitionsToBuckets
+- ResolveRelationsExtended
+- AnalyzeChildQuery
+- ResolveIndex
+
+PhysicalPlan
+- PhysicalDStreamPlan 
+
+Rule[SparkPlan]
+- CollapseCollocatedPlans
+- InsertCachedPlanHelper
+
+UnaryExecNode (with CodegenSupport)
+- CachedPlanHelperExec 
+- ObjectHashMapAccessor 
+- TableInsertExec
+- CollectAggregate 
+- SnappyHashAggregateExec (BatchConsumer)
+- TableInsertExec (bulk insert)
+-- RowInsertExec 
+-- ColumnInsertExec 
+
+BinaryExecNode
+- HashJoinExec (HashJoin, BatchConsumer)
+
+LeafExecNode
+- EncoderScanExec (CodegenSupport)
+- DataSourceScanExec (scan data from source)
+-- PartitionedPhysicalScan 
+--- RowTableScan 
+--- ColumnTableScan 
+
+CodeGeneration (convert Row, InternalRow -> gemfire's Statement, ExecRow)
+++ uses CompilerFactory
+
+ZipPartitionScan
+
+ColumnDecoder
+- ResultSetDecoder 
+
+LeafExpression
+- ParamLiteral 
+
+Partitioner
+- ColumnPartitioner 
+
+AccumulatorParam
+- MembershipAccumulator 
+
+InternalRow
+- StratumInternalRow 
+
+DictionaryOptimizedMapAccessor (IMP)
+
+-------------
+
+classes and methods/variables which were override
+
+SnappySession : SparkSession
+{
+   sharedState = add your own
+   sessionState = set your own
+   
+   newSession()
+
+   sql(text) : CachedDataFrame
+}
+
+SnappyContext : SQLContext
+{
+    newSession()
+
+    sessionState
+}
+
+SnappySessionState  : SessionState
+{
+  SparkPlanner planner = new DefaultPlanner
+
+  SQLParser sqlParser = new YourParser
+
+  SQLConf conf = new YourConf
+
+  Optimizer optimize = new YourOptimizer(catalog, conf) 
+
+  catalog = new YourCatalog
+
+  Analyzer analyzer = new YourAnalyzer(catalog, conf)
+
+  executePlan(LogicalPlan) : QueryExecution)
+  {
+    new QueryExecution(add your Rule[SparkPlan] here)
+  }
+}
+
+MyConf : SQLConf
+{
+    numShufflePartitions
+    setConfString
+    setConf
+    unsetConf
+}
+
+
+SQLParser : AbstractSqlParser
+{
+    parseDataType(string) : DataType
+    parseExpression(string) : Expression
+    parseTableIdentifier(string) : TableIdentifier
+    parsePlan(string) : LogicalPlan
+}
+
+YourAnalyzer : Analyzer
+{
+    Seq[Rule[LogicalPlan]] extendedResolutionRules 
+    Seq extendedCheckRules
+}
+
+class YourOptimizer : Optimizer
+{
+    batches 
+}
+
+QueryExecution(snappySession, LogicalPlan)
+{
+   override Seq[Rule[SparkPlan]] preparations  
+}
+
+DefaultPlanner : SparkPlanner with YourStrategies
+{
+  strategies += add yours
+} 
+
+QueryPlanner : LogicalPlan -> PhysicalPlan
+{
+    strategies
+
+    plan()
+}
+
+converts LogicalPlan to SparkPlan
+MyStrategy : Strategy
+{
+    apply() : LogicalPlan -> Seq[SparkPlan]
+    {
+        convert your custom LogicalPlan to SparkPlan
+    }
+}
+
+LogicalPlan : QueryPlan[LogicalPlan]
+{ 
+    G
+}
+
+SparkPlan
+{
+}
+
+PhysicalPlan
+{
+}
+
+Rule[LogicalPlan]
+{
+    apply(LogicalPlan) -> LogicalPlan
+    {
+        substitute your custom LogicalPlan 
+    }
+}
+
+Rule[SparkPlan]
+{
+}
+
+UnaryExecNode
+{
+    outputPartitioning
+    requiredChildDistribution
+    Seq[Attribute] output
+    Map[String, SQLMetric] metrics
+
+    doExecute() : RDD[InternalRow]
+
+    inputRDDs() : Seq[RDD[InternalRow]]
+    RDD[InternalRow] rdd
+}
+
+BinaryExecNode
+{
+    outputPartitioning
+    requiredChildDistribution
+
+    nodeName
+    Map[String, SQLMetric] metrics
+
+    usedInputs
+
+    batchConsume
+}
+
+LeafExecNode
+{
+}
+
+=======
+
+PredicateHelper : Expression
+{
+    unapply(LogicalPlan) : 
+}
+
+convert Antlr4 parse tree -> LogicalPlan, Expression or TableIdentifier
+AstBuilder
+{
+    visitQuery
+}
+
+AbstractSqlParser 
+{
+    parseExpression
+    parseTableIdentifier
+    parseDataType
+    parseplan
+}
+
+CatalystSqlParser
+{
+}
+
+Analyzer : RuleExecutor[LogicalPlan]
+{
+    Seq[Batch] batches
+
+    apply(LogicalPlan)
+}
+
+Optimizer : RuleExecutor[LogicalPlan]
+{
+    Seq[Batch] batches
+}
+
+TreeNode
+{
+}
+
+QueryPlan : TreeNode[PlanType]
+{
+}
+
+Resolver
+{
+}
+
+Attribute
+{
+}
+
+LogicalPlan
+- LeafNode
+- UnaryNode
+- BinaryNode
+
+Distribution
+
+RuleExecutor
+{
+    execute()
+}
+
+Rule
+{
+    apply(TreeType) : TreeType
+}
+
+Expression : TreeNode[Expression]
+{
+}
+
+CodeGenerator
+{
+}
+
+
+--------
+
+sqlcore/src/
+
+added operators to read columnar table 
+
+

@@ -1,0 +1,48 @@
+
+
+DONE 1) ensure all imm are unref
+  JobContext::superversions_to_free
+            ::memtables_to_free
+
+2) Must delete only those Imm
+ with imm->lastSeqNum < offloader.seqNum
+
+ we want to run just enuf of flushJob so it
+ extracts which imm to flush
+ but we dont want to flush any imm
+ we just want to unref them
+ so that the cleanup will delete those imm
+
+  FlushJob::Run()
+  {
+    FlushJob::WriteLevel0Table
+    BuildTable
+    {
+      use CompactionIterator to write to TableBuilder
+    }
+  }
+
+DONE 2) Send back last wal sequence number 
+ from offloader so that imm only before that
+ number are truncated 
+
+DONE 3) change iter and Get so that it first look up imm
+
+5) normal iter will ignore overlap key on offloader
+  since it will find the latest key in imm
+
+   but how will tailing iter work
+   it only uses 
+  should LookupKey sent to offloader change ?
+
+6) How to ensure same key not returned twice
+  RemoteIter must be part of VersionSet on client
+  RemoteIter must get sequence number before imm earliest
+
+  if data is ordered by seqno
+    --- earlier        -- later ----
+  ======REMOTE === | ========LOCAL =========
+
+  remote has all < imm->first_seqno (or earliest_seqno)
+  local has all data >= imm->first_seqno
+

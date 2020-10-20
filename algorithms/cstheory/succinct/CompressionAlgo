@@ -1,0 +1,128 @@
+
+http://www.data-compression.com
+
+http://alexbowe.com/fm-index/
+
+Lossy vs Lossless: lossy is called rate-distortion theory
+Static vs Adaptive/Dynamic : is mapping fixed ahead of time
+Statistical vs Dictionary : 
+
+Prefix code : No codeword is prefix of another codeword
+Variable length vs fixed length code 
+
+All adaptive codes are one-pass
+
+Source characteristic
+1. locality of refernces
+2. symbol probability
+
+info measure = -Log_2 p(a_i)
+
+Algo evaluation
+1. Decompress time
+2. compression ratio = average message len/average code len
+
+A code is asymptotically optimal if it has the property that for a given probability distribution, the ratio of average codeword length to entropy approaches 1 as entropy tends to infinity.
+
+Huffman : measure of code efficiency measured by average message length
+Sigma p(ai).li
+
+Redundancy = average code len - entropy
+
+lower bound on actual message len  = n.H(0) entropy
+
+k-th order entropy > (k+1)-th order entropy
+
+===
+
+Sadakne - succinct search over compressed data
+
+====
+Linear Compression
+
+Lempel-Ziv (dictionary)
+Move-to-front
+Run length encoding
+
+Arithmetic coding : convert N symbols to number in base N; p-adic code
+
+Block code : 
+
+===
+
+Huffman ; takes n.log(n) to construct
+
+Huffman does not generate unique code - bcos tree not unique
+
+Huffman is optimal, under the constraints that each source message is 
+mapped to a unique codeword and that the compressed text is the 
+concatenation of the codewords for the source messages. (ACM survey) 
+
+How to do updates with Columnar compression 
+
+Huffman best if prob are negative powers of 2
+
+Huffman can be static or adaptive
+
+======
+
+As we keep generating longer and longer strings, the probabilities of 
+the strings differ more and more from their average, and the average code size gets better (Table 3.1c).  
+
+This is why a compression method that compresses strings, rather than 
+individual symbols, can, in principle, yield better results. This is 
+also the reason why the various dictionary-based methods are in general 
+better and more popular than the Huffman method and its variants (see 
+also Section 4.14). The above conclusion is a fundamental result 
+of rate-distortion theory, that part of information theory that deals 
+with data compression. (Salomon, Compression book)
+
+=======
+
+Encoding data at 64-bit boundaries can reduce compression ratio
+if original data was character text.
+
+Fourth-order block code
+
+Rate = 1/n * Sigma(1,n) p(Block_n) * Length(Block_n)
+
+Higher the order, lower the rate
+
+Entropy of BSON data 
+
+=========
+
+When probability distribution is known, use Huffman
+else use Lempel-Ziv
+
+
+http://www.math.tau.ac.il/~dcor/Graphics/adv-slides/entropy.pdf
+
+How to calculate conditional probability on the fly 
+
+XMill compressor separates tags before other compression
+
+Repetition Finder
+
+Word-based methods in Salomon - sec 8.6
+
+Tagged Huffman coding
+
+==========
+
+Direct Pattern matching on Compressed text 
+- de Moura, Navarro, Ziviani, Baeza-Yates
+
+Instead of building Huffman tree for each char,
+build a tree for each word based on its frequency
+
+To each word -> assign a byte
+This is called Byte Huffman code.
+
+Store compressed text using byte huffman
+and search for words using Byte huffman
+
+Use highest bit to denote start of word to avoid false matches
+
+Regular expression ?
+Substring search ?

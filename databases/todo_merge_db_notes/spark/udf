@@ -1,0 +1,83 @@
+
+FunctionRegistry
+Expression
+case class Min extends DeclarativeAggregate
+
+===========
+
+UDF = user defined func
+UDAF = user defined aggr func
+
+spark.udf.register("name", func)
+
+sqlContext.udf.register("name", func)
+
+https://blog.cloudera.com/blog/2017/02/working-with-udfs-in-apache-spark/
+
+=====================
+
+UDAF
+
+private class MyAggrFunc extends UserDefinedAggregateFunction {
+    def inputSchema
+    def bufferSchema
+    def dataType
+
+    // initialize when key changes
+    def initialize(
+    // update given input
+    def update(
+    // merge 2 partial aggr
+    def merge(
+    // final value
+    def evaluate(
+}
+
+sqlContext.udf.register("name", new MyAggrFunc)
+
+https://docs.databricks.com/spark/latest/spark-sql/udaf-scala.html
+
+https://blog.augmentiq.in/2016/08/05/spark-multiple-inputoutput-user-defined-aggregate-function-udaf-using-java/
+
+https://ragrawal.wordpress.com/2015/11/03/spark-custom-udaf-example/
+=====================
+
+
+Distinct
+
+http://apache-spark-developers-list.1001551.n3.nabble.com/DataFrame-distinct-vs-RDD-distinct-td12098.html
+
+http://stackoverflow.com/questions/30959955/how-does-distinct-function-work-in-spark
+
+============
+
+Approx algo in Spark
+
+https://databricks.com/blog/2016/05/19/approximate-algorithms-in-apache-spark-hyperloglog-and-quantiles.html
+
+https://spark.apache.org/docs/2.0.2/api/java/org/apache/spark/sql/DataFrameStatFunctions.html
+
+https://docs.cloud.databricks.com/docs/latest/sample_applications/04%20Apache%20Spark%202.0%20Examples/05%20Approximate%20Quantile.html
+
+Bloom filters
+approx count
+count min sketch
+top-N
+quantiles
+stratified sample
+
+============
+
+reduceByKey
+aggregateByKey
+groupByKey
+combineByKey
+foldByKey
+
+Both reduceByKey and foldByKey map from RDD[(K, V)] to RDD[(K, V)] while the second one provides additional zero element.
+
+combineByKey (there is no aggregateByKey, but it is the same type of transformation) transforms from RDD[(K, V)] to RDD[(K, C)]:
+
+https://github.com/awesome-spark/spark-gotchas/blob/master/04_rdd_actions_and_transformations_by_example.md#be-smart-about-groupbykey
+
+

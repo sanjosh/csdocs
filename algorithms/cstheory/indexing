@@ -1,0 +1,193 @@
+
+Approx/Coarse index
+
+entropy
+sampling
+density estimation
+k-means
+time series 
+
+================
+
+various datatypes
+
+Datatype characterization
+1) cardinality, 
+2) range or fixed-width
+3) ordering (1-dim, 2-dim)
+4) nullable
+
+Query types 
+1) exact match 
+2) range search
+3) regex
+
+1. date
+
+2. numeric : integer, floating
+
+3. spatial
+
+4. text 
+  dictionary
+  string distances
+  LSH
+  regex
+  varchar vs fixed strings of low cardinality
+  strings with same prefix
+
+5. low cardinality (bool, enum)
+
+6. blob
+
+7. array
+
+========
+
+index across file
+index per-file
+index on the fly
+
+Index types
+
+1. Existence 
+Bloom filter
+
+2. Coarse
+Morton/z-order - zonemap - equi-depth histogram
+BRIN
+
+3. Exact
+bitmap
+btree 
+hash
+skip list
+
+PAX/ORC/HRC
+fractured mirror
+
+4. Exact & Succinct
+
+========
+
+Index performance
+
+space overhead : metadata estimate
+time bound : max bound on finding any key
+construction time :
+
+============
+
+build indices based on type of integer sequences 
+
+1. monotonic incr or decr
+2. outliers and frequent
+3. low frequency
+4. low cardinality
+
+what can be inferred in one pass?
+min, max, avg, std-dev, moving-average, entropy
+
+what can be inferred in more than one
+
+=============
+
+Use of SIMD : assume 8 numbers fetched at a time
+do not index anything inside the 8 - just scan
+reduces size required to store index offset by 3 bits
+
+
+==============
+
+Compression 
+
+-blockwise
+-columnwise
+
+relative like posting list
+
+===============
+
+Stats for every datatype
+
+min, max, ave, outliers
+histogram
+unique items
+
+========
+
+We can index outliers with finer granularity 
+Frequent items can be readily found with a scan
+
+is there an index equivalent of hyperloglog
+
+=============
+
+Maintain summary of number of unique items seen
+using FM-sketch (Flajolet Martin) or CMS
+If number of unique items seen for column is less than N (say 20)
+  use bitmap index
+if more than N items seen
+  drop the index and associated summary data
+
+========
+
+PSMA : the "Moving average" must remain about the same over 
+consecutive numbers that we want to push into the same slot.   
+
+The moving average may register sharp increases over a longer 
+range, but the short-term change should be small. 
+
+So the condition would be that
+  (moving average - actual value) < K over N consecutive items
+the K and N here depends on actual hash function
+
+For strings, we use Hamming distance to determine similarity.
+and a locality sensitive hash to index the PSMA table.
+This way similar strings get hashed to the same slot.
+
+If moving average based on Hamming distance remains small,
+then we are seeing similar strings clustered around each other
+In which case the corresponding PSMA will perform well.
+
+We would have to make a per-file decision
+
+~~~~~
+
+
+========
+
+Microsoft SQL server : Hekaton InMem, Apollo Columnar
+
+If a column uses dictionary encoding, such as a string column, the
+conversion also produces dictionaries, one global dictionary that
+contains the most common values and a local dictionary for each
+segment that contains values not found in the global dictionary. 
+
+========
+
+Pivotal Greenplum Polymorphic storage
+
+Teradata 
+
+SAP HANA
+
+MemSql
+
+Oracle
+
+DB2 Netezza
+
+MonetDB
+
+Verticao
+
+Redshift
+
+https://blog.ankurgoyal.com/should-you-use-a-rowstore-or-a-columnstore-ba833f14ee33#.4g4nqruq3
+============
+
+Database cracking
+DBseer
+Cliffguard
+

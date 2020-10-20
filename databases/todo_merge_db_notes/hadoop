@@ -1,0 +1,31 @@
+
+Hadoop
+    NameNode
+    DataNode
+HDFS
+Yarn
+Pig : translates to MapReduce
+Zookeeper : config info
+ORC
+Avro/Thrift
+Hive : translates to MapReduce
+
+===========
+
+
+yarn : yet another resource negotiator
+
+hbase on hdfs : like bigtable on top of google file system
+
+hbase : column oriented data store (hadoop database)
+support random realtime CRUD
+
+rows are associated with column families
+cell values are versioned
+
+Value = Table + rowkey + column_family + column + timestamp
+
+sharding - range of rows stored together
+
+
+Hive keeps metadata in rdbms - derby lightweight

@@ -1,0 +1,30 @@
+
+Binary classification
+
+Receiver Operating Characteristic curve invented in London bombing
+to distinguish between bombers and seagulls on radar
+Area under curve used to discriminate signal from noise
+x = false positive rate
+y = true positive rate
+
+ROC Curve : ratio of false positive/true positive at a particular threshold
+
+Confusion Matrix
+
+At each threshold
+False positive rate = false positive/ total number of neg events 
+True positive rate = true pos/ total number of pos events
+
+Plot these points for each threshold
+Area under curve
+
+Need cost function - because False positives are more expensive
+put your threshold based on cost of false pos vs false neg
+
+Prob(pos given pos test) = pos predictive value
+Prob(neg given neg test) = neg predictive value
+===========
+
+Binary classification with more than one input variable
+
+

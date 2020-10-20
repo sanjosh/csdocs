@@ -1,0 +1,25 @@
+
+https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Getting+Started
+
+https://issues.apache.org/jira/browse/HIVE-7292
+
+Approach is to map as follows
+SQL -> mapreduce primitives -> spark
+instead of
+SQL -> spark
+
+Hive Logical Operator Plan
+is fed to either
+-> SparkCompiler (SparkTask, SparkWork)
+-> MapReduceCompiler
+-> TezCompiler
+
+
+
+https://cwiki.apache.org/confluence/display/Hive/Hive+on+Spark%3A+Join+Design+Master
+
+the common-join (HIVE-7384), 
+or the optimized join variants like 
+mapjoin (HIVE-7613), 
+skew-join (HIVE-8406) or 
+SMB mapjoin (HIVE-8202). 

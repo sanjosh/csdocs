@@ -1,0 +1,32 @@
+
+lue References and Move Semantics:
+ “A Brief Introduction to Rvalue References,” Howard E. Hinnant
+et al., The C++ Source, 10 March 2008.
+ Details somewhat outdated.
+ C++ Rvalue References Explained, Thomas Becker, June 2009,
+http://thbecker.net/articles/rvalue_references/section_01.html.
+ Good explanations of std::move/std::forward implementations.
+ “Rvalue References: C++0x Features in VC10, Part 2,” Stephan T.
+Lavavej, Visual C++ Team Blog, 3 February 2009.
+ “GCC C++0x Features Exploration,” Dean Michael Berris, C++
+Soup!, 15 March 2009.
+ “Howard’s STL / Move Semantics Benchmark,” Howard
+Hinnant, C++Next, 13 October 2010.
+ Move-based speedup for std::vector<std::set<int>> w/gcc 4.0.1.
+ Reader comments give data for newer gccs, other compilers.
+
+Making Your Next Move,” Dave Abrahams, C++Next,
+17 September 2009.
+ “Your Next Assignment...,” Dave Abrahams, C++Next,
+28 September 2009.
+ Correctness and performance issues for move operator=s.
+ “Exceptionally Moving!,” Dave Abrahams, C++Next, 5 Oct. 2009.
+ Exception safety
+issues for move operations.
+ “To move or not to move,” Bjarne Stroustrup, Document N3174 to
+the C++ Standardization Committee, 17 October 2010.
+ Describes rules governing implicit move operations.
+ “Class invariants and implicit move constructors (C++0x),”
+comp.lang.c++ discussion initiated 14 August 2010.
+
+

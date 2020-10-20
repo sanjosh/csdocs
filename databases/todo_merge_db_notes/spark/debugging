@@ -1,0 +1,59 @@
+
+Debugging
+
+spark.sqlContext
+
+shell> : type <obj>
+shell> spark.version
+================
+
+change logging level
+if class extends internal.Logging, it has per-class logger
+
+cp conf/log4j.properties.template conf/log4j.properties
+# set the logging level for the class-specific logger
+log4j.logger.org.apache.spark.memory.TaskMemoryManager=DEBUG
+
+================
+
+myRDD.toDebugString
+
+================
+see sql/core/src/main/scala/org/apache/spark/sql/execution/debug
+import org.apache.spark.sql.execution.debug._
+
+# spark session
+spark.range(10).where('id==4').debug()
+================
+
+ncs.show
+
+================
+df.explain(extended = true)
+
+val dataset = spark.range(3)
+dataset.queryExecution.analyzed.schema
+dataset.queryExecution.analyzed.output
+dataset.queryExecution.withCachedData.output
+dataset.queryExecution.optimizedPlan.output
+dataset.queryExecution.sparkPlan.output
+dataset.queryExecution.executedPlan.output
+
+================
+
+cp conf/log4j.properties.template conf/log4j.properties
+// Edit log4j.properties
+// Change root logger from INFO to WARN 
+// And Add
+// log4j.logger.org.apache.spark.sql.cassandra=DEBUG
+
+
+============
+
+spark-users mailing list Get full RDD lineage for a spark job
+print RDD lineage
+
+--conf spark.logLineage= true
+rdd.toDebugString
+
+

@@ -1,0 +1,28 @@
+
+git clone https://github.com/Aloisius/hadoop-s3a
+
+git clone https://github.com/NetApp/NetApp-Hadoop-NFS-Connector/
+
+https://github.com/gluster/glusterfs-hadoop/blob/master/src/main/java/org/apache/hadoop/fs/glusterfs/GlusterFileSystem.java
+
+https://hadoopi.wordpress.com/2014/06/05/hadoop-add-third-party-libraries-to-mapreduce-job/
+
+download hadoop-2.7.3.tar.gz binary
+
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+
+sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+
+http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html
+
+http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/LibHdfs.html
+
+
+hadoop-env.sh : heap size, jdk, log file loc
+core-site.sh : where namenode runs
+hdfs-site.sh : hdfs settings (repl, perm)
+mapred-site.sh : job tracker
+
+https://github.com/colinmarc/hdfs
+
+https://github.com/apache/hadoop/tree/trunk/hadoop-hdfs-project/hadoop-hdfs/src/main/proto

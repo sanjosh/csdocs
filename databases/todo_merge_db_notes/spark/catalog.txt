@@ -1,0 +1,28 @@
+
+catalyst/catalog dir
+
+Catalog
+
+ExternalCatalog
+- InMemoryCatalog
+
+SessionCatalog
+
+CatalogRelation 
+{
+  CatalogTable
+  {
+    TableIdentifier identifier
+    CatalogTableType tableType : external, managed, view
+    String database
+    URI location
+    StructType schema
+    StructType dataSchema
+    StructType partitionSchema
+  }
+}
+
+DataType
+- StructType
+- StructField
+

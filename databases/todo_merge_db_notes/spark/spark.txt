@@ -1,0 +1,537 @@
+
+
+Architectural Choices:
+Pipeline data between operators for fast result
+Spill data to disk to allow fast recovery for long-running ops
+
+Spark RDD is unique since it offers best of both - pipelining and fast 
+recovery of long-running ops 
+
+MPP vs Batch
+Teradata, Greenplum, Impala and HAWQ are MPP solutions, 
+ MPP solutions work by running all the “executors” at the same time, which
+ allows you to pipeline the data between them during “shuffle” and avoid
+ spilling to HDDs
+
+MapReduce, Tez and Spark are Batch solutions.
+ Batch solutions work by splitting the “processing” job into a set of “tasks”,
+ each operating on independent part of data, with dependencies between tasks
+ usually defined by shuffles. This paradigm allows you to schedule tasks
+ independently and safely rerun failed task, but each task output should be
+ saved to HDDs
+
+https://0x0fff.com/spark-architecture/
+
+===========
+
+sc.parallelize
+shuffle - redistribute data
+
+broadcast variable
+accumulator
+
+Akka messaging
+Tungsten execution engine - JVM (sun.misc.unsafe), Netty-style network
+
+===============
+
+Catalyst optimizer - supports cost-based and rule-based
+
+https://github.com/apache/spark/blob/master/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/plans/QueryPlan.scala
+
+QueryPlan base class
+ - LogicalPlan (has derived classes for Leaf node, unary node, binary node)
+   - examples are range, filter, aggregate, join, intersect
+ - SparkPlan (physical plan) 
+   - examples are InMemoryTableScan, BroadcastHashJoin, Project, Limits
+
+Scala quasiquotes
+
+QueryPlanner : converts LogicalPlan -> PhysicalPlan
+
+QueryPlanner (abstract class)
+ - SparkStrategies 
+   - SparkPlanner : convert LogicalPlan -> SparkPlan
+
+Takes LogicalPlan and returns a list of SparkPlans on which cost estimation can
+be performed.
+
+HiveContext has additional QueryPlanner which extends SparkPlanner and adds HiveTableScan 
+
+PhysicalPlan is again modified with 
+1. add exchange - avoid shuffles (see Exchange.scala)
+  It takes each transformation in the SparkPlan and checks to see if it has a
+  required input distribution of partitions. The most lax distribution is
+  AllTuples which basically says that the operation can be performed anywhere
+  and no operation is required. Then there are other distributions, such as
+  ClusterDistributions which expect clusters (eg. keys) to be grouped together
+  and SortedDistributions. In situations where the output distribution doesn’t
+  match the input distribution, an Exchange is inserted and during execution a
+  shuffle is performed.
+
+2. whole stage code gen
+  inline the filters into bytecode
+
+
+https://github.com/apache/spark/tree/master/sql/core/src/main/scala/org/apache/spark/sql/execution
+
+=============
+Serialization
+1. Kryo
+1. Java
+===============
+
+1) RDD - version 1.0 
+- data + schema passed between nodes using serialization
+- partitioned, locality-aware and distributed
+- RDD dependencies can be specified
+- RDDs are immutable
+
+RDD are distributed, lazy and persistent
+https://www.quora.com/What-are-resilient-distributed-datasets-RDDs-How-do-they-help-Spark-with-its-awesome-speed
+
+RDD has enuf info to reconstruct from parent RDD (lineage)
+
+RDD as an abstraction of Distributed Shared Memory
+
+(from original paper)
+In a nutshell, we propose representing each RDD
+through a common interface that exposes five pieces of
+information: 
+a set of partitions, which are atomic pieces of the dataset; 
+a set of dependencies on parent RDDs; 
+a function for computing the dataset based on its parents;
+metadata about its partitioning scheme and data placement.
+
+2) Data frame - version 1.3
+- schema known to all nodes, just pass data between nodes
+- can build query plan which is used by optimizer
+- downside is it is scala-centric
+- no compile-time safety
+- can read Parquet, Hive, JSON format
+
+3) Dataset - version 1.6
+- compile-time safety
+- combine best of RDD and Dataframe
+- use encoders which translate between JVM rep and Spark binary format
+- works equally with java and scala
+
+https://github.com/AgilData/spark-rdd-dataframe-dataset
+
+4) Structured streaming
+
+StreamingContext
+
+
+creating DS on top of another DS are views in SQL, 
+caching DS is temp table in SQL, 
+defining UDF to change the field of dataset is the same as RDBMS, 
+
+========
+
+Memory management
+
+https://0x0fff.com/spark-memory-management/
+
+UnifiedMemoryManager in 1.6
+1. Reserved Memory
+2. User Mem
+3. Spark mem (storage + execution)
+
+=========
+
+Map -> Shuffle -> Reduce
+
+Shuffle
+
+
+http://blog.hydronitrogen.com/2016/05/07/apache-spark-shuffles-explained-in-depth/#more-146
+
+shuffle inducing operations for RDDs:
+1. groupBy/subtractByKey/foldByKey/aggregateByKey/reduceByKey
+1. cogroup
+1. any of the join transformations
+1. distinct
+
+ If it depends on multiple rows, assume that you know nothing about the contents
+ of a partition: do you need to look across partitions to match up rows in any
+ way? if the answer to those are both yes, then you likely need a shuffle.
+
+
+Shuffle maanger
+1) Hash based : each mapper creates separate files for each reducer
+   leading to M*R files in the cluster
+   each mapper needs to write to all files simultaneously
+
+2) Sort based (default) similar to Hadoop
+  mapper outputs single file ordered by reducer id and indexed
+  sorts data on map side
+  does not merge results on reduce side
+
+  CLoudera takes advantage of pre-sorted data on map side.
+  Sorting on reduce side in Spark done using TimSort.
+
+3) Tungsten-sort : uses sun.misc.unsafe
+  operates on serialized binary data (no deserialization)
+  has limitations
+
+ Shuffles in RDD are different from shuffles in DataFrame
+
+ IN RDD, 
+ The ShuffleManager keeps track of all keys/locations and once all of the map
+ side work is done. The next stage starts, and the executors each reach out to
+ the shuffle manager to figure out where the blocks for each of their keys live.
+ Once they know where those blocks live, each executor will reach out to the
+ corresponding executor to fetch the data and pull it down to be processed
+ locally. To enable this, all the executors run a Netty server which can serve
+ blocks that are requested from that specific executor.
+
+ IN DATAFRAME
+ when you build a DataFrame, before it is executed, Spark optimizes that plan by
+ potentially moving operations around and then figuring out where to put the
+ required shuffles via a  process called an Exchange in Spark SQL.
+
+ Spark tracks the Distribution of the data at each stage in the PhysicalPlan in
+ order to ensure that operations are getting all the data they need. Each
+ operator in Spark specifies both the distribution it expects from its children
+ (where they source their data from) and the distribution that the operator
+ results in. This is pretty much analogous to the ShuffleDependency in RDDs but
+ it keeps track of additional SQL data such as the expressions that were
+ shuffled on and potentially more details about the distribution.
+
+ https://github.com/apache/spark/blob/v1.6.1/sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/plans/physical/partitioning.scala#L33
+
+ COMPRESSION
+ Shuffling in general has 2 important compression parameters:
+ spark.shuffle.compress – whether the engine would compress shuffle outputs or
+ not, and spark.shuffle.spill.compress – whether to compress intermediate
+ shuffle spill files or not. Both have the value “true” by default, and both
+ would use spark.io.compression.codec codec for compressing the data, which is
+ snappy by default.
+
+https://0x0fff.com/spark-architecture-shuffle/
+
+
+=========
+
+Data source api :
+
+BaseRelation
+RelationProvider class
+SchemaRelationProvider trait
+TableScan trait
+CreatableRelationProvider trait
+
+Do filter pushdown and column pruning
+CatalystScan
+
+https://www.mapr.com/blog/spark-data-source-api-extending-our-spark-sql-query-engine
+
+http://blog.hydronitrogen.com/2015/12/04/writing-a-spark-data-source/
+
+========
+
+Spark vs Hadoop
+
+http://www.kdnuggets.com/2015/08/big-data-question-hadoop-spark.html
+
+Spark does not provide its own distributed file system
+Spark does computation in RAM and writes data to RDD which can be recovered from
+failure, while Hadoop writes all data back after each op
+
+Spark - MLib compared to Hadoop's Apache Mahout
+
+Spark is unified - SQL, streaming, ML, GraphX
+Hadoop is not - Streaming (Storm, Samza), Iterative(mahout), SQL(Pig, Hive,
+Drill, Impala),  Graph(Giraph), Batching(mapreduce)
+
+Hadoop has short-lived executor with one  large task
+Spark has long-lived executor with many small tasks
+
+Applications can share data using Tachyon
+Low overhead of task setup
+Isolation : task scheduling is per application
+
+Yahoo migrated from hadoop to spark
+https://spark-summit.org/2013/wp-content/uploads/2013/10/Li-AEX-Spark-yahoo.pdf
+
+Zippo : hadoop streaming over spark
+
+=============
+
+http://www.slideshare.net/michiard/introduction-to-spark-internals
+
+Spark codebase has modules
+1) Operators
+2) Scheduler : 
+  DAG scheduler(logical) 
+  task scheduler(physical) 
+  - retries failed task
+  - stragglers and speculative execution
+  - message passing using Actors and Akka framework
+3) BLock Manager : write-once key value store
+4) Networking
+5) Accumulators
+6) Broadcast
+7) Interpreter
+8) Cluster manager : Hadoop yarn, Mesos backend, Local mode.
+
+Stages of execution
+1) Logical plan  (Dataflow)
+2) Physical plan (DAG scheduler)
+3) Code generation (Tungsten)
+3) Job submission
+4) Task creation
+5) Shuffle 
+ - partition intermediate data like Hadoop
+ - types (hash, sort-based, consolidated hash)
+
+SparkContext is core component of driver
+it sets up the job, 
+registers app with cluster manager
+contains SparkConfig, Scheduler, entry point for running jobs
+
+Frequently used RDD can be stored in memory - use method persist(), cache()
+SparkContext keeps track of cached RDD
+
+Creates input RDD from HDFS file
+Task scheduler launches tasks on executors
+
+================
+
+Debugging
+
+- bad tuple format
+
+
+================
+
+Joins in spark
+
+1. Hash join (grace hash, hybrid hash
+   https://en.wikipedia.org/wiki/Hash_join
+2. Sort-merge join
+3. nested loop
+
+Shuffle-free joins
+http://blog.hydronitrogen.com/2016/05/13/shuffle-free-joins-in-spark-sql/#more-191
+
+https://github.com/apache/spark/tree/v1.6.1/sql/core/src/main/scala/org/apache/spark/sql/execution/joins
+
+==============
+
+Performance
+
+http://spark.apache.org/docs/1.6.1/tuning.html
+
+Tungsten (code gen, cache conscious, mem management)
+vectorization, code generation, columnar data encoding and efficient memory
+managemen
+
+1. Serialization
+
+2. Memory 
+   In-memory sharing via Tachyon
+   Cache conscious
+   GC 
+
+3. Query optimizer 
+   - bytecode gen
+   - shuffles
+
+4. Collocate data
+   Shuffle optimization
+   partition sizes
+   Skewed keys & straggler
+   broadcast smaller tables
+
+Optimizations for Graph, SQL, ML
+
+============
+
+Spark evolution
+
+SQL + ML
+Little change in Graph
+https://0x0fff.com/apache-spark-future/
+
+==========
+
+Snappydata
+
+combine Spark with Gemfire + Blink
+
+like Hive, extend Spark query optimizer, shuffles, etc
+
+1. update sample when there are deletes
+2. SnappyStrategies enhances SparkPlanner
+3. reduce shuffles
+
+
+==============================
+
+competitors
+1. apache flink
+1. apache heron
+1. apache beam (google cloud dataflow)
+1. apache flex
+1. apache apex
+
+Hive
+Mahout
+
+Google Dataflow
+
+==================================
+Companies
+Cloudera
+MapR
+HortonWorks
+Pivotal
+Databricks
+
+Apache Spark starts to compete with 
+MPP solutions (Teradata, HP Vertica, Pivotal Greenplum, IBM Netezza, etc.) 
+SQL-on-Hadoop solutions (Cloudera Impala, Apache HAWQ, Apache Hive, etc.)
+
+https://0x0fff.com/apache-spark-future/
+
+============
+
+Reference apps
+https://databricks.gitbooks.io/databricks-spark-reference-applications/content/
+
+===========
+
+Structured streaming
+Dont think about streaming
+Infinite dataframe
+
+In batch case, scan all files
+In continuous case, scan only new files and keep stateful aggregate
+
+https://www.youtube.com/watch?v=i7l3JQRx7Qw
+
+what is RDD
+1. dependencies
+2. partitions
+3. compute func : partitions => iterator (opaque to spark)
+
+Scala, Java, Python and R
+3 ways - SQL AST, Dataframe, Dataset
+
+Encoders use Tungsten compact encoding
+Encoders translate between JVM obj and Spark format.
+Its better than Java or Kryo serialization
+Operate directly on serialized data
+
+Event-time aggregation ?
+
+Structure in other libraries - MLLib, GraphFrames
+
+======================
+Tathagata Das
+https://www.youtube.com/watch?v=rl8dIzTpxrI
+
+
+Structured Streaming replaces DSTream API
+
+stream = infinite append-only table
+
+Output mode = complete, delta, append-only-new
+
+replace load() with stream()
+replace save with startStream()
+
+Builtin Join of static dataset with streaming dataset
+
+Query Management - queries can be queried, stopped, restarted
+
+Do state management with WAL in filesystem
+
+==========
+
+
+Project Tungsten
+https://www.youtube.com/watch?v=5ajs8EIPWGI
+
+http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-1/
+
+http://blog.cloudera.com/blog/2015/03/how-to-tune-your-apache-spark-jobs-part-2/
+
+
+===============
+
+SQL parser uses Parser Combinator
+
+AbstractSparkSQLParser.scala
+
+Convert LogicalPlan to SparkPlan
+
+SparkPlan
+-> BinaryNode
+-> UnaryNode
+-> LeafNode
+
+Support for columnary db in execution/columnar
+ColumnAccessor
+ColumnBuilder
+
+ColumnStatistics : keeps min, max, nulls, count, size
+
+ColumnIterator
+CachedBatch
+
+InMemoryRelation <- derived from LogicalPlan, MultiInstanceRelation
+
+InMemoryColumnarTableScan - is done on InMemoryRelation
+
+http://stackoverflow.com/questions/37074623/what-does-inmemorycolumnartablescan-do
+
+object InMemoryScans extends Strategy
+
+ParquetRelation 
+
+sc = SpaekContext("appname")
+sqlContext = SQLContext(sc)
+val df = sqlContext.sql("")
+dataframe.explain(true)
+
+http://www.trongkhoanguyen.com/2015/09/work-sharing-framework-for-apache-spark-multi-query-optimization-on-sparksql.html
+
+================
+
+- statistics
+- cost model
+- query transfor
+- access path & join 
+- parallelism
+
+=================
+
+Hive
+
+RunnableCommand
+UnaryNode
+
+ Support for running Spark SQL queries using functionality from Apache
+ Hive (does not require an
+  existing Hive installation).  Supported Hive features include:
+- Using HiveQL to express queries.
+- Reading metadata from the Hive Metastore using HiveSerDes.
+- Hive UDFs, UDAs, UDTs
+
+
+================
+
+JdbcDialects defined in SQL
+
+=====
+
+DoubleRDD : for RDD whose items are double
+PairRDD : for key,value pair
+OrderedRDD : for key, vaue where key is sortable
+
+========
+
+SparkContext and SparkSession can exist only on the Driver.

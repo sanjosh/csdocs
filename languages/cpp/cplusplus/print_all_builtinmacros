@@ -1,0 +1,4 @@
+
+:| gcc -dM -E -x c -
+
+http://stackoverflow.com/questions/1001307/detecting-endianness-programmatically-in-a-c-program

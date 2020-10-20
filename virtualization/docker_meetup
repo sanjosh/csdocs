@@ -1,0 +1,73 @@
+
+devops tool
+encapsulate app and shared libs (vs) encapsulate OS kernel and apps
+
+8 docker uses cases : 
+server consolidate, 
+simplify config, 
+multi-tenancy, 
+code pipeline mgmt, 
+app isolation
+
+namespace isolation
+no hypervisor
+
+docker has 5 components : 
+security  :
+namespaces  :  clone, unshare, setns and /proc files
+
+cgroups : 
+networking :  veth, bridge, iptables
+storage - devmgr, btrfs, aufs
+
+/proc/pid/ns dir shows namespace - 64 bit number
+that is why docker also uses ids
+
+Docker registry
+image is push/pulled from registry
+container is instance of image
+dockerfile is blueprint used to build images
+
+u have to specify dependencies in dockerfile
+
+various namespaces
+mount ns : bind, chroot
+uts ns : sep host/domain names
+ipc ns : ipc resources
+pid ns :  retain desired pid
+network ns : net resources - iptables
+user ns : isolation - become root inside container
+
+new features in 1.3
+inject new proc inside docker container
+run docker in docker
+digital signature verification for checking repos
+
+=============
+
+Atomic - minimal OS to run containers
+minimal patching
+orchestration primitives
+Integration with Kubernetes
+
+RPM-OStree : manage filesystem trees (atomic update)
+OStree : swap between bootable filesystem trees (like yum, dpkg) - between package and image 
+SystemD -lifecycle mgmt (initd)
+SELInux - security
+Geard - Networking between containers
+Cockpit  -  browser interface to admin servers
+
+Atomic host fs model:
+/usr is readonly - OS
+/etc and /var are writable
+/home -> /var/home
+
+projectatomic.io
+
+=========
+
+master
+minion = worker node running pods
+pod  =set of containers
+kubelet = manages containers
+kube-proxy = forward TCP 

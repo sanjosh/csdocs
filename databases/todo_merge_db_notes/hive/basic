@@ -1,0 +1,5 @@
+
+SerDe - serializer, deserializer
+MetaStore - to store schema
+
+Hive converts HiveQL to MapReduce

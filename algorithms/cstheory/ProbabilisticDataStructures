@@ -1,0 +1,14 @@
+
+Data structure : use case
+
+count-min sketch : freq summaries
+
+hyperloglog : set cardinality
+
+bloom filter : set membership
+
+minhash : set similarity
+
+dsq : streaming quantiles
+
+skiplist : ordered seq search

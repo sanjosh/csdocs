@@ -1,0 +1,142 @@
+
+TreeNode
+
+Expression extends TreeNode
+
+Generator
+
+QueryPlan base class
+- LogicalPlan
+- SparkPlan
+
+Rule : TreeType -> TreeType
+Batch = collection of rules with a strategy (FixedPoint)
+RuleExecutor has Batches
+RuleExecutor transform TreeNode 
+
+==========
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/content/spark-sql-BasicOperators.html
+Physical Op , Logical Op
+CoalesceExe , Repartition
+
+================
+
+DataFrame <=> LogicalRelation <=> BaseRelation
+
+========
+FunctionRegistry (UDF)
+Expression
+- UnaryExpression
+- BinaryExpression
+
+========
+
+// for streaming
+QueryExecution
+- IncrementalExecution
+
+================
+
+SQLContext is deprecated - move to SparkSession
+
+SparkSession (one per client)
+   SparkContext (shared by all sessions, 1 per JVM, denotes connxn to cluster)
+   Catalog
+   SparkSessionState
+   {
+      has these objects
+
+      QueryExecution
+      Analyzer 
+      Optimizer
+      SqlPlanner : parsePlan(string) : LogicalPlan
+      SparkPlanner : plan(LogicalPlan) : SparkPlan
+
+      executePlan()
+   }
+
+
+Stages in execution
+1) SqlParser.parsePlan(String) : LogicalPlan
+     SparkSqlParser -> SparkSqlAstBuilder::visit() : LogicalPlan
+       using RunnableCommand (which is LeafNode)
+          RunnableCommand::run() returns Seq[Row] 
+
+       ExecutedCommandExec extends SparkPlan
+2) QueryExecution internally does
+   {
+     Analyzer.execute(LogicalPlan)
+     Optimizer.execute(LogicalPlan)
+     SparkPlanner.execute(LogicalPlan) : SparkPlan
+     toRows(SparkPlan) : RDD[InternalRow]
+   }
+
+
+RuleExecutor : execute
+- Analyzer [LogicalPlan]
+- Optimizer [LogicalPlan]
+
+QueryPlanner
+- SparkStrategies
+-- SparkPlanner
+
+Batch = Strategy + Seq[Rule]
+
+Rule
++ apply(TreeType) : TreeType
+
+TreeNode
+- QueryPlan
+- Expression
+
+QueryPlan[LogicalPlan]
+- LogicalPlan
+-- LeafNode
+-- BinaryNode
+-- UnaryNode
+
+QueryPlan[SparkPlan]
+- SparkPlan
+-- BinaryExecNode
+-- UnaryExecNode
+-- LeafExecNode
+- - CodegenSupport
+  + doProduce() : String
+
+
+Distribution
+
+Partitioning
+
+=============
+
+how table name is resolved
+
+1. table name 
+2. TableIdentifier
+3. UnresolvedRelation (leaf node - Analyzer.resolveRelation)
+4. CatalogRelation
+5. LogicalRelation 
+6. BaseRelation (DataSource.resolveRelation calls YourSource.createRelation()
+
+
+===============
+
+UnresolvedAttribute
+
+created in AstBuilder
+becomes Attribute in LogicalPlan::resolve
+
+Attribute
+AttributeReference
+
+=============
+
+rules
+
+Constant folding : 
+ replace arith expr (3 * 4 / 2) by 6
+ replace logical expr (2 > 3) by false
+ replace intrinsic func with fixed args
+

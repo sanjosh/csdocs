@@ -1,0 +1,42 @@
+
+ SqlBase.g4 file generates a SqlBaseVisitor
+ // which has visit-style methods
+ {
+ }
+
+ SqlBaseBaseVisitor : SqlBaseVisitor
+ {
+ }
+ 
+AstBuilder : SqlBaseBaseVisitor
+{
+// converts ANTLR4 parse tree -> Expression/LogicalPlan/TableIdentifier
+  visitQuery(QueryContext) -> LogicalPlan
+}
+
+SparkSqlAstBuilder : AstBuilder
+{
+  visit-style methods to be implemented
+}
+
+========================
+
+AbstractSqlParser extends ParserInterface
+{
+  parsePlan(String) -> LogicalPlan
+  {
+    uses astBuilder
+  }
+
+  parseExpression() -> Expression
+
+  parseTableIndetifier() -> TableIdentifier
+}
+
+
+SparkSqlParser extends AbstractSqlParser
+{
+  new VariableSubstitution(SQLConf)
+}
+  
+

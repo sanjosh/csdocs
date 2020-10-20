@@ -1,0 +1,99 @@
+
+WriteBatch
+{
+}
+
+WriteBatch::Handler
+{
+  // iterate over contents of writebatch
+}
+
+MemTableInserter : public WriteBatch::Handler
+{
+}
+
+
+WriteBatchInternal
+{
+}
+
+//=====
+
+MemTableRepFactory
+{
+}
+
+MemTableRep
+{
+  Contains(key)
+
+  Insert(KeyHandle)
+
+  Get(LookupKey k);
+
+  MemTableAllocator* allocator;
+}
+
+MemTableRep::Iterator
+{
+}
+
+HashLinkListRep : MemTableRep
+{
+}
+
+HashSkipListRep : MemTableRep
+{
+}
+
+MemTable // L0 
+{
+  Add(SequenceNumber, Type, Key, Value)
+
+  InternalIterator* NewIterator(read_options, Arena)
+  {
+    returns MemTableIterator
+  }
+
+  Ref()
+  Unref()
+  Get()
+}
+
+MemTableIterator : public InternalInterator
+{
+}
+
+ColumnFamily
+{
+  MemTableListVersion* imm;
+  MemTable* mem;
+}
+
+MemTableListVersion
+{
+  list<MemTable*> memlist_;
+  // for immutable files
+  Ref()
+  Unref()
+  Get()
+  AddIteraotrs()
+}
+
+MemTableList
+{
+  // immutable files
+  MemTableListVersion current_
+
+  InstallNewVersion()
+
+  FlushRequested()
+}
+
+
+SuperVersion::Cleanup()
+{
+  deletes flushed mem tables which have been unrefed
+}
+
+==================

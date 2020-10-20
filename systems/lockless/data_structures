@@ -1,0 +1,32 @@
+
+singly linked list
+doubly linked list
+queue
+stack
+ordered - skip list
+unordered - hash table
+
+=============
+Folly
+
+AtomicHashArray
+AtomicHashMap
+AtomicLinkedList
+AtomicIntrusiveLinkedList
+AtomicUnorderedMap
+ConcurrentSkipList
+MPMCPipeline
+MPMCQueue
+ProducerConsumerQueue
+
+
+Futex
+PicoSpinLock
+MicroLock
+SharedMutex
+RWSpinLock
+SpinLock
+
+=========
+
+Guava

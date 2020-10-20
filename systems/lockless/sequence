@@ -1,0 +1,17 @@
+
+Why lockless?
+
+Examples to use:
+
+=====
+Conventional queue
+SPSC design
+
+=====
+
+Why is shared read_lock & writer takeing try-write bad ? (semiindex)
+Alternative - RCU
+RCU - single writer, multiple reader
+
+=====
+Set

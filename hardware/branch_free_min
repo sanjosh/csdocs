@@ -1,0 +1,4 @@
+
+min = min XOR ((temp XOR min) AND NEG(temp < min));
+
+

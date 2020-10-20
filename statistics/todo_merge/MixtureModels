@@ -1,0 +1,18 @@
+
+Mixture of 2 normal distributions - when read IO is mixed with writes
+
+bimodal curve
+
+90 percent N(read_lat, read_deviation)
+10 percent N(read_lat + write_latency, read_deviation)
+
+http://www.r-bloggers.com/a-brief-introduction-to-mixture-distributions/
+
+http://stats.stackexchange.com/questions/16608/what-is-the-variance-of-the-weighted-mixture-of-two-gaussians
+
+pdf = dnorm(num, mean, dev)
+plot(num, pdf, col = "name", xlab="", ylab="", type="...)
+
+http://www.r-bloggers.com/normal-distribution-functions/
+
+

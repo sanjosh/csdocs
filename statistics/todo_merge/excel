@@ -1,0 +1,28 @@
+
+Coursera.org - Excel essentials for beginners
+
+Typing "=" activates a cell
+
+use $ for absolute reference to a call
+In some cell, type "=B6(1 + $C$3)" <- cell B6 and cell C3
+without $ it becomes a relative reference
+In Cell B7, type "=B6*3".  If you copy B7 to B8, formula changes to "=B7*3"
+
+Putting hyphen (') before the formula (i.e. '=6-4) allows the formula to be displayed
+
+Functions on individual cells
+type "= ln(1.5)" in cell
+
+Functions on set of numbers/array
+type "=average(D4:D20)" or "=stdev.P(D4:D20)"
+
+Functions on ordered pairs of numbers
+= slope(D4:D20, E4:E20) - regression line
+= intercept(D4:D20, E4:E20)
+= correl(array1, array2)
+
+Use solver plugin to find x for which y = f(x)
+
+Charting : Select all rows, select Charts and then Scatter
+
+===========

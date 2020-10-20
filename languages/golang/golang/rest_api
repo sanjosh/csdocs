@@ -1,0 +1,6 @@
+
+https://github.com/gorilla/mux
+
+https://www.thepolyglotdeveloper.com/2016/07/create-a-simple-restful-api-with-golang/
+
+mkdir -p $GOPATH/src/github.com/nraboy/restapi

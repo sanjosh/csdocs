@@ -1,0 +1,8 @@
+monitor job progress : SparkListener
+extend REPL : SparkILoop
+cleanup on shutdown : ShutdownHookManager
+logging : Extend Logging
+connection pool : use object and getOrElse
+set package name to org.apache.spark to access private package-specific classes
+
+RDD iterator boilerplate : NextIterator

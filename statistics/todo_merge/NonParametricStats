@@ -1,0 +1,13 @@
+
+If data distribution is not known, cannot run ANOVA
+So non parametric tests come in
+
+Kruskal-Wallis test = ANOVA
+Friedman test = two-way ANOVA (works only in completely balanced design)
+
+Post-hoc testing?
+
+If data doesnt fit Kruskal-Wallis or Friedman test, replace original
+data with ranks (use new.var = rank(old.var)) and then do ANOVA
+
+http://www.gardenersown.co.uk/education/lectures/r/nonparam.htm

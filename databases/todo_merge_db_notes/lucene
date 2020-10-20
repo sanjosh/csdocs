@@ -1,0 +1,60 @@
+
+Tokenizer breaks strings into tokens
+TokenFilter act on each token to normalize them
+Analyzer uses Tokenizer to return TokenStream
+
+TokenStream is a chain 
+ - Tokenizer -> TokenFilter 1 -> TokenFilter 2
+
+Tokenizer
+- CharTermAttribute holds text of token
+- OffsetAttribute holds start and end offset in original string
+
+Indexer changes Token into Term to be stored in inverted index
+Index has many segments
+
+TopScoreDocCollector
+
+SegmentInfos
+SegmentTermDocs
+
+SegmentReader
+
+============
+
+Code flow
+
+Query Parser::parse(string)
+Query Query::rewrite(reader)
+Searcher::search(query, Filter)
+
+IndexSearch::search(Query, TopDocsCollector)
+
+
+========
+
+Similarity
+
+Filter
+
+Query
+
+Span
+
+Attribute
+
+Term
+TermInfo
+TermPositions
+
+Scorer
+
+TokenStream
+
+Token
+
+AttributeSource
+
+Collector
+
+TopDocs

@@ -1,0 +1,23 @@
+
+catalyst/encoders dir
+and See Encoder.scala
+
+jvm obj <-> spark sql row / InternalRow
+
+Encoder has serializer and deserializer
+
+Encoder
+- ExpressionEncoder for columns (serializer, deserializer)
+- RowEncoder
+
+- why better than java or kryo serde (they know schema)
+
+create custom encoders using static methods on Encoder
+
+https://stackoverflow.com/questions/36648128/how-to-store-custom-objects-in-dataset
+
+https://stackoverflow.com/questions/39798467/encoderrow-in-scala-spark
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/spark-sql-Encoder.html
+
+https://stackoverflow.com/questions/37706420/how-to-create-a-custom-encoder-in-spark-2-x-datasets

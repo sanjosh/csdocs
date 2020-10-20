@@ -1,0 +1,14 @@
+
+1. unique_ptr<char[]> var(new char [5]);
+1. vector<char>
+1. unique_ptr<T, ::free> = 
+1. unique_ptr<T, free_deleter> = 
+
+struct free_deleter
+{
+  operator () (void* p) { free(p)}
+}
+
+SEE folly::static_function_deleter
+
+http://stackoverflow.com/questions/16711697/is-there-any-use-for-unique-ptr-with-array

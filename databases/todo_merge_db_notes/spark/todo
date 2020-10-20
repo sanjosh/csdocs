@@ -1,0 +1,13 @@
+
+
+http://blog.madhukaraphatak.com/extending-spark-api/
+
+http://rahulkavale.github.io/blog/2014/12/01/extending-rdd-for-fun-and-profit/
+
+http://stackoverflow.com/questions/29383578/how-to-convert-rdd-object-to-dataframe-in-spark?rq=1
+
+// gather data from multiple partitions, one at a time, back to driver
+rdd.toLocalIterator
+http://codereview.stackexchange.com/questions/115082/generic-reduceby-or-groupby-aggregate-functionality-with-spark-dataframe
+
+http://stackoverflow.com/questions/21698443/spark-best-practice-for-retrieving-big-data-from-rdd-to-local-machine

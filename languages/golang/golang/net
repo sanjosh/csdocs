@@ -1,0 +1,236 @@
+
+dependent packages 
+
+bytes
+errors
+fmt
+io
+os 
+reflect
+regexp
+runtime
+sync
+syscall
+strings
+testing
+time
+unsafe
+
+============
+syscall.SockAddr
+
+============
+
+plan9, bsd, darwin, dragonfly, freebsd, linux, posix, netbsd, openbsd, unix, windows, stub
+
+============
+
+ip.go
+
+type IP 
+type IPMask
+type IPNet
+
+
+============
+
+sock_cloexec.go
+
+sysSocket
+accept
+
+sock_posix.go
+
+sockaddr
+func socket
+
+============
+
+
+net.go
+
+type Addr interface
+type Conn interface
+type conn struct
+type PacketConn interface
+type Listener interface
+
+type Error interface
+type OpError struct
+AddrError
+UnknownNetworkError
+
+==========
+
+tcpsock.go
+
+type TCPAddr struct
+
+tcpsock_posix.go
+
+type TCPConn struct {
+    conn
+    ReadFrom()
+    CloseRead()
+    CloseWrite()
+    SetLinger()
+}
+
+type TCPListener struct {
+    AcceptTCP()
+    Accept()
+    Close()
+    Addr()
+    File()
+    ListenTCP()
+}
+
+DialTCP
+
+==============
+
+udpsock
+
+type UDPAddr struct {
+    IP
+    Port
+    Zone
+
+    Network()
+    String()
+    toAddr()
+}
+
+type UDPConn struct {
+    conn
+
+    ReadFrom()
+    WriteTo()
+}
+
+type udpHeader struct {
+}
+
+DialUDP
+
+=========================
+
+unixsock.go
+
+UnixAddr
+    family()
+    sockaddr()
+
+UnixConn
+    ReadFrom()
+    WriteTo()
+    CloseRead()
+    CloseWrite()
+
+UnixListener
+    Accept()
+    Close()
+    Addr()
+    File()
+    
+
+DialUnix
+
+==================
+
+dial.go 
+func calls into DialTCP, DialUDP, DialUnix, DialIP
+
+===========
+
+type Interface struct {
+    Index
+    MTU
+    Name
+    HardwareAddr
+    Flags
+
+    Addrs()
+    
+}
+
+=============
+dns
+=============
+sendfile
+===========
+
+ipsock
+
+type netaddr interface {
+}
+
+===========
+
+ipraw
+
+type IPAddr struct {
+    IP IP
+    Zone string
+
+    Network()
+    String()
+    toAddr()
+    family()
+    sockaddr()
+}
+
+type IPConn struct {
+    conn
+
+    ReadFrom()
+    WriteTo()
+}
+
+type IPConn struct {
+    conn
+
+    ReadFrom()
+    WriteTo()
+}
+
+=========
+
+type fdMutex struct {
+    Incref()
+    Decref()
+    RWLock()
+}
+
+type netFD struct {
+    fdmu fdMutex
+    laddr, raddr Addr
+
+    name()
+    destroy()
+    Read()
+    Write()
+    Close()
+    dup()
+}
+
+type pollDesc struct {
+}
+
+============
+
+sockopt
+sockoptip
+tcpsockopt
+
+port
+
+============
+
+type socket interface {
+    Addr
+    netaddr
+}
+
+has socket() func
+===========

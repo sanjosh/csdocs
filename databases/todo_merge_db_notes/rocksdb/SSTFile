@@ -1,0 +1,208 @@
+
+
+SstFileWriter
+{
+}
+
+SstFileWriter::Rep
+{
+  WritableFileWriter
+  TableBuilder
+
+  Add(key, value)
+}
+
+
+TableFactory
+{
+  TableReader* NewTableReader()
+
+  TableBuilder* NewTableBuilder()
+}
+
+TableReader
+{
+}
+
+TableBuilder
+{
+  Add(key, value)
+}
+
+======
+
+Block
+{
+  InternalIterator NewIterator()
+  {
+  }
+  
+  BlockContents contents_;
+  ptr to BlockHashIndex
+  ptr to BlockPrefixIndex
+}
+
+BlockHandle
+{
+  // ptr to extend of file that has data or meta block
+}
+
+Footer
+{
+}
+
+BlockContents
+{
+}
+
+BlockIter : InternalIterator
+{
+  BinarySeek()
+  HashSeek()
+  PrefixSeek()
+  BinaryBlockIndexSeek()
+}
+
+BlockBuilder
+{
+  Add(key, value)
+  {
+  }
+  Finish()
+  {
+  }
+
+}
+
+BlockHashIndex
+{
+}
+
+BlockPrefixIndex
+{
+}
+
+BlockBasedTable : TableReader
+{
+  NewIterator()
+  {
+    return TwoLevelIterator()
+  }
+  NewDataBlockIterator()
+  {
+  }
+  NewIndexIterator()
+  {
+  }
+
+  Get(Key)
+  {
+  }
+
+  DumpTable(WritableFile)
+
+}
+
+BlockBasedFilterBlockBuilder : FilterBlockBuilder
+{
+}
+
+BlockBasedFilterBlockReader : FilterBlockReader
+{
+}
+
+BlockBasedTableBuilder : TableBuilder
+{
+  Rep rep_;
+
+  Add(key, value)
+
+  WriteBlock(BlockBuilder)
+
+  WriteRawBlock()
+
+  Finish()
+  {
+    rep->data_block
+    Flush()
+    rep->filter_block
+    rep->index_builder
+
+    filter block
+    meta index block
+    index block
+    footer
+
+  }
+}
+
+BlockBasedTableReader
+{
+  Rep* rep;
+}
+
+BlockBasedTableFactory : TableFactory
+{
+}
+
+BlockBasedTable::IndexReader
+{
+}
+
+BinarySearchIndexReader : IndexReader
+{
+}
+
+HashIndexReader : IndexReader
+{
+}
+
+BlockBasedTable::Rep
+{
+  IndexReader index_reader;
+}
+
+======
+
+AdaptiveTableFactory : TableFactory
+{
+}
+
+========
+
+CuckooTableFactory : TableFactory
+{
+  NewTableBuilder()
+  {
+  }
+
+  NewTableReader()
+  {
+  }
+}
+
+CuckooTableReader
+{
+}
+
+========
+
+PlainTableBuilder
+{
+}
+
+PlainTableFactory
+{
+}
+
+PlainTableIndex
+{
+}
+
+PlainTableIndexBuilder
+{
+}
+
+PlainTableReader
+{
+}

@@ -1,0 +1,50 @@
+C++11 changes
+===================
+
+anon namespaces superior to static bcos user-defined types can also be hidden
+
+rvalue, move and forward : A& operator = (A&& a) = default;
+
+shared_ptr, unique_ptr, weak_ptr
+
+initialize members within class instead of ctor: class A { int m3 = 7; };
+
+constexpr keyword in C++11 : constexpr func()
+constructor (std::initializer_list<type>)
+constructor () = default
+constructor()  = delete
+class::func()  = override
+class::func()  = final
+class::func()  noexcept vs nothrow
+explicit constructor() 
+extern template to prevent instantiation
+auto <-> decltype
+trailing return type : func() --> int {}
+strongly typed enums
+static_assert
+nullptr
+noexcept for not throwing exception : func() noexcept{}
+alignas(double) char x[100] and alignof(int)
+std::array<type, num>
+std::tuple
+std::unordered_map
+std::thread
+std::async, future and promise
+
+http://www.stroustrup.com/C++11FAQ.html
+
+=================
+
+
+static_cast
+const_cast
+dynamic_cast
+reinterpret_cast
+
+typename
+
+std::numeric_limits<t>::infinity()
+std::isnan
+std::range_error
+std::is_floating_point
+std::make_unsigned

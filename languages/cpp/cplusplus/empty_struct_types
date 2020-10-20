@@ -1,0 +1,13 @@
+
+
+struct bv_tag{};
+struct cbv_tag{};
+
+class A
+{
+  typedef bv_tag index_category;
+};
+
+std::enable_if<std::is_same<typename class::index_category, bv_tag>::value>
+
+typename A<T>::type ?

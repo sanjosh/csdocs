@@ -1,0 +1,196 @@
+
+
+Compaction
+{
+}
+
+
+CompactionPicker
+{
+  Compaction* PickCompaction()
+  Compaction* CompactRange()
+  {
+    return new Compaction()
+    or return PickCompaction()
+  }
+  Compaction* FormCompaction()
+  {
+  }
+}
+
+LevelCompactionPicker : CompactionPicker
+{
+}
+
+FIFOCompactionPicker : CompactionPicker
+{
+}
+
+NullCompactionPicker : CompactionPicker
+{
+}
+
+CompactedDBImpl : DBImpl
+{
+  ColumnFamilyData*
+  Version*
+  Comparator*
+  LevelFilesBrief* 
+}
+
+CompactionInputFiles
+{
+  int level
+  vector<FileMetaData*> files
+}
+
+FileMetaData
+{
+  InternalKey smallest, largest
+  SequenceNumber smallest, largest
+}
+
+Compaction
+{
+  start_level
+  output_level
+  mutable_cf_options
+  number_levels
+  input_version
+  Arena
+  ColumnFamilyData* 
+  vector<CompactionInputFiles> inputs_
+}
+
+// uses InternalIterator to read keys from file
+// uses MergeOutputIterator to merge input keys
+CompactionIterator
+{
+  InternalIterator* input_ (Compaction)
+
+  Comparator* cmp
+  vector<SequenceNumber>* snapshots
+
+  Compaction* compaction
+  CompactionFilter* compaction_filter
+
+  LogBuffer* log_buffer
+
+  SequenceNumber earliest_snap
+  SequenceNumber latest_snap
+  bool ignore_snapshots_
+
+  MergeHelper*
+  MergeOutputIterator merge_out_iter 
+
+  vector<size_t> level_ptrs
+
+  prepareForOutput()
+  {
+  }
+
+  Next()
+  {
+    NextFromInput()
+    use merge_out_iter_
+    PrepareForOutput()
+  }
+
+  NextFromInput()
+  {
+  }
+
+}
+
+CompactionJob
+{
+  CompactionState* compact_
+  VersionSet*
+  LogBuffer*
+  vector<SequenceNumber> existing_snapshots_
+
+  Prepare()
+  {
+    GensubcompactionBoundaries();
+  }
+
+  Run()
+  {
+    launch subcompactions in separate threads calling
+      CompactionJob::ProcessKeyValueCompaction
+  }
+
+  GenSubcompactionBoundaries()
+  {
+  }
+
+  // main compaction work done here
+  // use CompactionIterator to fetch keys
+  // use TableBuilder to insert new keys
+  ProcessKeyValueCompaction()
+  {
+    InternalIterator input VersionSet::MakeInputIterator(
+      sub_compact->compaction) 
+      // returns MergingIterator 
+      // which has list of TwoLevelIterator or LevelFileNumIterator
+
+    MergeHelper merge;
+    sub_compact->c_iter = new CompactionIterator(input, merge)
+
+    while (c_iter->Valid())
+    {
+      (TableBuilder)sub_compact->builder->Add(key, value) // output iter
+      c_iter->Next()
+    }
+  }
+}
+
+CompactionState
+{
+  Compaction* compaction;
+  vector<SubcompactionState> sub_compact_states;
+
+  ShouldFormSubcompactions()
+  {
+    divide keys into ranges for different threads
+  }
+}
+
+SubcompactionState
+{
+  Compaction* compaction;
+  CompactionIterator c_iter;
+  Key start, end
+  Output {  FileMetadata meta; } 
+  vector<Output> outputs; // files produced
+  TableBuilder builder;
+  WritableFileWriter outfile;
+
+}
+
+CompactionFilter
+{
+}
+
+MergeHelper
+{
+  MergeOperator user_merge_operator_
+  CompactionFilter compaction_filter_
+  SequenceNumber latest_snapshot_
+
+  MergeUntil() // stop_before used to stop before snapshot seq num
+  FilterMerge()
+  TimedFullMerge()
+}
+
+MergeOutputIterator // iterate over results of merge
+{
+  MergeHelper merge_helper_
+  it_keys_
+  it_values_
+}
+
+MergeContext
+{
+}
+

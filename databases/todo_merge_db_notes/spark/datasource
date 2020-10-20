@@ -1,0 +1,350 @@
+
+
+JDBC
+
+https://github.com/apache/spark/blob/v1.5.2/sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/jdbc/DefaultSource.scala
+
+Extends RelationProvider
+
+class DefaultSource extends RelationProvider with DataSourceRegister {
+    override def shortName(): String = "your"
+
+    override def createRelation(
+        sqlContext : SQLContext,
+        parameters : Map[String, String]) : BaseRelation {
+
+        val partitionColumn = parameters.getOrElse("partitionColumn")
+        val lowerBound
+        val upperBound
+        val numPartitions = parameters.getOrElse("numPartitions")
+
+        DriverRegistry.register(driver)
+    }
+}
+
+===============
+
+Cassandra
+
+extends 
+RelationProvider
+SchemaRelationProvider
+CreatableRelationProvider
+
+class DefaultSource {
+    createRelation(sqlContext, parameters, 
+        schema, mode (append, overwrite, error if exists) {
+
+        /*
+         * correspond to options given in "Create temporary table"
+         * Options = table, keyspace, cluster, pushdown
+         * keyspace is like namespace
+         * 
+         */
+        parameters("table")
+        parameters("keyspace")
+        parameters("cluster")
+        parameters("schema")
+        parameters("pushdown")
+
+    }
+}
+
+class CassandraSourceRelation extends BaseRelation with InsertableRelation, PrunedFilteredScan {
+    
+    insert(data: DataFrame, overwrite : Boolean): Unit = {
+    }
+
+    unhandledFilters(filters ) : ArrayFilter {
+    }
+
+    buildScan(requiredColumns, filters) : RDD[Row = {
+    }
+}
+
+
+partitionKeyCols = tableDef.partitionKey
+
+=============
+
+org.apace.spark.Partition
+org.apace.spark.Partitioner
+
+Partitioner
+- HashPartitioner
+- RangePartitioner
+
+repartitionByCassandraReplica
+
+Cassandra 
+Partitioner
+- ReplicaPartitioner
+
+Partitioner 
+{
+    numPartitions
+    getPartition(key)
+}
+
+================
+
+In spark RDD.scala DeveloperApi marks methods to be implemented
+
+RDD
+{
+    // DeveloperApi
+
+    compute(split: Partition, context : TaskContext);
+
+    getPartitions : Array[Partitions] 
+
+    getPreferredLocations (overrriden by subclasses)
+
+    partitioner // tells u if RDD has defined a partitioner
+}
+
+PartitionCoalescer
+
+RDD
+- PartitionPruningRDD 
+- NewHadoopRDD
+-- BinaryFileRDD
+- BlockRDD
+- CartesianRDD
+- CoalescedRDD (has fewer partitions than parent RDD)
+
+
+PairRDDFunctions for key-value RDD (groupBy, join)
+DoubleRDDFunctions for RDD of double
+SequenceFileRDDFunctions for RDD saved sas seq file
+
+RDD extensions define methods like compute, getPartitions
+- CassandraRDD 
+--- CassandraTableScanRDD  (main entry point)
+--- CassandraJoinRDD 
+--- CassandraLeftJoinRDD 
+- SpannedRDD
+- CassandraPartitionedRDD // created by repartiionByCassandraReplica)
+
+RDD constructor has a last argument : overridePartitioner
+it has a field "partitionGenerator"
+
+/* 
+comment in SpannedRDD.scala
+
+This RDD is very useful for grouping data coming out from Cassandra, 
+because they are already coming in order of partitioning key i.e. 
+it is not possible for two rows with the same partition key to be 
+in different Spark partitions.  
+
+comment in CassandraTableScanRDD.scala
+
+A `CassandraRDD` object gets serialized and sent to every Spark Executor, 
+which then calls the `compute` method to fetch the data on every node. 
+The `getPreferredLocations` method tells Spark the preferred nodes to 
+fetch a partition from, so that the data for the partition are at the 
+same node the task was sent to. If Cassandra nodes are collocated
+with Spark nodes, the queries are always sent to the Cassandra process 
+running on the same node as the Spark Executor process, hence data are 
+not transferred between nodes.
+
+comment in CassandraConnector.scala
+
+*/
+
+
+===============
+
+Memsql
+
+disablePartitionPushdown
+
+DefaultSource : CreatableRelationProvider, DataSourceRegister
+{
+    createRelation(sqlContext, parameters) -> BaseRelation
+
+    createRelation(sqlContext, saveMode, parameters, dataFrame) -> BaseRelation
+}
+
+MemSQLQueryRelation : BaseRelation, TableScan
+{
+   StructType schema
+
+   buildScan() -> RDD[Row]
+
+}
+
+MemSQLTableRelation : BaseRelation, PrunedFilterScan, InsertableRelation
+{
+    buildScan() -> RDD[Row]
+
+    // PrunedScan
+    buildScan(requiredCols) -> RDD[Row]
+
+    // PrunedFilteredScan
+    buildScan(requiredCols, filters)  -> RDD[Row]
+
+    unhandledFilters(filters) -> filters
+
+    insert(dataFrame, overwrite)
+}
+
+
+MemSQLRDD : RDD
+{
+    getPartitions() -> Array[Partition]
+
+    compute(Partition, TaskContext) -> Iterator
+}
+
+MemSQLRDDPartition : Partition
+{
+    decided by query "Show partitions on dbname"
+}
+
+==========
+
+MongoDB connector from stratio
+
+DefaultSource : RelationProvider, SchemaRelationProvider, CreatableRelationProvider
+{
+    createRelation(sqlContext, parameters) -> BaseRelation
+    {
+    }
+
+    // SchemaRelationProvider
+    createRelation(sqlContext, parameters, schema) -> BaseRelation
+    {
+    }
+
+    // Creatable
+    createRelation(sqlContext, saveMode, parameters, dataFrame) -> BaseRelation
+    {
+    }
+}
+
+MongodbRelation : BaseRelation, PrunedFilteredScan, InsertableRelation
+{
+   rddPartitioner = new MongodbPartitioner (conf)
+
+   StructType schema
+
+   buildScan(requiredCols, filters) -> RDD[Row]
+   {
+   }
+
+   insert(DataFrame, overwrite)
+   {
+   }
+}
+
+MongodbRDD : RDD
+{
+    constructor(partitioner) 
+
+    getPartitions()
+
+    compute(Partition, taskContext) : MongodbRDDIterator
+}
+
+MongodbPartitioner : Partitioner
+{
+    computePartitions()
+}
+
+MongodbRDDIterator : Iterator[DBObject]
+{
+}
+
+
+also extends DataFrame
+MongodbDataFrame(DataFrame)
+{
+    saveToMongodb()
+}
+
+also extends sqlContext
+MongodbContext(sqlContext)
+{
+    fromMongoDB()
+}
+
+// RowConverter
+MongodbRowConverter extends RowConverter[DBObject]
+{
+}
+
+===========
+
+Kafka
+
+external/kafka-0-10-sql/src/main/scala/org/apache/spark/sql/kafka010
+
+KafkaSourceProvider : DataSourceRegister, RelationProvider, Creatable
+{
+}
+
+KafkaRelation : BaseRelation, TableScan
+{
+    buildScan() -> RDD
+}
+
+KafkaSourceRDD : RDD
+{
+    compute()
+}
+
+KafkaRDDPartition : Partition
+
+external/kafka-0-8/src/main/scala/org/apache/spark/streaming/kafka/
+
+KafkaRDD : RDD
+{
+    getPartitions
+}
+
+===========
+
+https://github.com/amplab/succinct/blob/master/spark/src/main/scala/edu/berkeley/cs/succinct/sql/DefaultSource.scala
+
+Succinct
+
+DefaultSource : RelationProvider, SchemaRelationProvider, CreatableRelationProvider
+{
+}
+
+SuccinctMemoryRelation : BaseRelation, PrunedFilteredScan
+{
+    StructType schema
+    buildScan()
+}
+
+SuccinctPersistentRelation : BaseRelation, PrunedFilteredScan
+{
+}
+
+SuccinctTableRDD : RDD[Row]
+{
+    getPartitions()
+}
+
+Not extended partition but has SuccinctTablePartition
+
+
+===========
+
+ELasticsearch
+
+ScalaEsRDD : RDD
+{
+    getPartitions()
+    {
+    }
+
+    compute()
+    {
+        return ScalaEsRDDIterator
+    }
+}
+
+

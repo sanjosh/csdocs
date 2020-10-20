@@ -1,0 +1,25 @@
+
+string distance algo
+
+Hamming distance : Number of positions with same symbol in both strings.  Only defined for strings of equal length.
+
+Levenshtein : Minimal number of insertions, deletions and replacements needed for transforming string a into string b.
+
+Damerau-levenshtein : transposition of adjacent symbols allowed
+
+Restricted Damerau-Levenshtein : Like (full) Damerau-Levenshtein distance but each substring may only be edited once.
+
+Longest common substring : Minimum number of symbols that have to be removed in both strings until resulting substrings are identical.
+
+q-gram distance : Sum of absolute differences between N-gram vectors of both strings.
+
+Cosine distance : 1 - cosine similarity between N-gram vectors
+
+Jaccard distance : 1 - quotient of shared N-grams and all observed N-grams
+
+Jaro distance : special case of jaro-winkler distance with p=0
+
+Jaro-winkler distance : 
+
+http://www.joyofdata.de/blog/comparison-of-string-distance-algorithms/
+

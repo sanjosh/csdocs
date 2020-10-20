@@ -1,0 +1,100 @@
+
+1) given stream of incoming pts, find number of pts in a range
+   used by query optimizer, networking, iot
+
+   numbers vs strings vs 2-dim
+
+   how many buckets to create 
+   what if query range doesnt match bucket
+
+   Minimize error, running time
+
+   handle updates & deletes 
+   single-dim
+   multi-dimensional
+   distributed
+   Arrival model vs Turnstile model
+
+ ======================
+
+3) equi-depth vs equi-width
+
+4) V-optimal - SQL server
+
+5) T-digest : IOT
+
+6) Q-digest 
+
+7) Histogram
+ same problem in different areas
+ statistics - density estimation (non-parametric)
+ graphics - segmentation algo
+ signal processing - convert time to frequency domain
+
+7) Spark RDD Histogram method
+ - DoubleRDDfunctions
+ 
+better to approx CDF instead of PDF since CDF is contnuous
+
+
+Histogram using MapReduce
+DYnamic Histogram - Vitter & wang
+
+========================
+
+Sampling vs no-sampling
+Online vs offline
+
+(gibbons) three problems
+1. estimating the frequency moments of a data set 
+   as the number of distinct values or the maximum frequency of any one value
+2. estimating the m most frequently occurring values
+3. approximating the quantiles and other types of histograms of a data set
+
+===========
+
+NO SAMPLING : 
+
+Network Data processing, Streaming, IOT
+
+what can be computed in one pass ?
+provide intuition
+
+Associated problems
+1. update/delete
+2. multi-column
+3. distributed - aggregate
+
+Question of estimator
+
+min
+max
+average
+std deviation
+
+moving average - Holt winters 
+
+set membership - Bloom
+entropy  - 
+outliers - 
+
+cardinality - count of distinct elem (freq moments)
+rank stats - TDigest
+heavy hitters - Stream summary algo
+histogram - 
+
+Find an estimator - bias, variance, mse, efficient
+
+https://highlyscalable.wordpress.com/2012/05/01/probabilistic-structures-web-analytics-data-mining/
+
+https://github.com/clearspring/stream-lib
+
+http://www.cs.upc.edu/~gavalda/DataStreamSeminar/files/Lecture1.pdf
+
+http://www.cse.ust.hk/vldb2002/program-info/tutorial-slides/T5garofalalis.pdf
+
+https://cs.wmich.edu/~alfuqaha/summer14/cs6530/lectures/StreamingAnalysisPart1.pdf
+
+==========
+
+chart on space-time complexity and error bound

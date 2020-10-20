@@ -1,0 +1,8 @@
+
+confusion matrix
+
+ROC used to compare different classifiers
+ideal RoC will hug top right
+random chance => straight line thru center of graph
+
+area under curve must be high

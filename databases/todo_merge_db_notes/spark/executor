@@ -1,0 +1,64 @@
+
+Derive from Executor and launch standalone
+
+// In local version, executor, backend and master run in same JVM
+// see LocalSchedulerBackend
+
+// in spark how it is started
+SparkContext
+StandaloneSchedulerBackend
+StandaloneAppClient
+
+// CoarseGrainedClusterMessages is base class for protocol
+
+snappydata/cluster
+
+// started from cluster manager callback
+object ExecutorInitiator {// in snappydata
+	
+	var executorRunnable: ExecutorRunnable = new ExecutorRunnable
+
+	var executorThread: Thread = new Thread(executorRunnable)
+
+	class ExecutorRunnable extends Runnable {
+		
+		override def run(): Unit = {
+			val executor = new CustomCoarseGrainedBackend(
+				rpcenv, url, memberId, executorHost, cores, ...)
+		}
+	}
+}
+
+package org.apache.spark.executor
+
+
+class CustomCoarseGrainedExecutorBackend() 
+	extends CoarseGrainedExecutorBackend
+{
+	override def onStart() {
+		super.onStart() 
+		// sends registerExecutor msg to SchedulerBackend on Driver
+		// receives reply RegisteredExecutor
+	}
+
+	override def onStop() {
+	}
+
+	override def registerExecutor() : Executor {
+		new CustomExecutor()
+	}
+}
+
+class CustomExecutor() extends Executor
+{
+	override def createClassLoader(): MutableURLClassLoader = {
+	}
+}
+
+class CustomClassLoader extends MutableURLClassLoader {
+
+	override def loadClass
+	override def loadJar
+}
+
+

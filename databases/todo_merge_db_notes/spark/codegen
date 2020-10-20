@@ -1,0 +1,97 @@
+
+
+Main classes:
+* CodeGenerator
+* CodegenContext
+* CodegenSupport
+
+============
+
+ExprCode?
+
+CodegenContext
+{
+  generateExpressions()
+}
+
+CodeGenerator subclasses
+- GenerateOrdering
+- GenerateUnsafeRowJoin
+- GenerateColumnAccessor
+- GeneratePredicate
+- GenerateMutableProjection
+
+CodeGenerator::compile(CodeAndComment) : GeneratedClass
+{
+	cache.get()
+	{
+		doCompile
+		{
+			ClassBodyEvaluator.cook
+		}
+	}
+}
+
+CodeGenerator::generate(expr) -> MutableProjection
+{
+  newCodeGenContext()
+  codeBody
+  CodeFormatter
+  javaClass = CodeGenerator.compile (uses Janino) 
+  GeneratedClass.generate
+}
+
+generates code which uses classname= SpecificSafeProjection ??
+
+CodegenSupport - Volcano
+
+WholeStageCodegenExec : UnaryExecNode, CodegenSupport
+{
+  doCodeGen() : CodegenContext, CodeAndComment
+  {
+  	ctx = new CodegenContext
+	code = child.produce(ctx)
+	return ctx, code
+  }
+  doExecute() : RDD[InternalRow]
+  {
+  	ctx, source = doCodeGen()
+	CodeGenerator.compile(source)
+  }
+  doProduce() - nothing
+  doConsume(ctx, input, row) : String 
+  {
+  }
+}
+
+CollapseCodeGenStages : Rule[SparkPlan]
+{
+}
+
+==============
+
+trait CodegenSupport : public SparkPlan
+{
+	inputRDDs : Seq[RDD[InternalRow]]
+
+	bool supportCodegen
+
+	// java source to process input RDD
+	produce(CodegenContext ctx, parent) : String 
+	{
+		doProduce(ctx)
+	}
+	doProduce()
+
+	// consume generated rows or cols of current SparkPlan
+	// call parent.doConsume
+	consume(CodegenContext ctx, Seq[ExprCode] outputVars, String row)
+	{
+		
+	}
+}
+
+InputAdapter : hide SparkPlan from subtree that supports codegen
+i.e. child does not support Codegen but parent tree does
+
+

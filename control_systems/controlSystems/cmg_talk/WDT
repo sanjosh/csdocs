@@ -1,0 +1,40 @@
+
+WDT - Throttler.cpp
+
+Sender - has many SenderThreads
+Receiver - has many ReceiverThreads
+
+registerTransfer
+deregisterTransfer
+
+=============
+WDT - token bucket
+- constrain long-term steady state rate since start of transfer
+- constrain short-term bursts
+
+max_tokens
+rate_of_token_entry
+avg_rate
+
+limit(delta)
+{
+   bytesProgress += delta
+   // steady-state check against start time of transfer
+   if (bytesProgress > allowedProgressBytes)
+   {
+     sleep for (ideal - elapsed)
+   }
+   else 
+   {
+     // instantaneous check against peaks
+     tokens += elapsedSec * peakRate (upto max)
+     limit tokens by maxTokens (1/8 * peakRate)
+     tokens -= deltaProgress
+     if (available tokens < 0)
+     {
+       sleep for tokens/peak_rate
+     }
+   }
+}
+
+

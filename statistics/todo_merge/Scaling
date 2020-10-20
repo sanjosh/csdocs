@@ -1,0 +1,28 @@
+
+http://stats.stackexchange.com/questions/46429/transform-data-to-desired-mean-and-standard-deviation
+
+http://stats.stackexchange.com/questions/70801/how-to-normalize-data-to-0-1-range?lq=1
+
+https://en.wikipedia.org/wiki/Standard_score
+
+How to normalize
+x/x_max - is prone to outliers
+
+GIven X has Normal(mean, stddev)
+then (X-mean)/stdev has Normal(0, 1)
+
+Standard score
+1) (x - median)/stddev - robust to outliers, but computationally expensive
+2) (x - mean)/stddev <- Standardized
+3) (x - x_low)/(x_max - x_low) <- Normalized
+
+A key point is that calculating z requires the population mean and the
+population standard deviation, not the sample mean or sample deviation. It
+requires knowing the population parameters
+
+http://stats.stackexchange.com/questions/70553/how-to-verify-a-distribution-is-normalized
+
+Box-Cox family of transformations
+
+https://en.wikipedia.org/wiki/Power_transform
+

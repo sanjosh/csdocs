@@ -1,0 +1,87 @@
+
+What is a ManagedIterator ?
+
+VersionEdit
+{
+  log number
+  next file
+  last sequence
+}
+
+JobContext
+{
+}
+
+// How to optimize Get() ?
+// Use bigger Memtables
+
+investigate checkpoint/backup  logic
+
+types of files written by RocksDB
+
+enum FileType
+{
+  log file
+  db lock file
+  table file
+  descriptor file
+  current file
+  temp file
+  info log file
+  meta database file
+  identity file (guid)
+  options file
+}
+
+
+// TODO : number 12 in code
+
+DBImpl::Open()
+
+  DBImpl::Recover()
+  {
+    first process the manifest
+    then process the log files
+   
+    VersionSet::Recover() (versions_)
+    {
+      Manifest file contains VersionEdits
+      read VersionEdits
+      and create/delete column families
+      verify log_numbers and comparators for same column family
+      as recorded in different VersionEdits
+      
+      Mark max column family
+      Mark VersionSet->manifest file number
+      Mark VersionSet->last sequence number as seen in VersionEdits
+      Mark log file number
+
+      for each column family
+        Version->PrepareApply
+    }
+
+    DBImpl::RecoverLogFiles()
+    {
+      for (each log file)
+      {
+        for each record
+        {
+          create WriteBatch from record
+          WriteBatchInternal::InsertInto(batch)
+          // if cf not found, it means cf was dropped after WAL write
+
+          if (flush_scheduler)
+          {
+            Write Level0 Table
+            Create New Mem Table
+          }
+            
+        }
+      }
+
+      for each column family
+      {
+        write new version edits into MANIFEST file
+      }
+    }
+  }

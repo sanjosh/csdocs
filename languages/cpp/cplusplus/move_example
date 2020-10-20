@@ -1,0 +1,63 @@
+
+assign op (copy and swap)
+    ctor
+    swap
+
+define specialized swap ?
+
+move assign op
+    move ctor
+    call std::move on individual members
+
+move ctor
+    call std::move on individual members
+    std::swap uses
+        std::move(convert lvalue to xvalue)
+
+xvalue => expiring lvalue
+prvalue => pure rvalue - rvalue that is not xvalue
+
+http://stackoverflow.com/questions/14749587/when-is-the-move-constructor-called-in-the-stdmove-function
+
+http://stackoverflow.com/questions/21358432/why-is-stdmove-named-stdmove
+
+http://stackoverflow.com/questions/3601602/what-are-rvalues-lvalues-xvalues-glvalues-and-prvalues/3601748#3601748
+=========
+
+objects allocated from 2 diff allocators cannot be moved
+Custom allocator and 
+
+Seagate KineticConnection::Put class accepts "string" - 
+
+=====
+
+what happens when you move a literal string - a temporary ?
+does new string pt to statically alloc data
+is it immutable ?
+
+===
+
+STL has emplace/emplace_back for copy ctor (Myers slide 129)
+
+=====
+
+how does type traits work
+
+===
+How to debug
+http://www.cplusplus.com/reference/type_traits/is_move_constructible/
+
+use type_traits
+is_lvalue_reference
+
+add_lvalue_reference
+remove_reference
+
+===
+
+
+Some types cannot be copied (only moved)
+e.g. std::thread, std::unique_ptr, stream
+
+=========
+

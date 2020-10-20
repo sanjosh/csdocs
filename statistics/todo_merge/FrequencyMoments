@@ -1,0 +1,35 @@
+
+
+Frequency moments paper - Alon, Matias, Szegedy
+space complexity for online algorithm to compute freq moment
+
+http://www.cs.yale.edu/homes/el327/datamining2013aFiles/04_frequency_moments.pdf
+
+Need good estimator for each moment
+
+Let A = (a1, a2, ..., am)
+Let m_i = number of j such that a_j = i (frequency)
+
+Fk = Sigma (m_i^k)  for i = 1 to n
+
+F0 F1 F2 can be approx in log space
+
+F0 = count of distinct elem 
+
+ find hash func h: a -> [0, 1]
+ define random variable X = min over all i (hash (a_i))
+ then X is roughly 1/m
+ and 1/X is fair estimate of actual m
+
+  https://en.wikipedia.org/wiki/Count-distinct_problem
+
+  https://en.wikipedia.org/wiki/Flajolet%E2%80%93Martin_algorithm
+
+F1 = length of stream  
+
+
+F2 = repeat rate or Gini index of homogeneity (frequency square)
+
+rest require O(n) space
+
+

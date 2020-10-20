@@ -1,0 +1,16 @@
+
+CPU has Store buffer and invalidate queue (besides L1, L2, L3)
+
+SFENCE = flush store buffer
+Non-temporal write : write directly to RAM 
+MTRR : define certain region as uncacheable
+
+C++ memory models map to use of LFENCE, SFENCE, MFENCE
+* relaxed
+* consume
+* acquire
+* release
+* acquire-release
+* sequential
+
+https://stackoverflow.com/questions/27595595/when-are-x86-lfence-sfence-and-mfence-instructions-required

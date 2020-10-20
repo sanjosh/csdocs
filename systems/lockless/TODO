@@ -1,0 +1,10 @@
+
+look at folly use of relaxed memory consistency
+
+https://groups.google.com/forum/#!forum/lock-free
+
+Peterson impl by Dmitry Vyukov
+
+http://sigops.org/sosp/sosp13/papers/p33-david.pdf
+
+http://www.efficios.com/publications

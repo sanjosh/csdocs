@@ -1,0 +1,26 @@
+
+optimiztin 
+use of unsafe
+cache layout of data structures
+mutex
+
+https://groups.google.com/d/msg/golang-nuts/iYcM7yLjIhI/zofamAaDVgsJ
+
+UID per entity (also edge?)
+
+Posting list in rocksdb
+posting list : all directed edges corresponding to an attribute
+entiy : attribute  : valueid
+me    : friend     : person 1
+me    : friend     : person 3
+
+tablet : group of posting list
+sharding based on predicate not entity
+social hash to collocate objects to a shard ?
+
+read/write workload ?
+consistency guarantees ?
+
+mutations stored in commit log & in-memory overlay 
+
+caching for top-10 queries or streaming support

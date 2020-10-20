@@ -1,0 +1,6 @@
+
+go get
+go build "full_path_without_src"
+
+https://golang.org/doc/code.html
+

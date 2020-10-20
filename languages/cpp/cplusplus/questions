@@ -1,0 +1,43 @@
+
+std::true_type  / false_type
+std::enable_if
+std::conditional
+
+std::is_convertible
+
+std::aligned_storage
+std::invalid_argument
+std::result_of
+std::remove_reference
+
+std::smartRealloc, checkedMalloc, goodMallocSize
+
+std::default_delete
+std::merge
+
+std::runtime_error
+std::exception
+std::current_exception
+std::system_error
+
+std::is_constructible
+std::is_class
+std::is_same
+std::equal_to
+std::is_integral
+
+std::integral_constant
+std::memory_order
+
+static constexpr size_t x = 40;
+
+boost::operators
+boost::optional
+boost::has_trivial_destructor
+boost::intrusive::slist<>
+boost::iterator_adaptor
+
+template <> - empty class
+
+
+

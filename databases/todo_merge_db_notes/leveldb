@@ -1,0 +1,65 @@
+
+from paper on (TableFS by Garth Gibson)
+
+In a simple understanding of an LSM tree, an memory buffer cache delays writing new and changed
+entries until it has a significant amount of changes to record on disk. Delay writes are made more durable
+by redundantly recording new and changed entries in a write-ahead log, which is pushed to disk periodically
+and asynchronously by default.
+In LevelDB, by default, a set of changes are spilled to disk when the total size of modified entries
+exceeds 4 MB. When a spill is triggered, called a minor compaction, the changed entries are sorted, indexed
+and written to disk in a format known as SSTable[ 8 ]. These entries may then be discarded by the memory
+buffer and can be reloaded by searching each SSTable on disk, possibly stopping when the first match occurs
+if the SSTables are searched from most recent to oldest. The number of SSTables that need to be searched
+can be reduced by maintaining a Bloom filter[
+7
+] on each, but with increasing numbers of records the disk
+access cost of finding a record not in memory increases. Scan operations in LevelDB are used to find
+neighbor entries, or to iterate through all key-value pairs within a range. When performing a scan operation,
+LevelDB first searches each SSTable to place a cursor; it then increments cursors in the multiple SSTables
+and merges key-value pairs in sorted order. Major compaction, or simply “compaction”, is the process of
+combining multiple SSTables into a smaller number of SSTables by merge sort. Compaction is similar to
+online defragmentation
+in traditional file systems and
+cleaning
+in LFS 
+
+s illustrated in Figure
+1
+, LevelDB extends this simple approach to further reduce read costs by divid-
+ing SSTables into sets, or levels. Levels are numbered starting from 0, and levels with a smaller number
+are referenced as “lower” levels. The 0th level of SSTables follows a simple formulation: each SSTable
+in this level may contain entries with any key/value, based on what was in memory at the time of its spill.
+LevelDB’s SSTables in level
+L > 0 are the results of compacting SSTables from level L or L- 1. In these
+higher levels, LevelDB maintains the following invariant: the key range spanning each SSTable is disjoint
+from the key range of all other SSTables at that level and each SSTable is limited in size (2MB by default)
+
+LevelDB represents data on disk in multiple SSTables that store sorted key-value pairs. SSTables are grouped
+into different levels with lower-numbered levels containing more recently inserted key-value pairs. Finding a specific
+pair on disk may search up to all SSTables in level 0 and at most one in each higher-numbered level. Compaction is
+the process of combining SSTables by merge sort into higher-numbered levels
+
+Therefore querying for an entry in the higher levels only need to read at most one SSTable in each level.
+LevelDB also sizes each level differentially: all SSTables have the same maximum size and the sum of the
+sizes of all SSTables at level
+L
+will not exceed 10
+L
+MB. This ensures that the number of levels, that is, the
+maximum number of SSTables that need to be searched in the higher levels, grows logarithmically with
+increasing numbers of entries.
+When LevelDB decides to compact an SSTable at level
+L
+, it picks one, finds all other SSTables at the
+same level and level
+L
++
+1 that have an overlapping key range, and then merge sorts all of these SSTables,
+producing a set of SSTables with disjoint ranges at the next higher level. If an SSTable at level 0 is selected,
+it is not unlikely that many or all other SSTables at level 0 will also be compacted, and many SSTables at
+level 1 may be included. But at higher levels most compactions will involve a smaller number of SSTables.
+To select when and what to compact there is a weight associated with compacting each SSTable, and the
+number of SSTables at level 0 is held in check (by default compaction will be triggered if there are more than
+four SSTables at level 0). There are also counts associated with SSTables that are searched when looking
+for an entry, and hotter SSTables will be compacted sooner. Finally, only one compaction runs at a time
+

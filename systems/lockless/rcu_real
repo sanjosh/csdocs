@@ -1,0 +1,48 @@
+http://www.rdrop.com/users/paulmck/RCU/whatisRCU.html
+
+RCU
+
+Multiple READER
+1. rcu_read_lock() - disable preemption [Record new reader]
+1. rcu_dereference(addr) [Safely read ptr]
+1. action
+1. rcu_read_unlock() [Finished reader]
+
+WRITER
+1. rcu_assign_pointer(addr, value) [Removal phase]
+1. synchronize_rcu() to ensure all readers using cur addr have exited
+   [ Grace period]
+1. then free old_addr [Reclamation phase]
+
+as soon as each CPU (there can be multiple) has executed
+at least one context switch, all prior Readers are guaranteed
+to have completed.
+
+For non-realtime kernels, call
+synchronize_rcu() 
+{
+	for each online cpu // too many cores these days
+		run_on(cpu)
+}
+
+if writer cannot block, call call_rcu() - adds a callback
+
+for realtime kernels, call
+https://lwn.net/Articles/253651/
+use two arrays to record readers before writer and after
+each array is wait queue of callbacks
+
+-------------
+
+What if there is always a reader 
+- new reader will get new ptr
+
+Priority inheritance
+
+interrupts
+
+-------------
+
+SRCU (sleepable RCU)
+Userspace RCU
+

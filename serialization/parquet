@@ -1,0 +1,133 @@
+
+Page
+DataPage  : Page
+	{dl_encoding, rl_encoding, numvalues}
+CompressedDataPage : DataPage {
+DataPageV2 : Page
+DictionaryPage  : Page
+{is_sorted, encoding}
+
+PageReader
+
+PageWriter
+ {
+ 	WriteDataPage
+	WriteDictionaryPage
+ }
+
+
+LevelDecoder
+{
+	RleDecoder
+	BitReader
+
+	Decode()
+	SetData()
+}
+
+ColumnReader
+{
+  Make()
+}
+
+TypedColumnReader : ColumnReader
+{
+	ReadBatch
+	ReadBatchSpaced
+}
+
+
+Scanner
+{
+	Make
+}
+
+TypedScanner : Scanner
+{
+}
+
+LevelEncoder
+{
+	Encode()
+}
+
+ColumnWriter
+{
+	Make()
+}
+
+TypedColumnWriter : ColumnWriter
+{
+	WriteBatch()
+}
+
+Encoder
+{
+}
+
+Decoder
+{
+}
+
+PlainDecoder : Decoder
+
+PlainEncoder : Encoder
+
+DictionaryDecoder : Decoder
+
+DictEncoder : Encoder
+
+DeltaBitPackDecoder : Decoder
+
+DeltaLengthByteArrayDecoder : Decoder
+
+DeltaByteArrayDecoder : Decoder
+
+ReaderProperties
+WriterProperties
+ColumnProperties
+
+ColumnPath
+
+Node {name, rep level, 
+
+PrimitiveNode : Node
+GroupNode : Node
+
+ColumnDescriptor
+
+SchemaDescriptor
+{
+	ColumnDescriptor Column(index) 
+}
+
+SchemaFlattener
+{
+}
+
+types.h
+parquet_types.h
+
+------------
+
+ColumnChunkMetaData
+RowGroupMetaData
+FileMetaData
+
+RowGroupReader
+ParquetFileReader
+
+RowGroupWriter
+ParquetFileWriter
+
+============
+
+arrow
+
+FileReader
+ColumnReader
+RecordReader
+	
+FileWriter
+ColumnWriter
+

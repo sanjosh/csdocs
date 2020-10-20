@@ -1,0 +1,54 @@
+
+In R
+
+1) Full factorial
+use expand.grid()
+or use gen.factorial() from AlgDesign package
+
+2) Fractional Factorial design
+use FrF2 package
+and call FrF2(num runs, num factors)
+
+3) Blocking 
+Conf.design package
+
+http://www.r-tutor.com/elementary-statistics/analysis-variance/factorial-design
+
+========================================
+
+each Factor has levels
+Interaction is called Confounding
+Replication means repeat experiment ro find errors
+
+contrasts matrix
+
+Imagine eqn
+  y = q_0 + q_1 * F_1 + q_2 * F_2 + q_12 * F_12
+where
+
+SST = total variation
+ = Sum of variation due to each factor
+ + sum of variation due to interaction between factors
+ + sum of variation due to error
+
+ Variation is not Variance
+
+ Columns are orthogonal
+
+ Stages:
+ 1) first use 2 levels to find primary factors
+ 2) Then explore more than 2 levels for primary factors
+
+If using replication, then you can add error term
+  y = q_0 + q_1 * F_1 + q_2 * F_2 + q_12 * F_12 + SSE
+
+Compute variance of errors
+Compute confidence intervals for effects
+
+---------------
+
+Additive model
+Multiplicative model - replace factors by their log
+Box-Cox power transforms
+
+  

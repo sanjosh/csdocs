@@ -1,0 +1,33 @@
+
+http://highscalability.com/numbers-everyone-should-know
+
+CAP
+
+PACELC
+To me, CAP should really be PACELC --- 
+if there is a partition (P) how does the system tradeoff between 
+availability and consistency (A and C); 
+else (E) when the system is running as normal in the absence of 
+partitions, how does the system tradeoff between 
+latency (L) and consistency (C)?
+
+FIT - fairness isolation and throughput
+
+5-minute rule
+
+how is code for a particular sector (db,e.g.) divided into various sections
+
+RUM Conjecture - Read Update Memory tradeoff
+Sparrow theorem/read-write-space amplification
+
+=============
+
+vocab
+
+paxos/raft
+consistent hashing
+wal
+proxy
+caching
+failover
+2pc

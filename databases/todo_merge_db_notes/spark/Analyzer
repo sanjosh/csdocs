@@ -1,0 +1,24 @@
+
+sql/catalyst/analysis
+
+see unresolved.scala
+	UnresolvedAttribute
+	UnresolvedRelation
+	UnresolvedFunction
+	UnresolvedAlias
+	UnresolvedInlineTable
+	UnresolvedTableValuedFunction
+	UnresolvedGenerator
+	UnresolvedStar
+	UnresolvedRegex
+	UnresolvedOrdinal
+
+Analyzer : RuleExecutor[LogicalPlan]
+
+ResolveAlias : Rule[LogicalPlan]
+ResolveRelations
+ResolveReferences
+LookupFunctions
+
+Views
+

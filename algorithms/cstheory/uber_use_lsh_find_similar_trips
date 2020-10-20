@@ -1,0 +1,80 @@
+---
+layout: post
+title: How Uber finds similar trips in same direction
+---
+
+<https://www.youtube.com/watch?v=Ha7_Vf2eZvQ>
+
+## Problem definition
+
+How find similar trips in same direction
+GPS data frequency varies 
+Input is latitude, longitude, epoch
+
+google s2 cell : have to vary level of granularity based on trip length
+
+## Steps in solution : 
+
+1. densify all points; add points so you have all pts atmost X distance apart
+
+2. discretize : map points to equal-sized S2 cell
+    this convert reals -> longs
+
+3. remove contiguous duplicates
+
+4. directionality  : use shingling to combine cell with previous cell 
+     (i.e) convert {1, 2, 3} to {102, 203, 304}
+     <https://en.wikipedia.org/wiki/W-shingling>
+
+5. solve set overlap problem - find common shingles
+     using Locality sensitive hash
+   minhash = min { h(x) for all x in set S}
+     where h(x) = ax + b Mod m 
+     where m = number of hash bins
+   How to increase and control probability 
+     use multiple minhash func with different parameters
+
+
+6. LSH on Spark
+
+
+* Approach 1 
+  Construct RDD[Trip]
+  hash values are also shuffle keys
+  then do groupByKey
+  compute Jaccard distance to verify
+
+* Approach 2
+  same pair of trips are matched on h1 and h2 buckets
+  Use one more shuffle to dedup
+  Network vs Distance Computation
+
+* Approach 3
+  Dont send actual trip vector in LSH and Dedup shuffles
+  Send only trip ID
+  After dedup, join back trip objects with one more shuffle
+  Then compute jaccard distance of each pair of matched trips
+   Jaccard(A,B) =  | A intersect B | / | A union B |
+
+  For trips with thousands of shingles, this saves network cost
+
+7. Use Another hash after first hash 
+   amplification for distance func
+   Use secondary hash after minhash for banding 
+
+### Some distance functions have good companions in hash functions
+
+1. for jacard distance, it is minhash func
+2. for hamming, it is i-th value of vector x
+3. for cosine, it is cosine of dot product of x and random vector (simhash)
+
+### How to generate thousands of hash functions
+
+* Cache friendly approach 
+
+generate only 2 hash func 
+  h1(x) = (a1.x + b1) mod m1
+  h2(x) = (a2.x + b2) mod m2
+and then generate all others as 
+  h_k(x) = h1(x) + i.h2(x) for i = 1 to num of hash
+

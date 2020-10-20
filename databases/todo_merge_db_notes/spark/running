@@ -1,0 +1,27 @@
+
+# start spark
+
+sbin/start-master.sh
+sbin/start-slaves.sh
+
+
+$ jps : list java processes
+master jvm
+worker jvm
+coarsegrainedexecutor jvm
+sparksubmit (app)
+
+
+# in datasource dir
+sbt package
+
+# add datasource to maven repo first
+bin/spark-shell --packages com.databricks:spark-csv_2.11:1.2.0
+
+bin/spark-submit --packages com.databricks:spark-csv_2.11:1.2.0 --class "WhichHasMain" --master local[*] <jarfilepath>
+
+bin/spark-shell --packages io.dcengines.rana.sql:scala-2.11:1.0 
+
+----
+
+after recompiling, delete jars from ivy cache

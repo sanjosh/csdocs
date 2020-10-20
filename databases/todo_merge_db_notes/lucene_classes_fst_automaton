@@ -1,0 +1,56 @@
+
+FST package
+-----------------
+
+Builder
+
+FST
+ Arc
+
+CompiledNod
+UncompiledNode
+NodeHash
+
+Outputs
+  NoOutputs
+	PositiveIntOutputs
+	IntSequenceOutputs
+	CharSequenceOutputs
+	ByteSequenceOutputs
+
+==========================
+
+NFA/DFA package
+-----------------
+
+Automata
+Automaton
+RunAutomaton
+CompiledAutomaton
+
+DaciukMihovAutomatonBuilder
+
+LevenshteinAutomata
+
+Transition
+
+Regexp.java 
+ toAutomatonInternal
+
+==========================
+
+RegexpQuery
+
+==========================
+
+RegexCompletionQuery
+
+RegexpQueryNode
+
+RegexpQueryNodeBuilder
+
+WildcardQueryNodeProcessor
+
+==========================
+
+FuzzySuggester

@@ -1,0 +1,7 @@
+
+For Zipf, Prob(obj being requested) proportional to rank of obj
+
+If a cache can store 6 million objects the probability of a requested page 
+being in the cache is simply the cumulative distribution function value 
+evaluated at 6 million
+

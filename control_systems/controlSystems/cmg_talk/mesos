@@ -1,0 +1,8 @@
+
+Mesos
+
+https://github.com/apache/mesos/blob/c5bbd5af061a663ba4488a180fede3549e8082fa/3rdparty/libprocess/include/process/limiter.hpp
+
+https://cwiki.apache.org/confluence/display/MESOS/Framework+API+Rate+Limiting+Design+Document
+
+=======

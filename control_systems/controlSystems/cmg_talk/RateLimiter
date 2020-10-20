@@ -1,0 +1,60 @@
+
+
+TCP is classic example of back-pressure (drop pkts, reduce buffers)
+
+PID controller does not require process knowledge (black box)
+
+------------
+
+Flink
+
+http://data-artisans.com/how-flink-handles-backpressure/
+
+====
+seastar - IOTune
+
+========
+
+
+Traffic Shaping
+
+Rate limiter vs Rate equalizer 
+
+a) Leaky Bucket : implemented as queue with constant service time
+   if bucket overflows then packets discarded
+
+b) Token Bucket : permits burstiness
+ bucket holds at most b tokens; one token added every n time.
+ to transmit, packet must obtain token
+
+Token bucket throws away tokens but never discards packets
+Leaky bucket throws away packets
+
+have leaky bucket after token bucket to limit bursts
+
+https://en.wikipedia.org/wiki/Category:Network_scheduling_algorithms
+
+https://www.quora.com/What-is-the-difference-between-token-bucket-and-leaky-bucket-algorithms
+
+==========
+
+
+Conclusion
+
+  rate limiter is like a smoothing low-pass filter
+  sender-side vs recv-side
+
+1) all threads call limit() func before transmission
+     - use hi-resolution clock to record difference between calls
+     - use sleep to slowdown requests rather than backoff and retry
+
+2) handle jitter - overflow and underflow
+   like work-conserving scheduler
+   limit peak burst rate
+
+   - limit stored permits 
+   - use warmup period to gradually increase
+
+3) backpressure
+
+

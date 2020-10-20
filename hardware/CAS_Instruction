@@ -1,0 +1,3 @@
+
+Modern x86 have 16-byte CAS - can change 2 pointers at once!
+

@@ -1,0 +1,74 @@
+
+folly::AtomicLinkedList
+{
+	AtomicIntrusiveLinkedList<> list_
+
+	insertHead() inserts at head
+	sweep() deletes all
+}
+
+===========
+
+Data Domain doubly linked list adlist
+
+each thread has a waiter strucutre in TLS
+max waiters = 2^16
+each waiter gets a unique 16 bit ID
+To build wait queue, a 4-byte node can store next & prev waiter
+
+LWLock (light weight lock) has 4 bytes
+{
+  waitq = 2 bytes
+  count = 14 bits
+  write lock taken indicator = 1 bit
+  read biased indicator = 1 bit
+}
+
+Doubly Linked list
+Each node has
+{
+	next - 8 byte
+	prev  - 8 byte
+	lwlock - per node lock - 4 byte (has waitq)
+	adl_refcnt 
+	{
+		waitq - 15 bit - waiting threads
+		masked - 1 bit - indicate node is not in list (being inserted or deleted)
+		pin count - 15 bit - number of readers
+	}
+
+}
+
+==========
+
+Art of Multicore book
+
+approaches to concurrent Linked List 
+
+1) coarse grained synchronization
+use single global lock
+
+2) fine grained synchronization
+use per-node lock (lock 2 at a time - pred and curr)
+
+3) optimistic synchronization
+
+double traversal of list
+- traverse list without locks
+- then take lock on pred and curr
+- and retraverse the list to validate if pred.next = curr
+
+Cons : contains(key) method also takes locks
+
+4) lazy synchronization
+
+mark node as "removed"
+do not traverse list twice - just check marked flag
+
+5) nonblocking synchronization
+
+no locks taken
+threads which see marked nodes during add/remove can physically remove the marked node
+
+
+--------------

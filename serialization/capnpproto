@@ -1,0 +1,149 @@
+
+usage :  (0.4)
+
+after installing
+
+$ cd src/capnproto
+
+$ ../../capnp encode test.capnp TestAllTypes < testdata/short.txt  > short.encoded
+
+$ ../../capnp decode test.capnp TestAllTypes < short.encoded
+
+=============
+
+SegmentReader
+    SegmentBuilder
+    
+Arena
+    ReaderArena
+    BuilderArena
+
+MessageReader.getRoot<MyStruct>() 
+    SegmentArrayMessageReader
+    FlatArrayMessageReader
+    InputStreamMessageReader 
+        PackedMessageReader 
+            PackedFdMessageReader
+    StreamFdMessageReader
+
+MessageBuilder.initRoot<MyStruct>()
+    MallocMessageBuilder
+    FlatMessageBuilder
+
+PointerBuilder
+StructBuilder
+ListBuilder
+
+PointerReader
+StructReader
+ListReader
+
+WirePointer
+WireHelper
+
+SegmentReader
+SegmentBuilder
+    
+
+===========
+
+InputStream
+    BufferedInputStream
+        ArrayInputStream
+        BufferedInputStreamWrapper
+    PackedInputStream
+    AsyncInputStream
+    FdInputStream
+    
+OutputStream
+    BufferedOutputStream
+        BufferedOutputStreamWrapper
+        ArrayOutputStream
+    PackedOutputStream
+    AsyncOutputStream
+    FdOutputStream
+
+Network
+OneWayPipe
+TwoWayPipe
+AsyncIoProvider
+    
+
+============
+
+Schema::Node, Field, Enumerant, Method, Type, Value, Annotation  (schema.capnp.h)
+    each has Reader, Builder, Pipeline
+
+RawSchema
+
+Schema
+    StructSchema - Field, FieldList, FieldSubset
+    EnumSchema
+    InterfaceSchema
+    ConstSchema
+    ListSchema
+    ParsedSchema
+    
+SchemaLoader
+    load(schema::Node::Reader)
+
+SchemaParser
+    parseFile(SchemaFile)
+
+SchemaFile
+    DiskFileReader
+
+===========
+
+DynamicValue
+DynamicEnum
+DynamicList
+DynamicStruct
+DynamicCapability
+DynamicList - Reader, Builder
+Orphan
+
+Data - Reader, Builder
+Text  - Reader, Builder
+
+================
+
+
+Promise
+    RemotePromise
+
+Request
+    RequestHook
+
+Response
+    ResponseHook
+    
+Pipeline
+    PipelineHook
+
+Capability::Client
+    ClientHook
+Capability::Server
+
+CallContext
+    CallContextHook
+
+===========
+
+Promise
+ForkedPromise
+PromiseFulfiller
+PromiseFulfillerPair
+
+PromiseNode
+
+EventPort
+EventLoop
+WaitScope
+
+TaskSet
+
+
+==============
+
+RPC ??

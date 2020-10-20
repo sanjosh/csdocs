@@ -1,0 +1,23 @@
+
+
+*) factorize string x = w1.w2.w3
+where each w_j = longest factor that appeared before OR new letter
+
+each factor is reduced to a triple (string, pos, len)
+
+*) string can be reconstituted without explicit dictionary
+    LZ77 does not need explicit dictionary
+    LZ78 needs it
+
+*) uses sliding window of N=4k/8k with a long prefix that has been factored and a short suffix (about 18 let) which is unfactored.  Sliding window is as good as using entire string.
+
+*) LZ computation can use
+
+Suffix tree - O(n.logA) time where A=size of alphabet
+Suffix array
+Longest Common Prefix Array
+Longest Previous Factor Array
+Quasi Suffix Array
+Burrow Wheeler Transform Array
+
+

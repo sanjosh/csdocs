@@ -1,0 +1,10 @@
+
+sync/atomic package
+
+philosophy : Share memory by communicating; don't communicate by sharing memory.
+
+https://groups.google.com/d/msg/golang-nuts/e6A7qSbi_bA/rwBaLQvWdIUJ
+
+https://github.com/zot/seq
+
+https://groups.google.com/d/msg/golang-nuts/0uPDCRiBWqc/ndOK_LBFyFgJ

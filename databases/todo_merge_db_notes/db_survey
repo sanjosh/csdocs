@@ -1,0 +1,171 @@
+
+Availability
+Consistency
+Scaling
+
+---------
+
+Workload:
+Insert pattern
+Update pattern
+Delete pattern
+Queries 
+
+Features:
+Scale-up : add nodes as u go
+Redundancy
+Compression
+Accelerator
+Multimodal
+
+Sharding for primary index
+- dynamic (locator service)
+- algorithmic (hashing, range)
+
+Column store
+Parquet
+Indexing
+
+Column, Row Oriented
+
+document, graph, row, keyvalue, columnar, hybrid
+
+
+============
+
+next generation databases guy harrison
+
+https://books.google.co.in/books?id=q6pPCwAAQBAJ&lpg=PA166&ots=e6JvCRAvfd&dq=riak%20secondary%20index%20is%20btree&pg=PA166#v=onepage&q&f=false
+==============
+
+
+DynamoDB
+
+primary key of 2 types
+- partition key
+- partition and sort key
+
+Global and Local secondary index
+upto 5 global secondayr indexes can be created
+
+Local persistence engine can be
+- berkeley db
+- MySQL
+- in memory
+
+===============
+
+Mongo
+
+Config server stores sharding info
+uses Btree for secondary index 
+
+===============
+
+HBase
+
+splits keys into ranges
+Range server 
+
+Diff-index paper by Tata
+DELI paper 
+http://tristartom.github.io/docs/ccgrid15.pdf
+
+=============
+
+Hyperdex/Innesto
+
+===============
+
+(efficient secondary attribute lookup in key-value) - qader, cheng, menon
+
+data sharding by range/hash
+primary index 
+- global or partitioned
+
+Secondary index can be
+- stand-alone vs embedded with data
+- is on same or different node as data
+- lazy update vs immediate
+
+For secondary
+- Use Btree for inmem
+- use Bloom filter for disk
+
+Operations
+GET(k)
+Put(k,v )
+DEL(k)
+Lookup(Attrib=a)
+Lookup(Attrib=a, top-K)
+rangeScan(a < Attrib < b, top-K)
+
+============
+
+Fractal Tree
+TokuDB
+
+
+============
+
+Druid 
+
+==========
+
+Google Megastore
+
+============
+
+Google F1
+
+=============
+Google Percolator
+
+===========
+Google Chubby
+
+distributed lock service
+
+=========
+
+TiDB 
+
+async schema change
+distributed transactions
+follows MySQL protocol
+written in GO
+
+=========
+
+Dremel / Google BigQuery
+
+=============
+
+Lucene
+
+Inverted index
+custom analyzer splits incoming text into token streams
+Index has segment
+
+==========
+
+Postgres
+
+=====
+
+AWS redshift
+
+
+==========
+Microsoft 
+sql server
+apollo
+hekaton
+
+======
+
+sap hana
+
+=======
+
+monetdb

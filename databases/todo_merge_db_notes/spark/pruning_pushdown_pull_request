@@ -1,0 +1,30 @@
+
+https://github.com/apache/spark/pull/16578/files
+
+FieldExtractionPushdown
+	apply(LogicalPlan) -> LogicalPlan
+ - Aggregate
+ - Join
+
+Optimizer
+ - Add 2 rules (FieldExtractionPushdown)
+
+DataSourceScanExec
+	- if ColumnarFileFormat
+
+SparkOptimizer
+	add ParquetSchemaPruning : Rule[LogicalPlan]
+
+ParquetFileFormat extended with ColumnarFileFormat trait
+
+ParquetReadSupport
+
+GetStructFieldObject
+	unapply
+ProjectionOverSchema
+	unapply
+SelectedField
+	unapply
+
+==============
+

@@ -1,0 +1,77 @@
+
+https://0x0fff.com/spark-architecture-shuffle/
+
+https://www.slideshare.net/cloudera/top-5-mistakes-to-avoid-when-writing-apache-spark-applications
+
+max shuffle block can be 2 GB (use byteBuffer variable)
+- therefore need lots of partitions
+in sql, increase spark.sql.shuffle.partitions
+in regular spark, use rdd.repartition() or rdd.coalesce()
+
+rule of thumb = 128 MB per partition
+
+MapStatus.scala - data structure used during shuffles
+
+How to eliminate skew 
+1) salting - add random number to key
+2) 
+
+Avoid shuffle - prefer map side reduce if possible
+prefer ReduceByKey over GroupByKey
+prefer TreeReduce over Reduce
+
+==========
+
+
+https://techmagie.wordpress.com/2015/12/19/understanding-spark-partitioning/
+
+https://techmagie.wordpress.com/2015/09/05/spark-caching/
+
+https://www.datastax.com/dev/blog/zen-art-spark-maintenance
+
+For example, in the CassandraRDD this method reads metadata for each partition to get Cassandra token ranges and returns an iterator that yields C* data from that range. The Map RDD on the other hand uses the partition to retrieve an iterator from the previous RDD and then applies the given function to that iterator. (For more information see the video How the Cassandra Connector Reads Data.)
+
+
+
+collect() calls rdd.compute() and returns RDD to driver
+
+A huge anti-pattern is to collect an RDD, do some work on the driver, then parallelize it back to the cluster. Regardless of which language you are using with Spark, there is no excuse for ever doing work on the driver that could be done on the cluster instead. In practical terms, this means keeping your data as RDDs for the complete duration of the operation. The reason that this is so important is twofold; First, every time you perform a collect you have to serialize the contents of the RDD to the driver application (which may be a small JVM or running on small machine). Second, the client driver isn’t taking advantage of the cluster resources so you are almost guaranteed that driver code will be less performant than similar distributed code.
+
+
+https://academy.datastax.com/units/spark-sql-saving-dataframes-cassandra
+
+https://academy.datastax.com/resources/how-spark-cassandra-connector-reads-data
+
+https://academy.datastax.com/units/sparkcassandra-connector-cassandra-aware-partitioning
+
+https://academy.datastax.com/units/how-spark-cassandra-connector-writes-data
+
+https://academy.datastax.com/units/spark-sql-querying-cassandra-sql
+
+https://academy.datastax.com/units/sparkcassandra-connector-group-key
+
+
+https://academy.datastax.com/units/connecting-spark-processing-cassandra-data
+
+
+==========
+
+Learning Spark book
+
+That there is a partitioner does not answer the question of what the output partitioner
+is for binary operations such as join . By default, it is a hash partitioner, with the number
+of partitions set to the level of parallelism of the operation. However, if one of the parents
+has a partitioner object, it will be that partitioner; and if both parents have a parti
+tioner set, it will be the partitioner of the first parent (the one that join was called on,
+for example).
+
+===========
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/content/spark-rdd-dependencies.html
+
+Dependencies
+- Narrow
+- Shuffle
+- OneToOne
+- Prune
+- Range

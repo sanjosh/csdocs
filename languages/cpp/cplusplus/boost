@@ -1,0 +1,291 @@
+
+http://en.highscore.de/cpp/boost/index.html
+
+http://stackoverflow.com/questions/244453/best-documentation-for-boostasio
+
+===========
+
+WHAT CAN BE COVERED
+
+noncopyable
+tuple
+http://www.boost.org/doc/libs/1_56_0/libs/utility/operators.htm
+http://www.boost.org/doc/libs/1_56_0/libs/utility/utility.htm#Class%20noncopyable
+ref
+conversion
+regex
+lambda
+move & rvalue
+decltype
+
+the use of typename
+the use of typedefs inside class
+
+which exceptions to catch when using boost
+    look for header file containing classes derived from std::exception
+
+
+=================
+
+format fmter("%1% %2%\n")
+fmter.bind_arg
+fmter.modify_item
+fmter.clear_binds
+fmter.exceptions
+
+use it with user-defined type
+
+=================
+
+static_assert
+boost_current_function
+
+=================
+
+Functions/Func Obj/Func Ptr
+
+boost/function.hpp
+boost/bind.hpp
+
+boost::function<double(X*, double)> xMembFunc = &X::myFunc;
+call the member function --> xMembFunc(&myX, x);
+
+boost::function>double(double>) xNormalFunc = boost::bind(xMembFunc, &myX, _1);
+
+bind also allows u to reorder func args
+
+xMembFuncRef = boost::ref(xMembFunc);
+
+fusion
+
+lambda
+
+===========
+
+boost::variant - type safe ptr
+
+boost::any class
+to retrieve original, use boost::any_cast<T>()
+
+boost::noncopyable class
+typeid(double) == object.type()
+
+typeof
+type_traits
+type_erasure
+type_index
+=================
+
+boost::optional<T>
+parameter
+config
+
+
+=================
+
+smart_ptr
+ptr_container
+
+=========
+
+container
+foreach
+bimap
+multi_index
+multi_array
+
+=================
+
+boost/date_time
+boost/chrono
+
+boost::timer t
+
+========
+
+serialization
+boost/archive 
+boost::archive::binary_archive
+
+io 
+iostreams
+
+==========
+
+boost::filesystem::path
+=================
+dynamic_bitset
+=================
+
+boost::numeric::ublas - scientific computing Fortran package BLAS
+
+matrix<double> myMat(3, 3);
+
+=========
+
+boost/math/distributions - probability
+boost/random
+
+crc
+
+numeric
+multi_precision
+========
+
+graph library
+
+==========
+
+python
+
+threads??
+interprocess??
+signals ??
+lockfree
+
+heap??
+pool??
+
+parameter??
+tokenizer??
+property_tree??
+
+exception??
+throw??
+
+=====================================================
+
+http://www.boost.org/doc/libs/1_56_0/?view=categorized
+
+categories
+
+String & text
+Container ;iterator ; algo
+Func obj and higher order prog
+Generic prog; template metaprog ;preprocessor metaprog
+Concurrency
+Math
+Correctness & testing
+Data structures
+Image proce
+IO
+Inter-language (python)
+Memory
+Parsing
+Prog interfaces
+Misc
+
+=====================================================
+
+accumulators
+algorithm
+align
+any
+array
+asio
+assert
+assign
+atomic
+bimap
+bind
+chrono
+circular_buffer
+compatibility
+concept_check
+config
+container
+context
+conversion
+core
+coroutine
+crc
+date_time
+detail
+disjoint_sets
+dynamic_bitset
+exception
+filesystem
+flyweight
+foreach
+format
+function
+functional
+function_types
+fusion
+geometry
+gil
+graph
+graph_parallel
+heap
+icl : interval container library
+integer
+interprocess
+intrusive
+io
+iostreams
+iterator
+lambda
+lexical_cast
+libraries.htm
+locale
+local_function
+lockfree
+log
+logic
+math
+move
+mpi
+mpl : metafunc
+msm
+multi_array
+multi_index
+multiprecision
+numeric
+optional
+parameter
+phoenix
+platform_maintainers.txt
+polygon
+pool
+predef
+preprocessor
+program_options
+property_map
+property_tree
+proto : define ur own languag
+ptr_container
+python
+random
+range
+ratio
+rational
+regex
+scope_exit
+serialization
+signals
+signals2
+smart_ptr
+spirit : write parser
+statechart
+static_assert
+system
+test
+thread
+throw_exception
+timer
+tokenizer
+tr1
+tti
+tuple
+type_erasure
+type_index
+typeof
+type_traits : metafunc
+units
+unordered
+utility
+uuid
+variant
+wave
+winapi
+xpressive

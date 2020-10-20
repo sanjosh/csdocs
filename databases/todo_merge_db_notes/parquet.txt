@@ -1,0 +1,12 @@
+
+message AddressBook {
+required string owner;
+repeated string ownerPhoneNumbers;
+repeated group contacts {
+required string name;
+optional string phoneNumber;
+}
+}
+
+rep level = level at which to create new list for cur value
+def level = at which level the null field occurred

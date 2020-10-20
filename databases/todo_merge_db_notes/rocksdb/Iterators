@@ -1,0 +1,84 @@
+
+// =============
+
+ArenaWrappedDBIter : Iterator // range scan iter
+{
+  DBIter* iter
+}
+
+ManagedIterator : Iterator
+{
+}
+
+DBIter : Iterator   // tailing iterator
+{
+  InteralIterator* iter_;
+}
+
+InternalIterator
+{
+}
+
+ForwardIterator : InternalIterator // tailing iterator
+{
+  Seek() // takes snapshot
+  Next()
+  {
+  }
+
+  ColumnFamilyData* cfd_;
+  MinIterHeap immutable_min_heap_;
+
+  vector<InternalIterator*> imm_iters_; // sv_->mem->NewIterator
+
+  vector<InternalIterator*> l0_iters; // table_cache->NewIterator
+
+  vector<LevelIterator*> level_iters;
+
+  InternalIterator* current_; // immutable_min_heap_.top()
+
+  SuperVersion sv_;
+}
+
+LevelIterator : InternalIterator
+{
+  ColumnFamilyData *cfd_;
+  vector<FileMetaData*> files_
+}
+
+// flush job
+MergingIterator : InternalIterator
+{
+  MergerMinIterHeap minHeap_;
+}
+
+// built by BlockBuilder
+BlockIter : InternalIterator
+{
+  // over slices in a data block
+  // uses restarts_ array
+
+  // keys are prefix compressed
+  // shared_bytes, unshared_bytes, val_length, key_delta, value
+
+  // Binary search with restart_ array
+  // then linear search within a restart block
+}
+
+TwoLevelIterator : InternalIterator
+{
+  // index iter  - first level
+  // data block iter - second level (see block_based_table_reader.cc)
+}
+
+MergeIteratorBuilder
+{
+}
+
+MaxIteratorComparator
+{
+}
+
+MinIteratorComparator
+{
+}

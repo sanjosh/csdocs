@@ -1,0 +1,139 @@
+
+sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/plans/physical/partitioning.scala
+
+QueryPlanner.scala : convert LogicalPlan into PhysicalPlans
+
+QueryPlanner::plan(LogicalPlan) -> Iterator[PhysicalPlan]
+
+=========
+
+users of PartitioningCollection
+Partitioning
+Distribution
+
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/
+  joins
+  exchange
+
+sql/core/src/main/scala/org/apache/spark/sql/Dataset.scala
+  {
+    foreachPartition(func) 
+    repartition(numPartitions) -> Dataset[T]
+    coalesce(numPartitions)
+  }
+    
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/WholeStageCodegenExec.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/DataSourceScanExec.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/joins/HashJoin.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/joins/SortMergeJoinExec.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/basicPhysicalOperators.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/ExpandExec.scala
+sql/core/src/main/scala/org/apache/spark/sql/execution/exchange/EnsureRequirements.scala
+
+=======
+
+/core/src/main/scala/org/apache/spark
+scheduler dir contains MASTER side code
+executor dir contains WORKER side code
+
+  (ON MASTER)
+
+  ActiveJob 
+    |
+    V
+ DAGScheduler
+    |
+    V
+  Stages = set of tasks (sep by shuffle boundaries)
+    |
+    V
+  TaskScheduler (uses SchedulerBackend)
+    |
+    V
+  Task sent to Executor (via TaskDescription object)
+
+  Tasks of 2 types : ShuffleMaptask, ResultTask
+
+  spark job = multiple stages
+  each stage = series of shuffle map tasks + result task 
+  result task sends output back to driver
+
+  SparkContext::submitJob(rdd)
+    DagScheduler::submitJob(rdd, func, partitions, resulHandler)
+      TaskScheduler::submitTasks(taskSet)
+
+  (ON WORKER)
+
+    CoarseGrainedExecutorBackend
+
+    Executor::launchTask(ExecutorBackend, TaskDescription)
+    {
+        Using Java ClassLoader (replClassLoader or urlClassLoader)
+        TaskRunner deserializes TaskDescription
+        calls Task.run()
+    }
+
+===========
+
+streaming
+
+generate jobs from DStream
+streaming/src/main/scala/org/apache/spark/streaming/scheduler/JobGenerator.scala
+
+streaming/src/main/scala/org/apache/spark/streaming/scheduler/ReceiverTracker.scala
+
+SparkSQLCLIDriver
+{
+    sessionState
+
+    processCmd(cmd string)
+    {
+        SparkSQLDriver.run(cmd)
+        {
+            SessionState.executePlan(logicalPlan)
+            {
+                QueryExecution
+                {
+                    SparkOptimizer (logical plan optimizer)
+                    SparkPlanner (convert logical to physical)
+                }
+            }
+        }
+    }
+}
+
+Analyzer SessionState::createAnalyzer()
+{
+    FindDataSourceTable
+}
+
+DataSourceAnalysis extends Rule[LogicalPlan]
+FindDataSourceTable extends Rule[LogicalPlan]
+{
+    -> datasource.resolveRelation
+      -> buildRelation
+}
+
+DataSourceStrategy calls BaseRelation.buildScan
+
+RuleExecutor[LogicalPlan]
+- Optimizer
+-- SparkOptimizer
+
+
+QueryExecution
+{
+    LogicalPlan analyzedPlan = analyzer.execute(logical)
+    LogicalPlan withCachedData = cacheManager.useCacheData(analyzedPlan)
+    LogicalPlan optimizedPlan = optimizer.execute(withCachedData)
+
+    SparkPlan sparkPlan = planner.plan(optimizedPlan)
+    SparkPlan executedPlan = prepareForExecution(sparkPlan)
+    RDD toRdd = execuetedPlan.execute()
+}
+
+QueryPlanner : LogicalPlan -> PhysicalPlan
+
+sql/catalyst/src/main/scala/org/apache/spark/sql/catalyst/plans/physical/partitioning.scala

@@ -1,0 +1,59 @@
+
+ColumnFamilyData
+{
+  Version* current_
+  MemTable* mem_
+  MemTableList* imm_
+  SuperVersion* super_version_
+}
+
+SuperVersion
+{
+  MemTable* mem
+  MemTableListVersion* imm
+  Version* current;
+}
+
+Version
+{
+  ColumnFamilyData* cfd_
+  VersionStorageInfo storage_info_
+  VersionSet* vset_
+}
+
+VersionStorageInfo
+{
+  vector<LevelFilesBrief> level_files_brief_
+  vector<FileMetaData*> *files_
+
+  FileIndexer file_indexer_
+  CompactionStyle compaction_style_
+}
+
+VersionSet
+{
+}
+
+FilePicker
+{
+  FileIndexer* file_indexer_;
+}
+
+==================
+
+Version::Get()
+{
+  FilePicker fp;
+
+  FdWithKeyRange* f = fp.GetNextFile()
+
+  while (f != nullptr)
+  {
+    f = fp.GetNextFile()
+  }
+}
+
+FilePicker::GetNextFile()
+{
+  
+}

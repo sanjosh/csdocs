@@ -1,0 +1,7 @@
+
+restrict partition in data source
+
+df transformation should not read entire df from disk and write it again
+
+can number of partition in ingest differ from that in query
+can we fix number of partitions

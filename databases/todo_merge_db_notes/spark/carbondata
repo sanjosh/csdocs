@@ -1,0 +1,194 @@
+
+Many RDD extensions - processing in spark driver & worker
+Late decoding of dictionary encoded columns
+Btree is on start,end key per segment/file
+Segment = number of files
+Delete Delta file
+files written in thrift file format 
+
+CarbonIndexFileReader
+CarbonFooterReader
+DataFileFooterConverter
+
+
+Surrogate key ?
+
+DictionaryClient
+  ||
+DictionaryServer
+ -> TableDictionaryGenerator (per table)
+  -> DictionaryGenerator (per column
+   -> IncrementalColumnDictionaryGenerator<int, string>
+
+========
+
+core & processing modules
+
+
+DataFileFooter
+  BlockletIndex
+  ColumnSchema
+  BlockInfo
+  SegmentInfo
+  [1:n] BlockletInfo
+      BlockletIndex
+        BlockletBtreeIndex
+        BlockletMinMaxIndex
+
+
+CarbonMetaData
+ map<tableName, CarbonTable>
+ CarbonTable
+   CarbonDimension
+   CarbonMeasure
+   CarbonColumn
+
+  
+TableInfo
+  TableSchema factTable
+    listColumns
+    schemaEvolution
+    bucketingInfo
+
+BlockletInfoColumnar
+  startKeys
+  endKeys
+  dataIndexMap
+  columnMinData
+  columnMaxData
+
+CarbonMetadataUtil : convert FileFooter <-> BlockletInfoColumns
+
+Compactor creates CarbonIUDMergerRDD
+GlobalDictionaryUtil creates DictionaryRDD
+CarbonScan (LeafNode) creates CarbonScanRDD
+CarbonDataRDDFactory & NewCarbonDataLoadRDD create DataLoadCoalescedRDD, UpdateCoalescedRDD
+
+========
+
+SparkSession
+- CarbonSession
+
+HiveSessionState
+-CarbonSessionState
+
+SQLContext
+- HiveContext
+-- CarbonContext
+
+SQLConf
+- CarbonSQLConf
+
+CarbonMetaStore
+
+HadoopFsRelation
+- CarbonDatasourceHadoopRelation
+
+============
+
+CarbonDDLSqlParser
+- CarbonSqlParser
+
+AbstractSqlParser
+- CarbonSparkSqlParser
+
+
+============
+
+Analyzer
+extendedResolutionRules (override)
+
+============
+
+SparkOptimizer
+- CarbonOptimizer
+
+LogicalPlan
+- InsertIntoCarbonTable
+- ShowLoadsCommand
+- DescribeFormattedCommand
+- ProjectForUpdate
+- UseDatabase
+- DeleteRecords
+- RunnableCommand
+-- AlterTableAdddColumns
+- UnaryNode
+-- CarbonDictionaryTermDecoder
+-- CarbonDictionaryCatalystDecoder
+- LeafNode
+-- CarbonRelation
+
+Rule[LogicalPlan]
+- CarbonPreInsertionCasts
+
+CarbonLateDecodeRule
+
+============
+
+SparkStrategy
+- CarbonLateDecodeStrategy
+- DDLStrategy
+
+CarbonTableScan
+DDLStrategies
+
+LeafExecNode
+- DataSourceScanExec
+-- BatchedDataSourceScanExec
+
+UnaryExecNode
+- CarbonDictionaryDecoder
+
+RDD[InternalRow]
+- CarbonDecoderRDD
+
+============
+
+Tons of RDD overload
+
+Partitioner
+- ColumnPartitioner
+
+Partition
+- CarbonSparkPartition
+- CarbonNodePartition
+- CarbonTableSplitPartition
+
+CarbonFilters
+
+Row
+- StringArrayRow
+
+GenericParser
+- PrimitiveParser
+- StructParser
+
+============
+
+DataSourceRegister
+- CarbonSource
+
+BaseRelation
+- CarbonDatasourceHadoopRelation
+
+============
+
+SparkILoop
+- CarbonSparkILoop
+
+===========
+
+
+CarbonStore
+
+CarbonEnv
+
+CarbonThriftServer
+ - uses HiveThriftServer2
+
+CarbonDecoderProcessor
+
+CarbonDataRDDFactory - imp
+
+DictionaryServer
+DictionaryClient

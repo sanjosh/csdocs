@@ -1,0 +1,36 @@
+
+check multicollinearity by computing condition number
+
+ununsual and influential data
+1. outliers
+2. leverage
+3. influence : 
+
+case influence statistics
+1. high cook's distance implies a point will change regression estimates
+2. high leverage implies point has potential to be influential
+3. high studentized residual implies point unusual compared to model mean
+
+heteroscedastic
+1. non-constant variance
+
+multicollinearity
+1. non-independence
+
+Mallow's Cp to assess fit of model
+
+---------------
+
+if you control for too many things, it increases standard error
+
+https://stats.stackexchange.com/questions/97179/how-are-standard-errors-affected-in-a-multivariate-regression
+
+https://economics.stackexchange.com/questions/11237/how-does-adding-regressors-affect-standard-errors-and-existing-coefficients
+
+https://stats.stackexchange.com/questions/15951/why-do-people-often-run-a-regression-with-and-without-control-variables
+
+============
+
+(Andrew Gellman)
+constant treatment effect
+interaction is greater than main effect - invalidates study

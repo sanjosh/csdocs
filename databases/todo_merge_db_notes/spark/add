@@ -1,0 +1,46 @@
+
+RDD::getPartitions()
+
+Implemented by subclasses to return the set of partitions in this RDD. 
+This method will only be called once, so it is safe to implement a 
+time-consuming computation in it.
+
+===========
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/DataSource.scala
+
+- calls createRelation
+
+- called from "Create table using DDL"
+- called from DataFrameReader (batch, stream)
+
+spark.read()
+spark.read.schema(user defined schema)
+spark.readStream.schema(user defined schema)
+
+  // write dataFrame to DataSource
+  - write(saveMode, dataFrame) -> BaseRelation
+  - writeAndRead() -> BaseRelation
+
+
+core/src/main/scala/org/apache/spark/ui
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/command/createDataSourceTables.scala
+
+CreateDataSourceTableCommand::run()
+{
+    dataSource = DataSource()
+    dataSource.writeAndRead()
+}
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/SparkSqlParser.scala:
+
+sql/core/src/main/scala/org/apache/spark/sql/execution/datasources/SaveIntoDataSourceCommand.scala
+
+=======
+
+http://blog.stratio.com/using-spark-sqlcontext-hivecontext-spark-dataframes-api/
+
+creating tables with HiveContext useful because hive stores it in its metastore whereas SparkContext gets destroyed at end of conn
+
+http://codingjunkie.net/spark-secondary-sort/

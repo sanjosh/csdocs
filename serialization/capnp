@@ -1,0 +1,58 @@
+
+==================
+
+KJ dir
+
+arena.h : 
+function.h 
+memory.h : Disposer, Own, OwnOwn, Maybe
+refcount.h; Refcounted
+threadlocal.h : ThreadLocalPtr
+tuple.h : Tuple
+array.h : ArrayDisposer, Array, FixedArray
+async.h : Promise, Taskset, Eventport, Eventloop, Waitscope
+async-inl.h : 
+async-prelude.h
+common.h : Maybe, Deferred
+exception.h : Exception
+io.h : InputStream, OutputStream
+one-of.h
+string.h
+thread.h
+vector.h
+main.h : ProcessContext
+mutex.h : Mutex, Lazy
+units.h : Id, UnitRatio, Quantity
+
+============
+
+CapNp
+
+arena.h : 
+dynamic.h : Dynamic
+layout.h :
+any.h
+common.h
+generated-header-support.h
+pretty-print.h
+rpc-prelude.h
+schema.h
+serialize-async.h : readMessage, writeMessage
+serialize.h
+endian.h : WireValue
+rpc.h : RpcSystem,
+schema-parser.h : SchemaParser
+serialize-packed.h : PackedOutputStream, PackedFdMessageReader
+capability.h  : RemotePromise, Request, Capability, CallContext, RequestHook
+
+list.h : TemporaryPointer, IndexingIterator
+message.h : ReaderOptions, MessageReader, MessageBuilder
+blob.h
+ez-rpc.h
+orphan.h
+pointer-helpers.h
+rpc-twoparty.h : VatNetwork
+schema-loader.h
+
+async-io.h : AsyncInputStream, ConnectionReceiver, NetworkAddress, LocalAddress, OnewayPipe, TwoWayPipe, LowLevelAsyncIoProvider
+

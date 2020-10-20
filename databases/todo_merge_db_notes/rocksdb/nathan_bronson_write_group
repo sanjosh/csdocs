@@ -1,0 +1,7 @@
+
+Write group
+OLD : take global mutex to append to list of followers
+
+NEW : each thread allocs a struct containing mutex + condvar and links itself to list without mutex
+
+

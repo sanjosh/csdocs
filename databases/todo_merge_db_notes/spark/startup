@@ -1,0 +1,6 @@
+
+start-slave
+  spark-daemon
+    spark-class
+       Main.scala
+         Worker.scala (ThreadSafeRpcEndpoint <- RpcEndpoint)

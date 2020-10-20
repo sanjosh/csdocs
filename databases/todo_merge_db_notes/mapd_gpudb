@@ -1,0 +1,200 @@
+
+Insert, update, select, Delete
+Joins
+Aggregate
+Sort
+
+===========
+
+use apache arrow
+
+===========
+
+Chunk
+{
+	ColumnDescriptor* column_desc
+}
+
+
+ColumnType
+{
+}
+
+SQLTypes
+{
+}
+
+SQLTypeInfo
+{
+	type, subtype
+	dim, scale
+	notnull, 
+	compression, comp_param
+	size
+}
+
+EncodingType
+{
+}
+
+==============
+
+use native SQL optimizer
+option of using Apache Calcite ?
+1) create JVM and invoke CalciteDirect class inside
+2) have remote Calcite server
+
+==============
+
+
+catalog saved to sqlite
+ldap used for auth
+
+tableName -> TableDescriptor
+id -> TableDescriptor
+
+ColumnKey = {tableId, columnName}
+
+ColumnKey -> ColumnDescriptor
+
+DictDescriptor
+
+LinkDescriptor
+
+UserMetadata
+DBMetadata
+
+Catalog
+{
+	TableDescriptorMap
+	ColumnDescriptorMap
+	DictDescriptorMap
+
+	LeafHostInfo string_dict_hosts_
+}
+
+SysCatalog
+{
+}
+
+SessionInfo
+{
+}
+
+ColumnDescriptor
+
+DictDesctriptor
+{
+	StringDictionary
+}
+
+TableDescriptor
+{
+}
+
+============
+
+CudaMgr
+-multiple GPU
+
+cuMemcpyPeer
+
+
+==========
+
+Chunk is funda unit of execution
+Chun = set of logical pages spread across multiple files
+
+FileMgr
+
+BufferMgr (unify handling across disk, gpu, cpu)
+ - CpuBufferMgr
+ - GpuCudaBufferMgr
+
+DataMgr
+{
+	createChunkBuffer
+	getChunkBuffer
+}
+
+Encoder
+	None
+	Array
+	StringNone
+	FixedLength
+
+=====
+
+Analyzer
+
+Expr
+
+==========
+
+Planner
+
+Optimizer
+
+============
+
+QueryEngine
+
+Codec - llvm
+Executor
+{
+	codegen
+}
+
+===========
+
+Fragmenter
+
+partition table by rows 
+
+=========
+
+StringDictionary
+
+========
+
+MapDHandler::sql_execute_impl()
+{
+	SQLParser parser
+	parser.parse
+	for stmt in parse_trees
+	{
+		// optimize query thru Calcite or self
+		Analyzer
+		dml->analyze()
+		Planner::Optimizer optimizer;
+		optimizer.optimize()
+
+		execute_root_plan() // this step irrespective of Calcite
+		{
+			executor->execute()
+		}
+	}
+}
+
+Executor::execute()
+{
+	ExecutionDispatch::compile
+		CompilationResult = compileWorkUnit()
+
+	// only for group by?
+	QueryExecutionContext::launchCpuCode/launchGpuCode
+}
+
+RelAlgExecutor??
+
+=============
+
+NativeCodeGen
+to CPU or GPU
+
+Executor::optimizeAndCodegenGPU
+{
+	generatePTX - parseIR
+	optimizeIR
+	module->setTargetTriple(nvptx64-nvidia-cuda)
+}

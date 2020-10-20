@@ -1,0 +1,5 @@
+
+errors
+cudaError_t cudaGetLastError(void)
+char* cudaGetLastErrorString(cudaError_T)
+

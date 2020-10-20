@@ -1,0 +1,19 @@
+
+http://stackoverflow.com/questions/17466218/what-are-the-differences-between-segment-trees-interval-trees-binary-indexed-t
+
+BTree
+
+B+tree : internal nodes = indexed set; leaf nodes = sequence set
+
+Prefix B+tree : internal nodes have prefixes
+
+UB_tree : multidim tree where key is z-order curve values
+
+LSM tree
+
+SB-tree
+
+patricia tree
+
+String Btree = Btree + Patricia (ferragina)
+

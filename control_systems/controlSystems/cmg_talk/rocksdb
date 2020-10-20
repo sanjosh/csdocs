@@ -1,0 +1,76 @@
+
+rocksdb - strict bucket
+
+// upto one window worth of credits can accumulate
+
+if available_bytes // exhaust old credits
+  return
+push request into queue
+if leader 
+{
+  sleeps until next_refill_us_
+  next_refill_us_ = now + refill_period_us_
+}
+available_bytes_ += refill_bytes_per_period
+grants requests in queue & wakes up sleeping requests
+
+----
+RocksDB
+
+Context:
+has priorities for compaction and flush 
+inmemory component flushed to disk by flush thread
+lsm trees on disk are merged by compaction thread
+
+fairness - YES
+Bursts - nope
+stored permits - only prev period (like leaky bucket)
+request cannot exceed max per period (unlike Guava)
+no warmup period after underutilization
+can dynamically alter rate - just change refill bytes per period
+
+state
+{
+  available bytes
+  next_refill_time
+  queue [2] and fairness
+}
+
+throttle(bytes)
+{
+  if (available > requested)
+  {
+    available -= requested
+  }
+  else
+  {
+    enqueue
+    elect leader 
+    wait till next refill time 
+    set next refill time = now + refill period
+    process queue and grant requests
+  }
+}
+
+==============
+RocksDB - RateLimiter(token bucket)
+ - set limit of bytes/sec and
+ - refill period for tokens
+ - has low and hi prio (low for compaction, high for flush)
+ - fairness (1/fairness time devoted to low prio)
+
+Token bucket algorithm to control write bytes/sec to disk being done by 
+flush and compaction
+
+multiple functions can call RateLimiter::Request()
+each request enters a queue if no bytes available in current interval
+leader (first in queue) sleeps for refill period and does refill
+it grants requests to all in queue until bytes in current period exhausted
+it increments the bytes available in every period
+and decides the time until which next leader must sleep(next_refill_us_)
+
+fairness parameter is used to generate random number
+which processes low-priority queue first in 1/fairness cases
+
+RocksDB - also has WriteController
+

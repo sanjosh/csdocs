@@ -1,0 +1,15 @@
+
+The RDDs are implemented with iterators. So the input file will be read, and line-by-line the map function will be applied, then the filter function. Never will more than one line be stored. (Well, they will hang around in memory until the garbage collector cleans them up.) The exception is collect, which calls iterator.toArray to turn the results into an array and sends these back to the application.
+
+http://stackoverflow.com/questions/28514509/what-is-rdd-dependency-in-spark
+
+RDD
+{
+  Partitioner
+  Int id
+  Seq[Dependency] dependencies
+  Array[Partition] partitions
+
+  compute(Partition, TaskContext)
+
+}

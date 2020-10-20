@@ -1,0 +1,7 @@
+
+The α parameter is in our model of beliefs about the parameter γ, and therefore the α parameter
+is called a hyperparameter. A hyperparameter is merely a parameter upon which other
+parameters depend.
+
+when α is large, we believe more in small spectrum of γ, 
+when α is small, we believe in a broader spectrum of larger values of γ.

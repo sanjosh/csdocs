@@ -1,0 +1,69 @@
+
+Driver runs StreamingContext
+Driver creates Receiver on one of the worker nodes
+
+each InputDStream -> RateController which listens to batchCompleted events
+
+https://www.sigmoid.com/apache-spark-internals/
+
+DAG scheduler
+Task scheduler
+
+
+-------------
+
+Implement Receiver to get data from any data source
+
+Worker nodes run Executor which runs Receiver -> BlockGenerator
+
+Receiver -> DStream (Discretized Stream) 
+DStream = sequence of RDD
+
+Data Source -> Receiver -> Block Generator -> Block Manager
+
+Receiver reads data from the Data Source, 
+hands off the received data to Block Generator. 
+The Block Generator keeps the data in memory.
+
+Receiver notifies Driver of the received block ids
+
+Every block interval (spark.streaming.blockInterval, defaults to 200ms), it
+sends the block to Spark Block Manager as a new partition of a RDD. 
+Block Manager is a component running on every Spark node that manages 
+data blocks both locally and remotely. Every batch interval (specified 
+when creating StreamingContext), the RDD is closed and a Spark job 
+(data processing job) is submitted to process that newly generated RDD.
+
+Spark UI
+Job 1 = receiver Job (only one instance)
+batch interval of 10 sec => jobs 2, 3, 4 are 10 sec apart
+
+Only one StreamingContext can be active in a JVM at the same time.
+One StreamingContext can have multiple Receivers
+
+DStream.repartition()
+DStream.union()
+
+see "sealed trait ReceiverMessage
+case class UpdateRateLimit"
+
+----------------
+
+StreamingListenerBus
+events
+   batchCompleted 
+   batchStarted
+
+ http://deepsense.io/understanding-apache-sparks-execution-model-using-sparklisteners-part-1/
+
+Spark uses Akka Actor for RPC and messaging, which in turn uses Netty.
+
+It uses SLF4J for logging
+
+Spark uses Netty (not Akka) for comm between nodes
+
+https://www.quora.com/Does-Apache-Spark-use-Akka-cluster-under-the-hood
+
+http://stackoverflow.com/questions/29088754/apache-spark-vs-akka
+
+

@@ -1,0 +1,89 @@
+
+lockfree in music 
+http://www.rossbencina.com/code/lockfree
+=======
+
+think in terms of transactions
+data structure invariants
+
+========
+
+some data structures have no known lockfree impl
+sometimes lockfree may not guarantee efficiency.
+
+=======
+
+Multicore is becoming like Multi-server
+
+L1 cache : type, number, eviction, per-core or per-socket
+L2 cache : 
+L3 cache
+cache protocol : MOESI, MESI, MESIF
+
+use 
+1) lock
+2) atomics
+3) hardware transaction api
+
+spinning on same cache line
+can be measured in "perf"
+
+cache in per-thread variable and periodically flush original
+
+statistics in rocksdb - global, per thread, per core
+block driver queues in linux kernel are per core 
+seastar - per core mutex (rwlock)
+
+Do you need hardware support ? Better
+
+Compare exchange
+load linked/store conditional
+
+requirement space
+1) how many concurrent threads
+2) max size of entries
+2) linearizable
+
+how to wait?
+1) spinning, 
+1) sched_yield, 
+1) futex
+
+==========
+
+cas can invalidate cpu cache
+
+==============
+Design patterns
+
+Linked list
+- single, double
+- queue, stack, set
+Hash Table
+- internally uses list
+Skip List
+- internally uses list
+RB tree
+Trie
+
+==============
+
+References
+
+book art of multicore prog
+1024 cores
+
+https://github.com/openjdk-mirror/jdk7u-jdk/tree/master/src/share/classes/java/util/concurrent
+
+https://www.cs.cmu.edu/~410-s05/lectures/L31_LockFree.pdf
+
+http://www.rossbencina.com/code/lockfree
+
+Moody Camel
+
+Herb Sutter
+https://www.youtube.com/watch?v=c1gO9aB9nbs
+
+http://blog.memsql.com/common-pitfalls-in-writing-lock-free-algorithms/
+
+========

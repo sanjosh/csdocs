@@ -1,0 +1,45 @@
+Expression library
+see expressions/package.scala
+
+Expression
+{
+  Seq[AbstractDataType] inputTypes
+	DataType
+		
+	eval(InputRow) 
+	genCode(CodegenContext) : ExprCode
+	{
+		doGenCode 
+	}
+}
+
+
+class hierarchy
+Expression
+- LeafExpression
+--- BoundReference
+- UnaryExpression
+- BinaryExpression
+- TernaryExpression
+- NonSQLExpression
+- NamedExpression  (ExprId)
+- Unevaluable
+- CallMethodViaReflection
+
+Attribute : LeafExpression, NamedExpression
+AttributeReference : Attribute, Unevaluable
+Alias : UnaryExpression, NamedExpression
+OuterReference : LeafExpression, NamedExpression
+
+IN "Select a, b AS c FROM", 
+a and b will be AttributeReference
+c will be Alias
+
+ExprCode : java source for the expr
+
+Predicate
+PredicateHelper
+
+Canonicalize
+Cast
+

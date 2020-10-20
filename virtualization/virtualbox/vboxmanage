@@ -1,0 +1,8 @@
+
+VBoxManage showvminfo <vm>
+
+# Set NIC RULE forward traffic on host port to guest
+VBoxManage modifyvm <vm> --natpf1 "ssh, tcp,,3022,22"
+
+# Configure host-only adaptor in virtualbox 
+# adaptor shows up in host ifconfig

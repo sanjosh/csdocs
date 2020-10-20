@@ -1,0 +1,236 @@
+
+Types of hash
+*. Universal hash : not assume distribution 
+*. perfect hash
+*. One-way hash
+
+Adaptive hashing
+
+continuous rehashing - Brassard Kannan 88
+================
+
+Universal hashing
+
+1) Matrix method
+view input keys as set of bits
+construct matrix to map key-space to hash-space (Johnson-Lindenstrauss)
+
+
+2) Multiplicative
+view input as set of k bytes
+pick k random numbers in [1..M-1]
+  h(x) = r1.x1 + r2.x2 + ... rk.xk mod M
+  where M is prime
+
+================
+
+Perfect hash
+
+1) Two-level hashing
+
+static
+
+dynamic
+Dietzfelbinger, Anna Karlin
+
+https://en.wikipedia.org/wiki/Dynamic_perfect_hashing
+
+
+=====================
+
+LSH
+Spectral hashing
+Semantic hash
+parameter sensitive hash
+
+https://www.quora.com/How-do-I-implement-Locality-Sensitive-Hashing-with-respect-to-Levenshtein-distance
+
+Regarding how the accuracy depends on the number of hash functions, 
+that comes from the Central Limit Theorem. If you compute the mean of 
+a bunch of independent samples from the same probability distribution, 
+the probability distribution of the mean itself will be normal 
+(i.e. bell-shaped) if you take 
+
+=====================
+
+http://www.diku.dk/summer-school-2014/course-material/
+
+A hash function is good if it behaves like a uniform random variable.
+
+To evaluate hash func, use
+1) Avalance diagram
+2) Chi-square test
+3) Bit and bucket histogram
+
+
+
+============
+
+Criteria for hash func
+
+Avalanche effect : highly nonlinear
+  change in 1 input bit should (on average) change half of output bits
+
+Completeness : every output bit depends on all input bits
+
+strict completeness : each output bit should change with probability 
+  1/2 whenever a single input bit is complemented
+
+http://burtleburtle.net/bob/hash/evahash.html#newhash
+
+Hash func should not have funneling
+Funneling : collisions occur when keys differ only in few bits
+this problem occurs when number of input bits change a smaller number of bits in the internal state.
+
+
+Theorem Nofunnel:
+Unless the mixing step compresses already-mixed data, a hash matching the hash
+model has no funnels if these conditions all hold:
+The postprocessing step just selects v bits of the internal state to be the
+v-bit result,
+When the input block is fixed, the combining step is a reversible mapping of the
+internal state to the internal state,
+When the original internal state is fixed, the combining step is a one-to-one
+mapping (every input block value is mapped to a distinct internal state value),
+The mixing function is reversible,
+The mixing step causes every bit of the internal state to affect every bit of
+the result, and
+The mixing step, when run either forwards or in reverse, causes every bit of the
+internal state to affect at least v bits of the internal state.
+For every intermediate point in the mixing step, consider running the mixing
+step forward to that point from the previous combine, and backward to that point
+from the next combine. For every set Y of bits in the internal state in the
+middle, there some set X of bits in the previous input block and Z in the next
+input block that affect those Y bits. For every Y with less than v bits, |X|+|Z|
+must be less than or equal to |Y|. (Note that if every bit in the previous and
+next block affects at least v bits in the center of the mixing step, this
+requirement is satisfied.)
+Almost all nonlinear mixing steps do not compress already-mixed data.
+
+Characteristic : 
+
+A delta is the difference (usually by XOR or subtraction) between two values. An
+input delta is the delta of two input keys, and an output delta is the delta of
+two hash values. A characteristic [Biham] is an input delta that produces a
+predictable output delta.
+
+
+
+======
+
+http://blog.reverberate.org/2012/01/state-of-hash-functions-2012.html
+
+Jenkins hash : 
+Murmur hash :
+City hash :  uses CRC32 instruction in SSE4.2
+Spooky hash (jenkins)
+
+http://burtleburtle.net/bob/hash/doobs.html
+
+Most hashes can be modeled like this:
+
+  initialize(internal state)
+  for (each text block)
+  {
+    combine(internal state, text block);
+    mix(internal state);
+  }
+  return postprocess(internal state);
+
+Additive hash
+ub4 additive(char *key, ub4 len, ub4 prime)
+{
+  ub4 hash, i;
+  for (hash=len, i=0; i<len; ++i) 
+    hash += key[i];
+  return (hash % prime);
+}
+
+Rotating Hash
+ub4 rotating(char *key, ub4 len, ub4 prime)
+{
+  ub4 hash, i;
+  for (hash=len, i=0; i<len; ++i)
+    hash = (hash<<4)^(hash>>28)^key[i];
+  return (hash % prime);
+}
+
+One-at-a-time hash
+
+Bernstein hash
+
+FNV hash
+
+========================
+
+With hardware support
+
+http://cessu.blogspot.in/2007/09/hashing-with-sse2.html
+
+==============================
+
+
+Hash function building blocks:
+
+multiplication affects only higher bits
+
+==========================
+
+Sparse hash librar
+http://smerity.com/articles/2015/google_sparsehash.html
+==========================
+Cryptographic hash
+
+
+==================
+
+hash
+    for strings or numbers
+    Cityhash, FNW, Davies-Meyer, Murmur, Jenkins
+    gnu has a perfect hash func generator
+    statistical test to check uniform distribution
+    crypto - avalanche test
+    sbox - bent functions
+    rabin fingerprint for rolling window
+
+bloom filter 
+    use n hash functions selected from a family such that they are independent/disjoint.   Then hash on all when inserting and turn on bitmaps to indicate if elem exists.
+false positives arise
+false negatives also arise if u start deleting element
+
+cuckoo hash
+
+=============
+
+http://research.cs.vt.edu/AVresearch/hashing/
+
+integers : Middle-square method : (key)^2 and take middle r bits.  Works bcos all digits of original key contribute to middle bits.
+
+strings : Folding.  treat 4 characters as an int, multiply by increasing multiplier and keep sum and at the end do a mod.
+    for (int j = 0; j < intLength; j++) {
+       char c[] = s.substring(j * 4, (j * 4) + 4).toCharArray();
+       long mult = 1;
+       for (int k = 0; k < c.length; k++) {
+     sum += c[k] * mult;
+     mult *= 256;
+       }
+     }
+     hash = sum % Mod
+
+=============
+
+d-left hashing
+
+============
+
+Generating more Hash func
+
+Double hashing
+https://en.wikipedia.org/wiki/Double_hashing
+
+g_k(x) = h1(x) + i.h2(x)
+
+
+--------------
+
+https://en.wikipedia.org/wiki/Zobrist_hashing

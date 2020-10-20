@@ -1,0 +1,72 @@
+
+filters pushed down to data source listed here
+sql/core/src/main/scala/org/apache/spark/sql/sources/filters.scala
+
+equal
+equalNullSafe
+greaterThan
+greaterThanEqual
+lessThan
+lessThanEqual
+In (set of values)
+IsNull
+IsNotNull
+Not
+StringStartsWith
+StringEndsWith
+
+aggregates - RelationalGroupedDataset.scala
+    toDF(aggrExprs) 
+
+
+constructAggregateExprs
+Aggregate
+Cube
+Rollup
+
+
+======================
+
+PrunedFilteredScan
+
+1) select where gender='Female'
+
+isNotNull(gender)
+equalTo(gender, Female)
+
+2) select sum(salary),count(gender) from table1 group by gender
+
+nothing
+
+3) select * from table1 where name like 'A%'
+
+StringStartsWith(name, A)
+
+4) select * from table1 where name like '%A%'
+
+StringContains(name, A)
+
+5) select * from table1 where name like 'A%'
+
+StringEndsWith(name, A)
+
+6) select max(id),min(salary) from table1 group by salary having max(id) > 10002
+
+Nothing
+
+7) select * from table1 where id in (10002, 10004)
+
+In(id, [10002,10004])
+
+8) select * from table1 where id > 10002
+
+GreaterThan (id, 10002)
+
+==========
+
+CatalystScan
+
+
+============
+
+extend 

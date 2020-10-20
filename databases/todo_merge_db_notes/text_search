@@ -1,0 +1,9 @@
+
+Stemming
+
+Multi lang + Accent support
+
+Ranking/Boost (relevance TF-IDF)
+Fuzzy search (levenshtein, soundex)
+Regex search (NFA + trigram)
+Substring search (suffix tree)

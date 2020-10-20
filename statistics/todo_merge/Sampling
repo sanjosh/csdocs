@@ -1,0 +1,70 @@
+
+Sampling brings in the question of determining an unbiased estimator
+and use of tail inequalities (chebyshev, chernoff) to bound the 
+probabilistic error
+
+========
+
+[Gibbons paper Synopsis data structures]
+
+How to maintain sample under insert, delete and update (including bulk load)
+
+1) Backing sample : maintained in memory
+
+2) Reservoir sampling of Vitter : 
+  Keep first m items in reservoir
+  skip random numers and replace random item by next item
+  distribution func on length of random skip depends 
+    on number of items seen so far.
+  if data set is n, sample size is m, probab of new item
+    being selected in m/n
+
+Deletion : re-read random blocks from disk to repopulate sample
+  
+===================
+
+Stratified sampling
+
+We usually use stratified random sampling when the stratum are 
+more homogeneous.
+
+variance within each stratum
+
+Allocation problem : How to decide how much of total sample to 
+distribute among the various strata ?
+
+what is cost of sampling within each stratum
+
+Quality of estimator produced by stratified sampling - does it have
+smaller variance than simple random sampling
+
+================
+
+Reservoir sampling : Vitter : random number determines number of items to skip.
+
+Concise sampling - Gibbons and Matias 98
+
+Data deletions during sampling - Babcock 02
+
+parallelize sampling across streams - Min-wise sampling by Nath,  04
+ -  for each item, pick random number in [0, 1].  Store item with smallest
+    random tag.
+ - To create a distributed reservoir sample of size K, we use a 
+ MapReduce analogue of the ORDER BY RAND() trick/anti-pattern from SQL: 
+ for each element in the set, generate a random number R between 0 and 1, 
+ and keep the K elements that have the largest values of R.
+
+weighted reservoir sampling - Efraimidis, Spirakis
+
+For each item in the stream, we compute a score as follows: 
+first, generate a random number R between 0 and 1, and 
+then take the nth root of R, where n is the weight of the current item. 
+Return the K items with the highest score as the sample. 
+Items with higher weights will tend to have scores that are closer to 1, 
+and are thus more likely to be picked than items with smaller weights.
+
+https://en.wikipedia.org/wiki/Reservoir_sampling
+
+======
+
+Rejection sampling ?

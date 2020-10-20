@@ -1,0 +1,63 @@
+
+compressors
+Zero order entropy - memory less
+k-th order - depend on previous k symbols
+
+http://simongog.github.io/lessons/2012/08/26/Calculating_H_k_in_linear_time/
+http://www.data-compression.com/theory.shtml
+
+Entropy rate
+
+Lossless vs lossy
+Static vs Adaptive
+
+Elias Fano
+Wavelet trees
+Gap length encoding
+Run length encoding
+
+Lempel-Ziv
+
+Succinct data structures
+
+Compressed suffix Array
+Compressed suffix trees
+
+FM_index
+
+Fibonacci
+
+Delta code
+Gamma code
+
+Universal code
+
+BWT : converts high-entropy text to low-entropy text
+Wavelet  : converts string of finite alphabet -> set of binary strings
+
+==================
+
+Rainstor
+
+Field-level de-duplication: This involves processing the source data on a
+column-by-column basis, reducing the dataset to only the list of the unique
+values that each column holds, together with a frequency count of the number of
+times the value appears. In this instance the storage space required using
+field-level de-duplication is a fraction of the original data.
+
+Pattern-level de-duplication: In order to store compressed data in a lossless
+state, a binary tree is built with pointers that can be used to reconstitute the
+data as it existed in its original form. Pattern-level de-duplication builds on
+field-level de-duplication by further leveraging the ability to store only
+unique values of the branches, again with a frequency count. This is achieved
+using exactly the same technique as used at the field level to work out the
+unique combinations.
+
+Algorithmic compression: Field and pattern compression techniques save disk
+space as much as saving memory. RainStor’s algorithmic compression involves
+innovative techniques designed to reduce the amount of disk space required for
+storage.
+
+Byte-level compression: In this scenario, components of the tree are
+aggressively compressed independently using industry standard byte-compression
+algorithms tuned to offer optimal savings.

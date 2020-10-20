@@ -1,0 +1,13 @@
+
+The inverse covariance matrix, commonly referred to as the precision matrix displays information about the partial correlations of variables. 
+
+With the covariance matrix \Sigma, one observes the unconditional correlation between a variable i, to a variable j by reading off the (i,j)-th index. It may be the case that the two variables are correlated, but do not directly depend on each other, and another variable k explains their correlation. If we displayed this information on a conditional independence graph, it would look like:
+                                              i - k - j
+So for example: if k is the event that it rains, i is the event that your lawn is wet and j is the event that your driveway is wet, then you will notice that i and j are heavily correlated, but once you condition on k - they are pretty uncorrelated. (If you don't believe that, for sake of argument - say you hose the lawn pretty sporadically, and wash your car on the driveway whenever you arbitrarily remember to, and those are the only other ways your lawn / driveway gets wet).
+
+A partial correlation describes the correlation between variable i and j, once you condition on all other variables. If i and j are conditionally independent, such as in the example, then the (i,j)-th element of your precision matrix 
+                                                  \Sigma^{-1}_{i,j} 
+will equal zero. Also, if your data follows a multivariate normal then the converse is true, a zero element implies conditional independence. Deriving information about conditional independence is really helpful in understanding how your covariates relate to one another. Short of drawing a full causal graph, this is probably the best summary of covariate relations that you can hope to extract.
+
+
+http://www.quora.com/Statistics-academic-discipline/What-is-the-inverse-covariance-matrix

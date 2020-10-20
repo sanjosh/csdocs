@@ -1,0 +1,36 @@
+
+pinned memory
+
+Mapped transfer better than serial or streaming 
+
+------------
+streams & async
+
+"Based on our tests it appears the streaming API schedules asynchronous
+tasks based on when they were added to the streams, rather
+than checking at runtime which streams are ready to run
+considering current memory transfers." (Virginian Data Management paper)
+
+------------
+
+zip_iterator in thrust
+
+structure of arrays (mem coalescing)
+instead of 
+vector<A> where struct A
+{
+    float x;
+    float y;
+} 
+we do 
+struct StructOfFloats
+{
+    device_vector<float> x;
+    device_vector<float> y;
+}
+
+------------
+fusion - combine related ops
+-----------
+
+coalesced memory access by all threads to GPU global memory increases BW

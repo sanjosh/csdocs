@@ -1,0 +1,38 @@
+
+Centroid
+
+Collection<Centroid> (base class)
+- GroupTree
+    add(centroid)
+    remove(centroid)
+    centroid first()
+    centroid last()
+    iterator<centroid> iterator(start centroid)
+- AVLGroupTree (uses IntAVLTree)
+    add(centroid, count, data)
+    int first()
+    iterator<centroid> iterator(start centroid)
+
+
+TDigest (base class)
+    add(double x, int w)
+    cdf(double x)
+    quantile(double x)
+    collection<centroid> centroids()
+
+- AbstractTDigest
+  - ArrayDigest
+  - TreeDigest (uses GroupTree as summary)
+  - AVLTreeDigest (uses AVLGroupTree as summary)
+  - MergingDigest 
+
+compression parameter : number of centroids retained is small multiple of this number
+
+serialize (can be complete or differential)
+ - summary.size
+ - mean & count of all centroids
+ - compression 
+
+restore 
+ - create new tdigest using compression
+ - digest.add(mean, count)

@@ -1,0 +1,30 @@
+
+package org.apache.spark.ui
+
+SparkContext : ui = SparkUI.createLiveUI
+extend it 
+
+SparkUI  : WebUI 
+{
+	has listeners
+	attachTab
+	attachPage
+	attachHandler
+}
+
+WebUI = collection of tabs (WebUITab)
+
+WebUITab : parent is WebUI
+
+SparkUITab  : WebUITab
+{
+	
+}
+
+each tab = collection of pages (WebUIPage)
+
+WebUIPage -> 
+{
+	override def render(HttpServletRequest): Seq[Node] 
+}
+

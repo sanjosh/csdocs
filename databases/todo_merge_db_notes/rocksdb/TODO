@@ -1,0 +1,15 @@
+
+1) Cannot retrieve blobs from WAL since they dont have seq num
+WriteBatchInternal::Count() returns 0
+
+2) Get 
+- store TS on server and retrieve based on TS
+
+on client
+- use ReadOptions.ReadTier
+- submit request to ship thread
+- wait for callback
+
+3) Disable flush memtable
+wait until WAL for that VersionSet::LastSequence() has been flushed to disk
+

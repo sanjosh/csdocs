@@ -1,0 +1,95 @@
+
+
+Alphabet size
+Text size
+Pattern length
+Multiple patterns 
+
+=======
+
+Suffix array or tree
+
+===========
+
+Regex
+
+Russ Cox
+
+Approaches
+1. Automata based approaches : DFA, NFA
+1. Trigram
+
+Two questions:
+1. How to Represent the regex ?
+1. Filtration : Extract factors from RE and search them in text index
+
+Libraries :
+1. PCRE2
+1. Boost
+1. RE2 from Google https://github.com/google/re2
+1. GNU C
+
+
+what does lucene or bleve do
+Lucene shingle or nGramTokenizer
+
+Bleve
+
+Postgres has trigram index
+GIN (Inverted index) and GIST (Search tree)
+https://www.pgcon.org/2012/schedule/events/383.en.html
+
+SQLite trigram index extension
+https://github.com/jonasfj/trilite
+
+http://matt.might.net/articles/parsing-regex-with-recursive-descent/
+
+Regexp search using suffix array
+https://blog.nelhage.com/2015/02/regular-expression-search-with-suffix-arrays/
+
+https://swtch.com/~rsc/regexp/
+
+https://news.ycombinator.com/item?id=11314210
+
+
+=============
+
+Approx match : fuzzy search
+
+Approaches
+1. Dynamic programming - levenshthein
+1. Automata
+
+Redis search
+
+==============
+
+Prefix, suffix, contains
+
+Inverted index
+
+==============
+
+Compressed matching problem 
+
+=========
+
+google::RE2 classes
+
+FilteredRE2 
+-> PrefilterTree -> Prefilter
+-> RE2 Vector
+
+Prog
+- Inst
+
+Regexp
+-> Regexp::Walker
+   - Compiler (derived classes)
+	 - PcreWalker (derived classes)
+
+PatchList
+
+DFA
+NFA
+

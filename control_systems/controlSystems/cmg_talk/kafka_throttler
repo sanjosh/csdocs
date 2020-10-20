@@ -1,0 +1,26 @@
+
+Kafka
+utils/Throttler.scala
+
+Per-client quotas (not per topic)
+
+Delay = window_size * (observed - desired rate) / observed_rate
+
+Delay queue
+
+https://cwiki.apache.org/confluence/display/KAFKA/KIP-13+-+Quotas
+
+http://www.slideshare.net/AdityaAuradkar/kafka-quotas-talk-at-linkedin
+
+http://kafka.apache.org/090/documentation.html#design_quotas
+
+ClientQuotaManager.scala
+
+Client byte rate is measured over multiple small windows (for e.g. 30 windows of
+1 second each) in order to detect and correct quota violations quickly.
+Typically, having large measurement windows (for e.g. 10 windows of 30 seconds
+each) leads to large bursts of traffic followed by long delays which is not
+great in terms of user experience.
+
+
+'

@@ -1,0 +1,15 @@
+See Treadmill facebook load testing paper
+Anova vs QUantile regression
+
+ANOVA 
+- assumes normally distributed residuals and equality of variance
+- can only attribute
+
+============
+
+Quantile Regression
+- does not assume distribution of underlying data
+
+
+
+

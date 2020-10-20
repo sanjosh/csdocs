@@ -1,0 +1,46 @@
+
+
+
+===========
+
+
+Mean
+Variance
+Std deviation
+
+Coefficient of variation
+Skewness
+Kurtosis
+
+==============
+
+Degrees of freedom
+Confidence interval
+
+Margin of error
+
+==============
+
+Correlation routines:
+1.Pearson
+2.Kendal
+3.Spearman Rank 
+
+use cor(var1, var2, method="above")
+
+use cor(data, method="above") for pairwise
+
+To eval statistical significance of your correlation
+use cor.test()
+==============
+
+Pearson correlation coefficient : relation between 2 var
+
+Coefficient of determination : is square of correlation coeff.  
+Decides strength of relation
+
+===========
+
+One-sided vs two-sided tests : whether bound is on one side or both
+
+

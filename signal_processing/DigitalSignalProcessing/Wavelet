@@ -1,0 +1,57 @@
+
+http://stackoverflow.com/questions/9606458/looking-for-a-good-c-c-wavelet-library-for-signal-processing
+
+http://www.bearcave.com/misl/misl_tech/wavelets/haar.html
+
+Lyon - DSP
+
+=======
+
+Pyramid algo 
+
+Wavelets allow a time series to be viewed in multiple resolutions. Each
+resolution reflects a different frequency. The wavelet technique takes averages
+and differences of a signal, breaking the signal down into spectrum. All the
+wavelet algorithms that I'm familiar with work on time series a power of two
+values (e.g., 64, 128, 256...). Each step of the wavelet transform produces two
+sets of values: a set of averages and a set of differences (the differences are
+referred to as wavelet coefficients). Each step produces a set of averages and
+coefficients that is half the size of the input data. For example, if the time
+series contains 256 elements, the first step will produce 128 averages and 128
+coefficients. The averages then become the input for the next step (e.g., 128
+averages resulting in a new set of 64 averages and 64 coefficients). This
+continues until one average and one coefficient (e.g., 20) is calculated.
+
+The average and difference of the time series is made across a window of values.
+Most wavelet algorithms calculate each new average and difference by shifting
+this window over the input data. For example, if the input time series contains
+256 values, the window will be shifted by two elements, 128 times, in
+calculating the averages and differences. The next step of the calculation uses
+the previous set of averages, also shifting the window by two elements. This has
+the effect of averaging across a four element window. Logically, the window
+increases by a factor of two each time.
+
+In the wavelet literature this tree structured recursive algorithm is referred
+to as a pyramidal algorithm.
+
+===========
+
+Haar wavelet
+
+In generating each set of averages for the next level and each set of
+coefficients, the Haar transform performs an average and difference on a pair of
+values. Then the algorithm shifts over by two values and calculates another
+average and difference on the next pair.
+
+The high frequency coefficient spectrum should reflect all high frequency
+changes. The Haar window is only two elements wide. If a big change takes place
+from an even value to an odd value, the change will not be reflected in the high
+frequency coefficients.
+
+Many other wavelet algorithms, like the Daubechies wavelet algorithm, use
+overlapping windows, so the high frequency spectrum reflects all changes in the
+time series. Like the Haar algorithm, Daubechies shifts by two elements at each
+step. However, the average and difference are calculated over four elements, so
+there are no "holes".
+
+

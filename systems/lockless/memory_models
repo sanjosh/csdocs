@@ -1,0 +1,144 @@
+
+struct alignas(CACHE_LINE_SIZE) ABC {
+};
+
+====
+
+memory access gets reordered - by compiler, by cpu
+
+hardware perf is better when memory latency can be hidden
+1) read ahead
+2) delayed write 
+
+fence/barrier ensures stores/loads that are before it are not moved after it and vice versa
+
+use locks
+use lower consistency model/fence/barrier
+
+
+========
+
+(Adve, Gharacharloo)
+
+memory model characteristics
+1) program order (wrt a pair of address)
+	- write then read 
+	- write then write
+	- read then read/write
+2) write atomicity
+	- read the write of another processor before its visible to all
+
+3) combo: read your own write before it is visible to all
+
+==========
+
+1) sequential : c++, java, c#
+
+2) acquire - load  - prevent any read/write after this to be moved ahead
+3) release - store  - prevent any read/write before this to be moved below
+4) acq_rel - read-modify-write
+5) consume
+
+6) relaxed
+
+At runtime, 
+ACQUIRE_RELEASE (only between 2 threads using acq and rel)
+all writes in releasing thread before store-release 
+	will happen before
+	 	all reads following load-acquire in acquiring thread
+
+CONSUME
+all ops in releasing thread before store-release 
+	will happen before
+	 	op X in consuming thread if X depends on value loaded
+
+
+RELAXED
+
+
+http://en.cppreference.com/w/cpp/atomic/atomic_thread_fence
+
+http://en.cppreference.com/w/cpp/atomic/memory_order
+
+============
+
+synchronization operations
+- mutex 
+
+=========
+
+c++ volatile is different
+
+===========
+
+from 1024cores.
+
+concurrency wrt memory model has 3 aspects
+1) atomicity
+2) visibility (fence)
+http://www.1024cores.net/home/lock-free-algorithms/so-what-is-a-memory-model-and-how-to-cook-it/visibility
+3) ordering
+
+Two types of memory fences
+*) bidirectional (store-store and load-load)
+*) memory access (acquire-release)
+
+generally, stores should be delayed and loads should be done ahead
+to hide memory latency
+
+acquire fence : prevent memory access from moving above
+release fence : prevent memory acccess from moving below
+
+e.g. load-acquire : prevents loads from moving below it 
+   (but allow loads to move above it )
+
+write-release flushes the cache ?
+read-acquire invalidates the cache ?
+
+=========
+
+every opaque func call is a barrier
+atomic store is more expensive than atomic load 
+
+=========
+
+MEMORY ORDER - 
+acquire_release
+load(relaxed, acquire)
+store(release)
+fence
+
+acquire barrier
+release barrier
+
+store release makes all previous writes visible to another thread doing acquire load on that addr
+
+acquire fence - dont move above (acq lock)
+release fence - dont move below (release lock)
+
+names derived from Itanium Load.acquire/store.release ?
+
+===========
+
+object layout - can cause false sharing of 2 variables on same cache line
+
+
+==========
+
+Sutter - atomic weapons talk
+
+uses relaxed consistency for ref count, dirty flag, event count
+
+=========
+
+https://bartoszmilewski.com/2008/12/01/c-atomics-and-memory-ordering/
+
+https://peeterjoot.wordpress.com/2009/12/04/intel-memory-ordering-fence-instructions-and-atomic-operations/
+
+http://www.hboehm.info/c++mm/
+
+https://www.justsoftwaresolutions.co.uk/threading/petersons_lock_with_C++0x_atomics.html
+
+http://preshing.com/20120913/acquire-and-release-semantics/
+
+==

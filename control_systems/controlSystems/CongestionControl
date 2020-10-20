@@ -1,0 +1,19 @@
+
+Open Loop (preventive)
+ - source control (token bucket, leaky bucket)
+ - destination control
+
+Closed Loop (reactive)
+ - implicit feedback (packet dropped) 
+ - explicit feedback (message sent to source) 
+   - persistent(global) (constant feedback irrespective of congestion)
+   - responsive
+     - global
+     - local
+
+     Examples of closed loop
+     PID controler
+     Admission control
+     Load shedding
+     Slow strat
+

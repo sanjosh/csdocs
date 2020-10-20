@@ -1,0 +1,203 @@
+
+#include <suffix_arrays.hpp>
+
+CSA_TYPE
+
+construct(csa)
+construct_im
+store_to_file(csa)
+load_from_file(csa)
+
+write_structure(csa)
+
+sdsl::count(csa, pattern)
+sdsl::locate(csa, pattern)
+sdsl::extract(csa, from, to)
+
+--------
+
+sdsl/suffix_arrays.hpp
+sdsl/rmq_support.hpp
+
+wt_int<bit_vec, rank_support, select_support>
+-------------
+
+#include <rrr_vector>
+rrr_rank(rrr_vec)
+
+-------------
+
+uses relationship
+cst => csa => wavelet tree => vector
+    => lcp
+
+conversions possible
+bit_vector -> rrr_vector
+
+
+********************8
+
+#include bits.hpp
+
+bits::cnt
+bits::lo_set
+
+
+***********************
+BIT VECTORS
+
+sdsl/bit_vectors.hpp
+
+compressed and uncompressed bit vector rep
+
+bit_vector = int_vector<1>
+
+int_vector
+  int_vector_trait
+  int_vector_reference
+  int_vector_iterator
+  int_vector_buffer
+
+  rank_support_trait
+  rank_support
+  - rank_support_scan 
+  - rank_support_v
+  - rank_support_v5
+  select_support
+  - select_support_mcl
+  - select_support_scan
+  
+bit_vector_il - bit vector interleaved with rank info
+
+rrr_vector - H0 compressed bitvector
+  rank_support_rrr
+  select_support_rrr
+
+sd_vector - sparse bitvector
+  rank_support_sd
+  select_support_sd
+  sd_vector_builder
+
+hyb_vector - hybrid
+  rank_support_hyb
+  select_support_hyb
+
+enc_vector - uses coder
+
+dac_vector  - stores val with var len code
+
+vlc_vector - uses coder
+
+
+**************************
+
+CODER
+
+ elias_delta
+ elias_gamma
+ fibonacci
+ comma
+
+********************************
+
+WAVELET TREE = Tree of Bitvector + Rank + Select
+
+sdsl/wavelet_trees.hpp
+
+wavelet uses bitvectors
+
+wt_ap<wt for class, wt for offset> - for int seq
+wt_rlmn - for byte
+wt_int - for int
+wt_gmr_rs
+wt_gmr
+
+wt_pc = prefix code wavelet
+wt_blcd = wt_pc<balanced_shape>
+wt_huff = wt_pc<huff_shape> - for char
+wt_hutu = wt_pc<hutu_shape> - uses vector
+
+wm_int - over large alphabet
+
+******************************
+
+sdsl/suffix_trees.hpp
+
+sa = suffix array
+isa = invere suffix array
+
+int_alphabet
+byte_alphabet
+succinct_byte_alphabet
+
+CSA = IntVec + Wavelet
+
+csa_bitcompressed - store csa uncompressed
+csa_sada - 
+csa_wt - store csa using wavelet tree
+
+CST = CSA + LCP + BPS
+
+cst_sada - using <csa, lcp, bp, rank, select>
+cst_sct3 - 
+***********************
+
+Longest common prefix 
+
+lcp
+lcp_bitcompressed
+lcp_byte
+lcp_vlc - variable length coding
+lcp_wt - wavelet tree
+lcp_support_sada<csa, bitvec>
+
+lcp_dav - lcp_vlc, uses dac_vector
+
+construct_STRUCT
+copy_STRUCT
+load_STRUCT
+
+*************
+
+range queries
+
+rmq_succinct_sada
+rmq_succinct_sct
+
+rmq_support_sparse_table
+
+*****************
+
+Balanced parenthesis
+
+bp_support_g<nearest neighbour dict, rmq> = two level 
+bp_support_gg = multi-level pioneer
+bp_support_sada = min max tree
+
+*****************
+
+TREAP
+
+LOUDS TREE
+
+-----
+
+nearest neighbout dict
+
+
+=============
+
+
+CST_SADA = CSA + BP + LCP
+
+preorder traversal {{{}{}}{}}
+convert { -> 0 and } -> 1 
+BPS becomes 0001011011
+
+rank select
+
+use of LCP
+
+use of CSA
+
+map these to search algo

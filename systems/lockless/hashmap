@@ -1,0 +1,57 @@
+
+folly::AtomicHashMap
+
+
+AtomicHashMap
+{
+	capacity_
+	maxEntries_
+	kEmptyKey_
+	kLockedKey_
+	kErasedKey_
+	kAnchorMask_
+
+	numEntries_
+	numPendingEntries_
+
+	AtomicHashArray of subMaps_
+	numMapsAllocate_
+}
+
+AtomicHashArray
+{
+	numEntries_
+	numPendingEntries_
+	isFull_
+	numErases_
+	array of cells_ [Key, Value]
+
+	does probes
+	uses special LockedKey and EmptyKey
+}
+
+============
+
+folly::AtomicUnorderedMap
+
+waitfree reads
+lockfree insert
+
+=========
+
+java.util.concurrent ConcurrentHashMap
+
+specify concurrency level = number of concurrently updating ://www.burnison.ca/articles/the-concurrency-of-concurrenthashmap threads
+
+unsafe.getOrderedObject
+unsafe.putOrderedObject
+unsafe.compareAndSwap
+
+does take a lock during put() and segment construction
+
+https://www.burnison.ca/articles/the-concurrency-of-concurrenthashmap
+=========
+tbb:concurrent_hash_map
+========
+java/guava ConcurrentHashMap
+

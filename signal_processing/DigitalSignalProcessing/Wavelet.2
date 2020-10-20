@@ -1,0 +1,20 @@
+http://math.stackexchange.com/questions/134001/dft-and-dwt-difference?rq=1
+
+http://math.stackexchange.com/questions/279980/difference-between-fourier-transform-and-wavelets?rq=1
+
+wavelets are localized in both time and frequency whereas the standard Fourier transform is only localized in frequency.
+
+Wavelet coefficients 
+
+You need all Fourier coeff to recover original info
+But DWT is multiresolution - u can recover original image with some accuracy using coeff above a threshold
+
+This is accomplished in the following way (I'm describing a toy model of the setup): w0 is just the average of the xk; w1 is the difference between the averages of the xk in the first half and the second half of the data vector, w2 is the difference between the averages of the xk in the first quarter and the second quarter of the data vector, and w3 is the difference between the averages of the xk in the third quarter and the fourth quarter of the data vector, and so on. Finally wN−1 is the difference between xN−1 and xN. (I have omitted certain weight factors.)
+
+=============
+
+Haar wavelet
+
+For 2^n numbers, it stores 2^n -1 diff and one final sum
+
+Daubechies derived family of wavelets - first of which is Haar wavelet

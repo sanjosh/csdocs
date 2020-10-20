@@ -1,0 +1,11 @@
+
+(TotalFree - Freemax)/TotalFree * 100
+
+
+fragmentation(n) = -log(n * number_of_free_slots_of_size_n / total_bytes_free)
+
+freespace_quality(n) = n * number_of_free_slots_of_size_n / total_bytes_free
+
+
+http://stackoverflow.com/questions/4586972/how-to-calculate-fragmentation
+

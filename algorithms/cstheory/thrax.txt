@@ -1,0 +1,119 @@
+OpenFST
+
+Semiring
+-tropical
+-log
+-log64
+
+FST ops
+-Determinize (NFA to DFA)
+-Minimize
+-Optimize
+-Invert
+-Closure
+-Concat
+-Composition A @ B
+-Union
+-Difference
+
+Classes
+
+DefaultAccumulator
+LogAccumulator
+FastLogAccumulator
+CacheLogAccumulator
+ReplaceAccumulator
+SafeReplaceAccumulator
+
+ArcArena : allocator for Arcs
+
+ArcFilter (many)
+
+ArcTpl - StringArc, LogArc, MinMaxArc
+
+ArcMapFst
+- MapFst
+
+WeightConvert
+WeightConvertMapper
+
+ArcSortMapper
+
+
+ArcMapFst
+CompactFst
+ComplementFst
+ComposeFst
+ConcatFst
+ConstFst
+DeterminizeFst
+DifferenceFst 
+EditFst
+EncodeFst
+DecodeFst
+ExpandedFst
+FactorWeightFst
+IntersectFst
+InvertFst
+MapFst
+MatcherFst
+MutableFst
+ProjectFst
+RandGenFst
+RationalFst
+RelabelFst
+ReplaceFst
+RmEpsilonFst
+SynchronizeFst
+UnionFst
+VectorFst
+
+each above class has
+*) StateIterator
+*) ArcIterator
+
+ComposeFilter
+
+FilterState (many)
+
+CcVisitor
+SccVisitor
+
+Matcher
+
+SymbolTable
+
+PDT = Pushdown transducer
+
+TupleWeight
+- PowerWeight
+- SparseTupleWeight
+
+PairWeight
+- ProductWeight
+- ExpectationWeight
+- LexicographicWeight
+- SignedLogWeightTpl
+
+MatcherBase
+- SortedMatcher
+- HashMatcher
+- PhiMatcher
+- RhoMatcher
+- SigmaMatcher
+- ExplicitMatcher
+
+
+
+IMP FILES
+
+
+=============
+
+Thrax
+
+Rewrite uses ":" => A : B; replace A by B
+
+Compiles regexp (grm files) to far (fst archive) of WFST
+
+

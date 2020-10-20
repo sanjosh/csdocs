@@ -1,0 +1,33 @@
+
+anon namespace & detail namespace
+
+BOOST_FWD_REF & boost::forward
+BOOST_RV_REF
+BOOST_COPY_ASSIGN_REF
+BOOST_REF_CONST
+
+BOOST_CONSTEXPR_OR_CONST
+BOOST_CONSTEXPR
+
+BOOST_NOEXCEPT_IF
+BOOST_NOEXCEPT
+
+BOOST_ASSERT
+BOOST_STATIC_CONST
+
+BOOST_PREVENT_MACRO_SUBSTITUTION
+
+BOOST_COPYABLE_AND_MOVABLE
+
+boost::addressof()
+
+Jamfile
+
+#pragma warning(push)
+//disable for this header only
+#pragma warning(disable:4512)
+#pragma warning(disable:4180)
+#include <boost/lambda/lambda.hpp> 
+#pragma warning(pop)
+
+https://svn.boost.org/trac/boost/wiki/Guidelines/MaintenanceGuidelines

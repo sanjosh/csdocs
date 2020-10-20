@@ -1,0 +1,180 @@
+
+Jupyter 
+Type Esc-B to create new cell in R
+Type Shift-Enter to execute a cell
+
+array indices start at 1, but 0 not an error
+
+R 
+> sessionInfo()
+
+Help - use ?function
+levels func
+Factor func - factor
+subset function
+order function
+str - stands for structure
+
+
+Data frames - data.frame
+summary(df)
+
+df$column = as.Date(var, format)
+
+pipe function = df %>% pipe func
+
+(in package dplyr)
+Use select for columns
+Use filter for rows,   (same as subset)
+to SORT - arrange(desc)
+mutate
+summarize(
+
+group_by(df.column)
+unique(df.column)
+
+sum(quantity)
+Split, Apply, Combine = map, reduce
+========
+
+(package ggplot2)
+
+best documented package
+
+========
+tidyr package
+
+gather and spread
+
+GATHER
+convert wide to tall using "gather"
+this breaks 3 columns of 1 row into 3 rows
+gather(new_col_name, old_column_value, old
+
+SPREAD
+convert tall to wide using "spread"
+this aggrs 3 rows into 1 row with 3 columns
+
+mutate to create new variable
+
+Pivot table using mutate
+
+Facet/trellis - create small graphs for per-year graphs
+
+===========
+ggmap to query google maps to get lat long of place
+===========
+
+check if data frame column is null
+is.na(df$col)
+
+dfGeo[is.na(dfGeo$lon),] to get all rows with col lon=NULL
+
+complete.cases
+
+joining data frames
+left_join(df1, df2)
+===========
+
+dfFinal <- df %>% 
+select(city, year, quantity, priceMod) %>% 
+group_by(city, year) %>% 
+summarize(quantity_year = sum(quantity), avg_price = mean(priceMod))
+head(dfFinal)
+
+
+==========
+
+Chrome app "Selector gadget" to pick html element
+for scraping
+
+Beautiful Soup - python library for pulling data from html or xml
+
+===========
+
+anscombe command in R
+based on classic paper in stats - "anscombe"
+
+---
+
+Residuals vs Fitted
+
+Residuals must be normlly distributed
+
+Multiple R-squared keeps going up with number of variables
+
+Adjusted R-squared adjusts for the number of variables, and stops going 
+above beyond a certain number of variables
+
+Residual statwing
+
+http://blog.minitab.com/blog/adventures-in-statistics/multiple-regession-analysis-use-adjusted-r-squared-and-predicted-r-squared-to-include-the-correct-number-of-variables
+
+
+============
+How to normalize
+x/x_max - is prone to outliers
+
+1) (x - median)/stddev - robust to outliers, but computationally expensive
+2) (x - mean)/stddev
+3) (x - x_low)/(x_max - x_low)
+
+=============
+Heteroscedasticity
+
+http://www.statsmakemecry.com/smmctheblog/confusing-stats-terms-explained-heteroscedasticity-heteroske.html
+
+========
+
+Model fitting
+y = m.x + c
+
+y = m.x^2 + c
+
+y = m.log(x) + c
+
+Log-linear model??
+
+========
+
+ACQUIRE : rvest, XML< jsonlite, httr, rsqlite, rpostgresql, readxl, haven,
+readr, data.table
+
+REFINE : dplyr, tidyr, lubridate, stringr
+
+EXPLORE : graphics, ggplot2, ggmap, ggvis, map, vcd, rgl, htmlwidgets, leaflet,
+choroplethr, plotly
+
+MODEL
+stats
+caret - wrapper library
+ranger
+glmnet
+xgboost
+party
+mxnet
+forecast
+
+INSIGHT
+opencpu
+rserve
+rmarkdow
+knitr
+shiny
+
+
+============
+
+how to do analytics in production
+
+mobile client -> express -> nodejs -> rio -> Rserve -> R
+
+=========
+
+rnorm generates random val from normal distribution
+runif generates random val from uniform distrib
+
+========
+
+chisq.test(tbl)
+ks.test

@@ -1,0 +1,84 @@
+
+SPSC
+SPMC
+MPMC
+
+
+======
+
+folly::ProducerConsumerQueue
+
+One consumer, one producer
+separate into read & write index
+read & write index read with memory order relaxed
+
+size must be pre-decided
+
+class PCQueue {
+
+	T records[size]
+	atomic<int> readIndex = 0
+	atomic<int> writeIndex = 0 // next slot to write into
+
+	bool write(T newElement) {
+
+		const int currentWrite = writeIndex.load(relaxed)
+		nextRecord = currentWrite + 1
+		if (nextRecord == size) {
+			nextRecord = 0
+		}
+
+		// keeps one slot empty
+		if (nextRecord != readIndex.load(acquire) {
+			records[currentWrite] = newElement
+			writeIndex.store(nextRecord, release)
+			return true
+		}
+		return false; // queue full
+	}
+
+	bool read(T& returnElem) {
+
+		const int currentRead = readIndex.load(relaxed)
+		if (currentRead == writeIndex.load(acquire) {
+			return false
+		}
+
+		int nextRecord = currentRead + 1
+		if (nextRecord == size) {
+			nextRecord = 0
+		}
+		returnElem = record[currentRead]
+		readIndex.store(nextRecord, release)
+		return true;
+	}
+}
+
+===========
+http://www.linuxjournal.com/content/lock-free-multi-producer-multi-consumer-queue-ring-buffer?page=0,4
+
+folly::MPMCQueue
+
+===========
+
+boost lockfree queue
+
+========
+
+Moody camel
+
+===============
+
+1024cores website
+Types of producer consumer queues
+*) MPMC, SPMC, MPSC, SPSC
+*) Array, linked list, hybrid
+*) Intrusive or not
+*) bounded or not
+*) overflow behaviour
+*) require GC 
+*) support priorities
+*) ordering - lifo, fifo
+*) forward progress guarantee for consumers
+*) forward progress guarantee for producers
+*) failure behaviour - blocking

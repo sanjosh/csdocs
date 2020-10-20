@@ -1,0 +1,237 @@
+
+Pool
+
+MemoryPool
+ DefaulyMemoryPool
+ LoggingMemoryPool
+
+ ========
+
+Array - 
+ NullArray, 
+ PrimitiveArray, 
+  NumericArray, 
+  FixedSizeBinaryArray
+   DecimalArray
+ BooleanArray, 
+ ListArray
+ BinaryArray
+   StringArray
+ StructArray
+ UnionArray
+ DictionaryArray
+
+ ========
+
+Buffer
+ MutableBuffer
+  ResizableBuffer
+   PoolBuffer
+
+BufferBuilder
+
+===========
+
+Builder
+builder.reserve()
+builder.append()
+builder.finish(Array)
+
+ArrayBuilder
+ PrimitiveBuilder
+  NumericBuilder
+ BooleanBuilder
+ ListBuilder
+  BinaryBuilder
+   StringBuilder
+ FixedSizeBinaryBuilder
+  DecimalBuilder
+ StructBuilder
+
+
+======
+
+DataType = Type::type + Field children
+ FixedWidthType
+  DictionaryType
+  DateType
+  FixedSizeBinaryType
+   DecimalType
+  BooleanType
+  PrimitiveCType
+   Integer
+   FloatingPoint
+ NestedType
+  UnionType
+  StructType
+ NullType
+ BinaryType
+  StringType
+ <lots of int>
+
+
+Field 
+{
+  string name 
+  DataType type
+  KeyValueMetadata metadata
+}
+
+ArrayVector = vector<Array>
+
+ChunkedArray
+{
+	ArrayVector chunks
+}
+Column
+{
+	Field field
+	ChunkedArray data
+
+	name()
+	type()
+	length()
+	null_count()
+	data()
+}
+RecordBatch
+{
+	Schema schema
+	vector<Array> columns
+}
+Table
+{
+	Schema schema
+	vector<Columns> columns
+}
+
+Tensor
+{
+	DataType type
+	Buffer data
+}
+
+// add to field or schema
+KeyValueMetadata
+{
+	vector<string> keys
+	vector<string values
+}
+
+Schema
+{
+	Field fields
+	map name_to_index
+	KeyValueMetadata metadata
+}
+
+FieldMetadata
+{
+	int length
+	int null
+	int offset
+}
+
+BufferMetadata
+{
+	int page
+	int offset
+	int length
+}
+
+================
+
+ArrayComponentSource
+{
+}
+
+LoadArray(DataType, ArrayComponentSource, Array* out)
+=======
+
+ArrayVisitor
+{
+}
+
+TypeVisitor
+{
+}
+
+
+=============
+
+Feather - serialization format using Arrow
+
+==========
+
+JSON serialization 
+JsonWriter(Schema, RecordBatch)
+JsonReader(MemoryPool
+
+==========
+
+// used to transmit schema in IPC
+DictionaryMemo
+{
+}
+
+DictionaryArray
+
+=========
+
+// IPC
+StreamReader
+{
+	InputStream
+	GetNextRecordBatch()
+	schema()
+}
+
+FileReader
+{
+}
+
+StreamWriter
+{
+}
+
+FileWriter
+{
+}
+
+===========
+
+Usage
+
+Field f1 ("field1", type1);
+Field f2 ("field2", type2);
+Schema schema({f1, f2})
+
+Array array_of_field1(length, value, memory_pool)
+Array array_of_field2(length, value, memory_pool)
+RecordBatch b1(schema, array_length, {array_of_field1, array_of_field2})
+b1.schema() - to get schema
+
+making nested list - MakeDeeplyNestedList
+
+Field f1 ("field1", type1);
+Field f2 ("field2", type2);
+vector<Field> union_types({f1, f2})
+UnionType ut(union_types, type_codes, UnionMode::DENSE/SPARSE)
+
+MakeDictionary
+{
+	Array
+	ArrayFromVector
+	DictionaryArray
+}
+
+Column c1(Field, ChunkedArray)
+Column c1(Field, ArrayVector)
+Column c1(Field, Array)
+Column c1(field_name, Array)
+
+Table t1(schema, vector<columns>)
+t1.num_rows()
+t1.num_columns()
+t1.column(0)
+schema.field(0).name()

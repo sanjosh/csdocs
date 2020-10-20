@@ -1,0 +1,107 @@
+Hypothesis testing  - two approaches
+1) Critical value approach
+2) P-Value approach
+
+Null hypothesis : Defendant is innocent
+Test : Is evidence overwhelming to reject null hypothesis
+P-value : how likely is the data, given defendant is innocent
+
+If result being attributed to random chance is very small, 
+then we reject null hypothesis - i.e result is statistically significant
+
+If the P-value is less than (or equal to) α, then the null hypothesis 
+is rejected in favor of the alternative hypothesis. And, if the P-value 
+is greater than α, then the null hypothesis is not rejected.
+
+https://onlinecourses.science.psu.edu/statprogram/node/136
+
+
+============
+
+Every test has a paired equivalent
+
+=========
+
+ANOVA works best when sample sies are equal
+F-statistic : used in ANOVA
+
+F-distribution = ratio of 2 independent chi-square variables
+divided by their respective degrees of freedom
+
+F-test designed to test if two population variances are equal
+F-test is test in which test statistic has F-distribution under null hypothesis
+
+=========
+
+T-Test : determine statistical diff between 2 samples
+estimate population parameter (mean or stddev)
+
+T-test is special case of F-test where u have 2 treatments
+F = t^2
+Both special cases of linear regression
+
+thi://www.quora.com/Whats-the-difference-between-an-F-Test-and-T-Test
+
+=========
+Paired  T-test : for samples collected as matched pairs
+
+=========
+
+Mann-Witney U-test : test for significant differences between 2 samples
+when data are non-parametric.  In R, called Wilcoxon test.
+
+=========
+Kolmogorov-Smirnoff test : test if 2 samples drawn from same distribution, 
+or if sample drawn from reference distribution;
+
+=========
+Levene statistic : test homogenity of variance
+
+=========
+Chi-squared test : test if 2 categorical variables are indep
+
+Statistical goodness test
+Chi-square test : determine if observed prob distrib is same as expected.
+
+Chi^2 = Sum (i=0, N-1) (Oi - Ei)^2/Ei
+Compare this value to chi-squared distribution with N degrees of freedom
+obtain p-value for result
+
+For each degree of freedom, there is a diff chi-square distrib
+
+The mean of the chi square distribution is the degree of freedom and 
+the standard deviation is twice the degrees of freedom
+
+Chart has y-axis = P(Chi^2), x-axis = Chi^2
+
+if the a = 0.05 level of significance is selected, 
+and there are 7 degrees of freedom, 
+then the critical chi square value is 14.067. 
+This means that for 7 degrees of freedom, there is exactly 0.05 
+of the area under the chi square distribution that 
+lies to the right of χ^2 = 14.067
+
+
+=========
+
+Durbin-Watson staticstic
+
+========
+
+Z-statistic
+
+========
+A/B testing
+
+====
+
+Multivariate testing
+
+Obama campaighn website used full factorial multivariate test
+ - all combo of buttons and media against each other
+https://blog.optimizely.com/2010/11/29/how-obama-raised-60-million-by-running-a-simple-experiment/
+
+=======
+
+Auto-optimization 
+https://www.quora.com/What-is-the-difference-between-A-B-testing-and-multivariate-testing

@@ -1,0 +1,31 @@
+
+log = displays order of magniture
+
+=====================
+
+Why do economists take log of ratios ?
+because 
+  Pn = (1 + r/n)^n. P1
+
+limit (1 + r/n)^n = exp(r)
+
+So if rate of interest is "r", money grows at Pn/P1 = exp(r)
+Taking natural log is just inverse
+ln(Pn/P1) = r
+
+So ln(Pn/P1) is telling you rate of return in terms of compounded interest
+
+For low values of r, compounded is same as non-compounded
+e.g. (P2-P1)/P1 = ln(P2/P1) when (a/b) is near 1 (since ln(x) = x-1 when x is near 1)
+
+Using logs is better than simple percent changes
+Simple percent increase in 50% and decrease in 50% doesnt get back to where you were.
+Whereas log change in 0.5 followed by "-0.5" is the same.
+
+
+**************
+
+
+http://stats.stackexchange.com/questions/18844/when-and-why-to-take-the-log-of-a-distribution-of-numbers
+
+http://stats.stackexchange.com/questions/118373/what-are-the-advantages-of-using-log-gdp-per-capita-versus-simple-gdp-per-capita?lq=1

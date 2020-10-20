@@ -1,0 +1,150 @@
+
+Spark can be extended in many ways
+1) Interpreter - SparkILoop REPL (after Scala's read eval print loop)
+    CarbonData
+1) Worker
+1) UI
+    SnappyData
+1) Planner
+1) Parser - DDL (extend catalyst.plans.logical.Command)
+    CarbonData
+1) Cluster Manager
+    Kubernetes
+1) Catalyst API expr
+1) Encoder : JVM obj to Spark obj
+   Serializer (Hive SerDe) 
+   default are Kryo and Java
+	https://stackoverflow.com/questions/36648128/how-to-store-custom-objects-in-dataset
+1) BlockManager (off heap)
+1) Shuffle Manager
+1) Shared session state
+1) Data source + streaming source/sink
+1) Catalog - ExternalCatalog
+1) SparkSession 
+
+CarbonData, SnappyData
+
+=======
+
+org/apache/spark/executor
+
+extend CoarseGrainedExecutorBackend
+{
+	onStop {
+	}
+	onStart {
+	}
+	receive {
+		executor = new Executor
+	}
+
+	run {
+		new CoarseGrainedExecutorBackend
+	}
+	def main {
+		run()
+	}
+}
+
+extend Executor
+{
+	createClassLoader
+	LaunchTask {
+		executor.launchTask
+	}
+}
+
+extend MutableURLClassLoader
+{
+}
+
+extend SparkListener
+{
+	onExecutorAdded
+	onExecutoRemoved
+	onBlockManagedAdded
+	onBlockManagerRemoved
+}
+
+=================
+
+How to add new cluster manager
+- kubernetes, yarn, mesos, gemfire
+
+org/apache/spark/scheduler
+
+ClusterManager
+SChedulerBackend
+TaskSetManager	
+
+extend ExternalClusterManager
+{
+	createTaskScheduler
+	createSchedulerBackend
+}
+
+extend CoarseGrainedSchedulerBackend
+{
+	applicationId
+	start
+	stop
+	createDriverEndpoint
+}
+
+
+==============
+
+SparkContextFactory
+SparkSessionFactory
+
+==============
+
+WebUIPage
+SparkUITab
+
+==============
+
+Snappydata
+
+UNDER cluster 
+
+org/apache/spark/executor 
+
+SnappyExecutor : Executor
+SnappyMutableURLClassLoader : MutableURLClassLoader
+SnappyCoarseGrainedExecutorBackend : CoarseGrainedExecutorBackend
+{
+	registerExecutor {
+		new SnappyExecutor
+	}
+}
+
+io/snappydata
+
+ExecutorInitiator
+{
+	run {
+		SnappyCoarseGrainedExecutorBackend
+	}
+}
+
+org/apache/spark/scheduler
+
+SnappyCoarseGrainedSchedulerBackend : CoarseGrainedSchedulerBackend
+{
+}
+
+BlockManagerIDListener : SparkListener
+SnappyEmbeddedModeClusterManager : ExternalClusterManager
+{
+	createSchedulerBackend() {
+		new SnappyCoarseGrainedSchedulerBackend
+	}
+	createTaskScheduler {
+		new SnappyTaskSchedulerImpl
+	}
+}
+
+
+
+===========

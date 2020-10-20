@@ -1,0 +1,31 @@
+
+VersionSet
+VersionEdit
+VersionBuilder::Apply
+
+*) ON restart, we have
+    guid file 
+
+*) on restart, fetch column family + seqnumber from ganesha
+   need one record with next file, next log, next sequence
+
+   write version edits into manifest
+   change CURRENT
+   ManifestWriter
+
+   next_file_number_
+   last_sequence_
+   prev_log_number_
+
+   verify first seqnum, first file_number, first log_number
+   generated after recovery matches ganesha
+
+   state of the database must be as if all CF created
+   but none in Memtable or SST
+
+*) do not save memtable to disk
+
+*) do not save wal to disk
+
+*) implement iterator
+

@@ -1,0 +1,79 @@
+
+[Art of Multiprocessor Programming]
+
+Constraints 
+- can atomically update 64 bit number with CAS
+- hardware trans memory 
+
+Levels of concurrency
+1) Do update within spinlock/mutex 
+2) atomically switch ptrs using compare_and_exchange in a while loop
+	- use free bits in 64 bit ptr to mark node deleted
+3) Split queue size into 2 variables  ( differential reference counting)
+5) Spin on multiple variables instead of one (tree, network)
+6) Dual data structure - reserve and fulfill
+7) Pairing - use elimination array for threads doing push/pop
+8) Combine/Cooperate - do other threads' work
+10) RCU : uses publish subscribe mechanism
+
+Use Sentinel node (elephant in cairo)
+- used in hash table in "art of multicore" book
+
+*) ABA problem for freed memory
+1) lazy GC 
+2) ref count
+3) make each ptr unique
+4) writer checks hazard ptr of readers before deleting (wait free)
+
+TIPS
+lazy delete a node - set bit - skip during iteration
+have special key to indicate locked or empty (sentinel node)
+preallocate + map always grows - never shrinks
+bring your own memory - thread local storage  (doubly linked list in Data Domain)
+restricting nodes to 4 bytes allows use of CAS
+
+-------------------------------
+
+how to wait on multiple conditions without burning CPU
+
+a) have resource 
+b) have work
+c) not shutdown
+
+while (cond1 & cond2) | cond3)
+{
+}
+
+==========================
+lockfree - retry, while loops
+waitfree - fixed num of threads or multiversioning
+         - every op completes in finite num of steps
+
+on some data structures, one op may be lockfree, other may be waitfree
+
+==========================
+
+properties
+1) starvation free
+2) fairness
+
+ABA problem
+==================
+
+1024cores.net website Dmitry Vyukov
+
+Type of atomic ops
+*) Cmp And Swap (load linked store conditional) 
+    - in gnu it is __sync_bool_compare_and_swap
+*) Fetch and Add  - implemented as cmp and swap
+*) Read Modify Write  - in gnu it is __sync_lock_test_and_set
+*) Atomic load and store (cheaper than read modify write) - 
+
+------------
+
+Double checked locking pattern
+(Sutter talk on lockfree)
+
+stephan optimization - read once to temp variable
+
+-------------

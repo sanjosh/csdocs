@@ -1,0 +1,8 @@
+
+http://superuser.com/questions/168114/how-much-memory-can-a-64bit-machine-address-at-a-time
+
+CPU uses 48 bit address lines
+
+motherboard has limits on RAM slots
+
+OS limits due to data structure allocation

@@ -1,0 +1,20 @@
+
+inside a data structure
+
+
+ownership
+nullity
+
+pass by value
+
+https://herbsutter.com/2013/06/05/gotw-91-solution-smart-pointer-parameters/
+
+https://herbsutter.com/2013/05/29/gotw-89-solution-smart-pointers/
+
+http://stackoverflow.com/questions/3310737/shared-ptr-by-reference-or-by-value
+
+http://stackoverflow.com/questions/8114276/how-do-i-pass-a-unique-ptr-argument-to-a-constructor-or-a-function
+
+====
+
+convert unique_ptr to shared_ptr but not vice versa

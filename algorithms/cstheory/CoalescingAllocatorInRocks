@@ -1,0 +1,76 @@
+
+1.5TB/4K = 1 billion entries
+each segment = 4 byte
+each entry = start, end = 8 byte
+total space = 8-32 GB
+
+FreeList Algo
+
+init()
+{
+  insert single entry <start=1, end=2G>
+  build transient index by size
+  <size, start>
+}
+
+recover()
+{
+  for each blkindex
+  {
+    insert <end-start, start> into transient
+  }
+}
+
+alloc(size)
+{
+  entry = lookup transient 
+
+  iter = blkindex->seek(entry->start)
+  update iter->end -= size;
+  if (no more)
+  {
+    delete blkindex entry
+  }
+
+  delete transient <size, start>
+  insert transient <size, start>
+}
+
+free(blknum, size)
+{
+  iter->seek(blknum)
+  find earlier entry
+
+  if (start + size == blknum)
+  {
+    coalesce begin
+  }
+  if (blknum + size == end)
+  {
+    coalesce end
+  }
+
+  if (coal)
+  {
+
+    if (coal end)
+    {
+      delete old entry 
+      delete old transient <size, start>
+    }
+    if (coal begin)
+    {
+      delete old entry
+      delete old transient <size, start>
+    }
+
+    update blkindex->update(size)
+    insert new transient <size, start>
+  } 
+  else
+  {
+    insert new entry
+    insert new transient <size, start>
+  }
+
+}

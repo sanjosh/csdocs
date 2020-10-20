@@ -1,0 +1,23 @@
+
+Graph databases persist graph data
+
+But Graph processing frameworks do in-memory batch processing
+Various systems:
+1. Google Pregel
+1. Neo4j
+1. Giraph
+
+GRaph Algos which can be run
+1. Pagerank
+2. shortest path
+3. spanning tree
+4. components
+
+TODO
+https://cs.uwaterloo.ca/~kdaudjee/comparison.pdf
+
+An Experimental Comparison of Pregel-like
+Graph Processing Systems
+
+
+Dgraph

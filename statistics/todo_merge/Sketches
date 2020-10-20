@@ -1,0 +1,87 @@
+
+==============
+
+Models
+1) arrival only
+2) arrival and departure
+=========
+Given set of items, let f_i = frequency of item i
+
+find largest f_i = heavy hitter
+find non-zero f_i = count distinct
+find entropy
+
+Space complexity of frequency moments - ALon Matias Szegedy
+
+==========
+
+==========
+
+Morris 1978
+==========
+
+CMS : count min sketch for F-infinity freq moment
+
+Hokusai - extended to time domain
+
+==========
+
+AMS sketch for F2 frequency moment
+
+==========
+FM sketch for F0 count distinct - (flajolet martin) 
+
+if d distinct values, d/2 map to 1, d/4 to 2
+
+eventually
+leftmost has 111
+rightmost has 000
+middle has 01010
+rightmost zero = indicator of log(d)
+
+d = k.2^R for k= 1.3
+take average over many copies
+
+K-min values algo (KMV)
+
+Hyperloglog
+
+each item i in range [1..m]
+pick random hash func hash: [m]->R
+track the t distinct items achieving smallest value of hash(i)
+let v_t = t'th smallest distinct value of hash(i)
+if n = F0 < t
+INCOMPLETE
+
+===========
+
+Subset size estimation using KMV - thorup
+
+===========
+
+Higher frequency moments - ALon 96
+
+
+=====
+
+hash kernel - Dasgupta, Langford, Smola
+
+
+http://datasketches.github.io/docs/Theta/KMVbetterEst.html
+
+
+========
+
+Odd sketch
+==========
+
+
+====================
+
+Hyperloglog
+
+
+https://research.neustar.biz/2013/04/02/sketch-of-the-day-probabilistic-counting-with-stochastic-averaging-pcsa/
+https://research.neustar.biz/2012/07/09/sketch-of-the-day-k-minimum-values/
+
+========

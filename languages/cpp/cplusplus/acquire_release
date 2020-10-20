@@ -1,0 +1,48 @@
+read-acquire - means all mem ops stay below the line
+ - succeeding loads not moved ahead of current load
+write-release - means all mem ops stay above the line
+ - preceding writes not moved after current write
+
+ memory_order_acq_rel - does both
+  it produces a fence instruction on x86
+
+Acquire semantics is a property which can only apply to operations which read
+from shared memory, whether they are read-modify-write operations or plain
+loads. The operation is then considered a read-acquire. Acquire semantics
+prevent memory reordering of the read-acquire with any read or write operation
+which follows it in program order.
+
+Release semantics is a property which can only apply to operations which write
+to shared memory, whether they are read-modify-write operations or plain stores.
+The operation is then considered a write-release. Release semantics prevent
+memory reordering of the write-release with any read or write operation which
+precedes it in program order.
+============
+
+read-modify-write requires use of exchange 
+   i.e. var.exchange(true, memory_order_acq_rel);
+
+============
+
+A memory model determines what re-orderings are possible (relatively to program
+ order). For required ordering ensuring hardware usually provides special
+ instructions called memory fences/barriers, which prevent some re-ordering
+ types around them. 
+ 
+ There are 2 types of memory fences 
+ 1) bi-directional (store-store, load-load) and 
+ 2) tied to memory accesses (acquire and release).
+
+ Bi-directional fences prevent one type of memory accesses (load or store) from
+ "sinking below" them, while other type of memory accesses (can be the same,
+ though) from "hoisting above" them. For example, store-load fence prevents
+ stores from sinking below and loads from hoisting above (however, stores can
+ hoist above it and loads may sink below it). 
+
+ Fences tied to memory accesses prevent all memory accesses from moving above
+ (acquire fence) or below (release fence); for example, load-acquire is a load
+ which simultaneously prevents any other memory accesses from hoisting above it
+ (while any memory accesses can sink below it).
+
+
+ - 

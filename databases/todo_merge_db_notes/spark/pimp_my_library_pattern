@@ -1,0 +1,8 @@
+
+can extend RDD 
+
+http://www.artima.com/weblogs/viewpost.jsp?thread=179766
+
+implicit parameters and conversions
+
+implicit def array2String[T] (x : Array[T]) = x.toString

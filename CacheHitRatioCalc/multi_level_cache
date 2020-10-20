@@ -1,0 +1,75 @@
+
+ElCached multi level cache - Lavaee, Choi
+
+builds on MICached HotCloud 16
+
+--------------
+
+Latency model
+Lat = l_m  + (l_s * M_m) + (l_db * M_s)
+
+l_m = latency of memcached (L1)
+l_s = latency of SSD (L2)
+l_db = latency of backend 
+
+M_m = miss rate of memcached
+M_s = Miss rate of SSD
+--------------
+
+Cost model
+C = (c_m * p_m) + (c_s * p_s)
+c_m = Dram size
+p_m = price per unit 
+
+c_s = SSD size
+p_s = price per unit
+
+
+--------------
+
+Key to optimal provisioning is to find miss ratio curve (MRC)
+
+Y -axis is Miss ratio
+X axis is Capacity
+
+Lat = l_m + l_s * mr(c_m) + l_db * mr(c_s)
+
+---------------
+
+Reuse distance to compute miss ratio curve
+
+reuse distance= num of distinct mem locations accessed between
+two consecutive uses of same location
+
+Build a Reuse distance histogram
+
+MRC is computed from this histogram
+
+Frequency(Y) vs reuse distance(X) 
+  -> transform to
+   Miss ratio(Y) vs Cache size(X)
+
+Reuse distance computation
+Olken 1981
+Approx reuse distance (Ding 2001)
+Footprint estimation (Xiang 2011)
+Stack counters (Wires 2014)
+
+
+-----------
+
+Resource provisioning as a linear program
+
+either
+Minimize cost such that Lat <= SLA
+minimize SLA such that Cost <= TCO
+
+Cost is linear in terms of DRAM/SSD capacity
+Latency is linear only in terms of miss ratio func
+
+DRAM : SSD ratio is 1:4 (Pareto principle)
+
+DRAM = 10$/GB
+SSD = 60c/GB
+
+

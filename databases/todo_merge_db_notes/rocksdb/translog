@@ -1,0 +1,10 @@
+
+startSeq
+currentBatchSeq
+currentLastSeq
+VersionSet *versions (versions->LastSequence)
+
+isValid
+currentStatus
+currentBatch
+

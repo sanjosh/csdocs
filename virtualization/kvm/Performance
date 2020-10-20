@@ -1,0 +1,76 @@
+
+to manually edit VM configuration
+virsh edit <guestVMname>
+opens an XML file
+
+========
+
+KVM files in /var/log/libvirt and /var/lib/libvirt
+=========
+
+specify OS at creation time in virt-manager for better perf (instead of leaving it as generic)
+
+==============
+host : use deadline scheduler
+
+================
+dont use file based images - use block devices
+
+preallocate file - only works with qcow2 - but we are using vmdk format
+
+“qemu-img create -f qcow2 -o size=10000000000,preallocation=metadata file.img”.
+
+===========
+use paravirtualized drivers for disk, memory, network
+included in Linux kernel
+have to be installed in Windows running on KVM
+
+during virt machine creation
+set
+disk bus : virtio
+
+http://www.linux-kvm.org/page/Virtio
+========
+use AIO in guest (io mode=native, threads)
+
+You can enable AIO by specifying aio=native in the qemu-kvm command for a KVM guest.
+
+io mode = native or threads
+
+native is better ?
+
+cache = none is required for the IO mode setting aio = native. If another cache mode is used, then the IO mode will silently be switched back to the default aio = threads. Qemu-kvm implements the guest flush within the host by using fdatasync(). 
+============
+
+there is double caching in KVM - host and guest
+cache mode : 
+a) writethrough implies host cache is enabled but guest is disabled.  read perf is better but write perf is reduced. 
+b) writeback  implies both host and guest cache are enabled.  IO perf is ood but data loss can occur
+c) none : host cache is disabled but guest cache is enabled.  write perf is optimal but read perf is reduced.
+d) unsafe: 
+
+For NFS - none is recommended
+for local, writethru is recommended
+
+===========
+
+NETWORKING
+
+enable vhost_net - better than virtio
+
+Enabling SR-IOV on a KVM host
+In order to enable SR-IOV support on a KVM hosts it’s necessary to:
+• Enable the Intel VT-d or AMD-Vi extensions in the BIOS of the host
+• Activate I/O MMU in the kernel by appending intel iommu=on to the kernel line in the
+/boot/grub/grub.conf file; nothing is required for AMD hardware;
+• Activate Virtual Functions within the network card kernel module: modprobe ixgbe
+max vfs=<0..63>
+
+
+==========
+MEMORY
+
+enable huge pages
+echo 8192 > /proc/sys/vm/nr_hugepages
+vi /etc/sysctl.conf (vm.nr_hugepages=8192)
+

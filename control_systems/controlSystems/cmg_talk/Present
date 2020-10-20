@@ -1,0 +1,37 @@
+
+Slides will be available
+Lot of effort write logic - few focus on adaptive to load
+
+Limiters in Big Data systems
+
+Sender Side throttle or Receiver side backpressure
+
+Congestion control
+ Open Loop  - Leaky bucket, token bucket
+ Closed Loop - 
+
+Kafka - 
+WDT - 
+RocksDB -
+Guava - Slow start
+Spark - PID
+
+Problem
+* multiple threads calling a func
+
+acquire(bytes)
+{
+  decide sleep time based on bytes
+}
+
+Desiderata
+* long term stead rate
+* short term bursts overutilization - allow bursts
+* underutilization - warmup period
+* priority - fairness
+* dynamically alter rate
+
+Impl
+* remember time of last request OR
+* remember time of next expected request (Guava)
+

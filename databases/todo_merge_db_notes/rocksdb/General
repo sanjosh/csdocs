@@ -1,0 +1,511 @@
+
+https://medium.com/rocksdb-internals-a-beginners-guide/war-story-speeding-up-block-based-table-lookup-ae357d9bc2bf
+
+https://medium.com/rocksdb-internals-a-beginners-guide/how-to-sound-like-you-know-rocksdb-2-4dcc9cdfb1bb
+
+https://medium.com/rocksdb-internals-a-beginners-guide/about-dissecting-rocksdb-a18a1270acc9
+
+https://medium.com/rocksdb-internals-a-beginners-guide/how-to-sound-like-you-know-rocksdb-1-a194db9e5070
+
+benefit from c++11 - default variables, delete ctors, prevent copies
+
+//=======
+
+DBImpl : DB
+{
+  SnapshotList snapshots_
+  FlushScheduler
+
+  deque<ColumnFamilyData*> flush_queue_
+  deque<ColumnFamilyData*> compaction_queue_
+
+  ManualCompaction* manual_compaction_
+
+  VersionSet versions_;
+  Cache table_cache_;
+
+  ColumnFamilyMemTablesImpl column_family_memtables_
+
+  Directories
+  WriteBuffer
+  WriteThread
+  
+  WalManager wal_manager_
+
+  GetImpl()
+  {
+    cfd = handle->cfd()
+    sv = cfd->GetThreadLocalSuperVersion()
+    sv->mem->Get()
+    sv->imm->Get()
+    sv->current->Get() ( see Version::Get)
+
+  }
+
+  AddToCompactionQueue()
+  {
+  }
+
+  AddToFlushQueue()
+  {
+  }
+
+  BackgroundCompaction()
+  {
+    PopFromCompactionQueue()
+  }
+
+  CompactFiles()
+  {
+    create CompactionJob j
+    j.run()
+  }
+
+  NewIterator()
+  {
+    new ArenaWrappedDBIterator
+    db_iter->setIterUnderDBIter(InternalInterator)
+  }
+
+  NewInternalIterator()
+  {
+  }
+
+  Recover(column_families)
+  {
+    versions_->Recover(column_families)
+    get filesnames from wal_dir (env->GetChildren)
+
+    RecoverLogFiles();
+  }
+
+  RecoverLogFiles(vector<uint> log_numbers, max_sequence)
+  {
+    for each log_file
+    {
+      while (records)
+      {
+        insert rec into WriteBatch
+        WriteBatch::InsertInto(memtable)
+        {
+          uses MemTableInserter
+        }
+      }
+    }
+
+    WriteLevel0TableForRecovery(using VersionEdit);
+
+    versions_->LogAndApply() -> updates FileIndexer
+  }
+
+  WriteLevel0TableForRecovery()
+  {
+    BuildTable(InternalIterator)
+  }
+}
+
+DBImplReadOnly : DBImpl
+{
+}
+
+LogFile
+{
+}
+
+TransactionLogIterator
+{
+  VersionSet versions_
+}
+
+TableCache
+{
+  NewIterator()
+  {
+    return TableReader::NewIterator()
+  }
+
+  Get(Slice k)
+  {
+  }
+}
+
+ColumnFamilyHandleImpl
+{
+  ColumnFamilyData
+}
+
+ColumnFamilyHandleInternal : ColumnFamilyHandleImpl
+{
+}
+
+// holds ref to mutable and immutable memtables and Version
+SuperVersion
+{
+  MemTable *mem
+  MemTableListVersion *imm;
+  Version *current
+  uint64_t version_number
+
+  Ref()
+  Unref()
+}
+
+VersionBuilder
+{
+}
+
+
+Version
+{
+    // called from db->Get()
+  Get(LookupKey key)
+  {
+    {
+      FilePicker fp(vector<FileMetaData> storage_info.files_, 
+        autovector<LevelFilesBrief>, 
+        FileIndexer)
+      f = fp.GetNextFile();
+      while (f != nullptr)
+      {
+        // key_found, deleted, not_found, merge
+        f = fp.GetNextFile()
+        {
+          FileIndexer::GetNextLevelIndex() // used IndexUnit
+        }
+      }
+    }
+  }
+
+  AddIterators(MergeIteratorBuilder)
+  {
+  }
+
+  Ref()
+  {
+  }
+
+  Unref()
+  {
+  }
+
+  ColumnFamilyData *cfd
+  TableCache table_cache
+  VersionStorageInfo storage_info
+  VersionSet* set
+  Version *next
+  Version *prev
+}
+
+VersionStorageInfo
+{
+  vector<LevelFilesBrief> levels_per_brief
+  FileIndexer file_indexer
+  vector<FileMetaData*> files_
+}
+
+VersionSet // per DB
+{
+  LogAndApply(VersionSet)
+
+  Recover()
+
+  DumpManifest()
+  {
+  }
+
+  MakeInputIterator(Compaction* )
+  {
+  }
+
+  AddLiveFiles()
+  {
+  }
+}
+
+// RecoverLogFiles()
+VersionEdit
+{
+  DeletedFileSet
+  vector<FileMetaData> new_files
+
+  AddFile()
+  DeleteFile()
+  AddColumNFamily()
+  EncodeTo(dest string)
+  DecodeFrom(src slice)
+}
+
+ColumnFamilyData
+{
+  Compaction* CompactRange(begin, end, &compaction_end)
+
+  ConstructNewMemTable()
+
+  Ref()
+  Unref()
+
+  WriteBuffer
+  MemTable mem_
+  MemTableList imm_
+
+  SuperVersion *super_version_;
+  Version* dummy_versions_; // linked list of versions
+  Version* current_;
+
+  log_number_
+  ColumnFamilySet column_family_set;
+
+  ColumnFamilyData* prev
+  ColumnFamilyData* next
+}
+
+ColumnFamilySet // list of cf
+{
+  map<string> column_families_
+  map<ColumnFamilyData> column_family_data
+  WriteBuffer* write_buffer_
+}
+
+ColumnFamilyMemTablesImpl : ColumnFamilyMemTables
+{
+  ColumnFamilySet column_family_set_
+  ColumnFamilyData  current_
+  FlushScheduler flush_scheduler_
+}
+
+
+DBImpl
+{
+  ColumnFamilyMemTablesImpl column_family_memtables_
+}
+
+
+DBImp
+-> ColumnFamilyMemTablesImpl
+  -> ColumnFamilySet
+    -> ColumnFamilyData
+      -> MemTable mem, MemTableList imm
+
+// =============
+
+FileIndexer
+{
+}
+
+LogBuffer
+{
+}
+
+MergeContext
+{
+}
+
+MergeOperator
+{
+}
+
+SnapshotImpl : Snapshot
+{
+}
+
+SnapshotList
+{
+}
+
+
+//=======
+
+FlushScheduler
+{
+  // called from write thread
+}
+
+FlushJob
+{
+  WriteLevel0Table()
+  {
+    BuildTable()
+  }
+}
+
+JobContext
+{
+  /* contains 
+    list of files to delete 
+    or memory to free
+    or versions to free
+  */
+}
+
+log::Reader
+{
+}
+
+log::Writer
+{
+}
+
+
+// ========
+
+kMaxSequenceNumber = all ones 55 bits
+
+SequenceNumber
+{
+}
+
+Allocator
+{
+}
+
+MemTableAllocator : Allocator
+{
+}
+
+WalManager
+{
+}
+
+ColumnFamilyMemTables
+{
+}
+
+WriteBuffer
+{
+}
+
+WriteController
+{
+}
+
+WriteThread
+{
+}
+
+BuildTable() standalone function
+{
+  TableBuilder builder
+  CompactionIterator iter
+  while (iter)
+  {
+    builder.Add(key, value)
+  }
+  builder.Finish()
+  file_write.Sync()
+}
+
+MutableCFOptions
+{
+}
+
+ImmutableCFOptions
+{
+}
+
+//=========
+
+IndexBuilder
+{
+  AddIndexEntry(last_key_in_current, first_key_in_next)
+}
+
+ShortenedIndexBuilder : public IndexBuilder // binary search
+{
+}
+
+HashIndexBuilder : public IndexBuilder // hash search
+{
+}
+
+==========
+
+
+InternalKey
+{
+}
+
+ValueType
+{
+  delete, merge, cf_delete, 
+}
+
+
+LookupKey
+{
+}
+
+IterKey
+{
+}
+
+Comparator <- various derived classes
+{
+}
+
+InternalKeyComparator : Comparator
+{
+}
+
+
+=========
+
+Env
+{
+}
+
+SequentialFile
+{
+}
+
+SequentialFileReader
+{
+}
+
+
+RandomAccessFile
+{
+}
+
+RandomAccessFileReader
+{
+}
+
+WritableFile
+{
+}
+
+Directory
+{
+}
+
+LevelFilesBrief
+{
+  FdWithKeyRange
+}
+
+FdWithKeyRange
+{
+  smallest
+  largest
+}
+
+VersionEdit -> log->addRecord(edit.EncodeTo())
+
+
+=========
+
+
+Manifest has following records
+VersionSet::DumpManifest()
+1) Column family add
+2) Column family delete
+3) New DB
+4) file add/delete - see calls to AddFile
+  during compaction, compaction->edit()->AddFile()
+  during recovery, WriteLevel0TableForRecovery
+  during flush, WriteLevel0Table
+
+See calls to SyncManifest() from
+  DBImpl::NewDB()
+  VersionSet::LogAndApply() - most calls in db_impl.cc
+

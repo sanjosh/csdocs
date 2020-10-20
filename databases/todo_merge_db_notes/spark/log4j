@@ -1,0 +1,5 @@
+
+set log4j.properties
+
+log4j.logger.org.apache.spark.memory.TaskMemoryManager=DEBUG
+

@@ -1,0 +1,57 @@
+
+Four ways to schedule garbage collection of resource which is being actively
+used
+
+1) manual
+2) configurable period
+3) low water and high water mark
+4) threshold changes as resource availability decreases
+
+===============
+
+At Disk layer
+Observe and maintain moving average of 
+writes/sec and reads/sec for each block size 
+at certain read/write ratio
+
+blocksize :  num_write : num_read : write B/sec : read B/sec
+ 4 MB     :    100                :   30        : 20
+ 4 K      :            : 1000     :   10        : 40
+ ===========================================================
+                                      X         :   Y
+
+
+how to define workload signature - bucketize by block size and r:w ratio
+
+one need to keep upto max blocksize accepted by SSD
+
+when does workload change - and how significant is the change
+define equivalence between signatures
+
+does disk full percentage matter in workload ?
+
+workload is defined by percentage of total read/write bytes
+bandwidth is defined as percentage of total bw for this blocksize and op
+
+blocksize : 4k : 16K : 1MB : 4 MB
+          :    
+
+workload.reads[blocksize] = 
+workload.writes[blocksize] = 
+
+=======================
+
+At GC layer, maintain the invariant
+
+    time required to GC < time to fill remaining space
+    therefore, 
+    write speed < gc speed
+
+time to free one container = (num 4mb blocks) * (read + write) time
+
+time to fill one container = (num 4mb blocks) * (time to write one block)
+
+write a throttler to limit average allocs/sec - token bucket
+
+
+===================

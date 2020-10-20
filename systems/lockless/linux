@@ -1,0 +1,16 @@
+
+Linux sync primitives 
+
+smp_mb : barrier for ordering both load and store
+smp_rmb : read memory barrier
+smp_wmb : write mem barrier
+
+spinlock
+reader-writer lock
+semaphore
+read-copy update
+
+http://www.rdrop.com/~paulmck/
+whether store can move below fence or above it
+whether load can move below fence or above it
+

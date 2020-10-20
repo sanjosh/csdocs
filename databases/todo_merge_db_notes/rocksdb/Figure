@@ -1,0 +1,36 @@
+
+
+DBImpl -> TableCache, 
+ |          FlushQueue<ColumnFamilyData>,
+ |          CompactionQueue<ColumnFamilyData>
+ |
+ |
+VersionSet --> ColumnFamilySet
+ |                 |
+ |               ColumnFamilyData1 <-> ColumnFamilyData2
+ |                         |
+ |                         |
+ |                         |
+Version1 <-> Version2 <-> Version3
+
+
+
+ColumnFamilyData --- MemTable, Version
+ |
+ |
+MemTableList
+ |
+ |
+MemTableListVersion
+ |
+ |
+list of MemTable
+ |
+ |
+MemTableRep (SkipList, HashSkipList, VectorRep)
+
+
+
+
+ 
+

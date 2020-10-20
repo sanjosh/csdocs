@@ -1,0 +1,37 @@
+
+log linear model = discrete analog of PCA (Matloff book)
+
+=========
+
+difference between 2 distributions (p,q) 
+Kullback-Leibler divergence (not symmetric) = amount of info lost when Q tries to approximate P.  IOW, information gained when one revises prior Q with posterior P.
+
+https://www.quora.com/What-is-a-good-laymans-explanation-for-the-Kullback-Leibler-Divergence
+
+========
+
+Sum of 2 random variables  : independent or not ?
+discrete or continuous
+
+if independent, see convolution formula
+
+Sum of binomial = binomial
+sum of poisson  = poisson
+sum of normal = normal
+sum of expo = gamma 
+
+Prob Distrib(sum of 2 indep random var) = convolution of their distributions
+
+Quotient of random variables
+
+Mixture models
+
+Melvin D. Springer. The Algebra of Random Variables
+
+============
+
+Absolute entropy
+Cross entropy
+Relative entropy
+
+=============

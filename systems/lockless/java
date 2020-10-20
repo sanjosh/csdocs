@@ -1,0 +1,12 @@
+
+java has Atomic(Integer/Long/Reference)Array
+java.util.concurrent.atomic
+java volatile 
+java.util.concurrent uses Unsafe
+
+java volatile guarantees atomicity and consistency
+ - volatile means value never into CPU cache
+
+Adve, java memory model 2005
+
+http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/package-summary.html#MemoryVisibility

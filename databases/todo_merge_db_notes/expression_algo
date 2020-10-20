@@ -1,0 +1,44 @@
+
+greater
+less
+equal
+not equal
+
+AND
+OR
+
+Table
+{
+    map<rowid, Row>
+
+    Index hasIndex(colName, pred)
+    {
+    }
+}
+
+Index
+{
+    map<key, rowid> // sorted
+
+    IndexIter gt_equal_scan(val)
+    IndexIter gt_scan(val)
+    IndexIter lt_equal_scan(val)
+    IndexIter lt_scan(val)
+    IndexIter equal_scan(val)
+
+    List<IndexIter> openCursors
+}
+
+IndexIter
+{
+    open()
+    {
+        indexmap.begin()
+    }
+
+    Row next()
+    {
+        idx = indexmap.next()
+        return rowmap[idx]
+    }
+}

@@ -1,0 +1,8 @@
+
+$ gcc -march=native -Q --help=target | grep march
+-march=                         haswell
+
+http://unix.stackexchange.com/questions/230634/how-to-find-out-intel-architecture-family-from-command-line
+
+$ dmidecode | grep -i intel
+

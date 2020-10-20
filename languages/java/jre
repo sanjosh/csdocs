@@ -1,0 +1,5 @@
+
+/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar <file>.jar
+
+mvn package
+mvn install

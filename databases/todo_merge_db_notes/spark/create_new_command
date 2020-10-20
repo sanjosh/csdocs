@@ -1,0 +1,25 @@
+How to add your own command
+
+case class YourCommand() extends RunnableCommand (logical.Command)
+{
+  override def run() : Seq[Row]
+}
+
+object YourLogicalRule extends Rule[LogicalPlan]
+{
+  override def apply(plan: LogicalPlan) : LogicalPlan 
+    case CreateTable() if mytype 
+       YourCommand
+}
+
+case class YourLogicalCommand extends LogicalPlan
+{
+}
+
+SparkSqlParser
+{
+  override def visitCreateTable() : LogicalPlan 
+  {
+    return YourLogicalCommand
+  }
+}

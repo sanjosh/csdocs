@@ -1,0 +1,119 @@
+
+WritableFileWriter
+log::Writer 
+{
+  block_offset
+  log_number
+
+}
+
+// this logic is for manifest
+Slice = VersionEdit.EncodeTo()
+log.AddRecord(Slice)
+if (ok)
+  SyncManifest()
+
+DBImpl
+{
+  WalManager wal_manager_;
+}
+
+LogFileImpl : LogFile
+{
+  uint64_t logNumber_
+  WalFileType type_ = Alive/Archived
+  SequenceNumber startSequence_
+  uint64_t sizeFileBytes_
+}
+
+TransactionLogIterator
+{
+  VectorLogPtr files_
+}
+
+DB::GetUpdatesSince(seq_number, iter, readoptions)
+{
+  wal_manager.GetUpdatesSince()
+  {
+  }
+}
+
+DB::GetLiveFiles(files)
+DB::GetSortedWalFiles(files)
+
+DB::DisableFileDeletions()
+DB::EnableFileDeletions()
+
+see 
+db_log_iter_test.cc
+wal_manager_test.cc
+
+DBImpl::WriteImpl()
+{
+  logs_.back().writer->AddRecord(log_entry)
+  alive_log_files_.back().AddSize(
+  log.writer->file()->Sync()
+
+  WriteBatchInternal::InsertInto() 
+  inserts into memtable
+  can fail due invalid column family
+  here, WAL diverges from in-memory state
+}
+
+
+================
+
+How to log
+1) Create CF - these are written only to MANIFEST
+2) Delete CF
+  ManifestWriter
+
+Add db.options for replication
+  offloader_port
+  offloader_addr
+
+If these options are set, the db log will be replicated
+Each db has db->logs_.  how to tail logs of all dbs in one thread
+For now, Start a background thread per DB
+Later, maybe add a db->replicationQueue just as db has compactionQueue
+and flushQueue, which can be used to schedule background work
+
+Start replication thread after recovery and after db creation
+
+Replication_Work(for DB)
+{
+  Do initial handshake with offloader
+  Send db_id which is a unique db-specific GUID 
+  this is a string returned from db->GetDbIdentity()
+  if offloader hasn't seen db_id
+    it returns seq_number 0
+  else
+    it returns last WAL seq number seen
+
+  while GetUpdatesSince(offloader_seq_number
+  {
+    iterate over transaction log
+    and send records to Offloader
+  }
+}
+
+=====================
+
+Offloader_ReplicatiionSlave
+{
+  Keep table of key=DB_Id, value=Last Sequence Number
+
+  Check db_id
+  if new db_id
+    add entry to table with sequence number = 0
+  else
+    get last sequence number
+  send sequence number to RocksDB
+
+  while (logs)
+  {
+    Apply
+  }
+}
+
+

@@ -1,0 +1,74 @@
+
+legend
++ means derived
+- means contains
+
+----------------------------------
+
+Iterator
+
++ DBIter
+  - if read_options.tailing
+
++ ManagedIterator
+  - if read_options.managed
+
++ ArenaWrappedDBIterator
+
++ TtlIterator
+
++ BaseDeltaIterator
+  - Iterator base_iterator_
+  - WBWIIterator delta_iterator_
+
+------------------------
+
+CompactionIterator
+  - InternalIterator input
+
+MergeOutputIterator
+ - used during compaction
+
+---------------------------------
+
+InternalIterator
+
++ MergingIterator (union of k child iter, no dup suppression)
+  - range scan
+
++ ForwardIterator
+  - tailing iter
+
++ LevelIterator
+
++ MemTableIterator
+  - MemTableRep::Iterator
+
++ TwoLevelIterator
+  - first level is LevelFileNumIterator
+  - second level is block
+
++ LevelFileNumIterator
+  - over files in a particular level
+
++ PlainTableIterator
++ CuckooTableIterator
+
++ BlockIterator
+  - over slices in data block, using the "_restarts" array
+
+IteratorWrapper
+
+
+-----------------
+
+Stack during call
+
+SkipListRep::Iterator
+MemTableIterator::Seek
+DBIter::Seek
+ArenaWrapped
+BaseDeltaIterator::Seek
+PrefixStrippingIterator::Seek
+
+

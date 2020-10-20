@@ -1,0 +1,33 @@
+
+Why sentinel - both head & tail dont have to be updated !
+
+urcu
+wfqueue.h
+
+This implementation adds a dummy head node when the queue is empty to ensure
+we can always update the queue locklessly.
+
+head = dummy
+tail = dummy->next
+
+dequeue()
+{
+	if 2 writes concurrently dequeue, 
+	one may eject the sentinel
+
+	if (node == q->dummy) {
+		enqueue it back
+	}
+}
+
+=====
+
+The secret sauce of this data-structure is the sentinel node that head always
+   points to which ensure that we never have to UPDATE BOTH head and tail when
+      the list goes from empty to non-empty or vice-versa. If both head and tail
+	     point to the same node then we know that the list is empty because head
+		    always points to the sentinel node. If they're not equal then we can pop an
+			   element by moving head forward which turns the head head into a sentinel
+			      node (we first copy and return its value).
+
+				  https://github.com/RAttab/lockless/blob/master/src/queue.h#L25

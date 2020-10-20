@@ -1,0 +1,25 @@
+
+InternalRow
+{
+	
+}
+Row
+{
+	StructType schema
+}
+
+InternalRow
+-JoinedRow
+-BaseGenericInternalRow
+
+Row
+-GenericRow
+--GenericRowWithSchema
+
+RDD
+
+ExistingRDD
+
+Projection : convert InternalRow to InternalRow
+- MutableProjection
+

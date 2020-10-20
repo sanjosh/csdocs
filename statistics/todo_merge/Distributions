@@ -1,0 +1,73 @@
+
+****************************
+BETA
+****************************
+Beta distribution is best for representing a probabilistic distribution 
+of probabilities- the case where we don't know what a probability 
+is in advance, but we have some reasonable guesses.
+
+Beta distribution gets updated with new info
+
+A, B are starting params
+Beta(A + success, B  + failures)
+
+Order statistics : If u generate several random (0,1) random numbers
+and sort them, what is distribution of the 3rd one
+
+If you stop a program at random "n" times, and "s" of those times (s>1)
+it is doing something you could get rid of, then 
+fraction of time saved by doing so = Beta(s+1, (n-s) + 1) and 
+Speedup factor has BetaPrime distribution
+
+http://stats.stackexchange.com/questions/47771/what-is-the-intuition-behind-beta-distribution
+
+===========
+
+
+http://scicomp.stackexchange.com/questions/2173/what-are-some-good-strategies-for-improving-the-serial-performance-of-my-code/2719#2719
+
+===========
+
+Beta(a,b) has mean = a/(a+b) and variance ab/[(a+b)^2 (a+b+1)]
+Uniform distribu = Beta(1, 1)
+
+After 90 pos and 10 negative, we have Beta(91, 11) distrib
+
+http://www.johndcook.com/blog/2011/09/27/bayesian-amazon/#comments
+
+==========
+
+Beta = conjugate prior of Bernoulli distribution
+
+beta distribution essentially defines the probability that a Bernoulli
+experiment's success probability is p, given the outcome of the experiment.
+
+if you have an unknown probability like the bias of a coin that you 
+are estimating by repeated coin flips, then the likelihood induced 
+on the unknown bias by a sequence of coin flips is beta-distributed.
+
+
+==============
+
+Beta and Gamma
+
+Given 2 Gamma distributions X and Y
+X/(X+Y) has Beta distribution
+
+Gamma = can model arrival time for independent events
+Fraction of time spent in completing one of two tasks perfomed in sequence
+lends itself to Beta distribution
+
+
+==============
+
+
+Poisson and exponential
+
+http://stats.stackexchange.com/questions/2092/relationship-between-poisson-and-exponential-distribution
+
+
+
+=============
+
+Dirichlet distribution is multidim generalization of Beta

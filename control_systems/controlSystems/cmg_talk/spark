@@ -1,0 +1,166 @@
+
+
+https://issues.apache.org/jira/browse/SPARK-8975
+
+https://issues.apache.org/jira/browse/SPARK-8977
+
+https://issues.apache.org/jira/browse/SPARK-8834
+
+BlockGenerator -> Subscriber
+
+Spark 
+
++ StreamingContext.scheduler.receiverTracker.sendRateUpdate
+
+https://jaceklaskowski.gitbooks.io/mastering-apache-spark/content/spark-streaming-backpressure.html
+
++ streaming/scheduler/rate/PIDRateEstimator 
+
++ streaming/scheduler/RateController 
+  - derived from StreamingListener
+  - on end of Batch, it recomputes rate using RateEstimator
+  - sends new rate to receivers via receiver tracker
+  - TODO back pressure
+  - every InputDStream has a rateController attached by job scheduler
+
++ ReceiverRateController - sends new rate to receivers via receiver tracker
+   - isBackPressureEnabled
+
+receiver side
++ streaming/receiver/RateLimiter.scala
+  - receivers call waitToPush() to limit ingest rate
+  <- called from BlockGenerator
+
++ streaming/util/RateLimitedOutputStream(desiredBytesPerSec)::waitToWrite
+  - use com.google.com.GuavaRateLimiter
+
+  https://vanwilgenburg.wordpress.com/2015/10/06/spark-streaming-backpressure/
+
+StreamingContext
+
+Scheduler
+  ReceiverTracker
+
+Strategies : Drop, throttle, sample
+
+workers get Receiver object
+
+RateUpdate message sent from StreamingDriver to Executor
+
+Each input stream gets its own estimator
+
+ReceiverRateController listens to StreamListenerBus
+it gets block ids processed in every batch
+Does RateEstimator
+Sends rates to all Receivers via ReceiverTracker
+Rate estimation done centrally and distributed to Recievers
+BlockGenerator then uses Guava-based Rate Limiter to throttle
+
+Flow
+
+One Receiver per input stream
+Receiver -> DStream
+
+Block diagram
+
+SparkStreamingDriver                     Executor
+
+  InputDStream          <-- blockid --   Receiver
+    |                                       |
+  RateController        --> bound update    |
+    |                                     Block Generator
+  RateEstimator                             |
+                                         (updateRate)
+  SparkContext                              |
+                                         RateLimiter
+
+==============
+===========
+
+Rate Estimation
+
+https://en.wikipedia.org/wiki/PID_controller
+
+Three types
+1. feedback
+2. Feedforward
+3. Openloop
+
+===========
+
+PID controller
+
+proportional gain = reaction based on current error
+integral gain = reaction based on sum of recent errors
+derivative gain = reaction based on rate of change of error
+
+Making a change that is too large when the error is small is 
+equivalent to a high gain controller and will lead to overshoot.
+
+Dead band - area around desired rate at which PID controller
+will not attempt to change the rate (to avoid fluctuations)
+
+The Integral term removes steady state control offsets by ramping 
+the output up or down in proportion to the amplitude and duration 
+of the error signal. The ramp rate (Integral time constant) must 
+be longer than the time constant of the process to avoid oscillations.
+
+The Derivative term is proportional to the rate of change of the 
+temperature or process value. It is used to prevent overshoot and 
+undershoot of the setpoint and to restore the process value 
+rapidly to the setpoint if there is a sudden change in demand, 
+for example if an oven door is opened.
+
+Proportional gain = reduces rise time but will never eliminate
+steady-state error
+
+Integral gain = eliminate steady state error but make transient
+response worse
+
+Derivative gain = increase stability, reduce overshoot and 
+improve transient response
+
+===========
+
+Spark
+
+  batchInterval
+  proportional >=0
+  derivative >=0 (unstable) - unit is elem/sec
+  integral >= 0 (large val leads to overshoot)(
+  minRate
+
+  latestTime = curTime
+  latestRate = processingRate (elem/sec)
+  latestError = 0 (unit is elem/sec)
+
+// schedulingDelay s => (s * processingRate) overflowing elem
+// which couldn't be processed in previous batches
+
+compute(numElem, processingDelay, schedulingDelay)
+{
+  delaySinceUpdate = time - latestTime
+
+  processingRate = numElem/processingDelay
+
+  // latest error
+  error = latestRate - processingRate
+
+  // how is this the sum of errors ?
+  histError = schedDelay * processingRate / batchInterval (elem/sec)
+
+  // rate of change of error
+  dError = (error - latestError)/ delaySinceUpdate (unit is elem)
+
+  newRate = latestRate 
+    - (propConst * error) 
+    - (integralConst * histError) 
+    - (derivativeConst * dError)
+
+  latestRate = newRate
+  latestError = error
+  latestTime = time
+
+}
+
+

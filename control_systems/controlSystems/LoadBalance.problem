@@ -1,0 +1,38 @@
+
+Client
+{ 
+  Disk n
+
+  doWork(DiskStat n)
+  {
+    generate workload
+    for each disk
+      use diskstat to compute load
+    return diskReq
+  }
+}
+
+DiskStat
+{
+  per interval data
+
+  prevIO
+  prevPercentByMe
+  freeSpace
+
+  maxDiff
+  maxIO
+
+  doWork(numwrites, numdeletes)
+  {
+  }
+}
+
+Simulator()
+{
+  for each interval
+    for each client 
+      diskReq = client->doWork()
+    for each disk
+      diskStat = disk->doWork(diskReq)
+}

@@ -1,0 +1,42 @@
+
+covering
+unique
+multi-column
+partial indexing (postgres - only index rows which match a condition)
+expression index on derived column (postgres, mysql 5.7.6)
+
+BRIN (postgres, oracle, monetdb)
+https://en.wikipedia.org/wiki/Block_Range_Index
+
+
+btree
+hash
+bitmap
+inverted
+
+regex
+json path 
+
+===========
+
+Lucene _ CplusPlus - search engine
+OpenFST - finite state transducer
+
+sdsl-lite
+succinct1 - succinct data structure
+libcds2 - compact data structure
+
+
+fehc - histogram
+tdigest - histogram
+
+btree
+trie
+compressed string dict - libCSD
+
+skip list
+bloom filter
+bitmap
+
+simd
+concurrency-kit - lockless 
