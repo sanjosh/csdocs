@@ -1,0 +1,49 @@
+
+
+Xfer data
+
+1. mmapped buffers
+see source downloaded
+
+2. ioctl
+
+3. netlink AF_NETLINK sockets
+http://stackoverflow.com/questions/11501527/ioctl-vs-netlink-vs-memmap-to-communicate-between-kernel-space-and-user-space
+
+4. debugfs_create_blob
+http://stackoverflow.com/questions/14666991/how-to-use-the-debugfs-blob-wrapper-in-a-kernel-module?rq=1
+
+5. IBM usermode helper  - upcall using kernel_execve
+http://www.ibm.com/developerworks/linux/library/l-user-space-apps/index.html?ca=dgr-lnxw97Kernel-APIs-P1dth-LX
+
+========================
+
+More general interfaces between kernel and user-space
+
+procfs
+sysfs
+configfs
+debugfs
+sysctl
+char devices
+udp sockets
+netlink sockets
+ioctl
+system call
+upcall using kernel_execve
+mmap
+
+http://people.ee.ethz.ch/~arkeller/linux/kernel_user_space_howto.html#ss2.5
+
+The function ____call_usermodehelper is where the real work happens for getting the application started in user space. This function begins by unblocking all signals and setting the session key ring. It also installs the stdin pipe (if requested). After a bit more initialization, the user-space application is invoked through a call to kernel_execve (from kernel/syscall.c), which includes the previously defined path, argv list (including the user-space application name), and environment. When this process is complete, the thread exits through a call to do_exit(). 
+
+
+========================
+
+Calling kernel from user
+
+1. syscall
+2. devices and files
+3. VDSO - mmap the kernel-code ELF into user-space
+
+
