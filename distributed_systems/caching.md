@@ -58,3 +58,15 @@ https://github.com/LMDB/memcachedb
 3. Informed Prefetching for Distributed Multi-level storage systems by Maen Mahmoud Al Assaf
 		 	
 4. Pfc: Transparent optimization of existing prefetching strategies for multi-level storage systems by Zhe Zhang, Kyuhyung Lee, Xiaosong Ma, Yuanyuan Zhou
+
+----------------
+
+main ideas
+
+* scaled ttl (increase timeout if same value returned on expiry)
+* negative caching (linux fs)
+* soft and hard ttl
+* throttle refresh so that mass cache expiration does not cause thundering herd on backend
+* client and server-side cache
+* internal or external cache
+* layered caching
