@@ -30,3 +30,16 @@ MIT open course ware
 pre-attentive processing which can be used to convey information quickly
 https://www.csc2.ncsu.edu/faculty/healey/PP/index.html
  
+# other
+
+## Motivate the problem instead of jumping into the solution 
+This allows audience to participate in the problem solving
+What were the constraints ?
+What are the alternative solutions ?
+
+## Describe your struggle, because that info helps others
+What problems did you encounter
+What do you feel could be done better
+
+## Clearly outline the takeaway
+Clearly outline what the audience will learn from your talk. For example, you will know when to use this solution.

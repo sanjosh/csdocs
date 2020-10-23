@@ -1,72 +1,91 @@
+﻿# Problem statement
 
-using LLVM
+Determine if data read from one program location is consumed in another location.
+
+# Challenges wrt Android
+
+Ability to track data movement
+    1. across component lifecycles
+    2. across inter-component communication (intents and intent filters)
+    3. Via use of Reflection
+    4. NDK
+
+# Overview
+
+Static tools
+
+Dynamic tools
+
+# Dynamic taint analysis tools
+
+AppFence
+
+TaintDroid
+
+# Static taint analysis tools
+
+## Amandroid
+
+Project page : http://pag.arguslab.org/argus-
+Source code : https://github.com/arguslab/
+
+## DialDroid
+
+Source code : https://github.com/dialdroid-
+
+## DidFail
+
+https://www.wklieber.com/
+https://resources.sei.cmu.edu/
+
+## DroidSafe
+
+Development has stopped since 2016
+Last supported version is Android 4.4.1
+Source code : https://github.com/MIT-PAC/
+
+## FlowDroid
+
+Source code : https://github.com/secure-
+
+## IccTA
+
+Project page : https://sites.google.com/site/
+Source code : https://github.com/lilicoding/
+
+# Related tools/concepts
+
+## JADX
+
+Decompiler
+
+## Soot
+
+https://sable.github.io/soot/
+Paper : https://sable.github.io/soot/
+Introduced Baf, Jimple and Grimp.
+
+## Jimple
+
+A typed 3-address intermediate representation
+
+## SuSi
+
+A tool to automatically discover and categorize sources and sinks in the Android framework
+
+Source code : https://github.com/secure-
+
+## using LLVM
 
 https://github.com/SVF-tools/SVF
 
--------------
 
-Android
+## EpiCC
 
-https://arxiv.org/abs/1804.02903
-Do Android Taint Analysis Tools Keep their Promises?
-
-Challenges
-1. Handle component lifecycles
-2. Inter-component communication - Intents can propagate data
-3. Intra-Component
-3. Reflection
-4. NDK
-
-All tools except Amandroid are based on Soot [16, 25] 
-https://sable.github.io/soot/
-
-operate on Jimple as intermediate language.
-
-Source and Sink specified using SuSi
-
-IAC = Inter-app comm 
-ICC = Inter-component comm
-
-=============
-
-Amandroid : ICC
-
-http://pag.arguslab.org/argus-saf
-
-https://github.com/arguslab/Argus-SAF
-
-=============
-DialDroid : IAC, ICC
-https://github.com/dialdroid-android/DIALDroid
-=============
-
-DidFail : IAC, ICC
-
-https://www.wklieber.com/didfail/
-https://resources.sei.cmu.edu/library/asset-view.cfm?assetID=508078
-=============
-
-DroidSafe : IAC, ICC
-development stopped sine 2016
-last supported version is Android 4.4.1
-
-https://github.com/MIT-PAC/droidsafe-src
-=============
-FlowDroid : ICC
-
-https://github.com/secure-software-engineering/FlowDroid
-
-=============
-IccTA : ICC
-
-https://sites.google.com/site/icctawebpage/
-
-https://github.com/lilicoding/soot-infoflow-android-iccta
-=============
-
-Use ApkCombiner
-
-jadx to decompile
-
-EpiCC
 http://siis.cse.psu.edu/epicc/
+
+# References
+
+1. Felix Pauck, et al.  Do Android Taint Analysis Tools Keep their Promises? 2018 (arxiv)
+2. https://github.com/brucespang/
+

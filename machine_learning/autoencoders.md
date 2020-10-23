@@ -83,6 +83,27 @@ Optimizing the two together, however, results in the generation of a latent spac
 
 https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
 
+Kingma, Autoencoding variational bayes https://arxiv.org/pdf/1312.6114.pdf
+
+Kingma, An Introduction to Variational Autoencoders
+https://arxiv.org/pdf/1906.02691.pdf
+
+http://www.robots.ox.ac.uk/~sjrob/Pubs/vbTutorialFinal.pdf. Fox Roberts A tutorial on variational Bayesian
+
+Doetsch tutorial variational autoencoders https://arxiv.org/abs/1606.05908
+
+https://towardsdatascience.com/intuitively-understanding-variational-autoencoders-1bfe67eb5daf
+
+https://www.jeremyjordan.me/variational-autoencoders/
+
+https://wiseodd.github.io/techblog/2016/12/17/conditional-vae/
+
+https://ijdykeman.github.io/ml/2016/12/21/cvae.html
+
+http://cse.iitkgp.ac.in/~sudeshna/courses/DL17/Autoencoder-15-Mar-17.pdf
+
+https://lilianweng.github.io/lil-log/2018/08/12/from-autoencoder-to-beta-vae.html#td-vae
+
 ## Deep encoder and decoder
 
 Depth can exponentially reduce the computational cost of representing some
