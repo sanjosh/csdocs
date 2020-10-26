@@ -142,6 +142,7 @@ this will introduce lag
 
 ### get high tracking accuracy using nested control loop
 
+### cases where setpoint is never reached
 
 
 ## Theory
@@ -173,9 +174,21 @@ process reaction curve
 
 ## Variations or extensions to the problem
 
+### general linear
+
+u_i = (a_0 * r_0) + (a_t * r_t) + ... + (b_0 * y_0) + ... + (b_t * y_)
+
+this subsumes
+1. standard PID version
+2. setpoint-weighted form
+3. incremental controller
+4. derivative filtered
+
 ### Incremental or velocity form of PID controller
 
 ### using output feedback instead of error feedback
+
+### nonlinear
 
 ### multidimensional problems
 
