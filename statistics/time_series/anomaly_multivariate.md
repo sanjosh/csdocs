@@ -1,6 +1,8 @@
 
 # Multivariate time series anomaly
 
+two approaches
+
 ## Forecasting based model
 
 * predict value at next timestamp
@@ -34,5 +36,11 @@ https://arxiv.org/pdf/2009.02040v1.pdf
 
 ## GAN-Li and MAD-GAN (reconstruction based)
 
+# Other approaches
 
+## Correlated Anomaly Detection from Large Streaming Data 
+
+Zheng Chen, et al 
+
+https://arxiv.org/pdf/1812.09387.pdf
 

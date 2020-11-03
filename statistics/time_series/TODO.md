@@ -1,0 +1,25 @@
+
+https://machinelearningmastery.com/how-to-develop-lstm-models-for-time-series-forecasting/
+
+https://www.usenix.org/conference/hotcloud15/workshop-program/presentation/goldberg
+
+Ruofeng Wen, Kari Torkkola and Balakrishnan Narayanaswamy  "A Multi-Horizon Quantile Recurrent Forecaster", NIPS Time Series Workshop 2017, (NIPS 2017) [longer version]
+
+https://sites.google.com/site/nipsts2017/home
+
+https://www.microsoft.com/en-us/research/wp-content/uploads/2014/01/gupta14_tkde.pdf
+
+https://web.cs.hacettepe.edu.tr/~aykut/classes/spring2013/bil682/supplemental/outlierbook.pdf
+
+https://multithreaded.stitchfix.com/blog/2016/04/21/forget-arima/
+
+https://eng.uber.com/author/nikolay-laptev/
+
+https://eng.uber.com/neural-networks-uncertainty-estimation/
+
+https://arxiv.org/pdf/1911.12436.pdf
+
+https://eng.uber.com/argos-real-time-alerts/
+
+https://stackoverflow.com/questions/63115867/isolation-forest-vs-robust-random-cut-forest-in-outlier-detection
+
