@@ -65,13 +65,10 @@ control : 7.5\]
 
 ## Four methods 
 
-  - Root locus : time domain method
-
-  - Nyquist diagram : freq-domain method
-
-  - Nichols chart : freq-domain method
-
-  - Bode plot : freq-domain method
+1. Root locus : time domain method
+2. Nyquist diagram : freq-domain method
+3. Nichols chart : freq-domain method
+4. Bode plot : freq-domain method
 
 ### Nichols chart
 
@@ -87,14 +84,14 @@ plots to display amplitude and phase of the frequency response.
 
 from http://claymore.engineer.gvsu.edu/\~jackh/books/model/chapters/rootlocus.pdf
 
-|Denominator of transfer func 
-| ---------------------------------- | ----------------------------------- |
-| Real roots                         | exponential terms                   |
-| Negative real roots                | system stable                       |
-| Positive real roots                | system unstable (exp growth)        |
-| Complex roots                      | sinusoidal terms                    |
-| Complex roots (negative real part) | cause decaying oscillation          |
-| Complex roots (positive real)      | have growing oscillation, unstable. |
+Denominator of transfer func |    
+ ---------------------------------- | ----------------------------------- 
+ Real roots                         | exponential terms                   
+ Negative real roots                | system stable                       
+ Positive real roots                | system unstable (exp growth)        
+ Complex roots                      | sinusoidal terms                    
+ Complex roots (negative real part) | cause decaying oscillation          
+ Complex roots (positive real)      | have growing oscillation, unstable. 
 
 ### Nyquist analysis 
 

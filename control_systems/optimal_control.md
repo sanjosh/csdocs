@@ -13,7 +13,7 @@ http://en.wikipedia.org/wiki/Pontryagin%27s_maximum_principle
 
 http://www.scholarpedia.org/article/Optimal_control
 
-
+## Books
 * Lewis Optimal Control
 * Stengel Optimal control and estimation
 * Bryson Applied Optimal Control

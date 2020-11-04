@@ -5,6 +5,7 @@ frequency methods and time-domain algebraic methods.
 PID controller vs PI controller: Achieve asymptotic regulation in
 presence of parameter uncertainties.
 
+## Dimension
 
  Dimension | description |
  :--------:| ---------- |
@@ -20,6 +21,7 @@ presence of parameter uncertainties.
  H∞ control theory | Optimization method.  H stands for Hardy space.  One of the cornerstones of modern control theory. It was developed to solve such problems with very strong practical implications. The widely accepted modern technique for solving robust control problems now is to reduce them to linear matrix inequalities problems (LMI). 
  Fractional order control |  
 
+## Approaches
 
 Approaches | description 
 :---- | :----
@@ -29,6 +31,7 @@ Polynomial-Matrix-Domain Frequential |
 Geometric |
 Structural-Digraph |
 
+## Responses in a system
 
 Various responses | description
 :---- | :----
