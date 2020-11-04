@@ -85,12 +85,12 @@ plots to display amplitude and phase of the frequency response.
 from http://claymore.engineer.gvsu.edu/\~jackh/books/model/chapters/rootlocus.pdf
 
 
-Denominator of transfer func |    
----------------------------------- | ----------------------------------- 
-Real roots                         | exponential terms                   
-Negative real roots                | system stable                       
-Positive real roots                | system unstable (exp growth)        
-Complex roots                      | sinusoidal terms                    
+Denominator of transfer func | description
+-------------------- | ---------
+Real roots | exponential terms                   
+Negative real roots| system stable                       
+Positive real roots| system unstable (exp growth)        
+Complex roots| sinusoidal terms                    
 Complex roots (negative real part) | cause decaying oscillation          
 Complex roots (positive real)      | have growing oscillation, unstable. 
 
