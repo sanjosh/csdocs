@@ -1,9 +1,11 @@
 
 # Fountain codes (rateless)
 
+Fall under Erasure code
+
 ## theory 
 
-Handles only packet loss and not transmission errors
+Handles only packet loss (erasure) and not transmission errors (bit error)
 
 Rate = ratio of N/K (N = encoded blocks; K = original blocks)
 Reed-solomon codes : rate has to be set prior to encoding

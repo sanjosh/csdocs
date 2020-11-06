@@ -1,4 +1,10 @@
 
+# principles
+
+1. data plane does not depend on control plane of dependents
+2. metrics pyramid : diagnostic (cpu, mem), operational (throughput, latency), business
+3. blast radius
+
 # randomness
 
 * adding randomness can increase entropy.

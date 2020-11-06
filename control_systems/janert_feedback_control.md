@@ -176,7 +176,9 @@ process reaction curve
 
 ### general linear
 
+```
 u_i = (a_0 * r_0) + (a_t * r_t) + ... + (b_0 * y_0) + ... + (b_t * y_)
+```
 
 this subsumes
 1. standard PID version
