@@ -80,6 +80,7 @@ Action
 1. migrate hot tuples to row store; cold to column store
 
 
+
 # DBSeer by Mozafari
 
 DBSCAN used to cluster OLTP workloads in 
@@ -89,6 +90,35 @@ DBSCAN used to cluster OLTP workloads in
 Mozafari and et al. Performance and resource modeling in highly-concurrent oltp workloads. 
 
 # Basu Reinforcement learning
+
+Automated database configuration
+
+cost model is not known apriori but learnt through reinforcement learning.
+
+markov decision process
+1. state = db config
+2. actions = config changes
+3. reward = cost of config change + cost of query/update evaluation
+
+add discount factor to give more importance to immediate costs
+
+define cost-to-go function for a policy
+
+policy iteration : to find optimal policy, start from arbitrary policy and improve cost estimation
+
+problems with policy iteration
+1. no cost model
+2. curse of dimensionality
+3. probability distribution of queries is not known apriori
+
+reduce search space by pruning based on conditions in config
+
+calculate optimal policy using "least squares policy iteration" (LSPI)
+
+But LSPI needs predefined cost model.  
+
+Use recursive least squares estimation (RLSE)
+
 
 ## references
 
@@ -103,7 +133,34 @@ build indexes at runtime by looking at query access patterns
 David Sullivan
 https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.8651&rep=rep1&type=pdf
 
+# Online physical design tuning
+
+Bruno, N., Chaudhuri, S.: An online approach to physical design tuning. In: ICDE
+(2007)
+
+# Online index selection
+
+Schnaitter, K., Abiteboul, S., Milo, T., Polyzotis, N.: On-line index selection for
+shifting workloads. In: SMDB (2007)
+
+# Semi-automatic index tuning (WFIT)
+
+Work function algorithm
+
+Schnaitter, K., Polyzotis, N.: Semi-automatic index tuning: keeping DBAs in the
+loop. Proc. VLDB Endow. 5(5), 478–489 (2012)
+
 # Microsoft AutoAdmin 
+
+Create a hypothetical index.  Gather statistics for index using sampling and provide it to optimizer
+
+create a hypothetical config with hypothetical indexes
+
+Run query against SQL server in no-exec mode.  Find if the optimizer uses the hypothetical fake index
+
+## ref
+
+Chaudhari, AutoAdmin “What-if” Index Analysis Utility
 
 # Microsoft Azure : Database-as-a-service auto-scaling
 
@@ -220,3 +277,6 @@ CloudScale [19], AGILE [16], PRESS [9], AutoControl [17], AutoScale [8], CloudSt
 Huber et al. [11] in Das https://www.microsoft.com/en-us/research/wp-content/uploads/2016/06/p883-das-1.pdf
 
 Related Work in Peloton 
+
+Borodin, A., El-Yaniv, R.: Online Computation and Competitive Analysis. (Work function)
+

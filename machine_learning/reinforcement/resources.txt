@@ -11,3 +11,10 @@ Q-learning
 
 temporal difference
 
+value iteration
+policy iteration
+
+markov decision process
+
+https://towardsdatascience.com/reinforcement-learning-demystified-markov-decision-processes-part-1-bf00dda41690
+

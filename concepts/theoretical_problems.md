@@ -7,6 +7,7 @@
 * Canadian traveler problem (graph exploration)
 
 * Activity selection problem (Operations Research)
+* Dynamic lot size problem https://en.wikipedia.org/wiki/Dynamic_lot-size_model
 * Element distinctness problem 
 * Collision problem
 
