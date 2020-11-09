@@ -230,5 +230,11 @@ maximum batch size by waiting longer
 
 increase number of impressions by varying price
 
+# Code
+
+https://github.com/oreillymedia/feedback_control_for_computer_systems
+
+http://rvanheest.github.io/Literature-Study-Feedback-Control/
+
 
 (Philipp Janert, Feedback control systems)
