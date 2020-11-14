@@ -18,3 +18,11 @@ markov decision process
 
 https://towardsdatascience.com/reinforcement-learning-demystified-markov-decision-processes-part-1-bf00dda41690
 
+Maxi Lapan PyData 2017
+https://www.youtube.com/watch?v=X2sli0FqK0k
+
+Yuxi Li, Deep Reinforcement Learning an overview https://arxiv.org/abs/1701.07274
+
+Mnih, Asynchronous Methods for Deep Reinforcement Learning https://arxiv.org/abs/1602.01783
+
+https://arxiv.org/abs/1701.07274
