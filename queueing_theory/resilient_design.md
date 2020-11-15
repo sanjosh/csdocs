@@ -34,3 +34,24 @@ https://blog.sys-notes.com/presentation/
 # The world changed.  Did our designs
 
 https://docs.google.com/presentation/d/1daGaS-zjXwrpfy2OMOluzo4A9tMEpWnNG-RFJqyWioc/edit
+
+# scylladb oct 2020
+
+1. disaster follows tail behaviour  
+1. group work latency follows high percentile  
+1. customer satisfaction follows high percentile  
+
+kingman formula
+
+backpressure
+1. blocking code is example of backpressure
+2. executor, async and remote call need explicit backpressure
+
+for low latency
+* keep queue small or empty
+* apply backpressure
+* overprovision
+
+interactive workload : load shedding at back of queue - oldest
+
+

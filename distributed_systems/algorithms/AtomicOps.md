@@ -41,3 +41,16 @@ http://en.wikipedia.org/wiki/Non-blocking_algorithm
 http://en.wikipedia.org/wiki/Memory_barrier
 
 
+Hierarchy
+1. spinlock
+2. mutex using Test and Set
+3. semaphore = counter + mutex + wait queue
+4. condition variable is a wait queue : used to avoid busy wait
+5. read write mutex
+
+# memory consistency model
+
+processor can reorder access by doing early reads, lazy writes  
+fences  
+sequential consistency is default  
+
