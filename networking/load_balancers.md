@@ -217,3 +217,4 @@ https://www.iovisor.org/technology/xdp
 3. service mesh https://redtalks.live/2017/12/18/redtalks-live-23-aspen-mesh-w-shawn-wormke/
 4. https://en.wikipedia.org/wiki/Server_Name_Indication
 5. Tarpit networking wiki
+6. Glasnostic https://glasnostic.com/blog/news-glasnostic-aws-gateway-load-balancer

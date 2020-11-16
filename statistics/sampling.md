@@ -36,5 +36,11 @@ https://arxiv.org/pdf/1707.02038.pdf
 
 https://github.com/sanjosh/ts_tutorial
 
+## tutorial
+
+
+NYC tutorial Lydia Gu
+https://www.youtube.com/watch?v=aWKeSvnTalE
+
 # Stratified sampling
 

@@ -37,6 +37,22 @@ https://arxiv.org/pdf/1707.02038.pdf
 
 correlated travel times
 
+## Artwork personalization netflix contextual bandit
+
+https://netflixtechblog.com/artwork-personalization-c589f074ad76
+
+context is represented as feature vector provided as input to the model. 
+
+* the titles they’ve played, 
+* the genre of the titles, 
+* interactions of the member with the specific title, 
+* their country, 
+* their language preferences, 
+* the device that the member is using, 
+* the time of day and the day of week. 
+
+evaluate before deployment using offline algo called "replay" 
+https://dl.acm.org/doi/10.1145/1935826.1935878
 
 ## Recommendation
 
@@ -58,3 +74,8 @@ https://arxiv.org/abs/1502.02763
 https://lilianweng.github.io/lil-log/2018/01/23/the-multi-armed-bandit-problem-and-its-solutions.html
 
 https://en.wikipedia.org/wiki/Multi-armed_bandit
+
+# Todo
+
+Aleksandrs Slivkins
+https://arxiv.org/pdf/1904.07272.pdf
