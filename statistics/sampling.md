@@ -1,11 +1,10 @@
 
-# Importance sampling
+# Sampling
 
-Importance sampling is a technique to estimate properties of a particular distribution, by samples
-from a different distribution, to lower the variance of the estimation, or when sampling from the
-distribution of interest is difficult.
+why sampling ? to approx expectation
 
-(Li, Deep reinforcement learning)
+MathematicalMonk
+https://www.youtube.com/watch?v=AadKNJU1-lk
 
 # thompson sampling / probability matching / posterior sampling 
 
@@ -38,9 +37,9 @@ https://github.com/sanjosh/ts_tutorial
 
 ## tutorial
 
-
 NYC tutorial Lydia Gu
 https://www.youtube.com/watch?v=aWKeSvnTalE
 
 # Stratified sampling
+
 

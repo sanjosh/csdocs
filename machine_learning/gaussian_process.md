@@ -1,9 +1,8 @@
 
 
-## Kernals
+## Kernels
 
 Kernels are widely used in machine learning, for example in support vector machines [5]. The reason for this is that they allow similarity measures that go far beyond the standard euclidean distance (L2L2-distance). Many of these kernels conceptually embed the input points into a higher dimensional space in which they then measure the similarity
-
 
 
 ## Gaussian process
@@ -43,7 +42,7 @@ A GP defines a prior over functions, which can be converted into a posterior ove
 
 https://katbailey.github.io/post/gaussian-processes-for-dummies/
 
-# Ref
+## Ref
 
 Gaussian Processes for Machine Learning by Rasmussen and Williams.
 
@@ -52,3 +51,8 @@ Book Gaussian process for machine learning http://www.gaussianprocess.org/gpml/c
 https://www.cs.toronto.edu/~duvenaud/cookbook/
 
 https://distill.pub/2019/visual-exploration-gaussian-processes/
+
+# MathematicalMonk
+
+
+https://www.youtube.com/watch?v=vU6AiEYED9E&list=PLD0F06AA0D2E8FFBA&index=150
