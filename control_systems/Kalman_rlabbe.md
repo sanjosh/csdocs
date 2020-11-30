@@ -68,8 +68,56 @@ Benedict-Bordner filter was invented to minimize the transient error in case of 
 
 Ringing means that the signal overshoots and undershoots the data in a sinusoidal type pattern.
 
-
-# g-h-k filter
+## g-h-k filter
 
 extension of g-h filter which tracks acceleration in base signal
+
+# Discrete Bayes Filter
+
+Bayesian formula factors into the Kalman filter equation
+
+how to incorporate movement + noisy sensor
+
+Convolution : Probability distribution * error function of sensor (kernel)
+
+predict_move is a convolution : sum of series of multiplications
+
+Use scipy ndimage filters convolve, numpy roll
+
+information about exact position of dog is lost after N predictions with noisy sensor
+
+but each prediction is followed by an update, which increases certainty
+
+update is 
+
+posterior = (likelihood x prior) / normalization factor
+
+Predictor-Corrector algorithm
+
+
+Problems with this filter
+1. scaling is costly if multiple variables need to be tracked
+2. filter is discrete  (world is continuous)
+3. filter is multimodal (has multiple beliefs about exact position)
+4. requires measurement of the change in state
+
+
+# Probabilities, Gaussians and Bayes
+
+filter which is unimodal and continuous
+
+Gaussian used to describe with 2 numbers
+
+Sum of Gaussians = Gaussian
+
+Gaussian used in Kalman because its convenient
+
+1. update implemented using bayes
+2. predict implemented using Total probability theorem 
+
+Kalman assumes noise is normally distributed
+
+
+
+
 

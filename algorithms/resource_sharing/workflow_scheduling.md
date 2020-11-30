@@ -69,3 +69,7 @@ Allocator for Implementing Multi-analytics
 
 A Pareto-based scheduler for exploring cost-performance trade-offs for MapReduce workloads
 
+
+# Yanacek
+
+https://aws.amazon.com/builders-library/fairness-in-multi-tenant-systems/
