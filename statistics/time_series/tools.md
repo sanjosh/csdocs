@@ -19,3 +19,11 @@ Elasticsearch https://www.elastic.co/blog/implementing-a-statistical-anomaly-det
 
 Chronix http://www.chronix.io/
 
+Timesynth  : generating synthetic
+
+Tsimulus : generating synthetic
+
+sktime :
+
+corrr in R https://github.com/tidymodels/corrr
+
