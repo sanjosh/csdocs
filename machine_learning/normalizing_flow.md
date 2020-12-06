@@ -17,6 +17,8 @@ https://analyticsindiamag.com/what-normalising-flows-machine-learning-deepmind-g
 
 https://github.com/karpathy/pytorch-normalizing-flows
 
+tensorflow support https://arxiv.org/pdf/1711.10604.pdf
+
 Rezende, Mohamed, Variational Inference with Normalizing flows
 https://arxiv.org/abs/1505.05770
 

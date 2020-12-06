@@ -13,16 +13,42 @@ Autograd = 2
 
 # TODO
 
-trax, jax, swift, tangent from google
+swift, tangent from google
 
 # Summary of ML eng
 
 what goes on inside the neural network ? a circuit/graph with tensors, activations, weights
+
 Training and Inference
+
 what happens during training - memory, CPU, GPU
+
 challenges in distributed training
+
 inference on the edge
+
 inference on the browser
+
+# Autograd
+
+how to implement autodiff ? (Roger Grosse)
+
+## step 1 tracing computation to build graph.  
+
+tensorflow tells user to specify graph while pytorch traces computation in forward pass
+
+## step 2 implement vector-Jacobian product for each primitive op
+
+jacobian matrix is matrix of partial derivatives
+
+## step 3 implement backprop itself
+
+do message passing between nodes
+
+https://github.com/mattjj/autodidact
+http://www.cs.toronto.edu/~rgrosse/courses/csc421_2019/readings/L06%20Automatic%20Differentiation.pdf
+
+# XLA
 
 
 # Jax
@@ -31,21 +57,68 @@ Jax - (like Autograd 2.0)
 
 JAX uses XLA for array-level program optimization and code generation
 
+JAX is built atop the same tracing library used within Autograd, which, being designed for self-closure, recognizes its own operations as primitives.
+
 The acronym JAX stands for “just after execution”, since to compile a function we first monitor its execution once in Python.
 
 https://mlsys.org/Conferences/2019/doc/2018/146.pdf
 
+```
+from jax import grad
+
+@jit
+def simple_fun(x):
+  return np.sin(x) / x
+
+# Return the gradient of simple_fun with respect to x
+grad_simple_fun = grad(simple_fun)
+grad_grad_simple_fun = grad(grad(simple_fun))
+```
+
+jacobian, hessian
+
+forward-mode
+
+reverse-mode
+
+backprop = reverse-mode autodiff
+
+https://iaml.it/blog/jax-intro-english
+
+## Stax in Jax
+
+build neural networks, with an interface similar to other deep learning frameworks
+
+## MinMax in Jax
+
+optimization of cost functions.
+
+# Auto differentiation in Stan
+
+https://arxiv.org/abs/1509.07164
+
 # Flax
 
-# Stax
 
 # Haiku
+
+# Trax
+
+Trax includes basic models (like ResNet, LSTM, Transformer) and RL algorithms (like REINFORCE, A2C, PPO). 
+
+It is also actively used for research and includes new models like the Reformer and new RL algorithms like AWR. 
+
+Trax has bindings to a large number of deep learning datasets, including Tensor2Tensor and TensorFlow datasets.
 
 # Rlax
 
 reinforcement learning
 
-Neural tangents
+# Neural tangents
+
+high-level neural network API for specifying complex, hierarchical, neural networks of both finite and infinite width
+
+Infinite (in width or channel count) neural networks are Gaussian Processes (GPs) with a kernel function determined by their architecture
 
 # Tensorflow
 
@@ -55,9 +128,6 @@ Neural tangents
 
 # Misc
 
-## Autograd
-
-JAX is built atop the same tracing library used within Autograd, which, being designed for self-closure, recognizes its own operations as primitives.
 
 ### From thesis maclaurin
 

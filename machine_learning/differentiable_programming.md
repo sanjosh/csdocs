@@ -31,7 +31,11 @@ correspondence between neural net and functional
 6. CNN = map
 7. Treenet Recursive neural net = catamorphism
 
-# Reference
+## Reference
 
 1. https://www.cs.nuim.ie/~gunes/files/Baydin-MSR-Slides-20160201.pdf
 2. http://colah.github.io/posts/2015-09-NN-Types-FP/
+
+# Swift
+
+
