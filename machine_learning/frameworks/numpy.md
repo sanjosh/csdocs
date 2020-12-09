@@ -50,3 +50,7 @@ https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html
 
 https://stackoverflow.com/questions/4455076/how-to-access-the-ith-column-of-a-numpy-multidimensional-array
 
+
+# poly fit
+
+np.poly1d(np.polyfit())

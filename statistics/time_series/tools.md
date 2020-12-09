@@ -27,3 +27,6 @@ sktime :
 
 corrr in R https://github.com/tidymodels/corrr
 
+pyod https://pyod.readthedocs.io/en/latest/
+
+

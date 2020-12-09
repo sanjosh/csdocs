@@ -64,3 +64,9 @@ https://www.quora.com/How-do-we-train-a-classifier-for-which-we-only-have-1-a-se
 
 
 https://machinelearningmastery.com/smote-oversampling-for-imbalanced-classification/
+
+# Sklearn
+
+class_weight = balanced
+
+https://stackoverflow.com/questions/30972029/how-does-the-class-weight-parameter-in-scikit-learn-work
