@@ -73,4 +73,14 @@ X = df.loc[:, df.columns != 'label']
 df = df[["c1", "c2"]]
 df.columns = ["c1", any_name]
 
+## index
+
+df['Datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
+df = df.set_index('Datetime')
+https://stackoverflow.com/questions/27032052/how-do-i-properly-set-the-datetimeindex-for-a-pandas-datetime-object-in-a-datafr
+
+## plotting
+
+https://stackoverflow.com/questions/37414008/plotting-multiple-dataframes-using-pandas-functionality
+
 

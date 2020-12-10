@@ -9,3 +9,7 @@
 ## CART
 
 ## ID3
+
+# transform random forest to neural network
+
+https://arxiv.org/abs/1911.10829

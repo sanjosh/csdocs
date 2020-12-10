@@ -46,5 +46,19 @@ Yasushi Sakurai, Papadimitrou
 
 Papadimitriou SIGMOD 2006
 
+# multiple time series belonging to one instance
 
+PCA
+https://stackoverflow.com/questions/52449331/pca-with-several-time-series-as-features-of-one-instance-with-sklearn
+
+vector based ARIMA or hierarchical forecasting
+https://stats.stackexchange.com/questions/412276/how-to-handle-many-times-series-simultaneously
+
+LSTM with instance name as a feature input
+https://stats.stackexchange.com/questions/305863/how-to-train-lstm-model-on-multiple-time-series-data
+
+https://stats.stackexchange.com/questions/389291/strategies-for-time-series-forecasting-for-2000-different-products
+
+matrix factorization
+https://datascience.stackexchange.com/questions/5958/are-there-any-unsupervised-learning-algorithms-for-time-sequenced-data
 

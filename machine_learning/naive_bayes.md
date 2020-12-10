@@ -10,4 +10,18 @@ The contribution of predictors can also be visualized by plotting nomograms.
 
 https://www.saedsayad.com/naive_bayesian.htm
 
+# Naive Bayes
+
+pros : good for categorical
+
+Cons 
+
+zero frequency problem - unobserved sample = mitigate by using laplacian smoothing
+
+complete indepedence
+
+used in spam filtering, sentiment analysis
+
+
+
 

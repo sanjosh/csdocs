@@ -29,4 +29,9 @@ corrr in R https://github.com/tidymodels/corrr
 
 pyod https://pyod.readthedocs.io/en/latest/
 
+https://github.com/tslearn-team/tslearn
 
+https://github.com/blue-yonder/tsfresh
+
+AutoTS selects the model for forecasting
+https://analyticsindiamag.com/hands-on-guide-to-autots-effective-model-selection-for-multiple-time-series/

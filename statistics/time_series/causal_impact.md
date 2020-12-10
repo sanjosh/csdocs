@@ -1,5 +1,5 @@
 
-# Casual Impact
+# Causal Impact
 
 How to measure impact of market intervention (new product launch)
 
