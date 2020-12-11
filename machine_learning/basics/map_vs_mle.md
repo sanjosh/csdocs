@@ -1,4 +1,10 @@
 
+```
+From the vantage point of Bayesian inference, MLE is a special case of maximum a posteriori estimation (MAP) that assumes a uniform prior distribution of the parameters. In frequentist inference, MLE is a special case of an extremum estimator, with the objective function being the likelihood.
+```
+
+https://en.wikipedia.org/wiki/Maximum_likelihood_estimation
+
 # Max a posteriori (MAP) vs Max likelihood estimation (MLE)
 
 D = (x1, .. xn)
