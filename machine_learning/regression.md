@@ -52,3 +52,4 @@ ridge_loss = loss + (lambda * l2_penalty)
 
 
 https://machinelearningmastery.com/ridge-regression-with-python/
+
