@@ -37,6 +37,8 @@ autocomplete
 
 blacklist
 
+BERT - DeepRank 
+
 # misc
 
 change search algo 6 times a day

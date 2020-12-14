@@ -1,4 +1,8 @@
 
+https://ourcodingclub.github.io/tutorials/pandas-time-series/
+
+https://pandas.pydata.org/docs/getting_started/intro_tutorials/09_timeseries.html
+
 Adtk https://t.co/IwpYyNEuGP?amp=1
 
 Anomalize https://ai-summary.com/summary-time-series-anomaly-detection-with-anomalize-library/
@@ -35,3 +39,7 @@ https://github.com/blue-yonder/tsfresh
 
 AutoTS selects the model for forecasting
 https://analyticsindiamag.com/hands-on-guide-to-autots-effective-model-selection-for-multiple-time-series/
+
+https://pypi.org/project/ruptures/
+
+https://github.com/shunsukeaihara/changefinder

@@ -48,6 +48,16 @@ df.describe
 
 df.corrwith(another df)
 
+df.resample
+
+df.rolling
+
+df.diff
+
+df.median
+
+df.mean
+
 ## rename
 
 df.rename
@@ -93,4 +103,9 @@ https://stackoverflow.com/questions/27032052/how-do-i-properly-set-the-datetimei
 
 https://stackoverflow.com/questions/37414008/plotting-multiple-dataframes-using-pandas-functionality
 
+pandas.plotting.autocorrelation_plot()
+
+https://pandas.pydata.org/docs/reference/api/pandas.plotting.scatter_matrix.html
+
+https://pandas.pydata.org/docs/reference/api/pandas.plotting.lag_plot.html
 
