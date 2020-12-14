@@ -23,13 +23,6 @@ https://arxiv.org/abs/1901.03407
 
 https://www.ijcai.org/Proceedings/11/Papers/254.pdf
 
-# Concept drift
-
-where the generating distribution changes over time.
-
-https://arxiv.org/abs/1504.01044
-
-https://arxiv.org/abs/1810.02266
 
 # Time Series Forecasting in the Presence of Concept, Gustavo H. F. M. Oliveira
 

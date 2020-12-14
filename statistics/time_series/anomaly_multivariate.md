@@ -44,7 +44,7 @@ Zheng Chen, et al
 
 https://arxiv.org/pdf/1812.09387.pdf
 
-## Anomaly detection in APM
+## Anomaly detection in APM (Elasticsearch, Prolert)
 
 work so far
 1. statistical methods : goodness of fit

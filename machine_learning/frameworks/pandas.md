@@ -25,6 +25,16 @@ df.dtypes
 
 df.values
 
+## Purging NaN and Inf
+
+df.isna
+
+df.fillna
+
+df.isnf
+
+df.interpolate
+
 
 ## stats
 
