@@ -282,8 +282,6 @@ training algo are like DeepQ learning and A3C
 
 https://arxiv.org/pdf/1802.09941.pdf
 
-# Challenges in training large models
-
 # ZeRO: Memory Optimization Towards Training
 
 A Trillion Parameter Models
@@ -313,3 +311,5 @@ https://github.com/bharathgs/Awesome-Distributed-Deep-Learning
 Mayer Jacobsen Scalable Deep LEarning https://arxiv.org/pdf/1903.11314.pdf
 
 Hegde Usmani Parallel and Distributed Deep Learning https://stanford.edu/~rezab/classes/cme323/S16/projects_reports/hedge_usmani.pdf
+
+https://syncedreview.com/2020/12/14/a-brief-history-of-deep-learning-frameworks/

@@ -33,7 +33,9 @@ df.fillna
 
 df.isnf
 
-df.interpolate
+## convert categorical to indicator
+
+pd.get_dummies
 
 
 ## stats
@@ -48,9 +50,9 @@ df.describe
 
 df.corrwith(another df)
 
-df.resample
-
 df.rolling
+
+df.resample
 
 df.diff
 
@@ -58,11 +60,38 @@ df.median
 
 df.mean
 
+df.interpolate
+
 ## rename
 
 df.rename
 
 df2.columns = ['A', 'B']  
+
+## time
+
+Timestamp, Period, Timedelta
+
+pd.date_range, pd.period_range, pd.timedelta_range
+
+df.asfreq
+
+df.shift - shift data
+
+df.tshift - shift index
+
+## custom data reader
+
+pandas_datareader
+
+bs
+
+
+
+
+
+
+
 
 ## compare or merge dataframes
 

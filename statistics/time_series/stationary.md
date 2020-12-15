@@ -19,6 +19,8 @@ statsmodels.adfuller(X)
 
 https://www.youtube.com/watch?v=warCSvy1DMk
 
+## Johansen’s test for multivariate time series.
+
 ## Trend and Seasonality from scratch
 
 1. fit a second degree polynomial to find trend
