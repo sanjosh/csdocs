@@ -20,11 +20,7 @@ but if there is missing data, that needs to be interpolated
 
 extract phase information using Hilbert transform
 
-## causality between signals
-
-grainger causality test
-
-http://jinhyuncheong.com/jekyll/update/2019/05/16/Four_ways_to_qunatify_synchrony.html
+# for imbalanced data
 
 # multiple resolutions (time scales)
 
@@ -97,6 +93,8 @@ https://link.springer.com/article/10.3758/s13428-016-0754-9
 laloux, noise dressing of financial correlation matrices
 https://arxiv.org/abs/cond-mat/9810255
 
+Yuan, A novel way to detect correlations on multi-time scales, with temporal evolution and for multi-variables
 https://www.nature.com/articles/srep27707
+
 
 

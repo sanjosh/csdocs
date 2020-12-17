@@ -1,7 +1,8 @@
 
 * missing data points
-* noise 
+* noise in data
 * summary statistics
 * stationary 
+* order of integration I(d)
 * multicolliner, correlation, cointegration
 * prediction interval
