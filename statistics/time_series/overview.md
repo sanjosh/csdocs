@@ -1,7 +1,7 @@
 
 * missing data points
-* noise
-* summary statistic
+* noise 
+* summary statistics
 * stationary 
-* correlation
-* cointegration
+* multicolliner, correlation, cointegration
+* prediction interval
