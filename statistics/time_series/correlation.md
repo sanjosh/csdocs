@@ -60,32 +60,6 @@ first 5 coefficients of the DFT is enough to approximate the correlation among s
 Han Qiu, Learning Correlation Space for Time Series
 https://arxiv.org/pdf/1802.03628.pdf
 
-## change point detection in correlation
-
-Robust methods for DeCon, rank information for Multirank, the kernel trick for KCP and Euclidean distances for E-divisive. T
-
-### DeCon : uses Robust methods
-
-Bulteel, K., Ceulemans, E., Thompson, R., Waugh, C., Gotlib, I., Tuerlinckx, F., & Kuppens, P. (2014). DeCon: A tool to detect emotional concordance in multivariate time series data of emotional responding
-
-### E-divisive : uses euclidean distance
-
-Matteson, D., & James, N. (2014). A nonparametric approach for multiple change point analysis of multivariate data. 
-
-### Multirank : uses rank info
-
-Lung-Yut-Fong, A., Lévy-Leduc, C., & Cappé, O. (2012). Homogeneity and change-point detection tests for multivariate data using rank statistics.
-
-### KCP : uses kernel trick
-
-Arlot, S., Celisse, A., & Harchaoui, Z. (2012). Kernel change-point detection. Retrieved from http://arxiv.org/abs/1202.3878
-
-
-### ref to paper
-
- 
-Cabrieto, detecting correlation changes in multivariate
-https://link.springer.com/article/10.3758/s13428-016-0754-9
 
 # TODO
 

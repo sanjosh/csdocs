@@ -62,6 +62,12 @@ df.mean
 
 df.interpolate
 
+df.groupby.describe
+
+df.groupby.agg
+
+https://stackoverflow.com/questions/19384532/get-statistics-for-each-group-such-as-count-mean-etc-using-pandas-groupby?rq=1
+
 ## rename
 
 df.rename
@@ -83,15 +89,6 @@ df.tshift - shift index
 ## custom data reader
 
 pandas_datareader
-
-bs
-
-
-
-
-
-
-
 
 ## compare or merge dataframes
 
@@ -137,4 +134,8 @@ pandas.plotting.autocorrelation_plot()
 https://pandas.pydata.org/docs/reference/api/pandas.plotting.scatter_matrix.html
 
 https://pandas.pydata.org/docs/reference/api/pandas.plotting.lag_plot.html
+
+# Misc
+
+https://stackoverflow.com/questions/14262433/large-data-workflows-using-pandas?rq=1
 
