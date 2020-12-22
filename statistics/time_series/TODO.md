@@ -23,3 +23,34 @@ https://eng.uber.com/argos-real-time-alerts/
 
 https://stackoverflow.com/questions/63115867/isolation-forest-vs-robust-random-cut-forest-in-outlier-detection
 
+
+## other links
+
+https://research.google/pubs/pub37747/ (projecting disk usage)
+
+vector autoregressive models for multivariate time series (eric zivot)
+https://faculty.washington.edu/ezivot/econ584/notes/varModels.pdf
+
+multivariate time series
+https://faculty.washington.edu/ezivot/econ584/notes/multivariatetimeseries.pdf
+
+nonlinear time series
+https://faculty.washington.edu/ezivot/econ584/notes/nonlinear.pdf
+
+hierarchical forecast
+https://otexts.com/fpp2/hierarchical.html
+
+hts : R package for hierarchical
+
+https://stats.stackexchange.com/questions/56374/arima-forecast-with-seasonality-and-trend-strange-result
+
+penn stat510
+https://online.stat.psu.edu/stat510/
+
+https://blog.twitter.com/engineering/en_us/a/2014/breakout-detection-in-the-wild.html
+https://github.com/twitter/BreakoutDetection
+
+https://www.usenix.org/conference/lisa14/conference-program/presentation/boubez
+
+https://www2.slideshare.net/tboubez/5-things-i-learned-toufic-boubez-metafor-lisa2014
+

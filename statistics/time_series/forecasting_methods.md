@@ -15,6 +15,16 @@ ML based
 4. Support vector regression
 5. Gaussian Process Regresssion
 
+# observations
+
+Arima biased towards recent, Theta towards long-term
+
+heirarchical forecasting : multiple timescales
+
+heteroscedastic : handling errors that are not normally distributed
+
+domain agnostic
+
 ## uber Danny Yuan
 
 decompose using FFT, forecast on individual component and then run inverse 
@@ -88,6 +98,10 @@ https://en.wikipedia.org/wiki/Makridakis_Competitions
 # software
 
 statsmodels
+
+# TODO Theta model
+
+https://www.sciencedirect.com/science/article/abs/pii/S0169207000000662
 
 # References
 

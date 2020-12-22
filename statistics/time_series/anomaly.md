@@ -21,3 +21,11 @@ https://github.com/datamllab/tods
 https://github.com/rob-med/awesome-TS-anomaly-detection
 
 https://datascience.stackexchange.com/questions/33099/multivariate-time-series-anomalous-entry-detection
+
+# assumption free
+
+http://alumni.cs.ucr.edu/~ratana/SSDBM05.pdf
+Assumption-Free Anomaly Detection in Time Series
+
+automatic anomaly detection in the cloud via statistical learning
+https://arxiv.org/abs/1704.07706
