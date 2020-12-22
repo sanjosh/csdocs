@@ -4,3 +4,5 @@ https://docs.google.com/document/d/1wmjrocXIWTr1JxU-3EQBI6BK6KgtiFArkG47XK73xIQ/
 https://github.com/golang/proposal/blob/master/design/14951-soft-heap-limit.md
 
 https://groups.google.com/g/golang-dev/c/YjoG9yJktg4?pli=1
+
+simulator https://github.com/aclements/go-gcpacing
