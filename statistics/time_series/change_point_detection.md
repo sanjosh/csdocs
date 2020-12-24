@@ -32,9 +32,43 @@ Arlot, S., Celisse, A., & Harchaoui, Z. (2012). Kernel change-point detection. R
 Cabrieto, detecting correlation changes in multivariate
 https://link.springer.com/article/10.3758/s13428-016-0754-9
 
+# Behavioral change point analysis
+
+
+Gurarie, Andrews, Laidre, A novel method for identifying behavioural changes in animal movement data
+
+The BCPA is robust to gappiness and measurement error,
+
+https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1461-0248.2009.01293.x
+
+http://wiki.cbr.washington.edu/qerm/index.php/Behavioral_Change_Point_Analysis
+
+# Breakout detection 
+
+two types
+1. mean shift
+2. ramp-up
+
+## EDM
+
+E-Divisive with Medians employs energy statistics to detect divergence in mean.
+
+EDM uses robust statistical metrics, viz., median, and estimates the statistical significance of a breakout through a permutation test.
+
+EDM is non-parametric
+
+
+https://blog.twitter.com/engineering/en_us/a/2014/breakout-detection-in-the-wild.html
+
+https://github.com/twitter/BreakoutDetection
+
+James, Kejariwal, Leveraging Cloud Data to Mitigate User Experience from ‘Breaking Bad
+https://arxiv.org/pdf/1411.7955.pdf
+
 # TODO
 
-change in mean ?
+https://quantstrattrader.com/2015/01/21/an-introduction-to-change-points-packages-ecp-and-breakoutdetection/
+
 
 J. Verbesselt, R. Hyndman, G. Newnham, D. Culvenor 
 Detecting change within the trend and seasonal components of time series enables the classification 

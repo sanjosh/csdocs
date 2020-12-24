@@ -47,10 +47,4 @@ https://stats.stackexchange.com/questions/56374/arima-forecast-with-seasonality-
 penn stat510
 https://online.stat.psu.edu/stat510/
 
-https://blog.twitter.com/engineering/en_us/a/2014/breakout-detection-in-the-wild.html
-https://github.com/twitter/BreakoutDetection
-
-https://www.usenix.org/conference/lisa14/conference-program/presentation/boubez
-
-https://www2.slideshare.net/tboubez/5-things-i-learned-toufic-boubez-metafor-lisa2014
 

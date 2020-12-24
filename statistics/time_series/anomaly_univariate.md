@@ -32,10 +32,27 @@ https://www.cs.bham.ac.uk/~minkull/publications/OliveiraEtAlICTAI2017.pdf
 
 Ane Blázquez-García, Angel Conde, Usue Mori, Jose A. Lozano
 
-
 https://arxiv.org/abs/2002.04236
 
+# five things learned - toufic boubez - metafor
 
+## cannot use parametric methods on normal distributions 
 
+## concept drift happens.  
 
+yesterday's anomaly is today's normal; cannot use supervised learning
+
+## kolmogorov-smirnov is good
+
+makes no assumptions
+
+compares distance between distributions
+
+## use domain knowledge
+
+## learn from sparse data
+
+## reference
+
+https://www2.slideshare.net/tboubez/5-things-i-learned-toufic-boubez-metafor-lisa2014
 

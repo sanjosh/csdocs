@@ -24,6 +24,10 @@
 
 # Misc
 
-* CryptDB
+## CryptDB
 
-* ZeroDB
+## ZeroDB
+
+## Order-revealing encryption with limited leakage
+
+https://link.springer.com/chapter/10.1007/978-3-662-52993-5_24
