@@ -3,7 +3,7 @@
 
 https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python/
 
-# g-h filter or alpha-beta filter
+# 1. g-h filter or alpha-beta filter 
 
 how to blend prediction and measurement
 
@@ -72,7 +72,7 @@ Ringing means that the signal overshoots and undershoots the data in a sinusoida
 
 extension of g-h filter which tracks acceleration in base signal
 
-# Discrete Bayes Filter
+# 2. Discrete Bayes Filter
 
 Bayesian formula factors into the Kalman filter equation
 
@@ -94,7 +94,6 @@ posterior = (likelihood x prior) / normalization factor
 
 Predictor-Corrector algorithm
 
-
 Problems with this filter
 1. scaling is costly if multiple variables need to be tracked
 2. filter is discrete  (world is continuous)
@@ -102,22 +101,51 @@ Problems with this filter
 4. requires measurement of the change in state
 
 
-# Probabilities, Gaussians and Bayes
+# 3. Probabilities, Gaussians and Bayes
 
 filter which is unimodal and continuous
 
-Gaussian used to describe with 2 numbers
+Gaussian used to describe using 2 numbers
+
+variance computation : square of difference can exacerbate effect of outlier
 
 Sum of Gaussians = Gaussian
+
+Multiplication of Gaussian = Gaussian
 
 Gaussian used in Kalman because its convenient
 
 1. update implemented using bayes
 2. predict implemented using Total probability theorem 
 
-Kalman assumes noise is normally distributed
+Kalman filter equations assume the noise is normally distributed, and perform sub-optimally if this is not true
+
+skew : measures asymmetry in probability distribution
+kurtosis : measures tail of probability distribution
+
+
+# 4. One dimensional Kalman filters
+
+Replace the histogram in Discrete Bayes with a Gaussian 
+
+Position is Gaussian; velocity is Gaussian
+
+Kalman gain = function of std deviation of likelihood and prior (decides how much weightage to attach)
+
+variables used
+1. R = measurement noise
+2. Q = process noise
+3. P = variance of state
+4. z = measurement
+5. K = kalman gain
+
+alternate derivation of Kalman filter using orthogonal projection approach - was used by Kalman
 
 
 
 
 
+# see also
+
+1. Peter Huber. Robust statistics
+2. James Berger.  Bayesian robustness

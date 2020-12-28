@@ -14,6 +14,10 @@ Chandola, Varun, Banerjee, Arindam, and Kumar, Vipin.  Anomaly detection: A surv
 
 Charu Aggarwal, Outlier Analysis. Springer New York, 2013.
 
+# TODO
+
+HTM hierarchical temporal memory
+
 # tools
 
 https://github.com/datamllab/tods
