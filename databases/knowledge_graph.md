@@ -93,4 +93,12 @@ The next level of information is knowledge that is well known to anybody in the 
 
 https://cacm.acm.org/magazines/2019/8/238342-industry-scale-knowledge-graphs/fulltext
 
+# Commercial
+
+Diffbot
+
+alchemy
+    
+webhose
+
 
