@@ -65,6 +65,13 @@ finding the Gaussian process model that best fits
 
 overfit vs underfit : have to tune hyperparam of gaussian process
 
+## surrogate model
+
+represents expensive-to-evaluate objective function
+
+choices
+1. Gaussian process
+
 ## acquisition function
 
 Use the maximal location of the acquisition function to figure out where to sample next in the hyperparameter space. 
@@ -73,11 +80,22 @@ Different acquisition functions take different approaches to defining exploratio
 
 apply acquisition function (find point with highest expected improvement)
 
-optimization criteria
-1. expected improvement : points with high mean and reasonably high variance has to be sampled
-2. knowledge gradient
-
 intelligent sampling : no point in sampling a point which we already know is good
+
+### expected improvement 
+
+points with high mean and reasonably high variance has to be sampled
+
+not approp for noisy problems because it is like Random search
+
+### knowledge gradient (frazier 2006)
+
+### noisy expected improvement (letham 2018, frazier 2018)
+
+### augmented expected improvement (huang 2006)
+
+### entropy search
+
 
 # reference
 
