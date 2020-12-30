@@ -115,7 +115,7 @@ https://www.youtube.com/watch?v=clMbOOz6yR0&list=PLD0F06AA0D2E8FFBA&index=152
 
 https://www.youtube.com/watch?v=e7as_wY0hUI&list=PLD0F06AA0D2E8FFBA&index=153
 
-# COmputational
+# Computational
 
 https://scikit-learn.org/stable/modules/classes.html?highlight=gaussian#module-sklearn.gaussian_process
 
@@ -132,3 +132,14 @@ https://github.com/dfm/gp
 https://george.readthedocs.io/en/latest/
 
 https://github.com/krasserm/bayesian-machine-learning
+
+Gaussian process explorer
+https://ekalosak.github.io/blog/gaussian_process.html
+
+gpflow
+
+https://en.wikipedia.org/wiki/Comparison_of_Gaussian_process_software
+
+http://www.gaussianprocess.org/
+
+
