@@ -103,6 +103,16 @@ statsmodels
 
 https://www.sciencedirect.com/science/article/abs/pii/S0169207000000662
 
+# TODO neurips 2020
+
+https://github.com/AIStream-Peelout/flow-forecast
+
+https://towardsdatascience.com/breakthroughs-in-time-series-forecasting-at-neurips-2020-1dc1b9b6d99d
+
+Spectral Temporal Graph Neural Network for Multivariate Time-series Forecasting
+ using Graph Neural Networks to model the interactions between multivariate time series. Spectral Temporal Graph Neural Network (STGNN)
+
+
 # References
 
 1. https://eng.uber.com/forecasting-introduction/
