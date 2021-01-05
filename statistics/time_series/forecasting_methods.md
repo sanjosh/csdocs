@@ -17,7 +17,7 @@ ML based
 
 # observations
 
-Arima biased towards recent, Theta towards long-term
+Arima is biased towards recent; Theta towards long-term
 
 heirarchical forecasting : multiple timescales
 
@@ -55,6 +55,17 @@ publications
 1. engineering uncertainty estimation in neural networks for time series prediction at uber
 2. engineering extreme event forecasting at uber with RNN
 3. omphalos, Uber's parallel and extreme extensible time series backtesting tool
+
+# ensemble
+
+1. preprocessing : fill missing values interpolation zeileis.  handle heteroscedascity with box-cox
+2. ensemble of arima, STL, theta, ETS, TBATS, neural net, random walk, seasonal naive, mean, linear regression with seasonal components
+3. prefer models which detect long-term trend : use change point detection of verbesselt and then drop models like ARIMA which have short-term memory and overfit on recent changes
+4. combine forecasts of individual models using Inverse mean square forecast error 
+
+theta assimakopoulus and nikolopoulos does not handle seasonal
+
+time series data may not fit in memory
 
 ## jeff yau
 
@@ -99,6 +110,7 @@ https://en.wikipedia.org/wiki/Makridakis_Competitions
 
 statsmodels
 
+
 # TODO Theta model
 
 https://www.sciencedirect.com/science/article/abs/pii/S0169207000000662
@@ -112,6 +124,18 @@ https://towardsdatascience.com/breakthroughs-in-time-series-forecasting-at-neuri
 Spectral Temporal Graph Neural Network for Multivariate Time-series Forecasting
  using Graph Neural Networks to model the interactions between multivariate time series. Spectral Temporal Graph Neural Network (STGNN)
 
+# TODO
+
+1. Makridakis M3 competition 
+2. Clemen.  Combining forecasts
+2. Hyndman Khandakar Automatic time series forecasting
+2. Granger, Joyeux.   Long memory time series models and fractional differencing
+2. Menezes, Bunn.  use of combined forecasts
+2. Zeileis Grothendieck.  zoo S3 infrastructure for regular and irregular time series
+2. Grupe Cleveland calendar effects
+2. Provost, Kolluri.  Scaling up inductive algorithms
+2. Atiya Amir, Robert.  Combination of long term and short term forecasts
+2. Verbesselt.  Detecting trend and seasonal changes
 
 # References
 
