@@ -6,20 +6,6 @@ goals
 2. correctness
 3. freshness
 
-# question answering
-
-semantic parsing : converting a natural question into a formal KG query 
-
-## neural approaches
-
-prediction models commonly used in semantic parsing into three major categories
-1. classification, 
-2. ranking, 
-3. translation.
-
-Chakraborty, Introduction to Neural Network based Approaches for Question Answering over Knowledge Graphs
-https://arxiv.org/pdf/1907.09361.pdf
-
 https://github.com/BshoterJ/awesome-kgqa
 
 # freebase cubed
@@ -42,15 +28,6 @@ https://dgraph.io/blog/post/why-google-needed-graph-serving-system/
 # code
 
 https://github.com/OceanskySun/GraftNet
-
-# Commercial
-
-Diffbot
-
-alchemy
-    
-webhose
-
 
 ## how to build
 

@@ -9,7 +9,7 @@
 6. multilingual
 7. custom knowledge graphs
 
-## support for
+## assertions to support 
 
 first-class mechanism for making statements about statements. ( How to say P1 interacts with P2 is supported by some publication)
 
