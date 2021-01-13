@@ -16,15 +16,50 @@ Need normalizers and comparators for each column
 * phrase embeddings : encoder-decoder network of RNN
 * image captioning : joint embeddings
 
-Algorithms 
-* logistic regression (excel SUMPRODUCT)
-* neural net
-* decision tree
-* boosted decison tree
-* random forest
 
-Tools
-* Knime
+## factor graphs
+
+# Tools
+
+## Knime
+
+## recordlinkage python
+
+
+# papers
+
+## named entity disambiguation 
+
+Pasca Bunescu, Using Encyclopedic Knowledge for Named Entity Disambiguation, https://www.cs.utexas.edu/~ml/papers/encyc-eacl-06.pdf
+
+
+## Named entity disambiguation with knowledge graph (oracle)
+
+1. Build graph from DBPedia (Property graph and Redirects graph)
+2. Graph embedding : Encode vertex as vector - similar vertex has similar embedding
+3. Deepwalk to create embedding
+4. Inference : find candidate vertices based on string match
+
+https://blogs.oracle.com/datascience/named-entity-disambiguation-with-knowledge-graphs-v2-v2
+
+Parravicini, Patra, Fast and Accurate Entity Linking via Graph Embedding
+https://dl.acm.org/doi/10.1145/3327964.3328499
+
+https://www2.slideshare.net/necstlab/fast-and-accurate-entity-linking-via-graph-embedding
+
+## entity disambiguation with freebase
+
+Zheng, Entity Disambiguation with Freebase
+
+https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/38389.pdf
+
+## cross-document coreference
+
+factor graph
+
+https://ai.googleblog.com/2013/03/learning-from-big-data-40-million.html
+
+Singh, Large-Scale Cross-Document Coreference Using Distributed Inference and Hierarchical Models
 
 # Reference
 
