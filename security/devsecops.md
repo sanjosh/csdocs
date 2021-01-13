@@ -62,3 +62,5 @@ https://www.sqreen.com/checklists/devops-security-checklist
 https://github.com/appsecco/DevOpsSecurityChecklist
 
 https://netflixtechblog.com/netflix-security-monkey-on-google-cloud-platform-gcp-f221604c0cc7
+
+https://www.infoq.com/articles/ale-software-architects/
