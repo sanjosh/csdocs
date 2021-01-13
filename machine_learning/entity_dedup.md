@@ -28,7 +28,11 @@ Need normalizers and comparators for each column
 
 # papers
 
-## named entity disambiguation 
+## central entities
+
+https://www.seobythesea.com/2015/04/how-google-may-identify-central-entities-from-resources/
+
+## named entity disambiguation google
 
 Pasca Bunescu, Using Encyclopedic Knowledge for Named Entity Disambiguation, https://www.cs.utexas.edu/~ml/papers/encyc-eacl-06.pdf
 
@@ -71,3 +75,8 @@ Singh, Large-Scale Cross-Document Coreference Using Distributed Inference and Hi
 6. https://medium.com/district-data-labs/basics-of-entity-resolution-with-python-and-dedupe-bc87440b64d4
 7. https://stackoverflow.com/questions/43366705/how-to-apply-machine-learning-to-fuzzy-matching
 
+# TODO
+
+Pair-Linking for Collective Entity Disambiguation: https://arxiv.org/pdf/1802.01074.pdf
+
+Improving Entity Linking by Modeling Latent Entity type information https://arxiv.org/pdf/2001.01447.pdf

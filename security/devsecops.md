@@ -49,6 +49,17 @@ https://www.dataone.org/best-practices/ensure-integrity-and-accessibility-when-m
 
 https://diogomonica.com/2015/12/29/from-double-f-to-double-a/
 
+# web security
+
+https://portswigger.net/web-security
+
+## IDOR
+
+## web cache poisoning
+
+2018 , "Practical Web Cache Poisoning", 
+2020 , "Web Cache Entanglement: Novel Pathways to Poisoning"
+
 # pen test
 
 https://www.ssllabs.com/
@@ -64,3 +75,4 @@ https://github.com/appsecco/DevOpsSecurityChecklist
 https://netflixtechblog.com/netflix-security-monkey-on-google-cloud-platform-gcp-f221604c0cc7
 
 https://www.infoq.com/articles/ale-software-architects/
+

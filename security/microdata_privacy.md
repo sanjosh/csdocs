@@ -16,6 +16,13 @@ Two types of information disclosure
 A common anonymization approach is generalization, which replaces quasi-identifier 
 values with values that are less-specific but semantically consistent
 
+# statice
+
+https://www.youtube.com/watch?v=QHmV92Sf8iY
+https://www2.slideshare.net/figago/privacypreserving-data-sharing-pydata-berlin-2018
+
+
+
 ## earlier techniques
 
 These techniques compromised data integrity of the tables
@@ -24,7 +31,32 @@ These techniques compromised data integrity of the tables
 1. Rounding, 
 1. Data Swapping and Perturbation.
 
+## PII removal 
+
+1. pseudonymization
+2. sanitize
+3. de-identification
+4. anonymization
+
+## differential privacy
+
+NIST Differential Privacy Synthetic Data Challenge.
+
+https://www.nist.gov/itl/applied-cybersecurity/privacy-engineering/collaboration-space/focus-areas/de-id/tools
+
+https://github.com/google/differential-privacy
+
+https://github.com/IBM/differential-privacy-library
+
+https://github.com/prashmohan/GUPT
+
+https://diffprivlib.readthedocs.io/en/latest/index.html
+
 ## k-anonymity 
+
+each combination of quasi-identifiers appears in at least k rows
+
+using suppression, generalization, binning, top-coding
 
 While k-anonymity protects against identity disclosure, it is insufficient to prevent attribute disclosure.
 
@@ -54,3 +86,9 @@ Ninghui Li, Tiancheng Li, and Suresh Venkatasubramanian. 2007. t-closeness: Priv
 ## aggregate query answering
 
 N. Koudas, D. Srivastava, T. Yu, and Q. Zhang. Aggregate query answering on anonymized tables. In Proc. 23rd Intnl. Conf. Data Engg. ICDE, 2007
+
+
+## COCOA synthetic data generator
+
+https://github.com/ucd-pel/COCOA
+
