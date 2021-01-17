@@ -1,0 +1,33 @@
+
+Acra
+
+Implementing Literal Search of Encrypted Data
+https://paragonie.com/blog/2017/05/building-searchable-encrypted-databases-with-php-and-sql
+
+Proxy-Mediated Searchable Encryption in SQL https://eprint.iacr.org/2019/806.pdf
+https://dev.to/cossacklabs/how-to-run-secure-search-over-encrypted-data-3pj4
+
+Ciphersweet
+https://ciphersweet.paragonie.com/security
+
+https://github.com/ankane/blind_index
+
+libsodium https://doc.libsodium.org/
+
+https://insights.sei.cmu.edu/sei_blog/2018/12/threat-modeling-12-available-methods.html
+
+Cryptonets paper neural nets
+
+Encryption protocol intel SGX Skylake CPU
+
+Cipherbase
+
+Lattices : Ring-LWE(NewHope), NTRU
+
+Isogenies : Supersingular isogeny DIffie-Hellman
+
+Codes ; McElice/McBits
+
+## libraries
+
+https://github.com/microsoft/SEAL
