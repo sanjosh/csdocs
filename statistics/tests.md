@@ -35,3 +35,7 @@ data is normally distributed.  if not, use non-parametric test
 # reference
 
 https://www.youtube.com/watch?v=ulk_JWckJ78
+
+# TODO
+
+https://machinelearningmastery.com/statistical-hypothesis-tests-in-python-cheat-sheet/

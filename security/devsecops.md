@@ -76,3 +76,7 @@ https://netflixtechblog.com/netflix-security-monkey-on-google-cloud-platform-gcp
 
 https://www.infoq.com/articles/ale-software-architects/
 
+
+OWASP 
+https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html
+

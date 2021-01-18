@@ -49,6 +49,8 @@ https://hbfs.wordpress.com/2015/10/20/three-bad-functions-hash-functions-part-iv
 
 https://hbfs.wordpress.com/2015/10/27/three-somewhat-better-functions-hash-functions-part-v/
 
+https://hbfs.wordpress.com/2015/11/17/and-a-good-one-hash-functions-part-vi/
+
 https://hbfs.wordpress.com/2008/08/12/bit-blenders-move-bits-around-quite-a-bit/
 
 https://hbfs.wordpress.com/2011/11/08/mild-obfuscation/
