@@ -68,3 +68,7 @@ https://blog.openmined.org/ckks-homomorphic-encryption-pytorch-pysyft-seal/
 
 1. https://medium.com/privacy-preserving-natural-language-processing/homomorphic-encryption-for-beginners-a-practical-guide-part-1-b8f26d03a98a
 2. Chen, et al.  Simple Encrypted Arithmetic Library - SEAL.  https://eprint.iacr.org/2017/224.pdf
+
+# TODO
+
+https://www.microsoft.com/en-us/research/blog/password-monitor-safeguarding-passwords-in-microsoft-edge/

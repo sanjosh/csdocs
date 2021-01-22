@@ -1,5 +1,5 @@
 
-# Deduplication
+# record linkage
 
 AKA record linkage, dedup, entity resolution, conflation
 

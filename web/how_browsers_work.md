@@ -158,3 +158,8 @@ The main motivation behind shapes is the concept of Inline Caches or ICs. ICs ar
 
 For subsequent runs, the IC only needs to compare the shape, and if it’s the same as before, just load the value from the memorized offset.
 
+
+# TODO
+
+Understanding the V8 Javascript engine
+https://www.youtube.com/watch?v=xckH5s3UuX4
