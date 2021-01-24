@@ -102,6 +102,52 @@ def gen(n : int):
 
 ## logger
 
+never use root logger; configure it to write to file since default is stderr
+
+```
+import logging
+logging.basicConfig(
+    filename="test.log",
+    level=logging.DEBUG,
+    format="%(asctime)s:%(levelname)s:%(message)s"
+    )
+```
+
+always create logger
+```
+logger1 = logging.getLogger(__name__)
+```
+
+used timed rotating handler
+
+```
+import logging
+import sys
+from logging.handlers import TimedRotatingFileHandler
+FORMATTER = logging.Formatter("%(asctime)s — %(name)s — %(levelname)s — %(message)s")
+LOG_FILE = "my_app.log"
+
+def get_console_handler():
+   console_handler = logging.StreamHandler(sys.stdout)
+   console_handler.setFormatter(FORMATTER)
+   return console_handler
+def get_file_handler():
+   file_handler = TimedRotatingFileHandler(LOG_FILE, when='midnight')
+   file_handler.setFormatter(FORMATTER)
+   return file_handler
+def get_logger(logger_name):
+   logger = logging.getLogger(logger_name)
+   logger.setLevel(logging.DEBUG) # better to have too much log than not enough
+   logger.addHandler(get_console_handler())
+   logger.addHandler(get_file_handler())
+   # with this pattern, it's rarely necessary to propagate the error up to parent
+   logger.propagate = False
+   return logger
+
+```
+
+https://www.toptal.com/python/in-depth-python-logging
+
 ## exceptions & stacktrace
 
 use logger.exception
@@ -124,6 +170,10 @@ logger.debug(traceback.format_exc())
 use `id(instance)` to verify shallow copies
 
 ## linting
+
+1. pylint
+1. mypy
+1. flake
 
 ## Files use Pathlib
 
@@ -158,3 +208,11 @@ https://treyhunner.com/2018/12/why-you-should-be-using-pathlib/
 https://docs.python.org/3/library/pathlib.html
 
 ## profiler
+
+## tests
+
+## module org 
+
+init.py
+
+setup.py
