@@ -39,11 +39,13 @@ class A
 
 ## assertions should print good message
 
+```
 try:
     assert a != b, "Failed
 except AssertionError as e:
     e.args += (put additional values in this tuple)
     raise
+```
 
 ## enforce keyword arguments using asterisk
 
@@ -84,9 +86,11 @@ import dataclass
 
 ## use generators (yield)
 
+```
 def gen(n : int):
    for i in n:
       yield i
+```
 
 ## use underscore for private
 
