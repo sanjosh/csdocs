@@ -164,3 +164,7 @@ compute(numElem, processingDelay, schedulingDelay)
 }
 
 
+
+# talks
+
+dean wampler typesafe spark backpressure https://files.meetup.com/1634302/Backpressure%2020160112.pdf

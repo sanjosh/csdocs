@@ -55,12 +55,14 @@ Proportional droop : a strictly proportional controller will never reach setpoin
 
 ### central loop
 
+```
 setpoint = get_setpoint(time t)
 error = setpoint - actual
 control_input = controller.work(error)
 safe_control_input = actuator.work(control_input)
 plant_output = plant.work(safe_control_input)
 z = return_filter.work(plant_output)
+```
 
 ### controller
 
@@ -100,6 +102,7 @@ find slope of process characteristic curve.  this becomes the k_p term
 ### what should be sampling rate ?
 
 it must be 5/10 times greater than rate of change of signal  
+
 in derivative control, too short interval leads to round-off errors but too-long results in finite-difference errors
 
 ### how soon does output change  ?
