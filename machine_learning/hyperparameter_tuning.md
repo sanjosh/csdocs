@@ -12,3 +12,21 @@ https://www2.slideshare.net/SessionsEvents/scott-clark-cofounder-and-ceo-sigopt-
 https://mlconf.com/blog/lets-talk-bayesian-optimization/
 
 https://scholar.google.co.in/citations?user=mwWbhAUAAAAJ&hl=en
+
+# ax.dev
+
+# optuna
+
+# hyperopt
+
+https://github.com/hyperopt/hyperopt
+
+# leaderboard
+
+https://bbochallenge.com/leaderboard (NeurIPS)
+
+# katib
+
+https://github.com/kubeflow/katib
+
+# ray
