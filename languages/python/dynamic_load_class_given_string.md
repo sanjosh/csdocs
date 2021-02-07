@@ -1,3 +1,4 @@
+```
 import importlib
 
 def get_instance(obj, **kwargs):
@@ -22,3 +23,10 @@ def get_instance(obj, **kwargs):
             instance = obj.__class__(*obj.__args__, **obj.__kwargs__)
 
     return instance
+```
+
+https://stackoverflow.com/questions/41678073/import-class-from-module-dynamically
+
+https://stackoverflow.com/questions/8790003/dynamically-import-a-method-in-a-file-from-a-string
+
+https://github.com/sdv-dev/Copulas/blob/master/copulas/__init__.py#L45
