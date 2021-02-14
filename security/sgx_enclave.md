@@ -47,6 +47,10 @@ SDK
 
 https://eprint.iacr.org/2016/086.pdf
 
+## security
+
+Alexander Nilsson, et al. A Survey of Published Attacks on Intel SGX https://arxiv.org/abs/2006.13598
+
 # SGX in VM
 
 Hypervisors can expose SGX support to VM by unmasking CPUID flags
@@ -114,16 +118,21 @@ http://www.cs.unc.edu/~porter/pubs/graphene-sgx.pdf
 Docker container can use Graphene LibOS and SGX PAL
 
 
-
 # Google Asylo
 
 # Google - AMD SEV
+
+GCP shielded VM
 
 # Microsoft Open Enclave
 
 # Microsoft Azure - SGX
 
+create confidential computing VM
+
 # VMWare
+
+vSphere7 supports
 
 # AWS Nitro
 
@@ -135,6 +144,11 @@ https://www.allthingsdistributed.com/2020/09/reinventing-virtualization-with-aws
 
 # Anjuna
 
+# Scone
+
 # Panoply
 
 
+# hardware support
+
+https://github.com/ayeks/SGX-hardware
