@@ -11,21 +11,24 @@ So we need a theory for average case complexity over natural distributions
 
 # Random satisfiability
 
-Mitchell, hard and easy distributions of SAT problems
-Cheeseman, where the really hard problems
+1. Mitchell, hard and easy distributions of SAT problems
+1. Cheeseman, where the really hard problems
 
 These two papers showed Random satisfiability 
 
 Probability that formula has satisfying assignment drops to zero when (M=ratio of variables/N=ratio of clauses) goes beyond 5
+
 At same point in curve, the median time of David Putnam algorithm goes sharply up.
 
 Sharp threshold conjectured as N -> inf
+
 Hard instances are close to threshold
 
-Mezard, Analytic and Algorithmic Solution of Random Satisfiability 
-Author, Determining the computational complexity from characteristic phase transitions, 1999
+See
+1. Mezard, Analytic and Algorithmic Solution of Random Satisfiability 
+1. Monasson, Determining the computational complexity from characteristic phase transitions, 1999
 
-suggested that hardness is related to phase transitions
+Both above papers suggested that hardness is related to phase transitions
 
 Satisfiability threshold is around 4.22 (M/N)
 
@@ -40,9 +43,10 @@ class of problems : high dimensional Bayes-optimal inference
 # Card game
 
 Find minimum achievable error in guessing cards held by people
-High dimensional probability distributions are mathematically and computationally hard
 
-Map it to spin glass 
+Such High dimensional probability distributions are mathematically and computationally hard
+
+Map the problem to a spin glass 
 
 Boltzmann-Gibbs distribution
 
@@ -62,14 +66,15 @@ Same algorithm discovered in many fields
 As n->inf, AMP algo follows gradient ascent with step size 1
 
 First order phase transitions (when water is evaporating or freezing)
+
 Phase diagram splits into three regions
 1. Easy  solvable by Approx message passing
 1. Impossible info theoretically
 1. Hard phase conjecture : No poly algo works,
 
-Diamond is metastable phase of carbon at normal temperature and pressure
-Graphite is equilibrium state of carbon at normal temp & pressure
-But diamonds do not turn into graphite because meta stability is very long living
+Diamond is metastable phase of carbon at normal temperature and pressure.  
+Graphite is equilibrium state of carbon at normal temp & pressure.  
+But diamonds do not turn into graphite because meta stability is very long living.  
 
 Water in freezer.  States correspond to algorithmic hardness
 1. Liquid = impossible
@@ -87,17 +92,20 @@ Is it useful to know that hardness is due to first order phase transition ? Can 
 
 See Paper "Statistical physics based reconstructed in compressed sensing"
 
-Design matrix such that sparse signal can be reconstructed from measurement
+Design matrix such that sparse signal can be reconstructed from measurement.
+
 Many solutions to linear problem, but only one is sparse.
 
 easy to hard threshold is spinodal of a first order phase transition
 
 Nucleation happens when dim into which system is embedded is finest
+
 Similar, design compressed sensing matrix can be designed such that metastability vanishes.
 
 See paper " Krzakala, Mezard, Sausset" and "Javanmard, Montanari"
 
 Spatial coupling applicable to all problems where interaction graph matrix can be designed
+
 Discovered in ECC - Felstrom, Zigangirov 99; Urbanke, Kudekar 10
 
 Spatial coupling as a proof technique - Paper
@@ -126,5 +134,5 @@ Statistical physics leads to new insights, algorithms and proofs
 
 1. Gibbs, Statistical mechanics
 2. Statistical physics of inference: thresholds and algorithms https://www.tandfonline.com/doi/abs/10.1080/00018732.2016.1211393
-3. Computational complexity of statistical inference : Simons Institute
+3. Computational complexity of statistical inference : Simons Institute https://simons.berkeley.edu/programs/si2021
 4. Mezard Montanari, Information Physics and Computation  2009
