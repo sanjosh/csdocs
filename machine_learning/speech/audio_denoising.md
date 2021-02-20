@@ -122,3 +122,5 @@ https://github.com/SIFANWU/Deep-Denoising-Autoencoder
 https://github.com/topics/denoising-autoencoders
 
 https://github.com/yongxuUSTC/DNN-for-speech-enhancement
+
+https://github.com/xiph/rnnoise (RNN background noise)
