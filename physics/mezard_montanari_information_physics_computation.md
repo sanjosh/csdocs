@@ -14,19 +14,32 @@ latter is often characterized by the decomposition of the (Boltzmann) probabilit
 distribution into well separated ‘lumps’ (pure Gibbs states).
 ```
 
+
 ### Independent random variables
 
 ### Correlated random variables
 
-## disordered model
+## Terms
 
 energy is stochastic rather than deterministic
 
-partition function = free entropy
+entropy, S, = number of ways N particles with total energy E may be distributed in a volume V
+
+partition function = free energy
+
+phase transition = correspond to singurality in free energy
 
 Boltzmann
 
 population dynamics
+
+symmetry breaking
+
+time evolution of distribution is called "density evolution"
+
+fixed point analysis is called "replica symmetric cavity method"
+
+
 
 ## random energy model
 
@@ -78,8 +91,4 @@ appearance of long range correlations (typical of phase transition) leads to poo
 messages become random variables
 
 study distribution of random variables
-
-time evolution of distribution is called "density evolution"
-fixed point analysis is called "replica symmetric cavity method"
-
 
