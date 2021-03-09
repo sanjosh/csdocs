@@ -1,7 +1,7 @@
 
-*(From CUDA Guide)*
+# From CUDA Guide
 
-* __syncthreads() - all threads in a block will wait
+* `__syncthreads()` - all threads in a block will wait
 
 by default following are async
 * kernel launch
