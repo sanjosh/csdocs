@@ -1,6 +1,9 @@
 
-# Pytorch Geometric 
+# DeepSNAP
 
+# GraphGym
+
+# Pytorch Geometric 
 
 GINConv and GCNConv are instances of Message passing.  They define single layer of graph convolution
 

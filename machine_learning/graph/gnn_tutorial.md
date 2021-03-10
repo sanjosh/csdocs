@@ -11,9 +11,9 @@ a GCN passes a filter over the graph, looking for essential vertices and edges t
 
 ## concepts are same
 
-local connection : capture neighbourhood
-shared weights : 
-the use of multi-layer  : capture hierarchy of multi-scale features
+* local connection : capture neighbourhood
+* shared weights : 
+* the use of multi-layer  : capture hierarchy of multi-scale features
 
 Locality in
 * images : CNN uses convolutional layer
