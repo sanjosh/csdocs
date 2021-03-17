@@ -1,4 +1,8 @@
 
+# Xavier initialization
+
+# convolution instead of fully connected
+
 So what happened in 2012 that changed the world of machine vision? The answer is
 a technique called deep convolutional neural networks which the Super Visison
 algorithm used to classify the 1.2 million high resolution images in the dataset
