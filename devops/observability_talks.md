@@ -47,7 +47,7 @@ Query : Select time series, select window, Group By, Percentile
 
 FETCH, WINDOW, GROUP BY, POINT
 
-1. How to find global TPS - query all Zone mixers for RPC metrics*
+1. How to find global TPS - query all Zone mixers for RPC metrics
 1. How to detect Anomalies
 1. Compare to last month/year
 1. Cross schema joins
@@ -58,3 +58,19 @@ Panopticon
 
 Do early Dimension reduction
 
+
+# Layer9
+
+Four RCA approaches
+
+1. event correlation
+2. log analysis
+3. execution path mining
+4. dependency graph mining
+
+# Knowledge graph based RCA
+
+A Causality Mining and Knowledge Graph Based Method of Root Cause Diagnosis for Performance Anomaly in Cloud Applications
+
+
+https://www.mdpi.com/2076-3417/10/6/2166/htm

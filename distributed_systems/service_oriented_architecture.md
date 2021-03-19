@@ -64,3 +64,35 @@ strange loop
 Goto
 atscale
 
+
+# Anti-patterns
+
+* hardcoded endpoints
+* wrong cuts
+* cyclic dependency
+* API versioning
+* shared persistence
+* ESB usage (enterprise service bus)
+* legacy org
+* local logging
+* megaservice
+* inapprop service intimacy
+* no api gateway
+* shared lib
+* too many tech
+* lack of microservice skeleton
+* focus on latest tech
+* too many microservices
+* common ownership
+* no devops tools
+* non-homogenous adoption
+
+Microservices Anti-Patterns: A Taxonomy
+Taibi, Lenarduzzi, Pahl
+https://arxiv.org/pdf/1908.04101.pdf
+
+# Uber
+
+Domains, Layers, Gateways, Extensions
+
+https://eng.uber.com/microservice-architecture/
