@@ -94,3 +94,18 @@ box-whisker plot
 
 # independence test
 
+## chi-squared
+
+contingency table of categorical variable
+
+compare expected and actual frequencies
+
+result is test statistic which has chi-squared distribution
+
+null hypothesis : varables are independent
+
+if test statistic > critical value, reject null hypothesis
+
+if p value < alpha, reject null hypothesis
+
+degrees of freedom
