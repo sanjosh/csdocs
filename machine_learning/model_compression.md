@@ -66,3 +66,10 @@ Work in model compression for NLP applications falls broadly into four categorie
 
 the FLOPS of a regular convolution op is proportional to d,w2,r2, i.e., doubling network depth will double FLOPS, but doubling network width or resolu-tion will increase FLOPS by four times.
 
+## quantization
+
+binary quantization
+
+quantization on FPGA to arbitrary bits
+
+loss of accuracy in mat mul with smaller bits
