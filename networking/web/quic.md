@@ -1,7 +1,7 @@
 
 # QUIC by Ian swett
 
-Summary : TCP + TLS + reliable data delivery*
+Summary : TCP + TLS + reliable data delivery
 
 Features:
 1. Always encrypted

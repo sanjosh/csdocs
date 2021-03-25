@@ -2,9 +2,13 @@
 # Load balancer
 
  ```
-...in both the L4 and L7 load balancing domains, the industry is moving away from HA pairing towards horizontally scalable systems that converge via consistent hashing. 
+...in both the L4 and L7 load balancing domains, the industry is moving away from HA pairing 
+towards horizontally scalable systems that converge via consistent hashing. 
+
 ... move from hardware to software - DPDK, Linux IPVS - 
+
 (from envoy writeup)
+
 ```
 
 Features
