@@ -10,8 +10,7 @@ No shared mem :
 2. functional data structures
 3. actor-based model
 
-*(from a Tarantool database presentation)*
-
+(from a Tarantool database presentation)
 
 # Concurrent design patterns
 
