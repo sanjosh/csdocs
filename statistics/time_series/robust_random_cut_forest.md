@@ -9,7 +9,7 @@
 * Anomaly has smaller depth than normal points
 * Depth converges as you creates forest (many trees)
 
-# Robust Random Cut Forest - Guha, Mishra
+# Robust Random Cut Forest - Guha, Mishra (Amazon)
 
 Unsupervised outlier detection on stream
 
@@ -53,3 +53,4 @@ Time decay reservoir sampler
 http://proceedings.mlr.press/v48/guha16.pdf
 
 https://docs.aws.amazon.com/kinesisanalytics/latest/sqlref/sqlrf-random-cut-forest.html
+

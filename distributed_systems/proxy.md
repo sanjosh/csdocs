@@ -3,8 +3,6 @@
 
 # HA-proxy
 
-# Hystrix
-
 # Envoy
 
 https://www.envoyproxy.io/
