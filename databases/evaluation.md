@@ -66,4 +66,15 @@ query types
 5. time series
 6. columnar
 7. hybrid
+8. CRDT
 
+#  cassandra vs mongodb vs postgres
+
+1. joins, aggegrations
+1. linear write scalability (sharding partition key)
+2. schema
+3. transactions
+
+NewSQL
+
+https://blog.yugabyte.com/data-modeling-basics-postgresql-vs-cassandra-vs-mongodb/
