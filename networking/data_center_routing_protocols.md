@@ -73,7 +73,7 @@ Similarly, load balancers front-ended servers, typically web servers,in support 
 
 In the new world, the services are provided by virtual machines(VMs) running on end hosts or nonvirtualized end hosts. Two popular services provided this way are the load balancer and firewall services. In this model, as the volume of traffic ebbs and flows, VMs can be spun up or down dynamically to handle the changing trafficneeds.
 
-Because the servers (or VMs) providing a service can pop up any‐where in the data center*, the IP address no longer can be con‐strained to a single rack or router. Instead, potentially several rackscould announce the same IP address. With routing’s ECMP for‐warding capability, the packets would flow to one of the nearestnodes offering the service. 
+Because the servers (or VMs) providing a service can pop up any‐where in the data center, the IP address no longer can be con‐strained to a single rack or router. Instead, potentially several rackscould announce the same IP address. With routing’s ECMP for‐warding capability, the packets would flow to one of the nearestnodes offering the service. 
 
 BGP running on the server really needs to be just a BGP speaker, and doesn’t have to implement a full routing protocol with best-path computation, programming routes into the routing table,and so on. Web-scale pioneers recognized this and ran software such as ExaBGP, which only functioned as BGP speaker, for a long time.  Today more full-featured open source routing suites such as FRRouting and BIRD routing are available for use on Linux and BSD servers.
 
@@ -112,7 +112,7 @@ Data flows within a leaf-spine fabric, on the other hand, take the same number o
 
 You can see where Facebook is using 1U fixed port switches where their largest modular chassis aren’t big enough: 
 
-*Fabric Aggregator: A flexible solution to our traffic demand*
+`*Fabric Aggregator: A flexible solution to our traffic demand*`
 
 https://code.facebook.com/posts/226845501211938/fabric-aggregator-a-flexible-solution-to-our-traffic-demand/
 

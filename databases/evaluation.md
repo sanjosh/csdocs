@@ -3,6 +3,7 @@
 
 ## Schema
 
+1. fixed or dynamic ?
 1. Primary keys
 2. relationships : many to many ?
 3. blobs
