@@ -19,5 +19,5 @@
 6. minimize modes of operation
 7. do constant work at all load levels
 8. balance push and pull (large fleet calling small fleet)
-9. prefer async over sync
+9. prefer async or batching over sync
 10. run anomaly detection at scale
