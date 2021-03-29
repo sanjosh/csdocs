@@ -26,18 +26,34 @@ Consistency in streaming means => exactly once, monotonic increasing events.
 ## Challenges in building Multi-homed 
 
 ### Global state. 
-network latency between datacenters is tens of milliseconds.  updating global state synchronously is time consuming.  hence some form of batching needed WAN bandwidth more expensive than local.  hence size of global state must be minimized.  use global state for metadata instead of data.
+
+network latency between datacenters is tens of milliseconds.  
+updating global state synchronously is time consuming.  
+hence some form of batching needed WAN bandwidth more expensive than local.  
+hence size of global state must be minimized.  
+use global state for metadata instead of data.
 
 ### Checkpoints
-checkpoints are expensive, esp of global state.  minimize checkpoints.  only checkpoint at endpoints of the cluster.  keep small checkpoints selectively at particular nodes
+
+checkpoints are expensive, esp of global state.  
+minimize checkpoints.  
+only checkpoint at endpoints of the cluster.  
+keep small checkpoints selectively at particular nodes
 
 ### Repeatable input
-ensure same input available at all datacenters.  ensure secondary inputs (lookups into db) are repeatable.  otherwise result of lookup must be stored as part of checkpoint.  Or push non-deterministic lookups towards end of pipeline.
+
+ensure same input available at all datacenters.   
+ensure secondary inputs (lookups into db) are repeatable.   
+otherwise result of lookup must be stored as part of checkpoint.   
+Or push non-deterministic lookups towards end of pipeline. 
 
 ### Exactly once output. 
-have idempotent output.  if not, use 2PC
+
+have idempotent output.  
+if not, use 2PC
 
 ### Resource cost
+
 Failover with 2 sites costs 3x resources (catch up cost is high)
 Multihomed with 3 sites costs 1.7x resources.
 
