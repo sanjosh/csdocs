@@ -8,7 +8,6 @@
 1. Desktop, mobile web, apps
 1. Security : E2E
 
-
 # Element/Matrix
 
 federated, encrypted and decentralized database protocol

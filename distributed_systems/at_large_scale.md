@@ -21,3 +21,6 @@
 8. balance push and pull (large fleet calling small fleet)
 9. prefer async or batching over sync
 10. run anomaly detection at scale
+11. data changing scale : design for varying time scales of data
+12. latency budget : RAM > SSD > HDD
+13. throughput budget : per machine capacity, per db node capacity

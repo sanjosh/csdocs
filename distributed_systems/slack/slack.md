@@ -89,6 +89,10 @@ consul
 * add client-side jitter
 * eliminate unnecessary queries 
 
+## ref
+
+https://www.youtube.com/watch?v=yHBwoZh1Mxg
+
 # Infrastructure engineering at slack
 
 ## presence server
@@ -101,7 +105,33 @@ so transition from broadcast to pub/sub
 
 # How slack works
 
+1. messageServer for messages - forwards to webApp
+1. webApp for rest
+
+rtm.start : bootstraps state of the world (download from MySQL)
+
+PHP monolith -> Memcache + MySQL
+
+MySQL : messages, users, channels - sharding by team
+
+work in two DC 
+
+they do Master-Master replication; use it for eventual consistency
+
+on conflicts, some resolved manually
+
+network glitches : use in-memory and local persist queue of pending sends
+
+ASync Job Queue in Redis for search indexing
+
+Search in Solr - populated from job queue workers
+
+Problems
+1. mass reconnects from same office
+2. large teams
+3. both mysql failures 
+
+## ref
+
 https://www.youtube.com/watch?v=WE9c9AZe-DY
 
-
-https://www.youtube.com/watch?v=yHBwoZh1Mxg
