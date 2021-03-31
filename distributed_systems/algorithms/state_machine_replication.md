@@ -1,6 +1,17 @@
 
 # Raft
 
+## what if client reads from disconnected leader
+
+1. WRITE : the leader cannot reply to the client unless the entry log committed
+2. READ-ONLY :  leader could reply without consulting the log or committing the entry.  Commit blank no-op log at start of term.  Leader exchanges heartbeat with majority of cluster
+
+https://stackoverflow.com/questions/24681519/how-does-the-raft-algorithm-guarantee-consensus-if-there-are-multiple-leaders/60791458#60791458
+
+Sec 6.4 on how to speed up reads
+
+https://web.stanford.edu/~ouster/cgi-bin/papers/OngaroPhD.pdf
+
 
 # Multipaxos
 
