@@ -7,7 +7,6 @@ Not Off-the-shelf
 
 Mesos
 
-
 https://blog.twitter.com/engineering/en_us/topics/infrastructure/2016/the-infrastructure-behind-twitter-efficiency-and-optimization.html
 
 ## networking
@@ -17,15 +16,28 @@ https://tools.ietf.org/html/draft-ietf-rtgwg-bgp-routing-large-dc-09
 
 blast radius
 
-High fanout microservices demand a highly reliable network that can handle a variety of traffic. Our traffic ranges from long lived TCP connections to ad hoc mapreduce jobs to incredibly short microbursts. Our initial answer to these diverse traffic patterns was to deploy network devices that featured deep packet buffers but this came with its own set of problems: higher cost and higher hardware complexity. Later designs used more standard buffer sizes and cut-through switching features alongside a better-tuned TCP stack server-side to more gracefully handle microbursts.
+High fanout microservices demand a highly reliable network that can handle a variety of traffic. 
+Our traffic ranges from long lived TCP connections to ad hoc mapreduce jobs to incredibly short microbursts. 
+Our initial answer to these diverse traffic patterns was to deploy network devices that featured deep packet   
+buffers but this came with its own set of problems: higher cost and higher hardware complexity. 
+Later designs used more standard buffer sizes and cut-through switching features alongside a better-tuned TCP stack server-side to more gracefully handle microbursts.
 
-we still see bursts of 3-4X of normal traffic when moving traffic between datacenters. This creates unique challenges for historical protocols that were never designed to deal with this such as the MPLSRSVP protocol where it assumes some form of a gradual ramp-up, not sudden bursts. 
+
+we still see bursts of 3-4X of normal traffic when moving traffic between datacenters. 
+This creates unique challenges for historical protocols that were never designed to deal with this such as the MPLSRSVP protocol where it assumes some form of a gradual ramp-up, not sudden bursts. 
 
 Further, to solve the bin-packing issues that come with RSVP auto-bandwidth, we have implemented TE++, which, as traffic increases, creates additional LSPs and removes them when traffic drops off. 
 
-Historically, when someone requested “www.twitter.com”, based on the location of their DNS server, we would pass them different regional IPs to map them to a specific cluster of servers. This methodology, “GeoDNS”, is partially inaccurate due to the fact that we cannot rely on users to map to the correct DNS servers, or on our ability to detect where DNS servers are physically located in the world. Additionally, the topology of the internet does not always match geography.
+Historically, when someone requested “www.twitter.com”, based on the location of their DNS server, 
+we would pass them different regional IPs to map them to a specific cluster of servers. 
+This methodology, “GeoDNS”, is partially inaccurate due to the fact that we cannot rely on users 
+to map to the correct DNS servers, or on our ability to detect where DNS servers are physically 
+located in the world. Additionally, the topology of the internet does not always match geography.
 
-To solve this we have moved to a “BGP Anycast” model where we announce the same route from all locations and optimize our routing to take the best paths from customers to our POPs. By doing this we get the best possible performance within the constraints of the topology of the internet and don’t have to rely on unpredictable assumptions about DNS servers exist.
+To solve this we have moved to a “BGP Anycast” model where we announce the same route from all 
+locations and optimize our routing to take the best paths from customers to our POPs. 
+By doing this we get the best possible performance within the constraints of the topology of 
+the internet and don’t have to rely on unpredictable assumptions about DNS servers exist.
 
 https://blog.twitter.com/engineering/en_us/topics/infrastructure/2017/the-infrastructure-behind-twitter-scale.html
 
@@ -41,13 +53,9 @@ FlockDB is a database that stores graph data, but it isn’t a database optimize
 
 Flock, our social graph, can manage peaks over tens of million QPS, averaging our MySQL servers to 30k - 45k QPS.
 
-
-
 https://blog.twitter.com/engineering/en_us/a/2010/introducing-flockdb.html
 
-
 ## Error handling
-
 
 Exceptions instead of response codes
 
@@ -89,11 +97,13 @@ https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/dynamic-co
 
 ## Zookeeper
 
-One of the key design decisions made in ZooKeeper involves the concept of a session. A session encapsulates the states between a client and server. Sessions are the first bottleneck for scaling out ZooKeeper, because the cost of establishing and maintaining sessions is non-trivial. Each session establishment and removal is a write request and must go through the consensus pipeline.  ZooKeeper does not scale well with write workload, and with hundreds of thousands of clients on each ZooKeeper host, the session establishment requests alone would keep the ensemble busy, preventing it from serving the usual read requests. We solved this with the local session feature introduced by engineers at Facebook, who faced similar issues. Currently on all Twitter’s ensembles, local sessions are used by default and will automatically be upgraded to global session when needed (e.g., client creates ephemeral nodes).
-
+One of the key design decisions made in ZooKeeper involves the concept of a session. 
+A session encapsulates the states between a client and server. 
+Sessions are the first bottleneck for scaling out ZooKeeper, because the cost of establishing and maintaining sessions is non-trivial. 
+Each session establishment and removal is a write request and must go through the consensus pipeline.  
+ZooKeeper does not scale well with write workload, and with hundreds of thousands of clients on each ZooKeeper host, the session establishment requests alone would keep the ensemble busy, preventing it from serving the usual read requests. We solved this with the local session feature introduced by engineers at Facebook, who faced similar issues. Currently on all Twitter’s ensembles, local sessions are used by default and will automatically be upgraded to global session when needed (e.g., client creates ephemeral nodes).
 
 The next scaling bottleneck is serving read requests from hundreds of thousands of clients. In ZooKeeper, each client needs to maintain a TCP connection with the host that serves its requests. Sooner or later, the host will hit the TCP connection limit, given the growing number of clients. One part of solving this problem is the Observer, which allows for scaling out capacity for read requests without increasing the amount of consensus work. To further improve the stability of our ensembles, we often only allow Observers to serve direct client traffic, by removing the quorum members’ records from our DNS.
-
 
 https://blog.twitter.com/engineering/en_us/topics/infrastructure/2018/zookeeper-at-twitter.html
 
