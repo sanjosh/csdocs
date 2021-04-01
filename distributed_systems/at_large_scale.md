@@ -10,12 +10,15 @@
 | tail latency | fast path, more RAM, more workers, optimize code, shift work to background |
 | blast radius | replicate, cells, shuffle sharding |
 | partial degradation | cache, partial, push and pull, fast restart |
+| automation breakdown | limit the number of changes, monitor anomalies |
 
 # solutions
 
-1. prefer approximate over accurate, denormalize, eventual consistent
+1. prefer approximate over accurate, eventual consistent (sketches)
+1. denormalize 
 2. randomize, add jitter
-3. stateless over stateful (e.g. periodic refresh, periodic disconnects to reconfigure, TTL)
+3. stateless over stateful 
+3. short-term state : leases, periodic disconnects or periodic refresh, TTL
 4. fail safe : caching, partial results, push vs pull
 5. cellular architecture and shuffle sharding
 6. minimize modes of operation
@@ -23,6 +26,6 @@
 8. balance push and pull (large fleet calling small fleet)
 9. prefer async or batching over sync
 10. run anomaly detection at scale
-11. data changing scale : design for varying time scales of data
+11. changing scales : design for varying time scales of data (e.g. data vs metadata)
 12. latency budget : RAM > SSD > HDD
 13. throughput budget : per machine capacity, per db node capacity

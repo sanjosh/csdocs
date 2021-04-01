@@ -271,6 +271,9 @@ A. Elmore, S. Das, A. Pucher, D. Agrawal, A. E. Abbadi, and
 X. Yan. Characterizing Tenant Behavior for Placement and
 Crisis Mitigation in Multitenant DBMSs
 
+# AWS Elasticsearch auto-tune
+
+decision tree identifies an opportunity to improve stability or performance
 
 # TODO
 

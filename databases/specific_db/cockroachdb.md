@@ -8,7 +8,10 @@
 * rebalancing algo
 * have raft group per range
 
-A crucial enhancement to the organization of range metadata is to augment the bi-level range metadata lookup with a minimum spanning tree, implemented as a left-leaning red-black tree over all ranges in the map. This tree structure allows the system to start at any key prefix and efficiently traverse an arbitrary key range with minimal RPC traffic, minimal fan-in and fan-out, and with bounded time complexity equal to 2 * log2N steps, where N is the total number of ranges in the system.
+A crucial enhancement to the organization of range metadata is to augment the bi-level range metadata lookup with a minimum spanning tree,   
+implemented as a left-leaning red-black tree over all ranges in the map. This tree structure allows the system to start at any key prefix   
+and efficiently traverse an arbitrary key range with minimal RPC traffic, minimal fan-in and fan-out, and   
+with bounded time complexity equal to 2 * log2N steps, where N is the total number of ranges in the system.  
 
 https://smazumder05.gitbooks.io/design-and-architecture-of-cockroachdb/content/architecture/range-spanning_binary_tree.html
 
@@ -17,6 +20,15 @@ https://smazumder05.gitbooks.io/design-and-architecture-of-cockroachdb/content/a
 * Secondary index - each index has indexID
 * add primary Key to allow storing non-unique index in key-value store
 * stored as <tableId/indexID/indexValue/primaryKey> => columnVal
+
+## locks
+
+1. unreplicated
+1. replicated : intent locks
+
+## clock
+
+Hybird logical clock
 
 ## Storage
 
