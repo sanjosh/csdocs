@@ -4,10 +4,12 @@
 | problem | solution space |
 | ----  | ---- | 
 | thundering herd | cache, randomize, power of two choices, coordinated cache fill, periodic refresh |
+| brownout | retry throttle, timeouts, caching, fail fast, circuit breaker |
+| hitting limits | cells, admission control, fast restart |
 | noisy neighbour | quotas, bounded work, credits, admission control |
 | tail latency | fast path, more RAM, more workers, optimize code, shift work to background |
 | blast radius | replicate, cells, shuffle sharding |
-| degradation | cache, partial, push and pull, fast rebuild  |
+| partial degradation | cache, partial, push and pull, fast restart |
 
 # solutions
 

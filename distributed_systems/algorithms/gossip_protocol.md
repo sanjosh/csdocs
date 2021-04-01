@@ -116,3 +116,9 @@ https://www.consul.io/docs/architecture/gossip
 two different gossip pools : WAN and LAN pool
 
 https://www.serf.io/
+
+## Akka
+
+Cluster membership is communicated using a Gossip Protocol, where the current state of the cluster is gossiped randomly through the cluster, with preference to members that have not seen the latest version.
+
+https://doc.akka.io/docs/akka/2.5.4/scala/common/cluster.html#gossip-protocol
