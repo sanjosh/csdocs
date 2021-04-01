@@ -26,6 +26,12 @@ https://smazumder05.gitbooks.io/design-and-architecture-of-cockroachdb/content/a
 1. unreplicated
 1. replicated : intent locks
 
+Cockroach provides distributed transactions without locks. Cockroach transactions support two isolation levels: 
+1. snapshot isolation (SI) 
+2. serializable snapshot isolation (SSI).
+
+https://smazumder05.gitbooks.io/design-and-architecture-of-cockroachdb/content/architecture/lock-free_distributed_transactions.html
+
 ## clock
 
 Hybird logical clock
