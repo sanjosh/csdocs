@@ -37,3 +37,18 @@ http://www.cloudbus.org/papers/GarQ-IJPEDS2009.pdf
 
 https://en.wikipedia.org/wiki/Calendar_queue
 
+
+# Survey : statistical QoS effective bandwidth
+
+five classes of admission control algorithms is reviewed by Knightly and Shroff [99]. 
+
+1. scheduling based on average and peak rate information [100], 
+2. effective bandwidth calculations [97,101,102], 
+3. their refinements from large deviation principles [103], 
+4. maximum variance approaches based on estimating the upper tails of Gaussian process models of traffic [95]
+
+E. W. Knightly and N. B. Schroff, Admission control for
+statistical qos: Theory and practice, IEEE Network 13(2):
+20–29 (1999).
+
+
