@@ -12,16 +12,83 @@
 
 # Ideas
 
-## Hash Table(hash, word, count) + Queue + Tree sorted by count
+IDF = all doc/docs in which term occurs (low implies more doc have it)
+
+1. low to medium IDF : words which occur in 50-100 percent of documents 
+2. low TF : words which rarely occur within a document 
+
+## smooth rollover (moving top-K)
+
+## ignore common words
+
+use dictionary to filter
+
+## detect uncommon phrases (pattern of 2-3 words)
+
+hash those n-grams, vectorize them and count them too
+
+```
+for each word
+   count(hash(cur-2 + cur-1 + cur)) ++
+   count(hash(cur-1 + cur)) ++
+   count(hash(cur)) ++
+```
+
+# schemes
+
+## start afresh at start of interval (restrict by fixed windows)
+
+1. keep all observed keywords in Map  (space expensive)
+1. drop counters at end of window (abrupt rollover)
+
+## use TTL 
+
+1. keep all observed keywords in Map  
+1. auto-drop counters at TTL expiry (worst case, can consume space if uniform distribution)
+
+## elasticsearch rare terms aggregation (restriction by knowledge of max count)
+
+CuckooFilter is being used to see if a term is over threshold
+
+Rare Terms aggregation uses a different approximate algorithm:
+
+```
+if CuckooFilterForFrequentItems.find(term) == false:
+  rareTermsMap[term].count ++
+  if rareTermsMap[term].count > max_doc_count:
+    CuckooFilterForFrequentItems.insert(term)
+    rareTermsMap.delete(term)
+```
+
+1. Values are placed in a map the first time they are seen.
+1. Each addition occurrence of the term increments a counter in the map
+1. If the counter > the max_doc_count threshold, the term is removed from the map and placed in a CuckooFilter
+1. The CuckooFilter is consulted on each term. If the value is inside the filter, it is known to be above the threshold already and skipped.
+
+https://www.elastic.co/guide/en/elasticsearch/reference/master/search-aggregations-bucket-rare-terms-aggregation.html
+
+## count-min sketch
+
+1. only works for fixed quantum of time
+1. saves space by using overlap in the counters
+
+## hokusai
+
+## Hash Table(word, count) + Queue + Tree sorted by count
+
+```
+for every word
+   earliest_word = queue.front_pop()
+   hash_table(earliest_word).count --
+   queue.push(word)
+   hash_table(word).count ++
+```
+
+https://stackoverflow.com/questions/21692624/design-a-system-to-keep-top-k-frequent-words-real-time
 
 ## suffix trie
 
 with counter and ttl ?
-
-## count-min sketch
-
-fixed quantum
-
 
 # Approaches
 
@@ -51,6 +118,5 @@ https://blog.twitter.com/engineering/en_us/a/2013/streaming-mapreduce-with-summi
 5. at any point of time, the sytems pull the topics and values from these counters to show the top tending topics for this duration
 
 https://www.careercup.com/question?id=5649012457734144
-
 
 https://medium.com/@narengowda/system-design-for-twitter-e737284afc95
