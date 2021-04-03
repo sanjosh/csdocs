@@ -75,7 +75,11 @@ https://lilianweng.github.io/lil-log/2018/01/23/the-multi-armed-bandit-problem-a
 
 https://en.wikipedia.org/wiki/Multi-armed_bandit
 
+Multi-Armed Bandits: A Cartoon Introduction - DCBA #1
+https://www.youtube.com/watch?v=bkw6hWvh_3k
+
 # Todo
 
 Aleksandrs Slivkins
 https://arxiv.org/pdf/1904.07272.pdf
+

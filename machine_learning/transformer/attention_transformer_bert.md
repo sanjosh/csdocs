@@ -164,3 +164,5 @@ Xception
 3. https://nlp.seas.harvard.edu/2018/04/03/attention.html
 4. raimi karim https://towardsdatascience.com/attn-illustrated-attention-5ec4ad276ee3
 5. raimi karim https://towardsdatascience.com/illustrated-self-attention-2d627e33b20a
+
+
