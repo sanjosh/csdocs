@@ -74,14 +74,27 @@ https://www.elastic.co/guide/en/elasticsearch/reference/master/search-aggregatio
 
 ## hokusai
 
-## Hash Table(word, count) + Queue + Tree sorted by count
+## WordMap(word -> count) + Queue + CountMap(count -> list of words)
 
 ```
-for every word
-   earliest_word = queue.front_pop()
-   hash_table(earliest_word).count --
-   queue.push(word)
-   hash_table(word).count ++
+on_new_word(word)
+
+  if word in map
+    increment WordMap
+    Move word to next bucket in CountMap
+  else
+    insert into WordMap
+    append into CountMap[1]
+  queue.append(word) 
+
+  if queue len exceeded
+    expired_word = queue.pop
+    delete word from current bucket in CountMap 
+    if count = 1
+      delete from WordMap
+    else
+      decrement count in WordMap      
+      insert into previous bucket in CountMap
 ```
 
 https://stackoverflow.com/questions/21692624/design-a-system-to-keep-top-k-frequent-words-real-time
