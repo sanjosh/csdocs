@@ -11,6 +11,7 @@
 | blast radius | replicate, cells, shuffle sharding |
 | partial degradation | cache, partial, push and pull, fast restart |
 | automation breakdown | limit the number of changes, monitor anomalies |
+| stale data, TOCTOU, throughput dilution, wobbling state | replica coordination, decide ground truth |
 
 # solutions
 
@@ -29,3 +30,4 @@
 11. changing scales : design for varying time scales of data (e.g. data vs metadata)
 12. latency budget : RAM > SSD > HDD
 13. throughput budget : per machine capacity, per db node capacity
+14. source of ground truth must be constant; if it changes, throw away old decisions
