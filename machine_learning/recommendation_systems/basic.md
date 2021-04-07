@@ -1,7 +1,7 @@
 
 cold start problem
 
-===========
+# overview
 
 recommendation objectives
 1. relevance
@@ -20,7 +20,11 @@ Sequence models RNN
 Relevance model + Diversity model
 Diversity measured by volume enclosed by vectors of selected products
 
---------
+# how to missing values 
+
+
+
+# references
 
 Zhang. Deep learning based recommender systems (2017)
 
