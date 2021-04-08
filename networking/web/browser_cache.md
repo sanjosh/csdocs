@@ -1,4 +1,16 @@
 
+# caching
+
+## cache-control
+
+no-cache, no-store, private, public
+
+## etag
+
+## last-modified
+
+# zerodha
+
 The browser caches a file, stores a hash, the E-Tag, 
 and checks with the server if the file has changed by sending the E-Tag
 
