@@ -47,8 +47,9 @@ Token bucket
 ## Hotspots - use an adaptive capacity multiplier
 
 PID controller decides multiplier : 
-inputs = consumed capacity, provisioned capacity, throttling rate, current multiplier
-output = new multipler
+
+1. inputs = consumed capacity, provisioned capacity, throttling rate, current multiplier
+1. output = new multipler
 
 PID controller sees consumed is greater than provisioned and resets multipler back to 1 
 

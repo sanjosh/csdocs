@@ -31,6 +31,10 @@
 1. heap on one key, sorted on another key
 2. structure of treap is independent of insertion order
 
+# Fractal tree
+
+https://en.wikipedia.org/wiki/Fractal_tree_index
+
 # Applications
 
 * if balanced & search more frequent, use AVL

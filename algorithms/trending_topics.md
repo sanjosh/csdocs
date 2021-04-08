@@ -46,6 +46,10 @@ for each word
 1. keep all observed keywords in Map  
 1. auto-drop counters at TTL expiry (worst case, can consume space if uniform distribution)
 
+## elasticsearch significant text aggregation 
+
+foreground vs background frequency
+
 ## elasticsearch rare terms aggregation (restriction by knowledge of max count)
 
 CuckooFilter is being used to see if a term is over threshold
