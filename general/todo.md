@@ -1,12 +1,12 @@
 
-hokusai
-sketches
-multitier cache
-gaussian process
-EM
-randomized algo smola
-large scale ML
-adaptive radix tree
+1. hokusai
+1. sketches
+1. multitier cache
+1. gaussian process
+1. EM
+1. randomized algo 
+1. large scale ML smola
+1. adaptive radix tree
 
 https://www.usenix.org/conference/fast21/presentation/liu
 

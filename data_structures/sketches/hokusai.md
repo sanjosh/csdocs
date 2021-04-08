@@ -23,7 +23,7 @@ overreplicate : assigning keys to subset of machines instead of just one
 
 Sketch of 2 sets = sum of sketches  (i.e. we can aggregate)
 
-Sketch of lower resolution = linear function (i.e. we can compress)
+Sketch of lower resolution can be obtained by aggregating adjacent bins since it is linear function (i.e. we can compress)
 
 reduce bit resolution for sketch every 2^t steps
 
