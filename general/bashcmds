@@ -1,0 +1,86 @@
+
+export -f funcName
+==============
+
+add=$(($x + $y)) # add the values of x and y and assign it to variable add
+sub=$(($x - $y)) # subtract the values of x and y and assign it to variable sub
+mul=$(($x * $y)) # multiply the values of x and y and assign it to variable mul
+div=$(($x / $y)) # divide the values of x and y and assign it to variable div
+mod=$(($x % $y)) # get the remainder of x / y and assign it to variable mod
+==============
+
+bash arrays
+
+echo ${arr[0]} ${arr[1]}   # refer to them
+${arr[*]}         # All of the items in the array
+${!arr[*]}        # All of the indexes in the array
+${#arr[*]}        # Number of items in the array
+${#arr[0]}        # Length of item zero
+
+==============
+to call a func with args & capture result of anything echoed
+result=$(functionName params)
+
+============
+function foo() {
+  array=( "$@" )
+  for i in `seq 0 $(( ${#array[@]} - 1 ))`; do
+    echo "$i: ${array[i]}"
+  done
+}
+
+programs=( 'educational' 'internet' 'multimedia' 'and so forth' ) 
+foo "${programs[@]}"
+
+
+install() {
+    local this
+    while [ ${#} -gt 0 ]; do
+        this=${1}
+        ...
+        shift
+    done
+}
+
+ar=( a b c )
+test() {
+    local ref=$1[@]
+    echo ${!ref}
+}
+
+test ar
+
+return value of prog : $?
+num args : $#
+pid : $$
+==============
+
+if ["$#" -ne 1] || ["$y -eq 2]; then
+else
+fi
+==============
+
+case $choice in
+1) new_user
+	;;
+*) exit
+	;;
+esac
+==============
+
+echo -n "enter user name"
+read user_name
+if [-z "$user_name]; then
+fi
+
+===========
+function hell()
+{
+}
+===========
+
+add=$(($x + $y))   # add the values of x and y and assign it to variable add
+sub=$(($x - $y))   # subtract the values of x and y and assign it to variable sub
+mul=$(($x * $y))   # multiply the values of x and y and assign it to variable mul
+div=$(($x / $y))   # divide the values of x and y and assign it to variable div
+mod=$(($x % $y))   # get the remainder of x / y and assign it to variable mo

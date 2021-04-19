@@ -1,4 +1,15 @@
 
+# summary
+
+CPU registers are wide (128 or 256 bit).  Can contain many int or float
+
+all instructions except for "move data" use registers
+
+add, subtract, multiply, compare, boolean, shift right or left
+
+on overflow or underflow, result = largest or smallest number
+
+
 # SIMD usage
 
 -------------

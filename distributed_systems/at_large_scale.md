@@ -28,6 +28,7 @@
 9. prefer async or batching over sync
 10. run anomaly detection at scale
 11. changing scales : design for varying time scales of data (e.g. data vs metadata)
+12. connection pools
 12. latency budget : RAM > SSD > HDD
 13. throughput budget : per machine capacity, per db node capacity
 14. source of ground truth must be constant; if it changes, throw away old decisions
