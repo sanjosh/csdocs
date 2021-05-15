@@ -3,6 +3,10 @@ word “async” before a function means one simple thing: a function always ret
 
 await makes JavaScript wait until that promise settles and returns its result.
 
+Promise.resolve
+
+Promise.all
+
 https://javascript.info/async-await
 
 

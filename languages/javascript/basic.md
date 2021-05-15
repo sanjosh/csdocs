@@ -1,5 +1,10 @@
+# strict mode
+
+"use strict"
+
 
 # Two types of objects
+
 1. described by ECMA (built-in like Array or user-defined)
 2. defined by host env (browser - like console, window and DOM)
 
