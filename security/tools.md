@@ -1,5 +1,7 @@
 
-semgrep
+1. semgrep
+2. sonarqube
+
 
 https://github.com/quay/clair
 
@@ -9,7 +11,7 @@ accurics/terrascan
 
 github codescanner
 
-AWS inspector, WAF, Sheifl
+AWS inspector, WAF, Sheild, guard duty
 
 Aquasec
 

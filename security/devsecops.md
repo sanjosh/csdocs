@@ -66,6 +66,11 @@ https://www.ssllabs.com/
 
 https://observatory.mozilla.org/
 
+# containers
+
+1. snyk for kubernetes 
+1. docker bench 
+
 ## Ref
 
 https://www.sqreen.com/checklists/devops-security-checklist
