@@ -1,4 +1,8 @@
 
+## immutable
+
+prefer frozenset to set, tuple to list
+
 ## define repr and str
 
 ## define eq and neq
@@ -37,7 +41,7 @@ class A
 
 ## enums derived from enum.Enum
 
-## assertions should print good message
+## assertions should print intelligible message
 
 ```
 try:
