@@ -54,3 +54,11 @@ https://stackoverflow.com/questions/4455076/how-to-access-the-ith-column-of-a-nu
 # poly fit
 
 np.poly1d(np.polyfit())
+
+# TODO
+
+https://towardsdatascience.com/advanced-numpy-master-stride-tricks-with-25-illustrated-exercises-923a9393ab20
+
+https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html
+
+https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d
