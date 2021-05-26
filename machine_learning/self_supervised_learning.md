@@ -13,3 +13,9 @@ https://ai.stackexchange.com/questions/12266/what-is-the-relation-between-semi-s
 https://ai.stackexchange.com/questions/10623/what-is-self-supervised-learning-in-machine-learning?rq=1
 
 https://amitness.com/2020/02/illustrated-self-supervised-learning/
+
+https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/
+
+VISSL
+VISSL is a computer VIsion library for state-of-the-art Self-Supervised Learning research with PyTorch
+https://paperswithcode.com/lib/vissl
