@@ -19,3 +19,5 @@ STL10
 
 ILSVRC-2012 
 
+Stanford Large Network Dataset Collection
+http://snap.stanford.edu/data/index.html
