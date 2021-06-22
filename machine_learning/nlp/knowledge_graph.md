@@ -21,3 +21,6 @@
 
 # Knowledge Vault 
 
+# TODO
+
+https://ai.stanford.edu/blog/introduction-to-knowledge-graphs/
