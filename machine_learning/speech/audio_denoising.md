@@ -116,7 +116,11 @@ Shahriyar, Speech enhancement using Convolutional denoising autoencoderhttps://i
 Time frequency masking for large scale robust speech recognition
 https://www.isca-speech.org/archive/interspeech_2015/papers/i15_2469.pdf
 
+Hao, FullSubNet: A Full-Band and Sub-Band Fusion Model for Real-Time Single-Channel Speech Enhancement
+https://www.haoxiangsnr.com/demo/fullsubnet/
+
 # github
+
 https://github.com/SIFANWU/Deep-Denoising-Autoencoder
 
 https://github.com/topics/denoising-autoencoders
@@ -124,3 +128,4 @@ https://github.com/topics/denoising-autoencoders
 https://github.com/yongxuUSTC/DNN-for-speech-enhancement
 
 https://github.com/xiph/rnnoise (RNN background noise)
+
