@@ -124,3 +124,9 @@ compare natura question against candidate graphs.  use BERT to avoid this depend
 build query based on previous components
 
 https://www.ic.unicamp.br/~reltech/PFG/2019/PFG-19-33.pdf
+
+# MK-SQuIT 
+
+Spiegel, MK-SQUIT: SYNTHESIZING QUESTIONS USING ITERATIVE TEMPLATE-FILLING
+
+https://arxiv.org/pdf/2011.02566.pdf
