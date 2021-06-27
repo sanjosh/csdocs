@@ -20,3 +20,15 @@ https://aws.amazon.com/de/datasets/enron-email-data/
 # general
 
 https://github.com/niderhoff/nlp-datasets
+
+# BooksCorpus
+
+https://huggingface.co/datasets/bookcorpus
+
+# SQUAD
+
+question answering
+
+# spacy datasets
+
+# hugging face datasets
