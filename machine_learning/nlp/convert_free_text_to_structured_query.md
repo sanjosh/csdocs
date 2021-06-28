@@ -1,5 +1,6 @@
 
-# Haystack
+# BART
+
 
 Graph retriever that uses a pre-trained Bart model to translate natural language questions given in text form to queries in SPARQL format.  
 The generated SPARQL query is executed on a knowledge graph
@@ -7,8 +8,8 @@ The generated SPARQL query is executed on a knowledge graph
 BART is a denoising autoencoder that maps a corrupted document to the original document it was derived from. 
 It is implemented as a sequence-to-sequence model with a bidirectional encoder over corrupted text and a left-to-right autoregressive decoder.
 
+(Lewis, Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension)
 https://arxiv.org/pdf/1910.13461.pdf
-
 
 # Xser
 

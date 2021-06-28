@@ -79,3 +79,9 @@ https://research.fb.com/publications/retrieval-augmented-generation-for-knowledg
 
 jointly train the retriever and generator components without any direct supervision on what document should be retrieve
 
+```
+Index hot-swapping : An advantage of non-parametric memory models like RAG is that knowledge 
+can be easily updated at test time. Parametric-only models like T5 or BART need further training to
+update their behavior as the world changes.
+```
+

@@ -15,6 +15,11 @@ Autograd = 2
 
 swift, tangent from google
 
+## autodiff in ML survey
+
+https://www.youtube.com/watch?v=wG_nF1awSSY
+https://arxiv.org/abs/1502.05767
+
 # Summary of ML eng
 
 what goes on inside the neural network ? a circuit/graph with tensors, activations, weights

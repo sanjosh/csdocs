@@ -18,6 +18,11 @@ order dimension reduction methods, using information not contained in the covari
 appropriate. Such a linear higher-order method, projection pursuit is reviewed in Section 4. Section 5
 summarizes another higher-order linear method called independent component analysis.
 
+##  TODO - PCA
+
+Principal Component Analysis: A Natural Approach to Data Exploration
+https://dl.acm.org/doi/10.1145/3447755
+
 ## PCA (linear)
 
 second order method based on covariance matrix

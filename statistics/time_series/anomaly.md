@@ -60,3 +60,8 @@ Assumption-Free Anomaly Detection in Time Series
 automatic anomaly detection in the cloud via statistical learning
 https://arxiv.org/abs/1704.07706
 
+
+# TODO
+
+A Review on Outlier/Anomaly Detection in Time Series Data 2021
+https://dl.acm.org/doi/10.1145/3444690
