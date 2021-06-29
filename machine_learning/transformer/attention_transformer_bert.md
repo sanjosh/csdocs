@@ -31,6 +31,10 @@ https://www.youtube.com/watch?v=rBCqOTEfxvg
 
 # transformer
 
+https://theaisummer.com/transformer/ (mike tamir)
+
+# transformer
+
 Value is selected based on similarity between key & value
 
 https://www.youtube.com/watch?v=XSSTuhyAmnI
