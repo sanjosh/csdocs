@@ -2,8 +2,16 @@
 
 ## Terms 
 
-1. Cloze 
+1. Cloze task
 1. few-shot or zero-shot
+
+# fine-tuning
+
+use 
+1. use a generic model head or 
+2. a task-specific prompt for prediction.
+
+https://arxiv.org/abs/2103.08493
 
 # Commonsense Knowledge Mining from Pretrained Models
 
