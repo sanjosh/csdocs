@@ -66,3 +66,15 @@ handle overlapping CIDR using globalnet
 connect overlay networks of different Kubernetes clusters.
 
 https://submariner.io/getting-started/architecture/
+
+# KubeVirt
+
+https://kubevirt.io/
+
+# K3os
+
+https://k3os.io/
+
+# Harvester
+
+https://harvesterhci.io/
