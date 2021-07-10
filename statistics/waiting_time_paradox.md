@@ -1,6 +1,10 @@
 
+# Renewal theory
+
 Depends on distribution of bus arrival
 https://math.stackexchange.com/questions/52493/average-wait-time-arriving-at-subway-randomly
+
+average waiting time for next train = `E[W] = E(T^2)/2.E(T)`
 
 if Bus arrival = Poisson process with Lambda = Average arrival rate
 and X = waiting time, which follows exp distribution 
