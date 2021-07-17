@@ -73,3 +73,9 @@ binary quantization
 quantization on FPGA to arbitrary bits
 
 loss of accuracy in mat mul with smaller bits
+
+# Distillation
+
+training a small network using the knowledge in a trained larger network
+
+https://github.com/labmlai/annotated_deep_learning_paper_implementations/tree/master/labml_nn/distillation

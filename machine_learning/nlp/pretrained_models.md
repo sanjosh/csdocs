@@ -93,6 +93,12 @@ reformulating tasks as cloze questions with regular gradient-based finetuning
 
 PET only works when the answers to be predicted by the LM correspond to a single token in its vocabulary
 
+# Primer on Pretrained Multi Language models
+
+Sumanth Doddapaneni, Gowtham Ramesh, Anoop Kunchukuttan, Pratyush Kumar, Mitesh M. Khapra
+https://arxiv.org/pdf/2107.00676.pdf
+
+
 ## TODO
 
 (Radford et al., 2019; Schick and Schütze, 2021)

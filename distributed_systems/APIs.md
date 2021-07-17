@@ -94,3 +94,100 @@ https://commandcenter.blogspot.com/2014/01/self-referential-functions-and-design
 3. GraphQL
 4. REST
 
+# Pagination (cursor problem)
+
+requirements
+1. is it stateless on server ?
+2. can client control speed and fetch size ?
+3. do newly added entries get fetched ?
+4. separate pagination and filtering logic
+
+## offset based (backend db is SQL which provides support)
+
+offset is a relative number inside list of entries
+
+since offset is relative, newly added entries can cause confusion 
+
+## keyset pagination
+
+find value from previous returned  page to decide next fetch
+
+newly added entries are returned in order
+
+## seek pagination (extension of keyset)
+
+unique identifiers inside retrieval set are more stable
+
+newly added entries are returned in order
+
+use `fetch_after=NNN`
+
+```
+select where id > 20
+```
+
+## ref
+
+https://www.moesif.com/blog/technical/api-design/REST-API-Design-Filtering-Sorting-and-Pagination/
+
+# AWS pagination
+
+return pagination token to client, which is null on end of iteration
+
+auto-pagination
+
+## sync pagination
+
+use with stream, iterator, for loop
+
+## async pagination (publish, subscribe)
+
+A Publisher is a provider of a potentially unbounded number of sequenced elements, publishing them according to the demand received from its Subscriber(s).
+
+A Subscriber MUST signal demand via Subscription.request(long n) to receive onNext signals.
+
+The Reactive Streams API prescribes that all processing of elements (onNext) or termination signals (onError, onComplete) MUST NOT block the Publisher.
+
+```
+public interface Subscriber<T> {
+    public void onSubscribe(Subscription s);
+    public void onNext(T t);
+    public void onError(Throwable t);
+    public void onComplete();
+}
+```
+
+http://www.reactive-streams.org/reactive-streams-1.0.0-javadoc/org/reactivestreams/Publisher.html
+
+https://aws.amazon.com/blogs/developer/auto-pagination-feature-in-java-sdk-2-0/
+
+# Reactive streams
+
+https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.2/README.md
+
+# Elasticsearch pagination
+
+## offset based (using from and size)
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/paginate-search-results.html
+
+## search after
+
+use this for large result size with index state preservation
+
+Using search_after requires multiple search requests with the same query and sort values.
+
+use Point-in-time (PIT identifier)
+
+use keep alive
+
+https://www.elastic.co/guide/en/elasticsearch/reference/current/paginate-search-results.html
+
+## scroll
+
+returns scroll id cursor
+
+sliced scroll :  By default the splitting is done on the shards
+
+
+

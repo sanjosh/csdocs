@@ -44,3 +44,24 @@ Answer : have to go thru hyperplane because of NAT + metrics.  Makes no diff in 
 
 https://aws.amazon.com/blogs/architecture/shuffle-sharding-massive-and-magical-fault-isolation/
 
+# Hyperplane
+
+10 min
+
+https://www.youtube.com/watch?v=GkYGo1M3vyc 
+
+hyperplane used by NLB, NATGW, PrivateLink, GWLB, TGW 
+
+hyperplane : 
+1. multi-tenant distributed system running on EC2
+2. four components : flow tracker, packet processor, control plane, monitoring and kibana streams
+
+hyperplane flow tracking database : built own
+
+multi-tenancy : noisy neighbours
+
+shuffle sharding : reduce impact of one customer on another
+
+
+
+

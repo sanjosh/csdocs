@@ -84,7 +84,9 @@ https://relay.dev/graphql/connections.htm
 > *Rule #11: Use enums for fields which can only take a specific set of values.*
 
 
+```
 https://github.com/Shopify/graphql-design-tutorial/blob/master/TUTORIAL.md
+```
 
 
 ## Query
@@ -93,13 +95,17 @@ https://github.com/Shopify/graphql-design-tutorial/blob/master/TUTORIAL.md
 
 ### Cursor-based pagination
 
+```
 https://graphql.org/learn/pagination/
+```
 
 Use Relay standard to define cursor fields 
 
 add cursorId in query and response
 
+```
 https://relay.dev/graphql/connections.htm
+```
 
 
 ### Use nested objects in response
