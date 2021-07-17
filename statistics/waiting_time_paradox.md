@@ -26,17 +26,28 @@ https://math.stackexchange.com/questions/1434322/exponential-waiting-times-for-b
 Depends on distribution of bus arrival
 https://math.stackexchange.com/questions/52493/average-wait-time-arriving-at-subway-randomly
 
+```
+ if you arrive at a random time, you have more opportunities to encounter a longer interval than to encounter a shorter interval. 
+ And so it makes sense that the average span of time experienced by riders will be longer than the average span 
+ of time between buses, because the longer spans are over-sampled.
+```
+https://jakevdp.github.io/blog/2018/09/13/waiting-time-paradox/
+
+
 ## average waiting time if k people at stop
 
 Expected waiting time if number of waiting people = k
 
-n - E[X | N=k ] 
+As you observe the number of people in the queue, you update your distribution of X to form a posterior distribution.
+
+```
+E[X | N=k] = n - E[X | N=k ] 
+```
 
 https://math.stackexchange.com/questions/339015/when-does-the-next-bus-come
 
 ## Expected waiting time if already waited for some time
 
-https://www.quora.com/A-bus-randomly-arrives-between-8-00-and-8-30-If-I-show-up-at-8-10-and-wait-for-10-minutes-without-seeing-the-bus-what-is-the-probability-of-its-showing-up-within-the-next-10-minutes
 
 ## Probability of missing bus if previous arrival was seen 
 
@@ -55,26 +66,4 @@ https://math.stackexchange.com/questions/222674/average-bus-waiting-time?rq=1
 ## probability two buses at same time
 
 https://math.stackexchange.com/questions/311942/probability-of-two-buses-being-in-a-bus-stop-at-the-same-time?rq=1
-
-# Inspection paradox
-
-http://allendowney.blogspot.com/2015/08/the-inspection-paradox-is-everywhere.html
-
-# friendship paradox
-
-most people have fewer friends than their friends have.
-
-Scott Feld, “Why Your Friends Have More Friends Than You Do”, American Journal of Sociology, Vol. 96, №6 (May, 1991), pp. 1464–1477.
-
-
-# road race : slower runners are much slower, faster runners much faster
-
-if you stand at a random spot and watch runners go by, you see a representative sample of speeds. 
-
-But if you jump into the race in the middle, the sample you see depends on your speed.
-
-# prison sentence 
-
-If you arrive at a prison at a random time and choose a random prisoner, you are more likely to choose a prisoner with a long sentence. Once again, a prisoner with sentence x is oversampled by a factor of x.
-
 
