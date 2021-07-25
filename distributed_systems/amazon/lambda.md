@@ -36,10 +36,73 @@ https://github.com/firecracker-microvm/firecracker
 
 https://assets.amazon.science/96/c6/302e527240a3b1f86c86c3e8fc3d/firecracker-lightweight-virtualization-for-serverless-applications.pdf
 
+# Lambda internals
 
+Control plane : management API, integration with AWS
+Data plane : invoke API
+
+container image : The encryption method allows Lambda to securely deduplicate encrypted chunks.
+
+execution environment:
+1. Workers are bare metal Nitro instances which are launched in a seperate inaccessible AWS account. 
+1. These workers have hardware-virtualized MVMs (Micro Virtual Machines) created by Firecracker (Linux's Kernel-based Virtual Machine). 
+1. Workers have a lease lifetime of 14 hours, when a worker approaches this maximum, no further invocations are forwarded to the worker and the worker is terminated. 
+1. Each worker has the ability to host one concurrent invocation, but is being reused if multiple invocations of the same function occur. 
+
+## Placement Service 
+
+places sandboxes on Workers to maximize packing density without impacting cold-path latency.
+1. use statistical multiplexing to create uncorrelated workloads
+1. copying very different kind of workloads onto the same server opposed to copying the same workload on the server
+
+## Firecracker 
+
+1. VMM tailored for containers; 
+1. better than earlier approach of allocating per-customer EC2 instance for security
+1. its job is to configure the KVM, it uses the KVM API to create and manage MVMs
+1. provides REST API to manage MVM (micro virtual machine)
+
+https://github.com/firecracker-microvm/firecracker/blob/main/src/api_server/swagger/firecracker.yaml
+
+## Worker Manager 
+
+downloads Lambda code
+
+Lambda runtimes are prebuilt .NET Core, python, NodeJS
+
+## Worker Machine 
+
+Nitro + Host OS + KVM + Guest OS(MVM) + Sandbox + Lambda runtime 
+
+## Synchronous Path
+
+ALB -> Frontend worker -> Worker Manager -> Placement Service -> Worker
+
+## Asynchronous Path
+
+ALB -> Frontend worker -> SQS -> Poller -> Frontend worker -> Placement Service -> Worker
+
+Kinesis and DynamoDB goes thru Poller
+
+
+
+
+
+
+
+https://www.bschaatsbergen.com/behind-the-scenes-lambda
+
+https://www.youtube.com/watch?v=QdzV04T_kec
+
+https://www.youtube.com/watch?v=xmacMfbrG28
+
+https://brooker.co.za/blog/2020/02/19/firecracker.html
+
+https://docs.aws.amazon.com/whitepapers/latest/security-overview-aws-lambda/lambda-executions.html
 # Gigabytes in milliseconds
 
 https://www.youtube.com/watch?v=A-7j0QlGwFk
+
 Gigabytes in milliseconds: Bringing container support to AWS Lambda without adding latency
 
 Marc Brooker
