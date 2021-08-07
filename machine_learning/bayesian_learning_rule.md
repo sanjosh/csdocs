@@ -3,6 +3,7 @@ https://arxiv.org/abs/2107.04562
 
 The Bayesian Learning Rule
 Mohammad Emtiyaz Khan, Håvard Rue
+
 We show that many machine-learning algorithms are specific instances of 
 a single algorithm called the Bayesian learning rule. 
 
@@ -15,3 +16,16 @@ You need to make two decisions: first, the form of the post. approx. and second,
 The main message is that many algorithm, that have "stood-the-test-of-time", can all be seen as solving a two-step scheme where
 1. A Bayesian objective is optimized to find posterior approximations
 2. Natural-gradient descent is used for optimization (Bayesian learning rule)
+
+## ridge regression, 
+
+## Newton’s method, 
+
+## Kalman filter, 
+
+## stochastic-gradient descent, 
+
+## RMSprop, 
+
+## Dropout
+
