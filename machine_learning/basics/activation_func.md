@@ -41,4 +41,6 @@ The former two choices are saturating activation functions because their derivat
 
 ---------------
 
+Understanding Activation Functions using ReLU
 
+https://www.youtube.com/watch?v=Qeorn8QvZFE

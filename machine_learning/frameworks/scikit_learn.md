@@ -26,3 +26,11 @@
 * RobustScaler
 * StandardScaler
 * LabelEncoder
+
+# top features in 0.24
+
+MAPE
+
+SelfTrainingclassifier
+
+https://www.freecodecamp.org/news/machine-learning-python-new-scikit-learn-features-you-should-know/

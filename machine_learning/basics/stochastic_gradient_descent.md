@@ -16,6 +16,15 @@ If you need an example of this with a practical case, check Andrew NG's notes he
 Source:
 http://www.quora.com/Machine-Learning/Whats-the-difference-between-gradient-descent-and-stochastic-gradient-descent
 
+why gradient descent over newton-raphson
+https://www.reddit.com/r/MachineLearning/comments/okficy/d_dominance_of_the_gradient_descent_over_other/
 
+People here stick to the "number of parameters" argument but this is not a good explanation. This is because quasi-Newton methods exist and those typically work very well in high dimensions with comparably low memory footprint.
 
+The real reason is that we do stochastic optimization. It is already difficult to estimate the derivative of a stochastic function, but the second derivative is a lot worse. Moreover, you can't get the same benefit anymore from using second order information as in the deterministic case. As soon as the gradient is stochastic one can't do better than sub-linear convergence and the only thing to gain is better constants.
 
+Now, constants are important and it is extremely easy to break ML optimizers by using a badly conditioned function. But it turns out that apparently neural networks do not care as long as there are enough parameters that one can get approximately right.
+
+//Edit: Note that as soon as you go away from neural networks, good optimizers are leading again. e.g. support vector machines should really not be optimized using SGD, PEGASOS is really bad compared to a half competetent ADMM or active set method (even SMO!)
+
+https://stats.stackexchange.com/questions/253632/why-is-newtons-method-not-widely-used-in-machine-learning
