@@ -37,7 +37,6 @@ this lets the model reason above position
 
 https://www.youtube.com/watch?v=S27pHKBEp30
 
-
 # ELMO
 
 1. Contextual word embedding
@@ -69,6 +68,11 @@ http://nlp.fast.ai/classification/2018/05/15/introducting-ulmfit.html
 1. Use encoders from transformer
 2. Use WordPieces as input tokens instead of words
 3. Masks
+
+
+# How transformers workk
+
+https://theaisummer.com/transformer/
 
 
 # References

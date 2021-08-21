@@ -98,6 +98,12 @@ PET only works when the answers to be predicted by the LM correspond to a single
 Sumanth Doddapaneni, Gowtham Ramesh, Anoop Kunchukuttan, Pratyush Kumar, Mitesh M. Khapra
 https://arxiv.org/pdf/2107.00676.pdf
 
+# Multimodal Few-Shot Learning with Frozen Language Models
+
+When trained at sufficient scale, auto-regressive language models exhibit the notable ability to learn a new language task after being prompted with just a few examples. Here, we present a simple, yet effective, approach for transferring this few-shot learning ability to a multimodal setting (vision and language).
+
+https://arxiv.org/abs/2106.13884
+
 
 ## TODO
 

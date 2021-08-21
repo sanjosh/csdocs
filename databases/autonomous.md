@@ -284,3 +284,17 @@ Related Work in Peloton
 
 Borodin, A., El-Yaniv, R.: Online Computation and Competitive Analysis. (Work function)
 
+
+## CMU
+
+MB2: Decomposed Behavior Modeling for Self-Driving Database Management Systems
+Lin Ma, William Zhang, Jie Jiao, Wuwen Wang, Matthew Butrovich, Wan Shen Lim, Prashanth Menon, Andrew Pavlo
+
+Active Learning for ML Enhanced Database Systems
+
+External vs. Internal: An Essay on Machine Learning Agents for Autonomous Database Management Systems
+Andrew Pavlo, Matthew Butrovich, Ananya Joshi, Lin Ma, Prashanth Menon, Dana Van Aken, Lisa Lee, Ruslan Salakhutdinov
+TCDE Bulletin 2019 [pdf]
+
+
+
