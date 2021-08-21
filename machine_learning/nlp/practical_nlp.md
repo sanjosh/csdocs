@@ -1,5 +1,68 @@
 
-# social media
+# book
+
+## information extraction
+
+## topics
+
+### search
+
+1. spell correction
+1. related queries
+
+### topic model
+
+1. LDA
+2. LSA
+3. PLSA
+
+### summarization
+
+sumy library for query-independent, extractive summaries
+
+gensum
+
+### recommendation
+
+### machine translation
+
+### question-answering
+
+### keyphrase extraction 
+
+create graph, decide weight of node
+
+1. textacy
+1. textrank
+1. SGrank
+
+### NER
+
+CRF
+
+combo of 
+1. gazeeteer
+2. ml model
+3. pattern heuristics
+
+### entity linking
+
+### relation extraction
+
+### event extraction
+
+### template filling
+
+### temporal extraction
+
+date parsing
+1. duckling
+2. SUTime by stanford NLP
+3. natty
+4. parsedatetime
+5. chronic
+
+## social media
 
 1. trending topic
 2. opinion mining
