@@ -1,3 +1,18 @@
+# Multiple paths in lambda
+
+Use lambdarest
+
+or enable proxy integration in API gateway
+
+```
+Amazon API Gateway Lambda proxy integration is a simple, powerful, and nimble mechanism to build an API with a setup of a single API method
+
+With this integration type, API Gateway applies a default mapping template to send the entire request to the Lambda 
+function and transforms the output from the Lambda function to HTTP responses.
+
+```
+
+https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
 
 # AWS Lambda
 
