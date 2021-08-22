@@ -1,5 +1,5 @@
 
-# video
+# scaling video 2017
 
 1. RTMP
 2. h264 - video
@@ -29,7 +29,7 @@ everstore to store videos
 2. https://www.youtube.com/watch?v=IO4teCbHvZw&pbjreload=10
 3. https://www.infoq.com/podcasts/sachin-kulkarni-facebook-live/
 
-# PCS 2021 delivering video
+# Picture coding symposium PCS 2021 delivering video
 
 Realtime calling on specialized hardware device like Portal
 
@@ -76,9 +76,9 @@ how to measure impact (cannot rely on user experimentation solely)
 2. lab testing : audio video injection and recording; replace mic & camera signal with known signal; record signal from messenger stack.
 3. field metrics : video referential (VMAF, SSIM, PSNR) ; non-referential (brave), Brisque, audio referential VISQOL)
 
-## benefit cost model
+## benefit cost model to determine encoder algo
 
-uses Adaptive bitrate streaming (ABR)  to reduce buffering
+Adaptive bitrate streaming (ABR) can reduce buffering
 
 advanced code (VP9) has better compression than H264 but requires more compute
 
@@ -87,5 +87,39 @@ not enough compute to produce advanced codec for all videos
 small percent of all videos generate majority watch time (zipf)
 
 model : spend X cpu unit to reduce Y MB of bandwidth for N users
+
+encoder worker farm decides priority = benefit/cost
+1. benefit = (BD rate at specific quality level * effective predicted watch time)
+1. cost = compute cost of encoding job
+
+only predict for next hour.
+
+predicting watch time using ML : 
+1. video features : past watch time, duration, post type (live, stories, vod)
+2. user features : how much time user's other videos are watched, potential audience time
+
+use two different models
+1. when video uploaded
+2. when video has been watched
+
+better prediction using 2 separate models since past watch time not available on newly uploaded videos
+
+## video quality metrics
+
+1. varying cost of mobile data
+1. diverse content
+1. maintain minimum quality bar
+1. minimize wasted bytes
+1. minimize cpu pressure
+
+bitrate vs FB-MOS curve
+
+questions
+1. max end-to-end latency in live streaming:  ITU defines 150 ms or lower one-way, above 400 is bad.
+2. frame rate & resolution for Portal for up-scaling and down-scaling : 30 fps, 720P res.  Only downscaling, no upscaling
+3. ROI encoding : compliment it with tracking, prediction and resalency
+
+
+https://engineering.fb.com/2021/04/05/video-engineering/how-facebook-encodes-your-videos/
 
 https://engineering.fb.com/video/pcs2021/
