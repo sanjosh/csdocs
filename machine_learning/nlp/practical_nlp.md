@@ -96,7 +96,7 @@ https://textblob.readthedocs.io/en/dev/
 preprocessing
 1. remove markup
 2. remove non-text by conversion to UTF-8
-3. apostrophe 
+3. apostrophe  ```('s or 're or 'r)```
 4. emoji removal using "demoji"
 5. split joined words
 6. remove URL by regex
