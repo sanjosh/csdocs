@@ -20,3 +20,17 @@ In the design doc, paste a link to the original diagram created in the diagram e
 # FAQ
 
 Why this and why not that ?
+
+
+## outline
+
+1. principles
+1. requirements
+1. perf
+1. security
+1. cost
+1. data model
+1. hld
+1. lld : lang, env,
+1. operational : metrics, upgrade
+

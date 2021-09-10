@@ -1,4 +1,5 @@
 # Resolving Outages Faster
+
 Liz Fong-Jones et al @ Google (SRE)
 
 * building dashboards not the solution
@@ -10,6 +11,7 @@ Liz Fong-Jones et al @ Google (SRE)
 internal google tool called panopticon (fb has some tool 'canopy'; also coming to opencensus + stackdriver)
 
 # Best Practices
+
 1. layer peeling : precomputation and drill down queries (add critical queries into playbook)
 2. dynamic data joins : 
 3. exemplars : dtrace + distribution (save some historical samples for each bucket)

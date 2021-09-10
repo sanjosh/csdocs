@@ -156,3 +156,45 @@ https://www.scitepress.org/Papers/2018/69377/69377.pdf
 # stackoverflow
 
 https://stackoverflow.com/questions/tagged/pdf-extraction?tab=Votes
+
+# LayoutLM
+
+https://huggingface.co/transformers/model_doc/layoutlm.html
+
+Inspired by the BERT model [4], where input textual information is mainly represented by text embeddings and position embeddings, LayoutLM further adds two types of input embeddings:
+
+(1) a 2-D position embedding that denotes the relative position of a token within a document;
+(2) an image embedding for scanned token images within a document.
+
+We evaluate the LayoutLM model on three document image understanding tasks:
+
+Form Understanding : This task requires extracting and structuring the textual content of forms. It aims to extract key-value pairs
+from the scanned form images. I
+
+Receipt Understanding : This task requires filling several predefined semantic slots according to the scanned receipt images
+
+Document Image Classification : Given a visually rich document,
+this task aims to predict the corresponding category for each document image
+
+https://arxiv.org/pdf/1912.13318.pdf
+
+
+# TODO
+
+X-Y cut algorithm
+
+Docstrum algo
+https://github.com/chulwoopack/docstrum
+
+https://github.com/chadoliver/cosc428-structor
+
+Frank Lebourgeois, Z Bublinski, and H Emptoz. 1992. A fast and efficient method
+for extracting text paragraphs and graphics from unconstrained documents.
+
+Jaekyu Ha, Robert M Haralick, and Ihsin T Phillips. 1995. Recursive XY cut using
+bounding boxes of connected components
+
+L. O’Gorman. 1993. The document spectrum for page layout analysis
+
+Anikó Simon, J-C Pret, and A Peter Johnson. 1997. A fast algorithm for bottom-up
+document layout analysis. I

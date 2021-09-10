@@ -92,5 +92,6 @@ handling thundering herd, bursts : high peak to average ratio
 * break down tasks to process partially
 
 # TODO
+
 1. Ford, et al. Availability in Globally Distributed Storage Systems. Google Inc
 2. Session State : Beyond Soft state (NSDI 04)

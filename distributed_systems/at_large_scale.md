@@ -34,3 +34,37 @@
 13. throughput budget : per machine capacity, per db node capacity
 14. source of ground truth must be constant; if it changes, throw away old decisions
 15. statistical multiplexing to create uncorrelated workloads on same machine & avoid spikes
+
+## summary
+
+1. decouple stable from dynamic (what will change over time)
+1. async over sync
+1. stateless over stateful
+1. approximate over accurate
+1. push vs pull
+
+base entities of the domain
+layers of data changing over time
+
+separate data plane and control plane 
+
+tail latency : fast path has to be unconditional (no GC, no allocation)
+
+thundering herd : caching, rate limit
+
+uneven load : randomize to decorrelate
+
+multi-tenant
+
+failure 
+1. reduce wasted work : request has TTL, cancelation, timeout
+1. just reboot : time taken to rebuild from scratch, avoid complex logic on failure, 
+1. fail fast, cache, use short-term state, do partial processing
+1. blast radius : cells, have predictable zones of operation, quotas
+
+compatibility  :backward and forward
+
+reduce manual touchpoints
+
+security
+
