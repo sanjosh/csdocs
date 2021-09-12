@@ -50,3 +50,21 @@ https://blog.sessionstack.com/how-javascript-works-a-comparison-with-webassembly
 # use-cases
 
 https://webassembly.org/docs/use-cases/
+
+# server side 
+
+WebAssembly was invented as a client-side technology, but it is also proven very useful on the server-side. S
+
+https://www.secondstate.io/articles/why-webassembly-server/
+
+# wasmedge SSVM 
+
+application level VM versus docker which is OS-level container 
+
+https://github.com/WasmEdge/WasmEdge
+
+# WASI
+
+WebAssembly Systems Interface (WASI) is a standard extension for WebAssembly bytecode applications to make operating system calls
+
+https://www.secondstate.io/articles/wasi-access-system-resources/
