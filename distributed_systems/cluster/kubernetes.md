@@ -129,3 +129,7 @@ Upgrading and application security practices
 1. Remove components from the environment when they are no longer needed
 
 https://media.defense.gov/2021/Aug/03/2002820425/-1/-1/1/CTR_KUBERNETES%20HARDENING%20GUIDANCE.PDF
+
+# visual guide debugging
+
+https://learnk8s.io/troubleshooting-deployments
