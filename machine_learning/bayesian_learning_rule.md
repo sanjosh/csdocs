@@ -1,7 +1,9 @@
 
+
+# The Bayesian Learning Rule
+
 https://arxiv.org/abs/2107.04562
 
-The Bayesian Learning Rule
 Mohammad Emtiyaz Khan, Håvard Rue
 
 We show that many machine-learning algorithms are specific instances of 
@@ -29,3 +31,13 @@ The main message is that many algorithm, that have "stood-the-test-of-time", can
 
 ## Dropout
 
+
+# Continual lifelong learning with neural networks: A review
+
+
+
+Parisi, German I., et al. "Continual lifelong learning with neural networks: A review." Neural Networks (2019)
+
+# ref
+
+https://team-approx-bayes.github.io/
