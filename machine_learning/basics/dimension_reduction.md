@@ -223,4 +223,48 @@ Optimize low dimensional representation to have as close a fuzzy topological rep
 
 https://umap-learn.readthedocs.io/en/latest/how_umap_works.html
 
+# Proper use of UMAP and t-SNE 
 
+As n_neighbors increases, UMAP connects more and more neighboring points when 
+constructing the graph representation of the high-dimensional data, which 
+leads to a projection that more accurately reflects the global structure of the data. 
+At very low values, any notion of global structure is almost completely lost. 
+
+As the min_dist parameter increases, UMAP tends to "spread out" the projected points, 
+leading to decreased clustering of the data and less emphasis on global structure
+
+UMAP is often better at preserving global structure in the final projection. 
+
+https://pair-code.github.io/understanding-umap/
+
+https://distill.pub/2016/misread-tsne/
+
+# Limitations of UMAP and T-SNE 
+
+The Specious Art of Single-Cell Genomics
+
+extensive distortions incurred on the global and local properties of biological patterns relative to the high-dimensional, ambient space. In lieu of this, we propose semi-supervised dimension reduction to higher dimension,
+
+Johnson-Lindenstrauss Lemma
+
+John von Neumann: “With four parameters I can ﬁt an elephant, and with five I can make him wiggle his trunk
+
+We argue that instead of focusing on 2D visualizations, we should perform semi-supervised dimension reduction to higher dimension, customized to hypotheses / problems of interest.
+
+We develop MCML (multi-class multi-label) dimensionality reduction for this purpose.
+
+## Picasso
+
+https://github.com/pachterlab/picasso
+
+#  Minimum-Distortion Embedding (MDE). 
+
+PyMDE is a Python library for computing vector embeddings for finite sets of items, such as images, biological cells, nodes in a network, or any other abstract object.
+
+https://web.stanford.edu/~boyd/papers/min_dist_emb.html
+
+https://github.com/cvxgrp/pymde
+
+https://twitter.com/lpachter/status/1431325969411821572
+
+https://www.biorxiv.org/content/10.1101/2021.08.25.457696v1
