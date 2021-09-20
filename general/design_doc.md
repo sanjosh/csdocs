@@ -7,11 +7,11 @@ Before you decided on a few alternative solutions, you had identified certain co
 
 # Clearly bring out the differences in the alternative solutions
 
-Sometimes it is not clear why one option is different or better than the other. Why is SQS better than Kinesis, or Lambda better than DJS ? Clearly highlight the distinction.
+Sometimes it is not clear why one option is different or better than the other. Why is SQS better than Kinesis, or Lambda better than X ? Clearly highlight the distinction.
 
 # Flesh out the Assertion 
 
-For example, saying this option has “less maintenance” or “lower latency” is a maxim that cannot be verified. Describe why you think so. Cite some benchmark, sage post, email list posting, internal link to explain.
+For example, saying this option has “less maintenance” or “lower latency” is a maxim that cannot be verified. Describe why you think so. Cite some benchmark, posting, link to explain.
 
 # Diagrams
 
