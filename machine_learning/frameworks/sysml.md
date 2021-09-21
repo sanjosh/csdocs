@@ -1,4 +1,8 @@
 
+# how to optimize
+
+https://huyenchip.com/2021/09/07/a-friendly-introduction-to-machine-learning-compilers-and-optimizers.html
+
 # SysML - machine learning distributed training
 
 Every neural networks library on the market can be categorised based on four key elements:
