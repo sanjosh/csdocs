@@ -1,7 +1,7 @@
 
 anti-spoofing
 
-#  SPF - sender policy framework
+#  SPF - sender policy framework (DNS record)
 
 1. a policy framework as its name implies, 
 2. an authentication method 
@@ -23,6 +23,4 @@ Push out DKIM + SPF TXT records via Route53
 Validate entry
 
 ```host -t txt google._domainkey.<domain_name> 1.1.1.1```
-
-
 

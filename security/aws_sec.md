@@ -184,3 +184,11 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_request.htm
 
 https://github.com/99designs/aws-vault
 
+
+# exam
+
+
+https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS-Certified-Security-Speciality_Sample-Questions.pdf
+
+https://d1.awsstatic.com/training-and-certification/docs-security-spec/AWS-Certified-Security-Specialty_Exam-Guide.pdf
+

@@ -1,6 +1,16 @@
 
-# DoH dns over https
+# DNS amplification
 
-# DoT dns over tls
+# DDoS
 
-# unbound dns
+# DNS hijacking
+
+1. DNS nameserver
+1. change A record
+1. 
+
+# DNS tunneling
+
+# DNS cache poisoning
+
+
