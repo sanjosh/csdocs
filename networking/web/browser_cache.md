@@ -9,6 +9,10 @@ no-cache, no-store, private, public
 
 ## last-modified
 
+## s-max-age
+
+## max-age
+
 # zerodha
 
 The browser caches a file, stores a hash, the E-Tag, 

@@ -82,3 +82,9 @@ https://www.youtube.com/watch?v=7pmXdG8-7WU
 
 Liz Rice
 https://www.youtube.com/watch?v=4SiWL5tULnQ
+
+# latest features
+
+https://lpc2021.org/2021/09/19/bpf-networking-summit/
+
+https://linuxplumbersconf.org/event/11/contributions/950/attachments/889/1704/lpc_from_xdp_to_socket_fb.pdf
