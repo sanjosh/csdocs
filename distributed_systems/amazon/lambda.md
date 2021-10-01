@@ -51,6 +51,14 @@ https://github.com/firecracker-microvm/firecracker
 
 https://assets.amazon.science/96/c6/302e527240a3b1f86c86c3e8fc3d/firecracker-lightweight-virtualization-for-serverless-applications.pdf
 
+# Bottlerocket
+
+https://github.com/bottlerocket-os/bottlerocket
+
+Bottlerocket is a free and open-source Linux-based operating system meant for hosting containers.
+
+
+
 # Lambda internals
 
 Control plane : management API, integration with AWS
@@ -99,12 +107,6 @@ ALB -> Frontend worker -> SQS -> Poller -> Frontend worker -> Placement Service 
 
 Kinesis and DynamoDB goes thru Poller
 
-
-
-
-
-
-
 https://www.bschaatsbergen.com/behind-the-scenes-lambda
 
 https://www.youtube.com/watch?v=QdzV04T_kec
@@ -114,6 +116,7 @@ https://www.youtube.com/watch?v=xmacMfbrG28
 https://brooker.co.za/blog/2020/02/19/firecracker.html
 
 https://docs.aws.amazon.com/whitepapers/latest/security-overview-aws-lambda/lambda-executions.html
+
 # Gigabytes in milliseconds
 
 https://www.youtube.com/watch?v=A-7j0QlGwFk
