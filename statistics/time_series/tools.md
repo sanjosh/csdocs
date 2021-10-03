@@ -7,6 +7,8 @@ Adtk https://t.co/IwpYyNEuGP?amp=1
 
 Anomalize https://ai-summary.com/summary-time-series-anomaly-detection-with-anomalize-library/
 
+stumpy https://github.com/TDAmeritrade/stumpy
+
 scikit-multiflow https://scikit-multiflow.github.io/
 
 https://github.com/MariamBARRY/skmultiflow_IForestASD
