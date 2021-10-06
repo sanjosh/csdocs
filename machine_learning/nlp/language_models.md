@@ -4,3 +4,7 @@
 https://www.youtube.com/watch?v=Oh2StnRQ3qE
 
 http://www.phontron.com/slides/neubig21lxmls.pdf
+
+# few shot learners GPT-3
+
+https://arxiv.org/pdf/2005.14165.pdf
