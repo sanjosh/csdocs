@@ -41,3 +41,6 @@ Parisi, German I., et al. "Continual lifelong learning with neural networks: A r
 # ref
 
 https://team-approx-bayes.github.io/
+
+
+https://www.youtube.com/watch?v=1ZOzPFrbFWs TODO
