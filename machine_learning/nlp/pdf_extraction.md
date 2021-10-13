@@ -198,3 +198,4 @@ L. O’Gorman. 1993. The document spectrum for page layout analysis
 
 Anikó Simon, J-C Pret, and A Peter Johnson. 1997. A fast algorithm for bottom-up
 document layout analysis. I
+

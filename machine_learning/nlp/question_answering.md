@@ -85,3 +85,8 @@ can be easily updated at test time. Parametric-only models like T5 or BART need 
 update their behavior as the world changes.
 ```
 
+# Conversational QA
+
+https://github.com/chauff/conversationalIR
+
+https://arxiv.org/pdf/2106.00874.pdf

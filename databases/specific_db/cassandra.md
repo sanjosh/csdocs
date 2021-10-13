@@ -18,3 +18,9 @@ range query is optimized
 2. based on index selectivity
 
 Also has materialized views which are global
+
+# Fine-Grained Replicated State Machines for a Cluster Storage System
+
+NSDI 2020
+
+https://www.usenix.org/system/files/nsdi20-paper-liu-ming.pdf
