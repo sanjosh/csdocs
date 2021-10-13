@@ -1,7 +1,9 @@
 
 dict
-defaultdict - supports default vals
-ordereddict - extra mem for linked list
+
+1. defaultdict - supports default vals
+1.  ordereddict - extra mem for linked list
+1. Counter
 
 how to invert (key, val) - using zip or lambda
 

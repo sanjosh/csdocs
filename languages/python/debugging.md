@@ -1,4 +1,5 @@
 
+```
 print module.__file__
 
 import imp
@@ -11,3 +12,4 @@ print obj.__dict__
 dir(obj)
 vars(obj)
 
+```
