@@ -10,3 +10,7 @@ https://arxiv.org/pdf/2104.14272v1.pdf
 
 Deep Neural Networks and Tabular Data: A Survey
 https://arxiv.org/pdf/2110.01889.pdf
+
+# PubTables dataset
+
+https://paperswithcode.com/dataset/pubtables-1m

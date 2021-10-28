@@ -59,3 +59,11 @@ pmap : map processes across multiple processors
 ## jax vs pytorch
 
 jax lacks data loader
+
+# jax grad
+
+https://colinraffel.com/blog/you-don-t-know-jax.html
+
+# examples
+
+https://github.com/google/jax/tree/main/examples
