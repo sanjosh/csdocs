@@ -55,6 +55,8 @@ for cnt in contours:
 
 https://aws.amazon.com/blogs/machine-learning/process-text-and-images-in-pdf-documents-with-amazon-textract/
 
+## tesseract
+
 # camelot
 
 https://github.com/atlanhq/camelot
