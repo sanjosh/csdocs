@@ -3,6 +3,10 @@
 
 https://github.com/toniblyx/my-arsenal-of-aws-security-tools
 
+scout suite
+
+prowler
+
 # AWS account
 
 root user
