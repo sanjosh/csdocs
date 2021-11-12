@@ -1,4 +1,29 @@
 
+# hugging face
+
+Each of these parts can be used independently, depending on the task:
+
+1. Encoder-only models: Good for tasks that require understanding of the input, such as sentence classification and named entity recognition.
+1. Decoder-only models: Good for generative tasks such as text generation.
+1. Encoder-decoder models or sequence-to-sequence models: Good for generative tasks that require an input, such as translation or summarization.
+
+Encoder models use only the encoder of a Transformer model. At each stage, the attention layers can access all the words in the initial sentence. These models are often characterized as having “bi-directional” attention, and are often called auto-encoding models.
+
+Encoder models are best suited for tasks requiring an understanding of the full sentence, such as sentence classification, named entity recognition (and more generally word classification), and extractive question answering.
+
+
+Decoder models use only the decoder of a Transformer model. At each stage, for a given word the attention layers can only access the words positioned before it in the sentence. These models are often called auto-regressive models. These models are best suited for tasks involving text generation.
+
+
+
+
+Sequence-to-sequence models are best suited for tasks revolving around generating new sentences depending on a given input, such as summarization, translation, or generative question answering.
+
+
+
+
+https://huggingface.co/course/chapter1/4?fw=pt
+
 # Transformer
 
 encoder-decoder
