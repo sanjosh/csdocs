@@ -71,6 +71,22 @@ The positions of characters in a CRDT never change even if the characters around
 
 Furthermore, the relative position can always be used to determine the location of the character in the document.
 
+# Notion
+
+https://www.notion.so/blog/data-model-behind-notion
+
+every block has
+1. ID
+2. properties
+3. type : describes how to render
+4. content
+5. parent block
+
+Everything you see in Notion is a block. Text, images, lists, a row in a database, even pages themselves — these are all blocks, dynamic units of information that can be transformed into other block types or moved freely within Notion
+
+In Notion, indentation is structural: it’s a reflection of the structure of the render tree. In other words, when you indent something in Notion, you are manipulating relationships between blocks and their content, not just adding a style.
+
+At the same time, the transaction is saved into TransactionQueue, the part of the client responsible for sending all transactions to Notion’s servers so your data is persisted and shared with collaborators. TransactionQueue stores transactions safely in IndexedDB or SQLite (depending on platform) until they’re persisted by the server or rejected.
 
 # references
 
@@ -83,3 +99,5 @@ Furthermore, the relative position can always be used to determine the location 
 7. https://stackoverflow.com/questions/5086699/real-time-collaborative-editing-how-does-it-work
 8. Ahmed-Nacer Evaluating CRDTs for Real-time Document Editing
 9. https://en.wikipedia.org/wiki/Operational_transformation#Consistency_models
+
+
