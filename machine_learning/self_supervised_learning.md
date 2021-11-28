@@ -65,3 +65,15 @@ https://amitness.com/2020/02/illustrated-self-supervised-learning/
 
 https://ai.facebook.com/blog/self-supervised-learning-the-dark-matter-of-intelligence/
 
+# Yann lecun
+
+1. learn with fewer labeled samples + fewer trials
+1. learn to reason
+1. learn to plan complex action sequences 
+
+energy function 
+
+energy is used for inference not learning
+
+
+
