@@ -96,6 +96,7 @@ PET only works when the answers to be predicted by the LM correspond to a single
 # Primer on Pretrained Multi Language models
 
 Sumanth Doddapaneni, Gowtham Ramesh, Anoop Kunchukuttan, Pratyush Kumar, Mitesh M. Khapra
+
 https://arxiv.org/pdf/2107.00676.pdf
 
 # Multimodal Few-Shot Learning with Frozen Language Models
@@ -104,12 +105,16 @@ When trained at sufficient scale, auto-regressive language models exhibit the no
 
 https://arxiv.org/abs/2106.13884
 
-
 ## TODO
 
 (Radford et al., 2019; Schick and Schütze, 2021)
 
-
+Small Language Models Are Also Few-Shot Learners
 https://arxiv.org/pdf/2009.07118.pdf
 
 
+## recent advances
+
+Recent Advances in Natural Language Processing via Large Pre-Trained Language Models: A Survey
+
+https://arxiv.org/abs/2111.01243

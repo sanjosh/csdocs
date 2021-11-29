@@ -1,8 +1,19 @@
 
-1. image classification
-2. object recognition
-3. image similarity
-4. Image caption generation
-5. image reconstruction
-6. image segmentation
+# image classification
+
+# object recognition
+
+# image similarity
+
+# Image caption generation
+
+# image reconstruction
+
+# keypoint detection
+
+# semantic segmentation
+
+# object detection
+
+# video understanding
 
