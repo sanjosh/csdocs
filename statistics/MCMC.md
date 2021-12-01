@@ -22,3 +22,7 @@ https://jeremykun.com/2015/04/06/markov-chain-monte-carlo-without-all-the-bullsh
 -----------
 
 https://stats.stackexchange.com/questions/65056/a-practical-example-for-mcmc
+
+----------
+
+https://twiecki.io/blog/2015/11/10/mcmc-sampling/

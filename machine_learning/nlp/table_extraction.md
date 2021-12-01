@@ -23,6 +23,10 @@ Silva, A.C.: Learning rich hidden markov models in document analysis: Table loca
 
 Krüpl, B., Herzog, M.: Visually guided bottom-up table detection and segmentation in web documents, WWW 2006
 
+# TaPas (table transformer)
+
+https://huggingface.co/transformers/model_doc/tapas.html
+
 # evaluating algorithms for table understanding
 
 A Methodology for Evaluating Algorithms for Table Understanding in PDF Documents
