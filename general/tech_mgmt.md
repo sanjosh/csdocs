@@ -15,3 +15,5 @@ https://skamille.medium.com/an-incomplete-list-of-skills-senior-engineers-need-b
 https://www.progression.fyi/
 
 https://dropbox.github.io/dbx-career-framework/overview.html
+
+https://review.firstround.com/how-to-size-and-assess-teams-from-an-eng-lead-at-stripe-uber-and-digg

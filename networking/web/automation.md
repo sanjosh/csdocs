@@ -72,3 +72,9 @@ http://carrefax.com/new-blog/2018/2/19/automate-the-browser-with-selenium
 # cypress
 
 Cypress runs Javascript in same browser
+
+# chrome extensions
+
+automa https://github.com/Kholid060/automa
+
+

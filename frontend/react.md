@@ -28,3 +28,11 @@ use of hidden div
 
 thinking 
 https://reactjs.org/docs/thinking-in-react.html
+
+# concepts
+
+https://dev.to/weifengnusceg/frontend-developer-learning-routine-react-concepts-p2-16ib
+
+# components
+
+like button https://dev.to/codewithbernard/how-to-implement-a-like-button-in-react-5aj4

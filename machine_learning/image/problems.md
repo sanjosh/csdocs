@@ -1,19 +1,44 @@
 
-# image classification
+# problems
 
-# object recognition
+## image classification
 
-# image similarity
+## object recognition
 
-# Image caption generation
+## image similarity
 
-# image reconstruction
+## image caption generation
 
-# keypoint detection
+## image reconstruction
 
-# semantic segmentation
+## inpainting
 
-# object detection
+## keypoint detection
 
-# video understanding
+## semantic segmentation
 
+assigning semantic labels
+
+### supervised
+
+### semi-supervised
+
+### unsupervised
+
+representation learning - use of pretext tasks (inpainting, instance discrimination
+
+contrastive
+
+
+## object detection
+
+## video understanding
+
+# techniques
+
+## saliency map
+
+Deep Inside Convolutional Networks: Visualising Image Classification Models and Saliency Maps
+https://arxiv.org/pdf/1312.6034.pdf
+
+https://analyticsindiamag.com/what-are-saliency-maps-in-deep-learning/
