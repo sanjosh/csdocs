@@ -5,12 +5,3 @@ segmentation
 
 --------------
 
-FB
-
-DeepMask
-SharpMask 
-MultiPathNet
-
-https://adeshpande3.github.io/adeshpande3.github.io/Analyzing-the-Papers-Behind-Facebook's-Computer-Vision-Approach/
-
-
