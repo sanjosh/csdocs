@@ -15,9 +15,17 @@
 
 ## keypoint detection
 
+## object detection
+
 ## semantic segmentation
 
 assigning semantic labels
+
+Object detection would identify the six people and give them a single label of person by creating bounding boxes around them. 
+Semantic segmentation goes further and creates a mask over each person that was identified and gives all of them a single label of person. 
+In instance segmentation, every instance a person gets its own label.
+
+# instance segmentation
 
 ### supervised
 
@@ -30,7 +38,6 @@ representation learning - use of pretext tasks (inpainting, instance discriminat
 contrastive
 
 
-## object detection
 
 ## video understanding
 
