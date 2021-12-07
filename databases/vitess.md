@@ -49,3 +49,7 @@ http://vitess.io/overview/#architecture
 http://vitess.io/user-guide/sharding.html
 
 
+
+# new planner
+
+https://vitess.io/blog/2021-11-02-why-write-new-planner/

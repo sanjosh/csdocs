@@ -62,3 +62,7 @@ https://towardsdatascience.com/advanced-numpy-master-stride-tricks-with-25-illus
 https://numpy.org/doc/stable/reference/generated/numpy.lib.stride_tricks.as_strided.html
 
 https://betterprogramming.pub/numpy-illustrated-the-visual-guide-to-numpy-3b1d4976de1d
+
+# visual intro
+
+http://jalammar.github.io/visual-numpy/

@@ -139,3 +139,7 @@ https://pandas.pydata.org/docs/reference/api/pandas.plotting.lag_plot.html
 
 https://stackoverflow.com/questions/14262433/large-data-workflows-using-pandas?rq=1
 
+
+# tutor
+
+https://pandastutor.com/

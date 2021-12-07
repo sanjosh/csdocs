@@ -118,3 +118,7 @@ https://arxiv.org/pdf/2009.07118.pdf
 Recent Advances in Natural Language Processing via Large Pre-Trained Language Models: A Survey
 
 https://arxiv.org/abs/2111.01243
+
+# tsinghua
+
+https://github.com/thunlp/PLMpapers

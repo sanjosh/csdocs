@@ -79,5 +79,13 @@ https://www.youtube.com/watch?v=d2XB5-tuCWU
 dataset distillation
 
 https://arxiv.org/abs/2009.08449
+```
+'Less Than One'-Shot Learning: Learning N Classes From M<N Samples
+```
 
+https://arxiv.org/pdf/1811.10959.pdf
+Dataset distillation
+    
 https://www.technologyreview.com/2020/10/16/1010566/ai-machine-learning-with-tiny-data/
+
+

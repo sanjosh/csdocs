@@ -163,3 +163,25 @@ only 427 of them contain tables.
 ## marmot table
 
 , ICDAR-17 POD, ICDAR-19, TableBank, Marmot, and UNLV
+
+# Wide & deep
+
+https://paperswithcode.com/method/wide-deep
+
+#  Tabert
+
+https://paperswithcode.com/method/tabert
+
+# TabTransformer
+
+https://paperswithcode.com/method/tabtransformer
+
+# SAINT
+
+https://paperswithcode.com/methods/category/deep-tabular-learning
+
+# relation extraction from tables
+
+https://arxiv.org/pdf/2108.10750.pdf
+
+
