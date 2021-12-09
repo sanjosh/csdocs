@@ -45,8 +45,13 @@ TODO
 
 # Miscellaneous
 
-1. Bitap (Baeza-Yates-Gonnet) : used in *agrep*
+1. Bitap (Baeza-Yates-Gonnet) : used in agrep
 
 # Reference
 
-1. Navarro. *Flexible Pattern Matching in Strings*
+1. Navarro. Flexible Pattern Matching in Strings
+
+# libraries
+
+fuzzwuzzy, gensim, difflib, jellyfish
+

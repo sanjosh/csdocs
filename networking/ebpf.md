@@ -88,3 +88,7 @@ https://www.youtube.com/watch?v=4SiWL5tULnQ
 https://lpc2021.org/2021/09/19/bpf-networking-summit/
 
 https://linuxplumbersconf.org/event/11/contributions/950/attachments/889/1704/lpc_from_xdp_to_socket_fb.pdf
+
+# sidecar and service mesh
+
+https://isovalent.com/blog/post/2021-12-08-ebpf-servicemesh
