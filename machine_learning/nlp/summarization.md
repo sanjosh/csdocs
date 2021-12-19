@@ -55,3 +55,6 @@ k
 https://www.quora.com/Natural-Language-Processing-What-are-algorithms-for-auto-summarize-text
 
 
+# controllable summarization
+
+https://github.com/salesforce/ctrl-sum

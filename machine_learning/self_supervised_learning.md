@@ -307,3 +307,6 @@ energy function
 
 energy is used for inference not learning
 
+# library
+
+https://github.com/open-mmlab/mmselfsup
