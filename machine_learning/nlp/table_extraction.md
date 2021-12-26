@@ -185,3 +185,9 @@ https://paperswithcode.com/methods/category/deep-tabular-learning
 https://arxiv.org/pdf/2108.10750.pdf
 
 
+# XGBoost
+
+Tabular Data: Deep Learning is Not All You Need
+
+
+https://arxiv.org/abs/2106.03253

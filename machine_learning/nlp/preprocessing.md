@@ -145,3 +145,38 @@ contraction_dict =
 
 ```
 
+
+
+# punctate capitalize
+
+https://www.reddit.com/r/MachineLearning/comments/ro9e4v/p_text_repunctuation_and_recapitalization/
+
+https://habr.com/ru/post/581960/
+
+https://github.com/snakers4/silero-models#text-enhancement
+
+https://colab.research.google.com/github/snakers4/silero-models/blob/master/examples_te.ipynb
+
+# contractions
+
+# textwrap (dedent)
+
+# distilbert-punctuator
+
+# textstat
+
+# gibberish-detector
+
+# nlpaug
+
+# duckling
+
+# twokenize
+
+# demoji
+
+# textblob
+
+# dedent
+
+
