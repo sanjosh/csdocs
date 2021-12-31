@@ -191,3 +191,7 @@ Tabular Data: Deep Learning is Not All You Need
 
 
 https://arxiv.org/abs/2106.03253
+
+# TabTransformer
+
+https://arxiv.org/abs/2012.06678

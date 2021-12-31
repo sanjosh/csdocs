@@ -23,6 +23,8 @@ summarizes another higher-order linear method called independent component analy
 Principal Component Analysis: A Natural Approach to Data Exploration
 https://dl.acm.org/doi/10.1145/3447755
 
+https://notebooks.gesis.org/binder/jupyter/user/cosmic-cortex-m-earning-preview-7nz7cxwo/notebooks/PCA.ipynb
+
 ## PCA (linear)
 
 second order method based on covariance matrix
@@ -266,5 +268,6 @@ https://web.stanford.edu/~boyd/papers/min_dist_emb.html
 https://github.com/cvxgrp/pymde
 
 https://twitter.com/lpachter/status/1431325969411821572
+
 
 https://www.biorxiv.org/content/10.1101/2021.08.25.457696v1

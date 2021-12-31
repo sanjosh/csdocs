@@ -1,15 +1,15 @@
 
 export -f funcName
-==============
 
+```
 add=$(($x + $y)) # add the values of x and y and assign it to variable add
 sub=$(($x - $y)) # subtract the values of x and y and assign it to variable sub
 mul=$(($x * $y)) # multiply the values of x and y and assign it to variable mul
 div=$(($x / $y)) # divide the values of x and y and assign it to variable div
 mod=$(($x % $y)) # get the remainder of x / y and assign it to variable mod
-==============
+```
 
-bash arrays
+# bash arrays
 
 echo ${arr[0]} ${arr[1]}   # refer to them
 ${arr[*]}         # All of the items in the array
@@ -84,3 +84,23 @@ sub=$(($x - $y))   # subtract the values of x and y and assign it to variable su
 mul=$(($x * $y))   # multiply the values of x and y and assign it to variable mul
 div=$(($x / $y))   # divide the values of x and y and assign it to variable div
 mod=$(($x % $y))   # get the remainder of x / y and assign it to variable mo
+
+# parameter expansion
+
+${#var} - length of string
+
+${var/bear/panda} - replace
+
+${var:offset:length} - substring
+
+${var#pattern} - remove prefix
+
+${var%pattern} - remove suffix
+
+${var:?error} - print error if var null
+
+${var:-$othervar} - use default value
+
+
+
+https://wizardzines.com/comics/parameter-expansion/

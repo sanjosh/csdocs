@@ -30,3 +30,14 @@ https://ai.facebook.com/blog/new-captum-version-features-more-ways-to-build-ai-r
 # Fiddler platform
 
 
+# alex smola lecture 15
+
+Shapley value function
+
+https://www.youtube.com/watch?v=IZD_4OVcypI
+
+https://www.youtube.com/watch?v=KMc2k211lKM
+
+https://www.youtube.com/watch?v=_raedQsEGI8
+
+https://www.youtube.com/watch?v=GtAVDsNvU8U

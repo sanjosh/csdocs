@@ -90,3 +90,15 @@ update their behavior as the world changes.
 https://github.com/chauff/conversationalIR
 
 https://arxiv.org/pdf/2106.00874.pdf
+
+# how does bert answer questions
+
+https://arxiv.org/pdf/1909.04925.pdf
+
+https://visbert.demo.datexis.com/
+
+The 4 phases of BERT's transformations
+1. Topical / Word Clusters Equal words and topics are clustered without current concern consideration.
+2. Connect Entities with Mentions and Attributes Tokens are clustered based on their relation in the context.
+3. Match Question with Supporting Facts Relevant context parts can be found close to question tokens.
+4. Answer Extraction The answer tokens are separated from the rest. Semantic clusters are dissolved.

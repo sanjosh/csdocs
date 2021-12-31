@@ -70,3 +70,13 @@ BERT cannot reason (houses are bigger than people)
 https://pakodas.substack.com/p/semantic-search-on-documents
 
 https://stackoverflow.com/questions/58636587/how-to-use-bert-for-long-text-classification
+
+# syntax augmented multilingual bert
+
+ ```
+ Given the input sequence, the words and their part-of-speech tags are embedded into vectors using the token embedding matrix and the part-of-tag embedding matrix. The token embedding matrix is shared between the GAT and the transformer encoder. The goal of the GAT encoder is to encode the dependency structure into vector representations. The GAT does not employ positional representations.
+ ```
+
+ https://ekdnam.substack.com/p/understanding-syntax-augmented-multilingual
+
+ https://aclanthology.org/2021.acl-long.350/

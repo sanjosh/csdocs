@@ -124,6 +124,12 @@ Karolina Alexiou Systems Group, ETH Zurich Zurich, Switzerland kalexiou@student.
 
 https://www.microsoft.com/en-us/research/wp-content/uploads/2013/09/p1714-kossmann.pdf
 
+# ribbon filter
+
+http://rocksdb.org/blog/2021/12/29/ribbon-filter.html
+
+https://arxiv.org/abs/2103.02515
+
 # False positives : elimination techniques
 
 Keep a small number of troublesome false positives
