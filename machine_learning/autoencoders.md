@@ -41,7 +41,7 @@ regularized autoencoders use a loss function that encourages the model to have o
 
 ## sparse autoencoder
 
-training criterion involves a sparsity penalty
+Add L1 penalty on latent space into loss function.  This ensures latent space is sparse or minimal in terms of variable size
 
 ## denoising autoencoder
 
@@ -122,7 +122,52 @@ denoising autoencoders make the reconstruction function resist small but finite-
 
 https://github.com/ParthaEth/Regularized_autoencoders-RAE-
 
+# autoencoders - sebastian raschka
+
+https://youtu.be/UnImUYOdWgk
+
+VAE latent space has normal distribution so it's easier to sample
+
+issues Regular auto encoder
+1. Distribution not centered
+2. Can be odd shaped so hard to sample in balanced fashion
+2. May not be continuous
+
+Log VAR trick
+
+Minimize ELBO (evidence lower bound) which is sum of reconstruction loss and KL loss
+
+Minimise KL divergence between latent space and normal distribution ensures smooth latent space
+
+Minimizing reconstruction loss ensures good reconstruction
+
+To generate new images just sample from latent space by running only decoder
+
+Upsampling + regular convolution is better than transpose convolution for images.  See distill pub article
+
+Add smile vector in latent space to an image
+
+## Convolutional autoencoder
+
+Uses transposed convolution in decoder
+
+## Fully connected autoencoder
+
+After training ignore the decoder and use encoder output as embedding
+
+
+## relation to PCA
+
+PCA is equivalent to autoencoder with linear activation function.
+
+In autoencoder the hidden dimensions are not orthogonal unlike PCA
+
 ## Applications
+
+1. Dimension reduction
+2. Privacy
+2. Noise elimination : by using denoising autoencoder which uses dropout
+2. Compression
 
 ### Semantic hashing
 
