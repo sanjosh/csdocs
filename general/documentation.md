@@ -8,6 +8,10 @@ four types
 
 https://www.divio.com/blog/documentation/
 
+# diataxis framework
+
+https://diataxis.fr/
+
 # why comments in code
 
 1. language and tools do not yet ensure self-documenting
@@ -19,4 +23,6 @@ https://www.divio.com/blog/documentation/
 # why not comments
 
 1. can get out-dated and misleading
+
+
 
