@@ -99,9 +99,11 @@ http://nlp.fast.ai/classification/2018/05/15/introducting-ulmfit.html
 
 https://theaisummer.com/transformer/
 
+https://neptune.ai/blog/bert-and-the-transformer-architecture-reshaping-the-ai-landscape
 
 # References
 
 1. http://jalammar.github.io/illustrated-bert/
 2.  https://news.ycombinator.com/item?id=18751469
 3. https://thegradient.pub/nlp-imagenet/
+

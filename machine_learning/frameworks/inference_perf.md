@@ -19,6 +19,25 @@ python -m torch.utils.bottleneck
 
 https://pytorch.org/docs/stable/bottleneck.html
 
+## JIT torchscript
+
+https://lernapparat.de/jit-optimization-intro/
+
+convert model to torchscript for JIT
+
+two ways : scripting and tracing
+
+avoid Global interpreter lock
+
+https://github.com/pytorch/pytorch/blob/master/torch/csrc/jit/OVERVIEW.md#jit-logging
+
+```
+traced_model = torch.jit.trace(model, [torch.randn(8, 1)])
+
+scripted_model = torch.jit.script(model)
+```
+
+
 ## disable GPU scan
 
 ```

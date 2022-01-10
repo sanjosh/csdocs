@@ -35,4 +35,8 @@ https://arxiv.org/pdf/2006.09535.pdf
 Fourier Neural Operator for Parametric Partial Differential Equations
 https://arxiv.org/pdf/2010.08895.pdf
 
+Anima Anandkumar - Neural operator: A new paradigm for learning PDEs
 https://en.wikipedia.org/wiki/Green%27s_function
+
+
+https://www.youtube.com/watch?v=Bd4KvlmGbY4
