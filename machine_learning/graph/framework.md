@@ -1,10 +1,13 @@
 
-PyG
+# PyG
 
-Jgraph
+# Jax Jgraph
 
-PyKEEN
+# Pytorch geometric
 
-DGL
+# Tensorflow Spektral
 
-Tensorflow GNN
+# PyKEEN
+
+# DGL
+

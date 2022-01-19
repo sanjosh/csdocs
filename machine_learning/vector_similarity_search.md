@@ -1,4 +1,6 @@
 
+nearest neighbour
+
 Maximum inner product search
 
 # learned quantization
@@ -28,3 +30,7 @@ key idea : finding encodings with higher average distance may actually result in
 # list of inner product libraries
 
 https://github.com/erikbern/ann-benchmarks#evaluated
+
+# Vespa
+
+https://blog.vespa.ai/billion-scale-knn/

@@ -136,3 +136,26 @@ Statistical physics leads to new insights, algorithms and proofs
 2. Statistical physics of inference: thresholds and algorithms https://www.tandfonline.com/doi/abs/10.1080/00018732.2016.1211393
 3. Computational complexity of statistical inference : Simons Institute https://simons.berkeley.edu/programs/si2021
 4. Mezard Montanari, Information Physics and Computation  2009
+
+# linkedin post
+
+Statistical physics studies the macroscopic behaviour of particles :
+1. when does water change from liquid to supercooled liquid to ice
+2. when does diamond become graphite
+3. when do ferromagnets turn into paramagnets
+
+Such phase transitions typically occur due to emergence of long-range correlations. Physicists have developed methods to study these phase transitions using high dimensional probability distributions.
+
+Computational problems also undergo a similar "phase transition" where they become harder to solve. Such problems can be studied by mapping to statistical physics.
+
+These are some problems where statistical physics has been applied
+1. max-cut : equivalent to ground state of spin glass
+2. max flow : equivalent to ground state of random field Ising model
+2. set partitioning
+3. random satisfiability
+4. gradient descent (deep learning)
+5. belief propagation
+
+There are practical applications of this correspondence too. See for example "Statistical physics-based reconstruction in compressed sensing" (https://lnkd.in/eMNtRAa)
+
+https://www.linkedin.com/posts/sanjoshi_lenka-zdeborov%C3%A1-what-physics-teaches-us-activity-6770028263608770562-cFY-
