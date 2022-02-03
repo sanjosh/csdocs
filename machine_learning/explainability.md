@@ -17,6 +17,15 @@ https://www.chilconference.org/tutorial_T04.html
 
 https://interpretable-ml-class.github.io/
 
+# Shapley value
+
+1. Model-agnostic: Use with any model
+1. Theoretic foundation: Game theory
+1. Good software ecosystem
+1. Local and global explanations
+
+https://christophm.github.io/interpretable-ml-book/shapley.html
+
 # Captum
 
 ```

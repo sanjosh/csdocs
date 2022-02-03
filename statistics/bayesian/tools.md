@@ -18,3 +18,7 @@ https://www.secondmind.ai/labs/gpflux-a-library-for-deep-gaussian-processes/
 ## arviz
 
 https://arviz-devs.github.io/arviz/
+
+## Bambi
+
+https://github.com/bambinos/bambi

@@ -178,3 +178,9 @@ This hash table allows us to perform information retrieval by returning all data
 # Reference
 
 1. Goodfellow.  Deep Learning Chap 14
+
+
+# TODO
+
+https://arxiv.org/abs/2201.03898 
+An Introduction to Autoencoders Umberto Michelucci

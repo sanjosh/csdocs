@@ -18,6 +18,11 @@ Bulteel, K., Ceulemans, E., Thompson, R., Waugh, C., Gotlib, I., Tuerlinckx, F.,
 
 Matteson, D., & James, N. (2014). A nonparametric approach for multiple change point analysis of multivariate data. 
 
+David Daly MongoDB The Use of Change Point Detection to Identify Software Performance Regressions in a Continuous Integration System
+https://dl.acm.org/doi/pdf/10.1145/3427921.3450234
+https://dl.acm.org/doi/abs/10.1145/3358960.3375791
+https://www.daviddaly.me/p/recent-presentations.html
+
 ## Multirank : uses rank info
 
 Lung-Yut-Fong, A., Lévy-Leduc, C., & Cappé, O. (2012). Homogeneity and change-point detection tests for multivariate data using rank statistics.
