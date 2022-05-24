@@ -1,4 +1,8 @@
 
+# tutorial
+
+https://github.com/allenai/acl2022-zerofewshot-tutorial
+
 # Zero shot
 
 https://www.youtube.com/watch?v=jBnCcr-3bXc

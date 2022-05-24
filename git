@@ -1,0 +1,13 @@
+
+How can you speed up the Git clone?
+
+If your repo has a long history:
+> git clone --depth=1
+then
+> git fetch --unshallow
+
+Else:
+Create a git bundle
+> git bundle create
+then
+> git clone bundle

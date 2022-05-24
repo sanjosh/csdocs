@@ -307,6 +307,12 @@ energy function
 
 energy is used for inference not learning
 
+# counting people
+
+https://arxiv.org/abs/2103.16291
+Leveraging Self-Supervision for Cross-Domain Crowd Counting
+
+
 # library
 
 https://github.com/open-mmlab/mmselfsup
