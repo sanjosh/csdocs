@@ -22,6 +22,8 @@ reduce correlation between independent servers/agents
 
 # other
 
+health check fails when system busy : use alternative signals of health, prioritize health check
+
 timeout, exp backoff, retry cycle can cause the resource under contention to become idle; add jitter to backoff
 
 Do AIMD for small number of correlated streams; AND exp backoff for large number of events

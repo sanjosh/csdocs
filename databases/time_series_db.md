@@ -56,3 +56,17 @@ extended Gorilla and Simple-8b in order to handle decompressing data in reverse 
 https://github.com/timescale/timescaledb/pull/1434/files
 
 https://blog.timescale.com/blog/building-a-distributed-time-series-database-on-postgresql/
+
+# Monarch
+
+https://research.google/pubs/pub50652/
+
+
+# Scuba: Diving into Data at Facebook 
+
+# Gorilla: A Fast, Scalable, In-Memory Time Series Database 
+
+# Cubrick: Indexing Millions of Records per Second for Interactive Analytics 
+
+# Shark: SQL and Rich Analytics at Scale 
+

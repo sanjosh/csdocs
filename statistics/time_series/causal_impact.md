@@ -16,7 +16,12 @@ Subtracting the predicted from the observed response during the post-interventio
 
 https://github.com/google/CausalImpact
 
+# air shipping amazon
+
+https://www.amazon.science/publications/aspire-air-shipping-recommendation-for-e-commerce-products-via-causal-inference-framework
+
+# lib
+
+https://github.com/py-why/dowhy
 
 https://pypi.org/project/pycausalimpact/
-
-
