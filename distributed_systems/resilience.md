@@ -54,6 +54,7 @@ handling thundering herd, bursts : high peak to average ratio
 
 * mix of clients (latency sensitive vs throughput, high volume vs low volume)
 * rate limit the clients and compartmentalize
+* service must expose its limits to clients
 * use client identifier to distinguish request
 * use request identifier if its a retry 
 * use request deadline to decide execution strategy

@@ -1,4 +1,10 @@
 
+# problems
+
+1. lack of global knowledge
+2. lack of definition of anomaly
+3. time lag to actual failure; brownout
+
 # phenomenon at large scale
 
 | problem | solution space |
