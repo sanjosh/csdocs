@@ -68,3 +68,6 @@ reduce manual touchpoints
 
 security
 
+graceful recovery after failure : pending work, new requests
+
+protocol upgrade : first everyone must read new protocol, then write new
