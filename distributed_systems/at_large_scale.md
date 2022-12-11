@@ -3,7 +3,8 @@
 
 1. lack of global knowledge
 2. lack of definition of anomaly
-3. time lag to actual failure; brownout
+3. there is time lag to actual failure; brownout
+4. new things can break on every change (threads, db, cache)
 
 # phenomenon at large scale
 
