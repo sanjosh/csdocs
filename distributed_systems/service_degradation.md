@@ -9,8 +9,8 @@ how to degrade a service to reduce its memory or cpu requirements
 3. request shedding or throttling
 4. delay the requests to be services
 
-platform services : multiple other services depend on them
+platform services : multi-tenant ;  multiple other services depend on them ; policy needed to decide whom to degrade
 
-interdependent services : caching and db have to lower their level together
+interdependent services : caching and db have to lower their service level together; otherwise one will impact the other
 
 https://m.facebook.com/atscaleevents/videos/service-degradation-at-scale-creating-instant-capacity-thote-gowda-yi-yu/375056554660227/
