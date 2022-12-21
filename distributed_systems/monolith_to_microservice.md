@@ -31,6 +31,8 @@ Joins across tables turn into joins across services
 
 Splitting tables introduces a service which may not respond
 
+run parallel pipelines
+
 ## References
 
 NDC conf https://www.youtube.com/watch?v=64w1zbpHGTg
