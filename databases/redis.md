@@ -23,4 +23,6 @@ https://redis.io/docs/manual/client-side-caching/
 
 command batching
 
-# Lua scripting
+# Lua scripting (user defined functions)
+
+# transactions
