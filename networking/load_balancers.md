@@ -79,6 +79,19 @@ Features
 3. extensibility (scripting via Lua)
 4. fault tolerance
 
+## why both L4 and L7
+
+```
+    Although in my opinion L7 load balancers will ultimately completely replace L4 load balancers for service-to-service 
+    communication, L4 load balancers are still extremely relevant at the edge because almost all modern large distributed 
+    architectures use a two-tiered L4/L7 load balancing architecture for Internet traffic
+
+    L4 for defending attacks
+    
+    dual layer of defense in case of deployment instability
+
+```
+
 # Service Mesh/sidecar proxy type LB
 
 1. Data planes: Linkerd, NGINX, HAProxy, Envoy, Traefik
