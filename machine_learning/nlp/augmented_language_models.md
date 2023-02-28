@@ -96,3 +96,45 @@ ranking two model generations for the same prompt. This data is then collected t
 that predicts a scalar reward given any generated text. The reward captures human preferences when
 judging model output. Finally, the LM is optimized against such reward model using RL policy gradient
 algorithms like PPO
+
+# PAL Program aided LM (Gao et al)
+
+ In all these natural language reasoning
+tasks, generating code using an LLM and reasoning using a Python interpreter leads to more
+accurate results than much larger models. 
+
+
+LLMs to generate their explicit reasoning steps
+1. “chain-of-thought” (Wei et al., 2022)
+2. “scratchpads” (Nye et al., 2021)
+3. “least-to-most” (Zhou et al., 2022) prompting.
+
+
+ Some works constrain the decoder
+using a Context-Free Grammar (CFG) to generate a domainspecific meaning representation (Shin & Van Durme, 2021)
+
+https://arxiv.org/pdf/2211.10435.pdf
+
+#  Few-shot semantic parsing with language models trained on code (Shin et al)
+
+
+Codex also generates canonical utterances more accurately than GPT-3, even though those look more like English than code
+
+## constrained decoding
+
+
+To ensure that the generated completion is wellformed, we assume the existence of a function
+nextTokens(s)
+
+We use nextTokens to filter candidates from the language model such that it only generates
+grammatical outputs; if we build the completion
+by appending what nextTokens advises, we are
+guaranteed to obtain a grammatically conformant
+
+## Speculative constrained decoding
+output. We implement nextTokens using a
+trie and a CFG for Overnight and SMCalFlow,
+respectively
+
+
+
