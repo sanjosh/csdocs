@@ -129,12 +129,13 @@ nextTokens(s)
 We use nextTokens to filter candidates from the language model such that it only generates
 grammatical outputs; if we build the completion
 by appending what nextTokens advises, we are
-guaranteed to obtain a grammatically conformant
-
-## Speculative constrained decoding
-output. We implement nextTokens using a
+guaranteed to obtain a grammatically conformant output. We implement nextTokens using a
 trie and a CFG for Overnight and SMCalFlow,
 respectively
 
+## Speculative constrained decoding
 
+
+
+https://github.com/microsoft/semantic_parsing_with_constrained_lm
 
