@@ -16,3 +16,9 @@ that enable users to register accessors with Pandas DataFrames and Series.
 
 https://pandas.pydata.org/pandas-docs/stable/development/extending.html#extending-pandas
 
+
+# Unstructured
+
+bricks for cleaning
+
+https://unstructured-io.github.io/unstructured/bricks.html
