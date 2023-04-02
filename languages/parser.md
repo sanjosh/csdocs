@@ -1,4 +1,13 @@
 
+# Chart parsing
+
+mindmeld
+https://www.mindmeld.com/docs/userguide/parser.html
+
+nltk chart parser
+
+https://github.com/AriBernstein/Bottom-Up-Chart-Parser
+
 # Parsing expression grammar (Ford 2004)
 
 1. uses infinite lookahead - ok, because memory is cheap 
