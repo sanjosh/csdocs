@@ -153,3 +153,13 @@ temp['transformed'] = temp.groupby('ID')['X'].apply(lambda x  : x.cumsum().shift
 
 https://stackoverflow.com/questions/54993050/pandas-groupby-shift-and-cumulative-sum
 ```
+
+# to obtain categorical codes for a column
+
+```
+labels = df_receivable['customerID'].astype('category').cat.categories.tolist()
+```
+
+
+https://stackoverflow.com/questions/30510562/get-mapping-of-categorical-variables-in-pandas
+
