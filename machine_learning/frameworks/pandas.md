@@ -143,3 +143,13 @@ https://stackoverflow.com/questions/14262433/large-data-workflows-using-pandas?r
 # tutor
 
 https://pandastutor.com/
+
+# group by, cumulative sum, shift pattern
+
+```
+df['Grouped Cumulative Sum'] = df[['Type', 'Sales']].groupby('Type').cumsum()
+
+temp['transformed'] = temp.groupby('ID')['X'].apply(lambda x  : x.cumsum().shift())
+
+https://stackoverflow.com/questions/54993050/pandas-groupby-shift-and-cumulative-sum
+```
