@@ -33,6 +33,21 @@ node state update in (k+1) is performed using aggregate + update
 many different variations proposed for doing update and aggregate (e.g. GRU, Attention, sum of normalized, etc)
 
 
+## notebook
 
+```
+We apply three convolutional layers, which means we learn the information about 3 neighbor hops. After that we apply a pooling layer to combine the information of the individual nodes, as we want to perform graph-level prediction.
+
+Always keep in mind that different learning problems (node, edge or graph prediction) require different GNN architectures.
+```
+
+For node-level prediction you will often encounter masks.  
+You need masks because may not all nodes available during training or prediction.  So you mask out others
+
+For graph-level predictions on the other hand you need to combine the node embeddings
+1. mean pooling
+2. max pooling
+3. or graph-level pooling which reduces graph size)
+```
 
 
