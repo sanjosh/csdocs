@@ -50,4 +50,14 @@ For graph-level predictions on the other hand you need to combine the node embed
 3. or graph-level pooling which reduces graph size)
 ```
 
+## grpah level predictions (pooling)
+
+add super/virtual/dummy node which gets messages from all nodes but doesnt return anything back.  this super node can be used as graph representation
+
+differentiable pooling
+
+top-k pooling
+
+
+
 
