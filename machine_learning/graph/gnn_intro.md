@@ -39,7 +39,6 @@ many different variations proposed for doing update and aggregate (e.g. GRU, Att
 We apply three convolutional layers, which means we learn the information about 3 neighbor hops. After that we apply a pooling layer to combine the information of the individual nodes, as we want to perform graph-level prediction.
 
 Always keep in mind that different learning problems (node, edge or graph prediction) require different GNN architectures.
-```
 
 For node-level prediction you will often encounter masks.  
 You need masks because may not all nodes available during training or prediction.  So you mask out others
@@ -48,15 +47,43 @@ For graph-level predictions on the other hand you need to combine the node embed
 1. mean pooling
 2. max pooling
 3. or graph-level pooling which reduces graph size)
-```
 
-## grpah level predictions (pooling)
+
+## graph level predictions (pooling)
 
 add super/virtual/dummy node which gets messages from all nodes but doesnt return anything back.  this super node can be used as graph representation
 
 differentiable pooling
 
 top-k pooling
+
+if data imbalance (positive and negative), use weighted cross-entropy
+
+## VAE 
+
+reconstruction + regularization loss
+
+decoder problem : graph reconstruction problems (graph-level info is lost) :
+1. decoder may predict different number of nodes
+2. we lose node ordering 
+3. graphs of different sizes - FCN output nodes have to change based on size of graph
+
+use max pool matching for 1 and 2, fixed max graph size for 3
+
+have canonical ordering for (2)
+
+https://www.youtube.com/watch?v=F45X7e6QS4E&list=PLV8yxwGOxvvoNkzPfCx2i8an--Tkt7O8Z&index=13
+
+## explainability 
+
+1. XAI
+
+# temporal graphs
+
+
+
+
+
 
 
 
