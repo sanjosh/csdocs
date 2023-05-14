@@ -136,17 +136,104 @@ transfer learning
 
 ## temporal graphs
 
+1. static temporal
+2. dynamic temporal
+
+steps
+1. first calculate spatial embedding of each node by sending graph at each step thru GNN
+2. then send them to temporal model to create spatio-temporal embedding of each node
+
+Dynamic graphs : what if node or edges change over time ?  there is a paper on it
+
+### pytorch geometric temporal library
+
+
+### traffic forecasting
+
+time series forecasting in GNN : labels become features for next step
+
+tensorflow overview of time series forecasting
+https://www.tensorflow.org/tutorials/structured_data/time_series
+https://www.tensorflow.org/tutorials/structured_data/time_series
+
+## fraud detection
+
+fraud of fake commenters : adjacency matrix of page-comments is anomalous
+
+credit card transactions : nodes are buyer, amount, email, shipping address
+
+GNN can learn complex structural patterns
+
+what if nodes are heterogenous ? need message passing
+
+## fake news detection
+
+confirmation bias - user retweets an article
+
+not fact checking
+
+gossipcop dataset
+
+node attributes : profile date created, followers, location
+
+## recommender systems
+
+1. content based filtering
+2. collaborative filtering (similarity between user) - matrix completion problem - use matrix factorization
+
+in GNN, collab filtering becomes bipartite graph
+
+use graph auto-encoder to reconstruct graph
+
+then use link prediction - predict edge probabilities (possible new edges)
+
+PinSAGE (Pinterest) : 
+
+how to do sequential recommendation of purchases ?  paper Dynamic GNN for sequential recommendation
+
+## causality 
+
+shawhin talebi
+
+pearl structural causality model (SCM)
+
+hierarchy 
+1. counterfactual
+2. intervention
+3. association
+
+paper "relating gnn to structural causal models" velickovic
+
+## unsupervised GNN training
+
+predominant approach is self-supervised
+
+variants of SSL on graphs
+1. autoencoder
+2. task generation - precalculated tasks (task is to predict descriptors like node degree - forces model to produce embeddings which learn structure)
+3. contrastive : task is to maximize similarity between pairs, augmentation of positive pairs, use negative sampling within batch
+
+augmentation ( attr masking, attr shuffling)
 
 
 
+## Converting table (csv) to graph data
 
+identify nodes, edge, node features, labels
 
+use DataLoader in pytorch geometric
 
+for temporal
+```
+The more or less difficult part with temporal graph datasets, is to define a stepsize for the temporal snapshots. In the dataset above we have random trips from one location to another, without a pre-defined discrete interval. An easy approach is for example to define X minute intervals and build a graph out of all trips that happened (ended) in this timeframe
+```
 
+Static Graph Temporal Signal
+```
+This is simply a graph that always stays the same and only the label information changes. Common examples are road networks (the nodes/edges do not suddently disappear in a long-range time horizon) or electricity networks.
+```
 
-
-
-
-
-
-
+Dynamic Graph Temporal/Static Signal
+```
+The more difficult graph type is a dynamic graph (with regards to nodes/edges). This typically happens in social networks, that quickly grow/shrink over time, but also transaction systems like crypto networks. Previously I mentioned that the node ordering is implicitly defined by the node feature matrix - but what if this matrix changes.
+```
