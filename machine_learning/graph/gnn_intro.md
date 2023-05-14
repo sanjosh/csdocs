@@ -35,7 +35,6 @@ many different variations proposed for doing update and aggregate (e.g. GRU, Att
 
 ## notebook
 
-```
 We apply three convolutional layers, which means we learn the information about 3 neighbor hops. After that we apply a pooling layer to combine the information of the individual nodes, as we want to perform graph-level prediction.
 
 Always keep in mind that different learning problems (node, edge or graph prediction) require different GNN architectures.
@@ -76,9 +75,72 @@ https://www.youtube.com/watch?v=F45X7e6QS4E&list=PLV8yxwGOxvvoNkzPfCx2i8an--Tkt7
 
 ## explainability 
 
-1. XAI
+1. instance level predictions 
+2. model level predictions (harder because you have to learn decision boundary)
 
-# temporal graphs
+methods for instance level
+1. gradients/features : backprop 
+2. perturb (remove parts of graph)
+3. decomposition prediction into input space (layer by layer, input is reached)
+4. surrogate : fit simpler model in local area
+
+for model level
+1. generation 
+
+look at computation graph for a node
+
+maximize mutual information : indicates how much influence a subgraph has on overall computation graph
+
+instead of going over all subgraphs, use a constant mask to get certain subset of subgraphs
+
+DiG (Dive into Graphs) implements explainer methods
+
+## Twitch 
+
+
+
+## libraries
+
+### pytorch geometric
+
+### deep graph library (DGL)
+
+backend agnostic : works for pytorch, tensorflow, mxnet
+
+can add custom info to nodes, edge
+
+
+### Spektral
+
+keras and tensorflow
+
+for node and graph level predictions
+
+## Graph Nets (deepmind)
+
+tensorflow and sonnet
+
+lower level library
+
+no pooling layers
+
+no datasets
+
+### DeepChem for chemical GNN
+
+### DiveIntoGraphs 
+
+### deepsnap
+
+transfer learning
+
+## temporal graphs
+
+
+
+
+
+
 
 
 
