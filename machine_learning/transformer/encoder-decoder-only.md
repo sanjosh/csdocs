@@ -26,3 +26,14 @@ This architecture is useful for applications such as:
 
 
 https://www.practicalai.io/understanding-transformer-model-architectures/
+
+
+# dual encoder 
+
+```
+A dual encoder is an architecture consisting of two encoders, each of which encodes an input (such as
+a piece of text) into an embedding, and where the model is optimized based on similarity metrics in
+the embedding space.
+
+question answering and info retreival
+```
