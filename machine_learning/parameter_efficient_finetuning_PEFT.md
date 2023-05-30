@@ -22,3 +22,11 @@ the self-attention module (Wq, Wk, Wv, Wo) and two in the MLP module.
 https://www.philschmid.de/fine-tune-flan-t5-peft
 
 https://www.philschmid.de/bloom-sagemaker-peft  
+
+# P-tuning (embeddings of prompts)
+
+https://www.nvidia.com/en-us/on-demand/session/gtcspring22-s41735/
+
+https://huggingface.co/docs/peft/task_guides/ptuning-seq-classification
+
+P-tuning uses a prompt encoder to optimize the prompt parameters
