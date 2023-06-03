@@ -10,3 +10,7 @@ https://github.com/lvwerra/trl
 https://github.com/openai/summarize-from-feedback
 
 # PEFT (other file)
+
+# huggingface
+
+https://www.philschmid.de/fine-tune-flan-t5
