@@ -1,4 +1,9 @@
 
+invented to improve stability of SGD
+
+instead of using gradient of log prob of the action taken, it uses ratio between new and old policy scaled by advantages
+
+
 # Proximal Policy Optimization.
 
 1. builds on actor-critic
@@ -22,8 +27,7 @@ ratio of new probabilities/old probabilities
 
 # References
 
-https://www.youtube.com/watch?v=5P7I-xPq8u8
-
-https://www.youtube.com/watch?v=WxQfQW48A4A&list=PLWzQK00nc192L7UMJyTmLXaHa3KcO0wBT&index=11
-
-https://openai.com/blog/openai-baselines-ppo/
+1. https://www.youtube.com/watch?v=5P7I-xPq8u8
+2. https://www.youtube.com/watch?v=WxQfQW48A4A&list=PLWzQK00nc192L7UMJyTmLXaHa3KcO0wBT&index=11
+3. https://openai.com/blog/openai-baselines-ppo/
+4.  Maxim Lapan, Deep reinforcement learning
