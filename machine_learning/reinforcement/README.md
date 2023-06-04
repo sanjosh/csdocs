@@ -28,15 +28,13 @@ in ML, we update weights based on loss.  in policy RL, we update weights based o
 
 Can we unroll Bellman equation for multiple steps : doesn't help beyond a point - causes instability
 
-RL complexity : number of states, speed of response (for gaming), length of episodes
+RL complexity : number of states, latency of response (for gaming), length of episodes
 
 actor critic : combine value and policy 
 
 bellman equation : not just reward but consider value of the state you are going into (recursive formulation)
 
-Training stability
-
-Sample efficiency
+Training stability, Sample efficiency
 
 Multi-agent RL : can be collaborative or competitive
 
@@ -44,6 +42,8 @@ RL for combinatorial optimization
 1. no reward signal
 2. need to reach most optimal solution rather than any solution
 3. use of Monte Carlo tree search.
+
+Model-based versus model-free methods 
 
 Other black box methods:
 1. genetic algo
