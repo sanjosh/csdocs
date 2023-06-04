@@ -1,4 +1,16 @@
 
+# summary
+
+```
+input * weights = output
+need activation function to make it non-linear
+loss function = difference expected and actual
+derivative of weights(params) wrt loss - SGD
+backprop - subtract loss from weights to get new weights so loss goes down
+optimizer used to update weights to speed up convergence
+learning rate decides granularity of weight change
+```
+
 # batch size 
 
 The batch size limits the number of samples to be shown to the network before a weight update can be performed
@@ -20,6 +32,7 @@ one epoch is when entire training dataset is passed ONCE forward and backward th
 # learning rate
 
 if the learning rate is too high, our loss will start jumping all over the place and never converge.
+
 if the learning rate is too small, the model will take way too long to converge,
 
 https://blog.nanonets.com/hyperparameter-optimization/
