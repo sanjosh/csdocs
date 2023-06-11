@@ -26,6 +26,45 @@ selected less would be more optimal
 
 use some context. this is intermediate between multi-armed bandit and full RL
 
+# Bandit algorithms for website optimization book
+
+## softmax algo
+
+choose arms based of past reward rate of each arm
+
+add exponential rescaling to allow negative rewards
+(This naive exponential rescaling has the virtue of not behaving strangely if
+you someone used negative numbers as rates of success, since the call to exp will turn
+any negative numbers into positive numbers and insure that the negative numbers in
+the denominator of these fractions can’t cancel out any positive numbers that may be
+found in the denominator)
+
+add temperature parameter to shift between fully deterministic and fully random
+(the full Softmax algorithm is closely related to a concept called the Boltzmann distribution in physics, which is used
+to describe how groups of particles behave.)
+
+## Annealing softmax algo
+
+softmax but explore less over time
+
+(annealing is a process in which the blacksmith slowly decreases the temperature 
+at which he works with molten melt so that it becomes more solid and less flexible)
+
+## UCB algo
+
+previous algorithms under-explore options whose initial experiences were not rewarding, even though they don’t have enough data to be confident about those arms
+
+motive : gather more data before stopping exploration
+
+1. UCB doesn’t use randomness at all. Unlike epsilon-Greedy or Softmax, it’s possible
+to know exactly how UCB will behave in any given situation. This can make it easier
+to reason about at times.
+2. UCB doesn’t have any free parameters that you need to configure before you can
+deploy it. This is a major improvement if you’re interested in running it in the wild,
+because it means that you can start to use UCB without having a clear sense of what
+you expect the world to behave like.
+
+
 # Bandit problems (from Sutton Barto)
 
 Bandit problems : reinforcement learning problem in which there is only a single state (i.e. non-associative)
