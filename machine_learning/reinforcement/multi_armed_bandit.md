@@ -8,7 +8,7 @@ K = number of arms
 
 Bandit algo called optimal if it has regret = O(log T) where T = number of rounds to play
 
-# Algorithms
+## Algorithms
 
 1. greedy : linear regret
 2. random  : linear regret
@@ -22,9 +22,25 @@ take account of each action's potential to be optimal
 
 selected less would be more optimal
 
-# Contextual bandit
+## Contextual bandit
 
 use some context. this is intermediate between multi-armed bandit and full RL
+
+# Bandit problems (from Sutton Barto)
+
+Bandit problems : reinforcement learning problem in which there is only a single state (i.e. non-associative)
+
+suppose the bandit task were nonstationary, that is, the true values of the actions changed over time. In this case exploration is needed even in the deterministic case to make sure one of the nongreedy actions has not changed to become better than the greedy one
+
+Non-stationary problems :  If reward probabilities change over time, then give more weight to recent rewards than to long-past rewards.  One of the most popular ways of doing this is to use a constant step-size parameter.  But convergence conditions need to be met by whatever update method is used.
+
+Initial action values : Supply prior knowledge.  
+
+UCB Upper confidence bound action selection method : actions with lower value estimates, or that have already been selected frequently, will be selected with decreasing frequency over time.
+
+Contextual bandit : Associative search task : so called because it involves both trial-and-error learning to search for the best actions, and association of these actions with the situations in which they are best. Associative search tasks are often now called contextual bandits in the literature
+
+One well-studied approach to balancing exploration and exploitation in k-armed bandit problems is to compute a special kind of action value called a Gittins index.   The Gittins-index approach is an instance of Bayesian methods
 
 # Applications
 
