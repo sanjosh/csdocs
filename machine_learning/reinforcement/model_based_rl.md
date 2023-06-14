@@ -27,3 +27,28 @@ not sacrificing capacity and expressiveness via the larger world model. By train
 through the lens of its world model, we show that it can learn a highly compact policy to perform its task.
 
 ```
+
+Our agent consists of three components that work closely together: Vision (V), Memory (M), and Controller (C).
+
+V is a VAE
+
+M is RNN 
+
+C is simple single layer linear model
+
+```
+def rollout(controller):
+  ''' env, rnn, vae are '''
+  ''' global variables  '''
+  obs = env.reset()
+  h = rnn.initial_state()
+  done = False
+  cumulative_reward = 0
+  while not done:
+    z = vae.encode(obs)
+    a = controller.action([z, h])
+    obs, reward, done = env.step(a)
+    cumulative_reward += reward
+    h = rnn.forward([a, z, h])
+  return cumulative_reward
+  ```
