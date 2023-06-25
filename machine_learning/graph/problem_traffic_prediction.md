@@ -1,15 +1,15 @@
 
-```
-One of the first influential papers in the area was the diffusionconvolutional recurrent neural network (DCRNN) [17]. This paper
-illustrated how explicitly accounting for the graph structure provides a significant reduction in forecasting error over several horizons. This generic blueprint of a spatial GNN component combined with a temporal component yielded several subsequent proposals, including STGCN [34], GaAN [37], Graph WaveNet [29], ST-GRAT [19], StemGNN [3], and GMAN [39].
-```
-
 
 # ETA Prediction with Graph Neural Networks in Google Maps
 
 https://www.nextplatform.com/2021/08/31/the-graph-neural-networks-behind-your-eta/
 
- factor the roads, driving conditions, historical and emerging traffic events.
+factor the roads, driving conditions, historical and emerging traffic events.
+
+ 
+One of the first influential papers in the area was the diffusionconvolutional recurrent neural network (DCRNN) [17]. This paper
+illustrated how explicitly accounting for the graph structure provides a significant reduction in forecasting error over several horizons. This generic blueprint of a spatial GNN component combined with a temporal component yielded several subsequent proposals, including STGCN [34], GaAN [37], Graph WaveNet [29], ST-GRAT [19], StemGNN [3], and GMAN [39].
+
 
 the assumption of the time-series being aligned across nodes does not necessarily hold in practice
 
@@ -53,3 +53,5 @@ Having learned spatial information about the data using the GAT model, we now fe
 batch size = 50 graphs
 
 https://medium.com/stanford-cs224w/predicting-los-angeles-traffic-with-graph-neural-networks-52652bc643b1
+
+# Machine learning for spatiotemporal sequence forecasting: A survey.
