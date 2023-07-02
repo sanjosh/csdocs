@@ -13,6 +13,35 @@ Following the image analogy, node-level prediction problems are analogous to ima
 
 ## Edge level task
 
+??
+
+# GCN as subgraph function approximators
+
+Another way to see GCN (and MPNN) of k-layers with a 1-degree neighbor lookup is as a neural network that operates on learned embeddings of subgraphs of size k
+
+# Edges and Nodes : the Graph Dual
+
+an edge prediction task on a graph 𝐺 can be phrased as a node-level prediction on 𝐺’s dual.
+
+Dual-Primal Graph Convolutional Networks 
+Monti, F., Shchur, O., Bojchevski, A., Litany, O., Gunnemann, S. and Bronstein, M.M., 2018.
+
+# graph convolution
+
+matrix multiplication of an adjacent matrix 𝐴 with a node feature matrix 𝑋 = message passing with sum aggregation
+
+
+# Explanability
+
+GNNExplainer : extracting the most relevant subgraph that is important for a task
+
+# Generative graph model
+
+Auto-encoder over adjacency matrix
+
+Construct graph from scratch as sequence of actions
+
+
 # Pooling
 
 collect information from edges and give them to nodes for prediction, or vice-versa.
