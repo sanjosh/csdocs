@@ -1,5 +1,5 @@
 
-# Generic
+# Aggregations
 
 The choice of aggregate and merge functions in GNNs is crucial.
 
@@ -15,6 +15,16 @@ A GNN variant with maximal representation power would be one which has an inject
 https://medium.com/stanford-cs224w/graphs-are-all-you-need-generating-multimodal-representations-for-vqa-744a8a1ad448
 
 Xu, Keyulu, et al. “How powerful are graph neural networks?.” arXiv preprint arXiv:1810.00826 (2018)
+
+```
+mean aggregation captures the distribution (or proportions) of elements,
+max aggregation proves to be advantageous to identify representative elements
+sum aggregation enables the learning of structural graph properties (Xu et al. (2018))
+multiple aggregations (Corso et al. (2020), Tailor et al. (2021))
+learnable aggregations (Li et al. (2020)) 
+```
+
+https://pytorch-geometric.readthedocs.io/en/latest/modules/nn.html#convolutional-layers
 
 # Knowledge graph embedding
 
