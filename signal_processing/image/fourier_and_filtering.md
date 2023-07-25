@@ -31,6 +31,13 @@ Fftshift only has to be called once, as it automatically shifts the quadrants ar
 ```
 https://matlabgeeks.com/tips-tutorials/how-to-do-a-2-d-fourier-transform-in-matlab/
 
+```
+high frequencies in the vertical direction will cause bright dots away from the center in the vertical direction. And that high frequencies in the horizontal direction will cause bright dots away from the center in the horizontal direction.
+
+rotation of the image results in equivalent rotation of its FT
+```
+https://www.cs.unm.edu/~brayer/vision/fourier.html
+
 # filtering
 
 High Pass Filtering is an edge detection operation
