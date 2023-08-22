@@ -25,3 +25,51 @@ https://www.amazon.science/publications/aspire-air-shipping-recommendation-for-e
 https://github.com/py-why/dowhy
 
 https://pypi.org/project/pycausalimpact/
+
+# misc
+
+counterfactual
+
+imputation
+
+data generation process
+
+
+# Inferring the effect of an event using CausalImpact by Kay Brodersen
+
+https://www.youtube.com/watch?v=GTgZfCltMm8
+
+what is the effect of product launch
+
+use other time series which are correlated by outcome of interest but not affected by product launch (e.g. web searches of competitors or weather or economy)
+
+synthetic control estimators : train model in pre-period; apply inference in post-period
+
+uses bayesian structural time series as base model
+
+## How to prevent or detect Spurious correlations
+
+Back-test the method in the past
+
+## Application - ROI analysis
+
+## how many predictive time series do you need 
+
+5 to 20 empirically 
+
+## can it analyse multiple events that overlap in time
+
+## statistical power - confidence intervals
+
+
+# Bayesian structural time series
+
+
+# Microsoft library dowhy
+
+https://github.com/py-why/dowhy
+
+
+
+
+
