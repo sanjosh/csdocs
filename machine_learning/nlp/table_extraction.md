@@ -189,6 +189,10 @@ https://arxiv.org/pdf/2108.10750.pdf
 
 Tabular Data: Deep Learning is Not All You Need
 
+# Camelot has two methods (Stream and LAttice)
+
+https://camelot-py.readthedocs.io/en/master/user/how-it-works.html
+
 
 https://arxiv.org/abs/2106.03253
 
