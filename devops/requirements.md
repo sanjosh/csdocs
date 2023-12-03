@@ -1,4 +1,7 @@
 
+# declarative
+
+
 # Auditability 
 
 to ensure auditability, everything has to be under version control (GitOps - no manual operations).  This ensure we know which code change is causing error.
