@@ -14,3 +14,5 @@ https://www.digitalocean.com/community/tutorials/how-to-deploy-to-kubernetes-usi
 ## sample apps
 
 https://github.com/argoproj/argocd-example-apps
+
+## argo rollouts
