@@ -20,3 +20,23 @@ when not to use jwt
 2. use short expiration times
 
 https://www.youtube.com/watch?v=P2CPd9ynFLg
+
+
+# OIDC : access token; refresh token; value or ID token
+
+same session can generate multiple tokens
+
+access token is used to call API; it has scopes
+
+refresh token is saved by application on behalf of user, to obtain a new access token and new refresh token
+
+ID token contains user information
+
+token introspection service 
+
+```
+For the access token, on the other hand, there is a set of techniques, collectively known as sender constraint, that allow you to bind an access token to a specific sender. This guarantees that even if an attacker steals an access token, they can’t use it to access your API since the token is bound to the client that originally requested it.
+
+```
+
+
