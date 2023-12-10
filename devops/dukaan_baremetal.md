@@ -9,8 +9,8 @@ Lens
 
 Hosting
 1. Equinix 
-2. Vulture 
-3. Phoenix nap
+2. Vultr 
+3. Phoenixnap
    
 Leased hardware 
 
@@ -21,25 +21,26 @@ Bought their own ip address 
 
 
 logs
-1. Fluent bit cncf 
+1. Fluentbit cncf 
 2. nginx
 3. Access logs
-3. 4 tb nvme and Elasticsearch
+3. 4 TB nvme and Elasticsearch
 4. 3 months log
 4. Druid keeps rest of logs 
 
 Tracing 
-1. Yager
-1. Signos
+1. Jaeger
+1. Signoz
 
 cdn
 1. Keycdn 
 2. Cloudflare
 3. Bunny
+4. Wasabi
 
 cdn performance monitoring 
 
-Wasabi 
+ 
 
 Handle peak load by pulling machines from other geographies
 
