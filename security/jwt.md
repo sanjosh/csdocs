@@ -12,3 +12,5 @@ the user agent should send the JWT, typically in the Authorization header using 
 jwt can use public/private and not limited to shared secret
 
 https://jwt.io/introduction
+
+https://www.youtube.com/watch?v=P2CPd9ynFLg
