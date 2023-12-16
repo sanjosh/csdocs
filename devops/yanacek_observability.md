@@ -9,8 +9,15 @@ look at metric per dimension (e.g errors per webpage or per widget) instead of a
 
 measure separately the things which can fail separately
 
-use composite alarms when there is common problem
+use composite alarms when the alarms are tied to a common problem
 
 # find source of problem
 
-triangulate
+triangulate with tracing
+
+servicelens map
+
+use service maps derived from traces
+
+
+
