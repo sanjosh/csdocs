@@ -29,3 +29,4 @@ security in the open (security by open algo and private keys, not private algo)
 
 zero trust 
 
+https://cheatsheetseries.owasp.org/cheatsheets/Secure_Product_Design_Cheat_Sheet.html
