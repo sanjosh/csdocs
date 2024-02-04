@@ -1,4 +1,22 @@
 
+
+# id tokens and access tokens
+
+ID tokens (to reuse identity which is stored in another app) 
+
+Access tokens (allow app to perform action in another app)
+
+Refresh tokens
+
+http redirect
+
+claims, scopes, intended audience
+
+revocation, expiration
+
+https://www.youtube.com/watch?v=vVM1Tpu9QB4
+
+# jwt
 jwt = header + payload + signature
 
 1. header = token + scheme used
