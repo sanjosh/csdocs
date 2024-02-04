@@ -29,6 +29,23 @@ Server-side authentication is easy to invalidate because we have complete contro
 
 If your application requires real-time updates or notifications, server-side authentication can be more efficient because the server can push updates to the client based on the session ID.
 
+# diff
+
+Earlier - every website had username + password
+
+Cookies (sessionId stored in server) versus Tokens 
+
+Cookies - see cookies tab in developer tools
+
+cookies can be modified - cannot be trusted - sent in cookie http header
+
+Tokens - sent in http authorization header, has message integrity
+
+tokens interoperable, cookies are not
+
+tokens leads to decentralized auth
+
+https://www.youtube.com/watch?v=GhrvZ5nUWNg
 
 ## reference
 
