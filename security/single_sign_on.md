@@ -7,7 +7,7 @@ Browser cookie
 
 # SAML : cryto signed XML (enterprise)
 
-SAML assertion
+SAML assertion returned by identity provider
 
 # OpenID connect JWT (google/facebook)
 
