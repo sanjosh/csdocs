@@ -2,11 +2,19 @@
 
 # id tokens and access tokens
 
-ID tokens (to reuse identity which is stored in another app) 
+## ID tokens 
 
-Access tokens (allow app to perform action in another app)
+to reuse identity which is stored in another app
 
-Refresh tokens
+should not be sent to api
+
+## Access tokens 
+
+allow app to perform action in another app
+
+do not guarantee the user is logged in
+
+## Refresh tokens
 
 http redirect
 
