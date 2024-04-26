@@ -26,3 +26,11 @@ Extended Validation (EV), like OV, verifies the identity of an organization. How
 
 
 https://www.ssl.com/article/dv-ov-and-ev-certificates/
+
+# SSL Site seal
+
+https://www.ssl.com/faqs/faq-what-is-a-site-seal/
+
+# CNAME and subdomain takeover
+
+https://developer.mozilla.org/en-US/docs/Web/Security/Subdomain_takeovers
