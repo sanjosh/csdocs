@@ -25,7 +25,11 @@ time to deliver a new feature
 
 # migration 
 
-poc, blue-green, switch-over and measure 
+1. poc
+1. double-write
+1. backfill
+1. blue-green
+1. switch-over 
 
 # protect data and schema 
 
