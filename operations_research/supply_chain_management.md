@@ -2,9 +2,9 @@
 
 # warehousing
 
-# intra-city logistics
-
 # transportation
+
+# intra-city logistics
 
 
 # Rough notes
@@ -12,14 +12,32 @@
 ## Customer table
 
 ## Item table
-1. ASIN
+1. SKU
 2. Details
 3. Expiration time if perishable
 4. Size of item
 5. type of item
+6. weight of item
+7. temperature handling
+
+
+## Vendor table
+
+1. Vendor
+2. Bank account
+3. Address
+
+
+## Item Purchase table
+1. SKU
+2. Price
+3. Vendor
+4. time of price
+5. Discounts
+
 
 ## Supplier table
-1. Item ASIN
+1. SKU
 2. Replenishment time to each warehouse
 3. Price
 
@@ -51,7 +69,7 @@
 2. Time of recording
 3. Location
 
-## Transport table
+## Transport schedule table
 1. Type (truck, air)
 2. Capacity (containerize?)
 3. Start time
@@ -71,10 +89,14 @@
 4. what was ETA given when order was placed 
 5. find nearest warehouse to customer
 6. order priority and replenishables decides use of network
-7. plan again if disruption in network while guaranteeing order
+7. plan again if disruption in network after guaranteeing order
 8. generate macro plan and then micro plan
 9. how to model flexible capacity (pay more, ship faster - add attribute tag to each order)
 10. alternative network routes
+11. Demand variability (Fast, average, slow movers)
+12. Replenish time for item
+13. Purchase and sale price, find Turnover
+
 
 ## ETA given when order was placed
 
