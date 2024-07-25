@@ -1,4 +1,9 @@
 
+# google guidelines
+
+https://google.aip.dev/
+
+
 # API types
 
 1. sync
