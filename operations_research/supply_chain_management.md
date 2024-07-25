@@ -115,6 +115,12 @@
 1. Get all items to be delivered to each locality
 2. Find capacity of each delivery person
 3. Plan the route for each delivery
-4. Save 
+4. Save
 
+
+# Inventory management algo
+
+## Economic order quantity (EOQ)
+
+## Day Sales inventory (DSI)
    
