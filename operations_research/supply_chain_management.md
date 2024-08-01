@@ -1,4 +1,5 @@
 
+# demand forecasting and inventory management
 
 # warehousing
 
@@ -8,6 +9,15 @@
 
 
 # Rough notes
+
+## Demand prediction
+
+1. product attributes, placement, discount
+2. store characteristics
+3. seasonal
+4. customer demographic, number of customers around store
+5. competitors
+6. sudden factors (war, shocks)
 
 ## Customer table
 
