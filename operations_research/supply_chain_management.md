@@ -1,16 +1,24 @@
 
-# demand forecasting and inventory management
+# awesome
+
+https://github.com/Funkmyster/awesome-supply-chain
+
 
 # warehousing
+
+1. demand forecasting
+2. inventory management
 
 # transportation
 
 # intra-city logistics
 
+1. VRP
+
 
 # Rough notes
 
-## Demand prediction
+## Demand forecasting
 
 1. product attributes, placement, discount
 2. store characteristics
@@ -18,6 +26,8 @@
 4. customer demographic, number of customers around store
 5. competitors
 6. sudden factors (war, shocks)
+7. substitution
+8. complementarity
 
 ## Customer table
 
