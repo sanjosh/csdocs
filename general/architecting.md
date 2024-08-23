@@ -27,7 +27,9 @@ technical skills required
 
 # future-proof
 
-find demand and meet growth for next 1-2 years
+meet growth for next 1-2 years
+
+ability to change tech stack 
 
 # reliable tech
 
