@@ -7,6 +7,8 @@ easy to build on
 
 ability to reason about it 
 
+optimize the common case 
+
 # operational efficiency 
 
 simpler is easier to manage : only need to know few knobs for each module
@@ -19,23 +21,26 @@ ability to audit and monitor running system
 
 ability to quickly recover from disaster or failure
 
-# cost 
+# cost balance
 
-money
+actual money
 
 technical skills required
+
+customer satisfaction
+
 
 # future-proof
 
 meet growth for next 1-2 years
 
-ability to change tech stack 
+effort to change tech stack 
 
 # reliable tech
 
 tools and dependencies are proven to be reliable
 
-time to deliver a new feature
+time taken to deliver a new feature
 
 # migration 
 
