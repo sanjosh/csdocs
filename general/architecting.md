@@ -1,4 +1,10 @@
 
+# sweet spot
+
+will work for upto 10x load of today
+
+easy to build on
+
 # operational efficiency 
 
 simpler is easier to manage : only need to know few knobs for each module
@@ -14,6 +20,8 @@ ability to quickly recover from disaster
 # cost 
 
 money
+
+technical skills required
 
 # future-proof
 
