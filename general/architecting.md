@@ -5,17 +5,19 @@ will work for upto 10x load of today
 
 easy to build on
 
+ability to reason about it 
+
 # operational efficiency 
 
 simpler is easier to manage : only need to know few knobs for each module
 
 reduce oncall load on engineers
 
-switch off failing parts
+ability to switch off failing parts
 
 ability to audit and monitor running system
 
-ability to quickly recover from disaster
+ability to quickly recover from disaster or failure
 
 # cost 
 
