@@ -11,7 +11,9 @@ optimize the common case
 
 # incremental but must have low migration cost
 
-things which won't change must be decided (one way door)
+things which won't change must be decided now
+
+easy to migrate from things which can change
 
 
 # operational efficiency 
