@@ -9,6 +9,11 @@ ability to reason about it
 
 optimize the common case 
 
+# incremental but must have low migration cost
+
+things which won't change must be decided (one way door)
+
+
 # operational efficiency 
 
 simpler is easier to manage : only need to know few knobs for each module
@@ -34,7 +39,7 @@ customer satisfaction
 
 meet growth for next 1-2 years
 
-effort to change tech stack 
+must reduce effort to change tech stack 
 
 # reliable tech
 
