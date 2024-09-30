@@ -43,3 +43,7 @@ https://netflixtechblog.com/practical-api-design-at-netflix-part-2-protobuf-fiel
 1. consistent naming (abbreviations, verbs, nouns)
 2. fluent API
 2. consistent error handling
+
+# Adidas
+
+https://adidas.gitbook.io/api-guidelines
