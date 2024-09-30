@@ -3,6 +3,9 @@
 
 https://google.aip.dev/
 
+# adidas
+
+https://adidas.gitbook.io/api-guidelines
 
 # API types
 
