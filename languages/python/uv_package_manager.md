@@ -1,4 +1,6 @@
 
+# uv talk
+
 https://www.youtube.com/watch?v=gSKTfG1GXYQ
 
 https://www.janestreet.com/tech-talks/uv-an-extremely-fast-python-package-manager/
@@ -17,4 +19,7 @@ global cache, copy on write (hard link)
 
 
 
+# docker images with uv
+
+https://mkennedy.codes/posts/python-docker-images-using-uv-s-new-python-features/
 
