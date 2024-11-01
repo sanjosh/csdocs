@@ -5,6 +5,8 @@ Two versions to care about
 * Compute capability of device
 * driver API version - CUDA_VERSION
 
+# nvitop
+
 # nvidia-smi
 
 # NVCC
