@@ -38,3 +38,79 @@ https://developers.google.com/optimization/introduction/python
 
 Pawel Lichocki - OR-tools
 https://www.youtube.com/watch?v=AJ6LeiMe_PQ
+
+# Flipkart
+
+https://www.youtube.com/watch?v=v9tUEsHD6BE
+
+Distinguish pre-determined shipments (postal service)  versus on-demand delivery (food ordering)
+
+## manual process
+
+divide delivery zone into regions, sort parcels by region
+
+1. asymmetric - some get too few, some get too many
+2. inefficient - sorting takes time
+3. difficult to fulfil in time windows
+
+## optimization problem
+
+classic cost function : minimize sum of total travel time of all agents
+
+problem for single agent = TSP which is NP complete
+
+## variations of problem
+
+1. VRP with time window
+2. capacitated VRP (truck has limited space)
+3. Capacitated VRP with time window
+
+## solvers
+
+optaplanner - java
+
+local solver
+
+## problem
+
+Input
+1. N customers
+2. pairwise distance matrix
+3. m vehicles with capacity
+4. serviceable time window
+
+Multiple objectives
+1. minimize uneven distribution
+2. minimize stretched routes
+3. minimize total travel time
+
+## exact algo
+
+1. integer programming
+2. dynamic programming
+
+
+## approx algo
+
+1. construction heuristics (initial routes)
+2. improvement heuristics (improve routes)
+
+find minimum insertion cost, subject to time window
+
+## questions
+
+traffic in city taken into account
+
+graph neural nets (now) ?
+
+leverage past data
+
+
+
+## references
+
+https://youtu.be/v9tUEsHD6BE?t=1774
+
+
+
+
