@@ -49,6 +49,15 @@ HTTP GET can have body since 2021
 
 ## proxying responses
 
+## do not reuse the same DTO in get and create (do CQRS)
+
+false overlap 
+
+## error handling
+
+1. which are retryable
+2. dont leak unauthorized reason
+
 
 
 
