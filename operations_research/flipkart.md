@@ -7,6 +7,71 @@
 3. Transport Management System (mid-mile, last mile)
 
 
+## overview
+
+https://www.youtube.com/watch?v=516CoeYlUBU
+
+senthil PM
+
+### problem statement
+
+1. product categories
+2. product attributes (fragile, inflammable, multi part)
+3. customer segments (plus, metro, women)
+4. fulfilment models (JIT, preorder, omnichannel, hyperlocal, brand warehouse)
+5. supply chain services (next day, scheduled, reverse)
+
+questions
+1. how should inventory be reserved and when it should be released
+2. should orders be processed real-time or batch
+3. shipment flow path can be multiple
+4. how to manage exceptions - (cancel, change of delivery day, strike)
+5. when should transport be initiated
+6. what choices to offer customer
+
+larger problems
+1. forecasting
+2. demand prediction (opportunity cost)
+3. inventory planning
+
+## steps
+
+1. estimate times - do backward propagation
+2. every 12 hours, plan the shipment batch
+3. every 15 minutes, monitor
+
+## decisions
+
+1. which warehouse ? consider future orders.  
+2. identify flow paths choices (cost vs SLA tradeoff)
+3. assess risks
+4. inventory allocation (pre-orders versus now versus later)
+
+## how to batch orders
+
+1. flow path is known
+2. transport connection balancing
+3. transport grouping
+4. backward propagation - zero queue - latest point at which shipment can be released from warehouse
+5. forward propagation - earliest time to release order from warehouse
+
+## warehouse selection
+
+1. model into common unit - business value
+2. model time into opportunity cost - business value
+3. model risk as reliability coefficient - business value
+
+objective function : max value of batch order
+
+parameters
+1. cost curve of order
+2. cost of serving order
+3. cost (C_t and C_s) across flow path
+4. identification of path
+5. identification of warehouse
+
+
+
 ## anomaly detection
 
 govind pandey
@@ -18,7 +83,7 @@ https://www.youtube.com/watch?v=UiyQT6g7Bs8
 3. sortation center (product sorted by destination)
 4. delivery hubs (product sorted by final destination or truck)
 
-started with cron, then dashboard, then alerting
+started as cron, then dashboard, then alerting
 
 ### Metrics 
 
@@ -35,7 +100,7 @@ isolation forest after massaging time series data
 
 monitoring
 
-## process - backward propagation and then forward propagation
+## process 
 
 ```
 Once a customer places an order and selects a delivery slot, last mile and mid-mile delivery timelines are calculated
