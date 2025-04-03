@@ -1,10 +1,38 @@
 
-# bayesian strucural time series
+# bayesian structural time series
 
 https://en.wikipedia.org/wiki/Bayesian_structural_time_series
 
 All ARIMA models can be written as structural time series models
 
+
+# spike and slabs prior
+
+https://en.wikipedia.org/wiki/Spike-and-slab_regression
+
+```
+Another advantage of Bayesian structural models is the ability to use spike-and-slab priors.
+This provides a powerful way of reducing a large set of correlated variables into a parsimonious model,
+while also imposing prior beliefs on the model.
+Furthermore, by using priors on the regressor coefficients,
+the model incorporates uncertainties of the coefficient estimates when producing the credible interval for the forecasts.
+```
+
+https://jasonlian.github.io/Rmarkdown/Tutorial_for_BSTS.html#13_bayesian_variable_selection
+
+# kalman is bayesian
+
+```
+The Kalman Filter and its variants are Bayesian inference on a time series.
+
+You have a hidden state x_t, x_t+1,.. and observations y_t, y_t+1.. .
+There is a model for the evolution of the hidden state (e.g. physics of an asteroid moving through space)
+and
+a model for the observations given the hidden state (how an image of the asteroid is produced given its position and velocity).
+There is also a prior for the hidden state, which comes from the previous time step.
+```
+
+https://www.reddit.com/r/statistics/comments/12c5azg/use_cases_for_bayesian_time_series_q/
 
 # structural time series (not bayesian, AKA state space models)
 
