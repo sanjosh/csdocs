@@ -14,13 +14,17 @@ unobserved variable is called "state space"
 # why bsts
 
 ```
-BSTS is more transparent because its representation does not rely on differencing, lags and moving averages. You can visually inspect the underlying components of the model. It handles uncertainty in a better way because you can quantify the posterior uncertainty of the individual components, control the variance of the components, and impose prior beliefs on the model. Last, but not least, any ARIMA model can be recast as a structural model. Generally, we can write a Bayesian structural model like this:
+BSTS is more transparent because its representation does not rely on differencing, lags and moving averages.
+You can visually inspect the underlying components of the model.
+It handles uncertainty in a better way because you can quantify the posterior uncertainty of the individual components, control the variance of the components, and impose prior beliefs on the model.
+Last, but not least, any ARIMA model can be recast as a structural model. Generally, we can write a Bayesian structural model like this:
 ```
 
 https://jasonlian.github.io/Rmarkdown/Tutorial_for_BSTS.html
 
 ```
-When building Bayesian models we get a distribution and not a single answer. Thus, the bsts package returns results (e.g., forecasts and components) as matrices or arrays where the first dimension holds the MCMC iterations.
+When building Bayesian models we get a distribution and not a single answer.
+Thus, the bsts package returns results (e.g., forecasts and components) as matrices or arrays where the first dimension holds the MCMC iterations.
 
 ```
 
@@ -44,10 +48,32 @@ Causal effect is the magnitude by which Y is changed by unit change in X
 
 https://gowrishankar.info/blog/is-covid-crisis-lead-to-prosperity-causal-inference-from-a-counterfactual-world-using-facebook-prophet/
 
+# four ways to add bayesian
+
+## Bayesian ARIMA
+
+## Bayesian Structural Time Series (BSTS)
+
+Bayesian Structural Time Series (BSTS) models decompose time series data into distinct components, incorporating trend components for long-term patterns, seasonal elements for cyclical behavior, external regressors for additional variables, and anomaly detection capabilities
+
+
+## Bayesian Dynamic Linear Models (BDLMs)
+
+Bayesian Dynamic Linear Models (BDLMs) extend state-space models through Bayesian inference, proving particularly valuable when relationships between variables evolve over time. 
+
+use pymc 
+
+## Bayesian Neural Networks (BNNs).
+
+Bayesian Neural Networks (BNNs) merge neural network architecture with Bayesian principles. 
+
+https://medium.com/@kylejones_47003/bayesian-time-series-analysis-in-python-bsts-bdlm-bnn-b-arima-1ca74d6cc3de
 
 # packages
 
 R package bsts
+
+PyBSTS
 
 https://github.com/wwrechard/pydlm
 
