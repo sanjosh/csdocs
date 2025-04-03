@@ -10,6 +10,19 @@ All ARIMA models can be written as structural time series models
 
 unobserved variable is called "state space"
 
+A structural time series in particular posits a particular form for these relationships, that these functions between states and observations, and between states and previous states are linear subject to Gaussian noise.
+
+https://embecosm.com/2021/12/18/forget-arima-going-bayesian-with-time-series-analysis/
+
+
+# going bayesian
+
+
+
+https://embecosm.com/2021/12/18/forget-arima-going-bayesian-with-time-series-analysis/
+
+code for it
+https://github.com/WillRogerJones/BayesianTimeSeries
 
 # why bsts
 
