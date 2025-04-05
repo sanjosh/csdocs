@@ -26,6 +26,22 @@ https://interpretable-ml-class.github.io/
 
 https://christophm.github.io/interpretable-ml-book/shapley.html
 
+## tutorial
+
+
+To understand a feature’s importance in a model
+it is necessary to understand both how changing that feature
+1. impacts the model’s output
+2. the distribution of that feature’s values.
+
+The core idea behind Shapley value based explanations of machine learning models is to use fair allocation results from cooperative game theory to allocate credit for a model’s output among its input features.
+
+In order to connect game theory with machine learning models, it is necessary to both match
+1. model’s input features with players in a game,
+2. match the model function with the rules of the game
+
+https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html
+
 # Captum
 
 ```
