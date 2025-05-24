@@ -1,9 +1,24 @@
 
+## AIC and BIC
+AIC and BIC find model which explains the data well with as few parameters as necessary
+
 
 ## MLE Extensions & Comparisons
 What’s the difference between MLE and MAP (Maximum A Posteriori)?
+```
+MAP incorporates prior
+```
 
 How does MLE compare to Bayesian estimation?
+```
+Bayesian estimates full posterior distribution
+
+MLE is a special case of Bayesian estimation with a uniform (flat) prior (or ignoring the prior).
+
+The MAP estimate is the mode of the posterior.
+
+Bayesian estimation gives you more than just a point estimate — it provides uncertainty and full probabilistic modeling.
+```
 
 When does MLE fail or become biased?
 
@@ -38,5 +53,9 @@ How do I estimate MLE numerically for complex likelihoods?
 How is MLE used in logistic regression or linear regression?
 
 How does MLE connect to loss functions in machine learning?
+```
+Optimization in machine learning usually involves minimizing a loss function.
+Instead of maximizing likelihood, we minimize the negative log-likelihood (NLL):
+```
 
 What role does MLE play in neural networks and deep learning?
