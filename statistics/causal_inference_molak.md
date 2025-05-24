@@ -75,7 +75,48 @@ Collider helps orient edges in graph
 2. front door
 3. do calculus
 
-   
+## causality works only under some assumptions
 
+positivity 
 
+exchangeability
+
+##  code
+
+```
+model = CausalModel(
+      data=df,
+      treatment='X',
+      outcome='Y',
+      effect_modifiers='...',
+      graph=gml_string
+      )
+
+estimand = model.identify_effect()
+
+refute_subset = model.refute_estimate(
+       estimand=estimand, 
+       estimate=estimate,
+       method_name="data_subset_refuter"
+      )
+
+estimate = model.estimate_effect(
+      identified_estimand=estimand,
+      method_name='...'
+      )
+
+to predict
+
+model.causal_estimator.effect
+
+```
+
+## Models
+
+SLearner
+TLearner
+XLearner
+DRLearner
+LinearDML
+CausalForestDML
    
