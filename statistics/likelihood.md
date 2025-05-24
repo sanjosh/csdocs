@@ -55,7 +55,10 @@ How is MLE used in logistic regression or linear regression?
 How does MLE connect to loss functions in machine learning?
 ```
 Optimization in machine learning usually involves minimizing a loss function.
-Instead of maximizing likelihood, we minimize the negative log-likelihood (NLL):
+Instead of maximizing likelihood, we minimize the negative log-likelihood (NLL)
+Loss functions in many ML models are just the negative log-likelihoods from probabilistic models, making MLE the statistical foundation of these optimization objectives.
+
+
 ```
 
 What role does MLE play in neural networks and deep learning?
