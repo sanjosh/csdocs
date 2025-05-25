@@ -128,9 +128,38 @@ You specify the causal graph based on domain knowledge. then
 1. Use do-calculus and backdoor/frontdoor criteria to identify causal effects.
 2. Apply statistical methods (e.g., regression, matching, IPW) to estimate the effects.
 
-### backdoor
+### frontdoor (mediator)
+
+Use this when confounders are unobserved, but mediator exists
+
+If you can't block confounding directly, use a mediator that carries the causal effect
+
+example
+```
+U -> X -> Z -> Y
+U -> Y
+```
+
+U is an unobserved confounder between X and Y
+
+But if you observe the mediator Z is affected only by X and Fully transmits the causal effect
+
+You can recover the effect of X -> Y via Z
+
+
+### backdoor (confounder is known)
+
+Use this when you can observe confounders
 
 Use backdoor adjustment to block confounding
+
+A backdoor path is a non-causal path from X to Y that starts with an arrow into X and can create spurious associations. (e.g. Z -> X -> Y)
+
+Find a set of variables Z that Blocks all backdoor paths from X to Y
+
+Does not include any descendants of X
+
+then estimate the causal effect of conditional on Z
 
 ### interventions
 
