@@ -113,10 +113,59 @@ model.causal_estimator.effect
 
 ## Models
 
-SLearner
-TLearner
-XLearner
-DRLearner
-LinearDML
-CausalForestDML
-   
+1. SLearner
+2. TLearner
+3. XLearner
+3. DRLearner
+4. LinearDML
+5. CausalForestDML
+
+# Algorithms to find causality
+
+## Assumption based (structural causal models)
+
+You specify the causal graph based on domain knowledge. then
+1. Use do-calculus and backdoor/frontdoor criteria to identify causal effects.
+2. Apply statistical methods (e.g., regression, matching, IPW) to estimate the effects.
+
+### backdoor
+
+Use backdoor adjustment to block confounding
+
+### interventions
+
+You simulate interventions with do-notation:
+```
+do(X=x): force X to value x (as in a randomized trial)
+```
+
+## data driven discovery
+
+learn structure of graph from data without interventions.
+1. PC Peter-Clark uses conditional independence tests
+2. GES
+3. LiNGAM assumes linear, non-Gaussian
+4. NOTEARS
+5. IDA
+6. Invariant Causal Prediction
+7. Interventional Methods
+
+
+### Peter-Clark method
+
+
+1. Start with a fully connected undirected graph 
+2. Use conditional independence tests to remove edges
+3. Orient edges using rules (e.g., v-structure detection)
+4. Apply additional rules (e.g., Meek’s rules) to orient as much of the graph as possible.
+
+
+### LiNGAM (Linear Non-Gaussian Acyclic Model)
+
+Assume each variable is a linear function of its direct causes plus non-Gaussian noise.
+
+Use Independent Component Analysis (ICA) to find the mixing matrix and noise components.
+
+Use matrix decomposition to recover the causal ordering and structure.
+
+See `lingam` package
