@@ -111,3 +111,11 @@ Run PCMCI from the tigramite package with downsampled data
 
 Use Neural Granger on subsets of variables or compressed representations
 
+
+#  Feature Engineering for Time Series:
+
+Lags: Include lagged values of the treatment, outcome, and covariates as features (X, W, T) in your CausalForestDML model. For example, to estimate the effect of treatment at time t on outcome at time t+k, you might include T(t), Y(t-1), X(t), X(t-1).  This explicitly incorporates temporal dependencies.
+
+Moving Averages, Differences, Trends: Create features that capture the dynamic behavior of the time series (e.g., moving averages, seasonal components, detrended values).
+
+Stationarization: If applicable, transforming non-stationary series into stationary ones (e.g., differencing) can help meet the assumptions of underlying machine learning models used within DML.
