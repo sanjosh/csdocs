@@ -1,7 +1,31 @@
 
-# book notes Molak causal inference
+# book Molak causal inference
 
-## confounding variable
+# estimand
+
+causal quantity you want to estimate.
+
+The average treatment effect (ATE) — the difference in recovery time if everyone took the drug vs if no one did.
+
+types of estimands:
+
+Each of these is a different estimand depending on the causal question.
+
+## ATE (Average treatment effect) 
+
+E[Y(1) - Y(0)] - average effect of treatment vs no treatment
+
+## ATT (Average Treatment effect on the Treated group)
+
+E[Y(1) - Y(0) | T = 1] 
+
+## CATE (Conditional ATE)	
+
+Effect conditioned on covariates: E[Y(1) - Y(0) | X]
+
+## ITT (Intention to Treat)	
+
+# confounding variable
 
 hidden factor which drives both the apparent cause and the effect
 
@@ -9,25 +33,26 @@ confounder (high temperature) drives icecream sales and pool accidents
 
 but we assume high icecream sales cause pool accidents
 
-## counterfactuals
 
-## simpson paradoz 
+# simpson paradoz 
 
 aggregation excludes confounding variable
 
 e.g. women apply to dept with higher acceptance rate, so it seems fewer women admitted across depts
 
-## ladder of causation
+# ladder of causation
 
 association, intervention, counterfactual
 
-## SCM
+# SCM structural causal models
 
-## correlation metrics 
+# correlation metrics 
 
 pearson and spearman cannot capture non-monotonic relationships (e.g quadratic)
 
 use MIC or HSIC for independence testing
+
+# counterfactuals
 
 ## computing counterfactuals
 
@@ -37,19 +62,19 @@ use MIC or HSIC for independence testing
 
 (pg 31 bottom brady neal video)
 
-## p-value 
+# p-value 
 
-pg 41
+pg 41 of molak
 
 ## control confounding variable to remove confounding (page 48)
 
-## conditional independence (chap 5)
+# conditional independence (chap 5)
 
-## causal inference
+# causal inference
 
 causal markov condition
 
-## determine conditional independence
+# determine conditional independence
 
 chain : A -> B -> C, where A and C dependent if we dont control for B
 
@@ -59,29 +84,29 @@ collider : A -> B <- C where A and C dependent if we control for B
 
 Collider helps orient edges in graph
 
-## rough sketch
+# rough sketch
 
 1. take A, B and C
 2. generate 3 datasets for fork, collider and chain
 3. fit regression models on each to find best
 
-## MEC Markov equivalence class
+# MEC Markov equivalence class
 
-## d-separation used to build estimands
+# d-separation used to build estimands
 
-## techniques to build causal estimands
+# techniques to build causal estimands
 
 1. Back door
 2. front door
 3. do calculus
 
-## causality works only under some assumptions
+# causality works only under some assumptions
 
 positivity 
 
 exchangeability
 
-##  code
+#  code
 
 ```
 model = CausalModel(
@@ -111,14 +136,6 @@ model.causal_estimator.effect
 
 ```
 
-## Models
-
-1. SLearner
-2. TLearner
-3. XLearner
-3. DRLearner
-4. LinearDML
-5. CausalForestDML
 
 # Algorithms to find causality
 
@@ -198,3 +215,75 @@ Use Independent Component Analysis (ICA) to find the mixing matrix and noise com
 Use matrix decomposition to recover the causal ordering and structure.
 
 See `lingam` package
+
+
+# Meta-Learners
+
+(from gemini)
+
+meta-learners provide a framework for using any standard supervised model to solve a causal inference problem. 
+
+the goal is to estimate the Conditional Average Treatment Effect (CATE), which is the expected effect of a treatment for an individual with a specific set of characteristics (features).
+
+1. S-Learner
+2. T-Learner
+3. X-Learner
+3. DR-Learner
+4. LinearDML
+5. CausalForestDML
+
+
+## S-learner (or "single-learner") 
+
+trains a single machine learning model, treating the intervention status as a regular feature. 
+
+## T-learner (or "two-learner") 
+
+trains two independent models: one for the group that received the treatment and one for the group that did not
+
+## X-learner
+
+## DR-learner (Doubly robust)
+
+## Double Machine Learning (DML)
+
+(also known as Debiased or Orthogonal Machine Learning) is a two-stage framework designed to solve for multiple confounders
+
+The core idea is to "clean" both the outcome and the treatment variables of any influence from the confounders before estimating the causal effect.
+
+two stage process
+
+Stage 1: Model the Nuisance Functions. Use flexible machine learning models to predict the outcome (Y) from the confounders (W) and the treatment (T) from the confounders (W).
+Stage 2: Estimate the Causal Effect on Residuals. Calculate the "residuals" (the parts of the outcome and treatment not explained by the confounders) and then model the relationship between them to get a clean, unbiased estimate of the treatment effect.
+
+
+## LinearDML
+
+Combines the flexibility of machine learning (to handle complex confounders) with the statistical rigor and interpretability of linear models (for the final causal estimate)
+
+### Example:
+A company wants to estimate the effect of a discount (T) on sales (Y).
+
+1. Confounders (W): A user's extensive Browse history, past purchases, and device type (high-dimensional and complex).
+2. Heterogeneity Features (X): The user's income and account age.
+3. Hypothesis: The discount's effectiveness is different for users with different incomes, and this relationship is roughly linear (e.g., for every $10k increase in income, the sales lift from the discount increases by $0.50).
+
+In this scenario, LinearDML would be an excellent choice. It would use a powerful ML model to control for the complex Browse history and then estimate an interpretable linear formula for how the discount effect changes with income and account age.
+
+## CausalForestDML
+
+use `EconML` package
+
+CausalForestDML = DML + Causal Forest
+
+### Causal Forest
+
+(Susan Athey and Guido Imbens) 
+
+adaptation of the popular Random Forest algorithm specifically for estimating heterogeneous treatment effects. 
+
+Instead of building decision trees that minimize prediction error for the outcome, a Causal Forest builds trees that maximize the difference in the treatment effect across different groups. 
+
+The final estimate for an individual is an average of the estimates from all the trees in the forest. 
+
+Effective at uncovering complex patterns in how treatment effects vary across a population
