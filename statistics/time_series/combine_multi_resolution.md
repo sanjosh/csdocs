@@ -505,3 +505,11 @@ class TrafficDataset(Dataset):
         )
 
 ```
+
+# references
+
+https://arxiv.org/abs/2311.04147
+
+informer : https://arxiv.org/abs/2012.07436
+
+Crossformer: Transformer for Long Sequence Time-Series Forecasting https://github.com/Thinklab-SJTU/Crossformer
