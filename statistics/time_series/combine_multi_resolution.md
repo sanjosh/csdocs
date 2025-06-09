@@ -281,3 +281,220 @@ class MultiResTrafficTransformer(nn.Module):
 model = MultiResTrafficTransformer(input_dim_hourly=4, input_dim_5min=4)
 output_5min, output_hourly = model(hourly_seq, fivemin_seq)
 ```
+
+and
+```
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from torch.utils.data import DataLoader, Dataset
+import numpy as np
+
+# Positional Encoding
+class PositionalEncoding(nn.Module):
+    def __init__(self, d_model, max_len=5000):
+        super().__init__()
+        pe = torch.zeros(max_len, d_model)
+        position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
+        div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-np.log(10000.0) / d_model))
+        pe[:, 0::2] = torch.sin(position * div_term)
+        pe[:, 1::2] = torch.cos(position * div_term)
+        pe = pe.unsqueeze(0)
+        self.register_buffer('pe', pe)
+
+    def forward(self, x):
+        return x + self.pe[:, :x.size(1)]
+
+# Transformer Encoder for Hourly Series
+class HourlyEncoder(nn.Module):
+    def __init__(self, input_dim, d_model, n_heads, n_layers):
+        super().__init__()
+        self.input_proj = nn.Linear(input_dim, d_model)
+        self.pos_encoder = PositionalEncoding(d_model)
+        encoder_layer = nn.TransformerEncoderLayer(d_model, n_heads)
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=n_layers)
+
+    def forward(self, x):
+        x = self.input_proj(x)
+        x = self.pos_encoder(x)
+        x = x.permute(1, 0, 2)
+        return self.transformer_encoder(x)
+
+# Transformer Decoder for 5-min Series
+class FiveMinDecoder(nn.Module):
+    def __init__(self, input_dim, d_model, n_heads, n_layers):
+        super().__init__()
+        self.input_proj = nn.Linear(input_dim, d_model)
+        self.pos_encoder = PositionalEncoding(d_model)
+        decoder_layer = nn.TransformerDecoderLayer(d_model, n_heads)
+        self.transformer_decoder = nn.TransformerDecoder(decoder_layer, num_layers=n_layers)
+
+    def forward(self, x, memory):
+        x = self.input_proj(x)
+        x = self.pos_encoder(x)
+        x = x.permute(1, 0, 2)
+        return self.transformer_decoder(x, memory)
+
+# Multi-task output head
+class MultiTaskHead(nn.Module):
+    def __init__(self, d_model, output_dim_5min, output_dim_hourly):
+        super().__init__()
+        self.output_5min = nn.Linear(d_model, output_dim_5min)
+        self.output_hourly = nn.Linear(d_model, output_dim_hourly)
+
+    def forward(self, decoder_out):
+        output_5min = self.output_5min(decoder_out)
+        output_hourly = self.output_hourly(decoder_out[0])
+        return output_5min.permute(1, 0, 2), output_hourly
+
+# Full Model
+class MultiResTrafficTransformer(nn.Module):
+    def __init__(self, input_dim_hourly, input_dim_5min, d_model=128, n_heads=4, n_layers=2):
+        super().__init__()
+        self.encoder = HourlyEncoder(input_dim_hourly, d_model, n_heads, n_layers)
+        self.decoder = FiveMinDecoder(input_dim_5min, d_model, n_heads, n_layers)
+        self.head = MultiTaskHead(d_model, output_dim_5min=1, output_dim_hourly=1)
+
+    def forward(self, hourly_seq, fivemin_seq):
+        memory = self.encoder(hourly_seq)
+        decoder_out = self.decoder(fivemin_seq, memory)
+        return self.head(decoder_out)
+
+# Synthetic Dataset Example
+class TrafficDataset(Dataset):
+    def __init__(self, num_samples=1000, hourly_len=24, fivemin_len=72):
+        self.hourly_data = np.random.randn(num_samples, hourly_len, 4).astype(np.float32)
+        self.fivemin_data = np.random.randn(num_samples, fivemin_len, 4).astype(np.float32)
+        self.y_5min = np.random.randn(num_samples, fivemin_len, 1).astype(np.float32)
+        self.y_hourly = np.random.randn(num_samples, 1).astype(np.float32)
+
+    def __len__(self):
+        return len(self.hourly_data)
+
+    def __getitem__(self, idx):
+        return (
+            torch.tensor(self.hourly_data[idx]),
+            torch.tensor(self.fivemin_data[idx]),
+            torch.tensor(self.y_5min[idx]),
+            torch.tensor(self.y_hourly[idx]),
+        )
+
+# Training Loop
+
+def train(model, dataloader, optimizer, criterion_5min, criterion_hourly, device, alpha=0.5):
+    model.train()
+    total_loss = 0
+    for hourly, fivemin, y_5min, y_hourly in dataloader:
+        hourly = hourly.to(device)
+        fivemin = fivemin.to(device)
+        y_5min = y_5min.to(device)
+        y_hourly = y_hourly.to(device)
+
+        optimizer.zero_grad()
+        pred_5min, pred_hourly = model(hourly, fivemin)
+
+        loss_5min = criterion_5min(pred_5min, y_5min)
+        loss_hourly = criterion_hourly(pred_hourly, y_hourly)
+        loss = alpha * loss_5min + (1 - alpha) * loss_hourly
+
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+
+    return total_loss / len(dataloader)
+
+# Example Setup
+if __name__ == "__main__":
+    dataset = TrafficDataset()
+    dataloader = DataLoader(dataset, batch_size=32, shuffle=True)
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    model = MultiResTrafficTransformer(input_dim_hourly=4, input_dim_5min=4).to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-4)
+    criterion_5min = nn.MSELoss()
+    criterion_hourly = nn.MSELoss()
+
+    for epoch in range(10):
+        loss = train(model, dataloader, optimizer, criterion_5min, criterion_hourly, device)
+        print(f"Epoch {epoch+1}, Loss: {loss:.4f}")
+
+```
+
+### training
+
+```
+import numpy as np
+import torch
+from torch.utils.data import Dataset
+
+def generate_ar_series(length, phi=0.8, sigma=0.5):
+    series = [0.0]
+    for _ in range(1, length):
+        series.append(phi * series[-1] + np.random.normal(scale=sigma))
+    return np.array(series)
+
+def seasonal_component(length, period=24, amplitude=5):
+    return amplitude * np.sin(np.arange(length) * 2 * np.pi / period)
+
+class TrafficDataset(Dataset):
+    def __init__(self, num_samples=1000, hourly_len=24, fivemin_len=288):
+        self.hourly_len = hourly_len
+        self.fivemin_len = fivemin_len
+        self.num_samples = num_samples
+        
+        self.hourly_data = []
+        self.fivemin_data = []
+        self.y_5min = []
+        self.y_hourly = []
+        
+        for _ in range(num_samples):
+            # Generate fine-grained 5-min data with AR + seasonality + noise for 1 day (288 = 12 * 24)
+            base_5min = generate_ar_series(fivemin_len) + seasonal_component(fivemin_len, period=288)
+            base_5min = base_5min.reshape(-1, 1)  # Single feature
+            
+            # Generate additional 3 features as noisy variants
+            features_5min = np.hstack([
+                base_5min,
+                base_5min * (0.8 + 0.4 * np.random.rand()),
+                np.roll(base_5min, 1) * (0.5 + 0.5 * np.random.rand()),
+                np.random.normal(scale=0.2, size=(fivemin_len, 1))
+            ])
+            
+            # Aggregate to hourly by averaging each 12 consecutive 5-min blocks
+            hourly = base_5min.reshape(hourly_len, 12, 1).mean(axis=1)
+            
+            # Generate additional 3 features for hourly similarly
+            features_hourly = np.hstack([
+                hourly,
+                hourly * (0.9 + 0.2 * np.random.rand()),
+                np.roll(hourly, 1) * (0.6 + 0.4 * np.random.rand()),
+                np.random.normal(scale=0.1, size=(hourly_len, 1))
+            ])
+            
+            # Targets: next-step prediction (shifted by 1)
+            target_5min = np.roll(base_5min, -1, axis=0)
+            target_hourly = np.roll(hourly, -1, axis=0)
+            target_hourly = target_hourly.mean(axis=0).reshape(1)  # scalar target as example
+            
+            self.fivemin_data.append(features_5min.astype(np.float32))
+            self.hourly_data.append(features_hourly.astype(np.float32))
+            self.y_5min.append(target_5min.astype(np.float32))
+            self.y_hourly.append(target_hourly.astype(np.float32))
+        
+        self.fivemin_data = np.array(self.fivemin_data)
+        self.hourly_data = np.array(self.hourly_data)
+        self.y_5min = np.array(self.y_5min)
+        self.y_hourly = np.array(self.y_hourly)
+    
+    def __len__(self):
+        return self.num_samples
+    
+    def __getitem__(self, idx):
+        return (
+            torch.tensor(self.hourly_data[idx]),
+            torch.tensor(self.fivemin_data[idx]),
+            torch.tensor(self.y_5min[idx]),
+            torch.tensor(self.y_hourly[idx])
+        )
+
+```
