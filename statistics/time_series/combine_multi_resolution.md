@@ -148,6 +148,8 @@ You can even use predictions from XGBoost (hourly + 5min) as features fed into t
 
 ## Multi-Task Transformer with Cross-Attention + Multi-Head Fusion
 
+```
+
                   +-------------------+
                   | Hourly Time Series|
                   +--------+----------+
@@ -166,12 +168,16 @@ You can even use predictions from XGBoost (hourly + 5min) as features fed into t
                   |   Multi-task Head  | → Also predicts hourly traffic
                   +-------------------+
 
+```
+
 1. Encoder:
+   
 Input: hourly-level series (24 values for 1 day, with timestamps, etc.)
 
 Learns trends, rush-hour cycles, etc.
 
 2. Decoder:
+ 
 Input: recent 5-minute history (e.g., last 288 values for 24 hours)
 
 Learns short-term volatility, signal dynamics
@@ -179,6 +185,7 @@ Learns short-term volatility, signal dynamics
 Uses cross-attention to selectively incorporate hourly context
 
 3. Multi-Task Output Heads:
+
 Head 1: Predict next-hour traffic (e.g., 1-step or multi-step ahead)
 
 Head 2: Predict next 5-min traffic (e.g., 12 steps for 1 hour ahead)
