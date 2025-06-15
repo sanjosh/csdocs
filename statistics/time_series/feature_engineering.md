@@ -1,14 +1,16 @@
 
 
-# features
 
-Binary weekday/weekend flag
+# Binary weekday/weekend flag
 
-Holiday indicator (if applicable)
+# Holiday indicator (if applicable)
+
+
+# moving average
+
+# lagged features
 
 Traffic volume last week same time (lags)
-
-use moving average
 
 # type embeddings  or segment embeddings
 
@@ -88,13 +90,7 @@ https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature
 
 outputs are in the normalized space (mean ~ 0, std ~ 1), so we need to reverse the transformation.
 
-# other
 
-embedding dimesion size : richer representation
-
-number of heads in transformer : more attention patterns
-
-number of layers in transformer
 
 
 
