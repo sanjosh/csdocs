@@ -25,6 +25,7 @@ hourly_embed = encoder_output_hourly + type_embed(torch.tensor(0, device=device)
 fivemin_embed = encoder_output_fivemin + type_embed(torch.tensor(1, device=device))
 
 ```
+
 # normalize
 
  subtract by running mean and divide by std deviation
@@ -68,6 +69,20 @@ Time-aware positional encodings — e.g., continuous time gaps or encoding clock
 ## rotary encoding
 
 preserve the relative and absolute position of tokens in the sequence inside the attention mechanism itself
+
+## spline encoding
+
+https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html
+
+## polynomial features for interactions
+
+https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html
+
+
+## kernels 
+
+https://scikit-learn.org/stable/auto_examples/applications/plot_cyclical_feature_engineering.html
+
 
 # inverse scaling of predictions
 
