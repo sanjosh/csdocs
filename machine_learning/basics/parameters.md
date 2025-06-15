@@ -19,15 +19,36 @@ network with higher batch size is faster to train
 
 keep it low for CPU-based training; higher for GPU
 
+# dropout
+
+
 # number of iterations
 
 Number of iterations * batch size = entire training dataset
+
+## early stopping
 
 # epoch 
 
 one epoch is when entire training dataset is passed ONCE forward and backward through neural network
 
 # loss function
+
+
+# loss values
+
+train < val : overfitting
+        
+train > val : data leakage, 
+
+both are high : model too simple
+
+both low but noisy : data is random or not scaled
+
+# curriculum Learning
+
+Start with low variance synthetic data → increase variance slowly each epoch to stabilize early learning.
+
 
 # learning rate
 
