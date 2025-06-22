@@ -12,8 +12,9 @@
 
 (chatgpt)
 
-In quantile regression, you train models to estimate conditional quantiles:
+In quantile regression, you train one model per quantile to estimate conditional quantiles:
 
+see objective parameter
 
 ```
 import lightgbm as lgb
@@ -53,8 +54,8 @@ from xgboost import XGBRegressor
 base_model = XGBRegressor()
 base_model.fit(X_train, y_train)
 
-y_cal_pred = base_model.predict(X_cal)
-residuals = np.abs(y_cal - y_cal_pred)
+y_cal_pred = base_model.predict(X_cal) 
+residuals = np.abs(y_cal - y_cal_pred) # or residuals = (y_train - y_pred)**2
 
 ```
 
@@ -77,6 +78,12 @@ We’ll normalize the calibration residuals by their predicted error estimates f
 This gives us a scaled set of errors:
 
 
+```
+y_mean = base_model.predict(X_cal)
+y_var = error_model.predict(X_cal)
+y_std = np.sqrt(np.maximum(y_var, 1e-6))
+```
+and
 ```
 predicted_errors_cal = error_model.predict(X_cal)
 normalized_residuals = residuals / predicted_errors_cal
@@ -143,3 +150,19 @@ upper = np.percentile(boot_slopes, 97.5)
 
 print(f"Bootstrapped 95% CI for slope: ({lower:.3f}, {upper:.3f})")
 ```
+
+## NGBoost
+
+
+```
+from ngboost import NGBRegressor
+from ngboost.distns import Normal
+
+model = NGBRegressor(Dist=Normal).fit(X_train, y_train)
+preds = model.pred_dist(X_test)
+
+mean = preds.loc
+std = preds.scale
+
+```
+
