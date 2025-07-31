@@ -29,6 +29,20 @@ http://database-programmer.blogspot.com/2008/01/database-skills-sane-approach-to
 
 http://database-programmer.blogspot.com/2008/01/table-design-patterns.html
 
+## Model Temporal Data Explicitly
+
+Track time-based data with:
+
+1. created_at, updated_at, deleted_at (soft deletes)
+2. valid_from / valid_to for versioning
+
+## indices
+
+1. composite
+2. partial
+3. background indexing
+
+
 # ORM
 
 # pagination 
