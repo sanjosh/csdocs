@@ -53,5 +53,11 @@ Mobile browsers with strict energy-saving modes may throttle JS execution.
 
 SPAs handle authentication, tokens (JWT), and access control entirely client-side.
 
+# difference
 
+
+SSG	: html generated at Build time	Blogs; landing pages
+SSR	: html at Request time (server-side);	E-commerce product pages
+CSR (SPA) : html at	In the browser via JS;	Interactive apps (e.g., dashboards)
+MPA	: html at Per page (traditional);	Classic websites, forms
 
