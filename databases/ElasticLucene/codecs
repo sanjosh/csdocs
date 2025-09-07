@@ -1,7 +1,12 @@
 
 http://wiki.apache.org/lucene-java/FlexibleIndexing
 
-The second big change in flexible indexing is the Codec and CodecProvider APIs that enables apps to plug in different implementations for writing and reading postings data in the index. When you obtain an IndexWriter or IndexReader, you can optionally pass in a CodecProvider, which knows 1) which Codec should be used when writing a new segment, and 2) how to resolve the codec name (String) to a Codec instance, when reading from the index.
+The second big change in flexible indexing is the Codec and CodecProvider APIs that enables apps to plug
+in different implementations for writing and reading postings data in the index. 
+When you obtain an IndexWriter or IndexReader, you can optionally pass in a CodecProvider, 
+which knows 
+1) which Codec should be used when writing a new segment, and 
+2) how to resolve the codec name (String) to a Codec instance, when reading from the index.
 
 There are some experimental core codecs:
 
