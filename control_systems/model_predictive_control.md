@@ -16,3 +16,10 @@ The MPC (The Brain): It takes that clean estimate $\hat{x}_k$ as its starting po
 
 
 <img width="752" height="507" alt="Screenshot 2026-01-08 at 8 33 51 PM" src="https://github.com/user-attachments/assets/94132efc-75c3-4d45-b7db-8d8766d1fe3a" />
+
+
+# books
+
+1. Rawlings & Mayne, Model Predictive Control: Theory and Design
+2. Time-discretization of continuous delay systems
+3. Stochastic approximation of speed variability
