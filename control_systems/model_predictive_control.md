@@ -17,6 +17,11 @@ The MPC (The Brain): It takes that clean estimate $\hat{x}_k$ as its starting po
 
 <img width="752" height="507" alt="Screenshot 2026-01-08 at 8 33 51 PM" src="https://github.com/user-attachments/assets/94132efc-75c3-4d45-b7db-8d8766d1fe3a" />
 
+# thumb rules
+
+The horizon should be long enough to capture the slowest important effect of your system.
+If it takes T seconds for your action to noticeably affect the outcome
+Your prediction horizon should be at least T, preferably 2–3 x T
 
 # car driving example
 
@@ -86,6 +91,9 @@ while driving:
     apply_pedal(pedal_plan[0])   # only first action
 
     wait until next control cycle
+
+
+see https://github.com/sanjosh/smallprogs/blob/master/mpc/car_driving_basic.py
 
 
 # books
